@@ -17,6 +17,8 @@ bool ModuleRender::Init()
 {
 	LOG("Creating Renderer context");
 	bool ret = true;
+	x = 0;
+	y = 0;
 	Uint32 flags = 0;
 
 
@@ -34,7 +36,7 @@ bool ModuleRender::Init()
 	}
 
 	// TODO 9: load a texture "test.png" to test is everything works well
- App->textures->Load("prova1.png");
+ App->textures->Load("background.png");
 	
 	return ret;
 }
@@ -54,10 +56,9 @@ update_status ModuleRender::PreUpdate()
 
 	texturetrial.x = 0;
 	texturetrial.y = 0;
-	texturetrial.w = 1050;
-	texturetrial.h = 800;
-
-	Blit(App->textures->textures[0], 0, 0, &texturetrial);
+	texturetrial.w = 1280;
+	texturetrial.h = 832;
+	Blit(App->textures->textures[0], x, y, &texturetrial);
 	return update_status::UPDATE_CONTINUE;
 }
 

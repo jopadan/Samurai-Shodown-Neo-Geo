@@ -15,6 +15,8 @@ bool ModuleInput::Init()
 {
 	LOG("Init SDL input event system");
 	bool ret = true;
+	up = false, down = false, left = false, right = false;
+
 	SDL_Init(0);
 
 	if(SDL_InitSubSystem(SDL_INIT_EVENTS) < 0)
@@ -35,6 +37,18 @@ update_status ModuleInput::Update()
 
 	if (keyboard[SDL_SCANCODE_ESCAPE]) {
 		return update_status::UPDATE_STOP;
+	}
+	if (keyboard[SDL_SCANCODE_UP]) {
+		up = true;
+	}
+	if (keyboard[SDL_SCANCODE_DOWN]) {
+		down = true;
+	}
+	if (keyboard[SDL_SCANCODE_RIGHT]) {
+		right = true;
+	}
+	if (keyboard[SDL_SCANCODE_LEFT]) {
+		left = true;
 	}
 
 	return update_status::UPDATE_CONTINUE;

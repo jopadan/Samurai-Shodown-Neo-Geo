@@ -16,6 +16,7 @@ public:
 	bool Init();
 	update_status Update();
 	bool CleanUp();
+	bool up, down, left, right;
 
 public:
 	const Uint8 *keyboard = nullptr;
