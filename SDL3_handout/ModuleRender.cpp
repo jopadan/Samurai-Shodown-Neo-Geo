@@ -34,7 +34,7 @@ bool ModuleRender::Init()
 	}
 
 	// TODO 9: load a texture "test.png" to test is everything works well
- App->textures->Load("test.png");
+ App->textures->Load("prova1.png");
 	
 	return ret;
 }
@@ -54,8 +54,8 @@ update_status ModuleRender::PreUpdate()
 
 	texturetrial.x = 0;
 	texturetrial.y = 0;
-	texturetrial.w = 800;
-	texturetrial.h = 600;
+	texturetrial.w = 1050;
+	texturetrial.h = 800;
 
 	Blit(App->textures->textures[0], 0, 0, &texturetrial);
 	return update_status::UPDATE_CONTINUE;
