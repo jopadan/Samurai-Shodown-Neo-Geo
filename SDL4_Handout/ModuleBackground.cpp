@@ -13,7 +13,7 @@ ModuleBackground::ModuleBackground()
 
 	// splash animation
 
-	splash1.PushBack({ 0, 0, 15, 15 }, 0.01);
+	splash1.PushBack({ 0, 0, 0, 0 }, 0.01);
 	splash1.PushBack({ 0, 465, 50, 105 }, 0.2);
 	splash1.PushBack({ 261, 465, 95, 105 }, 0.2);
 	splash1.PushBack({ 376, 465, 116, 105 }, 0.2);
@@ -22,7 +22,7 @@ ModuleBackground::ModuleBackground()
 	splash1.PushBack({ 836, 465, 129, 105 }, 0.2);
 	splash1.PushBack({ 1023, 465, 126, 105 }, 0.2);
 
-	splash2.PushBack({ 0, 0, 15, 15 }, 0.007);
+	splash2.PushBack({ 0, 0, 0, 0 }, 0.007);
 	splash2.PushBack({ 0, 465, 50, 105 }, 0.2);
 	splash2.PushBack({ 261, 465, 95, 105 }, 0.2);
 	splash2.PushBack({ 376, 465, 116, 105 }, 0.2);
@@ -31,7 +31,7 @@ ModuleBackground::ModuleBackground()
 	splash2.PushBack({ 836, 465, 129, 105 }, 0.2);
 	splash2.PushBack({ 1023, 465, 126, 105 }, 0.2);
 
-	splash3.PushBack({ 0, 0, 15, 15 }, 0.005);
+	splash3.PushBack({ 0, 0, 0, 0 }, 0.005);
 	splash3.PushBack({ 0, 465, 50, 105 }, 0.2);
 	splash3.PushBack({ 261, 465, 95, 105 }, 0.2);
 	splash3.PushBack({ 376, 465, 116, 105 }, 0.2);
@@ -39,7 +39,7 @@ ModuleBackground::ModuleBackground()
 	splash3.PushBack({ 698, 465, 119, 105 }, 0.2);
 	splash3.PushBack({ 836, 465, 129, 105 }, 0.2);
 	splash3.PushBack({ 1023, 465, 126, 105 }, 0.2);
-
+	
 
 	// ground
 	ground.x = 0;
@@ -48,15 +48,15 @@ ModuleBackground::ModuleBackground()
 	ground.h = 416;
 
 	 //sea animation
-	sea.PushBack({ 0, 58, 640, 85},0.08f);
-	sea.PushBack({704, 58, 640, 85 }, 0.08f);
-	sea.PushBack({ 1408, 58, 640, 85 }, 0.08f);
-	sea.PushBack({ 0, 202, 640, 85 }, 0.08f);
-	sea.PushBack({ 704, 202, 640, 85 }, 0.08f);
-	sea.PushBack({ 1408, 202, 640, 85 }, 0.08f);
-	sea.PushBack({ 0, 343, 640, 85 }, 0.08f);
-	sea.PushBack({ 704, 343, 640, 85 }, 0.08f);
-	sea.PushBack({ 1408, 343, 640, 85 }, 0.08f);
+	sea.PushBack({ 0, 0, 640, 140 }, 0.08f);
+	sea.PushBack({ 704, 4, 640, 140 }, 0.08f);
+	sea.PushBack({ 1408, 4, 640, 140 }, 0.08f);
+	sea.PushBack({ 0, 156, 640, 140 }, 0.08f);
+	sea.PushBack({ 704, 156, 640, 140 }, 0.08f);
+	sea.PushBack({ 1408, 156, 640, 140 }, 0.08f);
+	sea.PushBack({ 0, 312, 630, 140 }, 0.08f);
+	sea.PushBack({ 704, 311, 640, 140 }, 0.08f);
+	sea.PushBack({ 1408, 311, 640, 140 }, 0.08f);
 	
 	
 }
@@ -70,7 +70,7 @@ bool ModuleBackground::Start()
 	LOG("Loading background assets");
 	bool ret = true;
 
-	graphics = App->textures->Load("HaohmaruStage.png");
+	graphics = App->textures->Load("haohmaru_stage.png");
 
 	return ret;
 	initializecount();
@@ -103,7 +103,7 @@ update_status ModuleBackground::Update()
 
 	App->render->Blit(graphics, 0, -150, &ground);	
 
-	App->render->Blit(graphics, 0, 87, &(sea.GetCurrentFrame()), 1);
+	App->render->Blit(graphics, 0, 53, &(sea.GetCurrentFrame()), 1);
 
 	App->render->Blit(graphics, 80, /*bounce+*/70, &(splash1.GetCurrentFrame()), 1); // splash
 	
