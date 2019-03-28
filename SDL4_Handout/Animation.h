@@ -15,9 +15,10 @@ private:
 	int last_frame = 0;
 	int speeddelay = 0;
 	int j = 1;
+	bool animend = false;
 
 public:
-
+	 
 	void PushBack(const SDL_Rect& rect, float delay)
 	{
 		frames[last_frame++] = rect;
@@ -26,16 +27,24 @@ public:
 	}
 
 	SDL_Rect& GetCurrentFrame()
-	{
+	{	
+		animend = false;
 		speeddelay = 0;
 		current_frame += speed[(int)current_frame];
-		if(current_frame >= last_frame){
+		if(current_frame > last_frame){
+			animend = true;
 			current_frame = 0;
-		 speeddelay = 0;
+			speeddelay = 0;
 		}
 
 		return frames[(int)current_frame];
 	}
+	
+	bool AnimationEnd() {
+		return animend;
+		
+	}
+
 };
 
 #endif

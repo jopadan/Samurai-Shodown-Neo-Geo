@@ -10,6 +10,13 @@ struct SDL_Texture;
 
 class ModulePlayer : public Module
 {
+private:
+	int jump;
+	bool floor = true;
+	bool attAnim= false;
+	bool kickAnim = false;
+	int initialPos;
+	float jumpSpeed = 6;
 public:
 	ModulePlayer();
 	~ModulePlayer();
@@ -23,6 +30,9 @@ public:
 	Animation idle;
 	Animation forward;
 	Animation backward;
+	Animation jumpup;
+	Animation punch;
+	Animation kick;
 	iPoint position;
 
 };
