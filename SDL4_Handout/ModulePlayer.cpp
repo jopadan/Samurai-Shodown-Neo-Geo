@@ -14,48 +14,51 @@ ModulePlayer::ModulePlayer()
 	initialPos = position.y;
 
 	// idle animation (arcade sprite sheet)
-	idle.PushBack({ 7, 14, 60, 90 }, 0.2);
-	idle.PushBack({ 95, 15, 60, 89 }, 0.2);
-	idle.PushBack({ 184, 14, 60, 90 }, 0.2);
-	idle.PushBack({ 276, 11, 60, 93 }, 0.2);
-	idle.PushBack({ 366, 12, 60, 92 }, 0.2);
-
+	idle.PushBack({ 7, 273, 75, 113 }, 0.15);
+	idle.PushBack({ 86, 275, 73, 111 }, 0.15);
+	idle.PushBack({ 164, 277, 72, 109 }, 0.15);
+	idle.PushBack({ 241, 279, 72, 107 }, 0.15);
+	
 	
 	// walk forward animation (arcade sprite sheet)
 	//forward.frames.PushBack({9, 136, 53, 83});
-	forward.PushBack({78, 131, 60, 88}, 0.2);
-	forward.PushBack({162, 128, 64, 92}, 0.2);
-	forward.PushBack({259, 128, 63, 90}, 0.2);
-	forward.PushBack({352, 128, 54, 91}, 0.2);
-	forward.PushBack({432, 131, 50, 89}, 0.2);
-	
+	forward.PushBack({ 506, 150, 69, 112 }, 0.2);
+	forward.PushBack({ 580, 147, 59, 116 }, 0.2);
+	forward.PushBack({ 644, 145, 57, 118 }, 0.2);
+	forward.PushBack({ 706, 147, 62, 116 }, 0.2);
+	forward.PushBack({ 773, 151, 70, 117 }, 0.2);
+	forward.PushBack({ 848, 154, 76, 109 }, 0.2);
 
 	// TODO 4: Make ryu walk backwards with the correct animations
-	backward.PushBack({ 540, 127, 65, 92 }, 0.2);
-	backward.PushBack({ 626, 127, 65, 92 }, 0.2);
-	backward.PushBack({ 711, 127, 65, 92 }, 0.2);
-	backward.PushBack({ 795, 127, 65, 92 }, 0.2);
-	backward.PushBack({ 881, 127, 65, 92 }, 0.2);
-	backward.PushBack({ 972, 127, 65, 92 }, 0.05);
+	backward.PushBack({ 4, 155, 82, 111 }, 0.2);
+	backward.PushBack({ 88, 152, 75, 114 }, 0.2);
+	backward.PushBack({ 165, 147, 69, 118 }, 0.2);
+	backward.PushBack({ 236, 145, 66, 120 }, 0.2);
+	backward.PushBack({ 304, 147, 70, 118 }, 0.2);
+	backward.PushBack({ 376, 151, 75, 114 }, 0.2);
 
-	jumpup.PushBack({ 7, 14, 60, 90 }, 0.2);
-	jumpup.PushBack({ 95, 15, 60, 89 }, 0.2);
-	jumpup.PushBack({ 184, 14, 60, 90 }, 0.2);
-	jumpup.PushBack({ 276, 11, 60, 93 }, 0.2);
-	jumpup.PushBack({ 366, 12, 60, 92 }, 0.2);
+	jumpup.PushBack({ 363, 274, 60, 112 }, 0.1);
+	jumpup.PushBack({ 429, 295, 75, 91 }, 0.1);
+	jumpup.PushBack({ 510, 303, 76, 83 }, 0.1);
+	jumpup.PushBack({ 429, 295, 75, 91 }, 0.1);
+	jumpup.PushBack({ 363, 274, 60, 112 }, 0.1);
 
-	punch.PushBack({ 540, 127, 65, 92 }, 0.2);
-	punch.PushBack({ 626, 127, 65, 92 }, 0.2);
-	punch.PushBack({ 711, 127, 65, 92 }, 0.2);
-	punch.PushBack({ 795, 127, 65, 92 }, 0.2);
-	punch.PushBack({ 881, 127, 65, 92 }, 0.2);
-	punch.PushBack({ 972, 127, 65, 92 }, 0.2);
+	punch.PushBack({ 3, 0, 69, 127 }, 0.3); //127
+	punch.PushBack({ 74, 30, 79, 97 }, 0.1);
+	punch.PushBack({ 158, 33, 132, 94 }, 0.6);
+	punch.PushBack({ 290, 33, 132, 94 }, 0.6);
+	punch.PushBack({ 423, 42, 131, 85 }, 0.6);
+	punch.PushBack({ 556, 44, 130, 94 }, 0.6); //138 S'ha de baixar 11 pixels
+	punch.PushBack({ 688, 44, 128, 94 }, 0.6);
+	punch.PushBack({ 818, 44, 120, 94 }, 0.6);
+	punch.PushBack({ 940, 44, 83, 94 }, 0.2);
+	punch.PushBack({ 1025, 42, 131, 85 }, 0.2); //127
 
-	kick.PushBack({ 78, 131, 60, 88 }, 0.2);
-	kick.PushBack({ 162, 128, 64, 92 }, 0.2);
-	kick.PushBack({ 259, 128, 63, 90 }, 0.2);
-	kick.PushBack({ 352, 128, 54, 91 }, 0.2);
-	kick.PushBack({ 432, 131, 50, 89 }, 0.2);
+	kick.PushBack({ 647, 274, 58, 112 }, 0.2); //386
+	kick.PushBack({ 710, 276, 53, 110 }, 0.2);
+	kick.PushBack({ 768, 288, 94, 98 }, 0.2);
+	kick.PushBack({ 867, 287, 97, 99 }, 0.2);
+	kick.PushBack({ 969, 286, 82, 100 }, 0.2);
 }
 
 ModulePlayer::~ModulePlayer()
@@ -68,7 +71,7 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("ryu.png"); // arcade version
+	graphics = App->textures->Load("Haohmaru Spritesheet.png"); // arcade version
 	return ret;
 }
 
