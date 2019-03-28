@@ -34,6 +34,7 @@ public:
 			animend = true;
 			current_frame = 0;
 			speeddelay = 0;
+
 		}
 
 		return frames[(int)current_frame];
@@ -45,6 +46,7 @@ public:
 		return animend;
 		
 	}
+	
 
 };
 
