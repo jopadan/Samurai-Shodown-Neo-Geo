@@ -22,7 +22,7 @@ public:
 	SDL_Rect ground;
 	SDL_Rect background;
 	SDL_Rect ship;
-	Animation flag;
+	Animation sea;
 	Animation girl;
 	float  bounce = -26;
 	float bouncespeed = 0;
