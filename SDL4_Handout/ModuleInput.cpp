@@ -4,7 +4,8 @@
 #include "SDL/include/SDL.h"
 
 ModuleInput::ModuleInput() : Module()
-{}
+{
+}
 
 // Destructor
 ModuleInput::~ModuleInput()
@@ -15,8 +16,6 @@ bool ModuleInput::Init()
 {
 	LOG("Init SDL input event system");
 	bool ret = true;
-	up = false, down = false, left = false, right = false;
-
 	SDL_Init(0);
 
 	if(SDL_InitSubSystem(SDL_INIT_EVENTS) < 0)
@@ -29,27 +28,14 @@ bool ModuleInput::Init()
 }
 
 // Called every draw update
-update_status ModuleInput::Update()
+update_status ModuleInput::PreUpdate()
 {
 	SDL_PumpEvents();
 
 	keyboard = SDL_GetKeyboardState(NULL);
 
-	if (keyboard[SDL_SCANCODE_ESCAPE]) {
+	if(keyboard[SDL_SCANCODE_ESCAPE])
 		return update_status::UPDATE_STOP;
-	}
-	if (keyboard[SDL_SCANCODE_UP]) {
-		up = true;
-	}
-	if (keyboard[SDL_SCANCODE_DOWN]) {
-		down = true;
-	}
-	if (keyboard[SDL_SCANCODE_RIGHT]) {
-		right = true;
-	}
-	if (keyboard[SDL_SCANCODE_LEFT]) {
-		left = true;
-	}
 
 	return update_status::UPDATE_CONTINUE;
 }

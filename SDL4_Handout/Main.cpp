@@ -23,6 +23,7 @@ int main(int argc, char* argv[])
 
 	int main_return = EXIT_FAILURE;
 	main_states state = MAIN_CREATION;
+
 	while (state != MAIN_EXIT)
 	{
 		switch (state)
@@ -36,7 +37,6 @@ int main(int argc, char* argv[])
 
 			case MAIN_START:
 			{
-				
 				LOG("Application Init --------------");
 				if(App->Init() == false)
 				{
