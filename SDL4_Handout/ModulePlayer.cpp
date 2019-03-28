@@ -22,12 +22,12 @@ ModulePlayer::ModulePlayer()
 	
 	// walk forward animation (arcade sprite sheet)
 	//forward.frames.PushBack({9, 136, 53, 83});
-	forward.PushBack({ 506, 150, 69, 112 }, 0.2);
-	forward.PushBack({ 580, 147, 59, 116 }, 0.2);
-	forward.PushBack({ 644, 145, 57, 118 }, 0.2);
-	forward.PushBack({ 706, 147, 62, 116 }, 0.2);
-	forward.PushBack({ 773, 151, 70, 117 }, 0.2);
-	forward.PushBack({ 848, 154, 76, 109 }, 0.2);
+	forward.PushBack({ 506, 150, 69, 112 }, 0.1);
+	forward.PushBack({ 580, 147, 59, 116 }, 0.25);
+	forward.PushBack({ 644, 145, 57, 118 }, 0.1);
+	forward.PushBack({ 706, 147, 62, 116 }, 0.25);
+	forward.PushBack({ 773, 151, 70, 117 }, 0.1);
+	
 
 	// TODO 4: Make ryu walk backwards with the correct animations
 	backward.PushBack({ 4, 155, 82, 111 }, 0.2);
