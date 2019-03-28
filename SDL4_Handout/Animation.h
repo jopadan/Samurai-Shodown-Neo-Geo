@@ -14,7 +14,6 @@ private:
 	float current_frame;
 	int last_frame = 0;
 	int speeddelay = 0;
-	int j = 1;
 	bool animend = false;
 
 public:
@@ -31,7 +30,7 @@ public:
 		animend = false;
 		speeddelay = 0;
 		current_frame += speed[(int)current_frame];
-		if(current_frame > last_frame){
+		if(current_frame >= last_frame){
 			animend = true;
 			current_frame = 0;
 			speeddelay = 0;
@@ -39,7 +38,9 @@ public:
 
 		return frames[(int)current_frame];
 	}
-	
+	int returnFrame() {
+		return last_frame;
+	}
 	bool AnimationEnd() {
 		return animend;
 		

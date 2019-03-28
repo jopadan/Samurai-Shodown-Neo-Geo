@@ -111,8 +111,10 @@ update_status ModulePlayer::Update()
 	{
 		attAnim = true;
 		current_animation = &punch;
-
-
+	/*	if (current_animation->returnFrame()==6) {
+			position.y+11;
+		}
+		*/
 	if (current_animation->AnimationEnd() == true) {
 			attAnim = false;
 		}
