@@ -39,7 +39,7 @@ ModulePlayer::ModulePlayer()
 
 	jumpup.PushBack({ 363, 274, 60, 112 }, 0.1);
 	jumpup.PushBack({ 429, 295, 75, 91 }, 0.1);
-	jumpup.PushBack({ 510, 303, 76, 83 }, 0.1);
+	jumpup.PushBack({ 510, 303, 76, 83 }, 0.09);
 	jumpup.PushBack({ 429, 295, 75, 91 }, 0.1);
 	jumpup.PushBack({ 363, 274, 60, 112 }, 0.1);
 
