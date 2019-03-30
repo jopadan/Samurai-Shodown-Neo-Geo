@@ -49,8 +49,8 @@ bool ModuleSceneNakoruru::Start()
 bool ModuleSceneNakoruru::CleanUp()
 {
 	// TODO 5: Remove all memory leaks
-	LOG("Unloading honda stage");
-	SDL_DestroyTexture(graphics);
+	LOG("Unloading nakoruru scene");
+	App->textures->Unload(graphics);
 
 	App->player->Disable();
 

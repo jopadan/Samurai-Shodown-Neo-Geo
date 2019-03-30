@@ -79,7 +79,7 @@ bool ModuleSceneHaohmaru::Start()
 bool ModuleSceneHaohmaru::CleanUp()
 {
 	LOG("Unloading Haohmaru scene");
-	SDL_DestroyTexture(graphics);
+	App->textures->Unload(graphics);
 
 	App->player->Disable();
 

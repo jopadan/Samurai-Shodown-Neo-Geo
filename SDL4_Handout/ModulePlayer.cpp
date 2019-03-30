@@ -135,7 +135,7 @@ update_status ModulePlayer::Update()
 }
 
 bool ModulePlayer::CleanUp() {
-	SDL_DestroyTexture(graphics);
+	App->textures->Unload(graphics);
 
 	return true;
 }
