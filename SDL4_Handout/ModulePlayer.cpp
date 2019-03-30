@@ -37,11 +37,11 @@ ModulePlayer::ModulePlayer()
 	backward.PushBack({ 304, 147, 70, 118 }, 0.2, 0, 0);
 	backward.PushBack({ 376, 151, 75, 114 }, 0.2, 0, 0);
 
-	jumpup.PushBack({ 363, 274, 60, 112 }, 0.1, 0, 0);
-	jumpup.PushBack({ 429, 295, 75, 91 }, 0.1, 0, 0);
+	jumpup.PushBack({ 363, 274, 60, 112 }, 0.11, 0, 0);
+	jumpup.PushBack({ 429, 295, 75, 91 }, 0.11, 0, 0);
 	jumpup.PushBack({ 510, 303, 76, 83 }, 0.09, 0, 0);
-	jumpup.PushBack({ 429, 295, 75, 91 }, 0.1, 0, 0);
-	jumpup.PushBack({ 363, 274, 60, 112 }, 0.1, 0, 0);
+	jumpup.PushBack({ 429, 295, 75, 91 }, 0.11, 0, 0);
+	jumpup.PushBack({ 363, 274, 60, 112 }, 0.11, 0, 0);
 
 	punch.PushBack({ 3, 0, 69, 127 }, 0.3, 0, 0); //127
 	punch.PushBack({ 74, 30, 79, 97 }, 0.1, -10, 0);
