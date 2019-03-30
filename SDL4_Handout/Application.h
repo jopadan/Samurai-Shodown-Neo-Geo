@@ -13,6 +13,7 @@ class ModulePlayer;
 class ModuleFadeToBlack;
 class ModuleSceneHaohmaru;
 class ModuleSceneNakoruru;
+class ModuleMenu;
 class Module;
 
 class Application
@@ -28,6 +29,8 @@ public:
 	ModuleSceneNakoruru* scene_nakoruru;
 	ModulePlayer* player;
 	ModuleFadeToBlack* fade;
+	ModuleMenu* menu;
+
 
 public:
 
