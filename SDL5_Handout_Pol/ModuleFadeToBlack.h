@@ -23,8 +23,8 @@ private:
 		fade_from_black
 	} current_step = fade_step::none;
 
-	Module * moduleoff = nullptr;
-	Module * moduleon = nullptr;
+	Module * moduleOff = nullptr;
+	Module * moduleOn = nullptr;
 
 	Uint32 start_time = 0;
 	Uint32 total_time = 0;
