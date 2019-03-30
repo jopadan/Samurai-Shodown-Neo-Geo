@@ -3,8 +3,10 @@
 #include "ModuleRender.h"
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
-#include "ModuleBackground.h"
+#include "ModuleSceneHaohmaru.h"
+#include "ModuleSceneNakoruru.h"
 #include "ModulePlayer.h"
+#include "ModuleFadeToBlack.h"
 
 Application::Application()
 {
@@ -12,8 +14,10 @@ Application::Application()
 	modules[1] = render = new ModuleRender();
 	modules[2] = input = new ModuleInput();
 	modules[3] = textures = new ModuleTextures();
-	modules[4] = background = new ModuleBackground();
-	modules[5] = player = new ModulePlayer();
+	modules[4] = scene_haohmaru = new ModuleSceneHaohmaru();
+	modules[5] = scene_nakoruru = new ModuleSceneNakoruru();
+	modules[6] = player = new ModulePlayer();
+	modules[7] = fade = new ModuleFadeToBlack();
 }	
 
 Application::~Application()
@@ -25,14 +29,21 @@ Application::~Application()
 bool Application::Init()
 {
 	bool ret = true;
+	// Player will be enabled on the first update of a new scene
+	player->Disable();
+	// Disable the map that you do not start with
+	scene_nakoruru->Disable();
+
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
 
-	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
-		ret = modules[i]->Start();
+	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
+		ret = modules[i]->IsEnabled() ? modules[i]->Start() : true;
 
 	return ret;
+
+
 }
 
 update_status Application::Update()

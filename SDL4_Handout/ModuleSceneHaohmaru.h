@@ -1,5 +1,5 @@
-#ifndef __ModuleBackground_H__
-#define __ModuleBackground_H__
+#ifndef __ModuleSceneHaohmaru_H__
+#define __ModuleSceneHaohmaru_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -7,14 +7,15 @@
 
 struct SDL_Texture;
 
-class ModuleBackground : public Module
+class ModuleSceneHaohmaru : public Module
 {
 public:
-	ModuleBackground();
-	~ModuleBackground();
+	ModuleSceneHaohmaru();
+	~ModuleSceneHaohmaru();
 
 	bool Start();
 	update_status Update();
+	bool CleanUp();
 
 public:
 	
@@ -25,13 +26,6 @@ public:
 	Animation splash2;
 	Animation splash3;
 	Animation sea;
-
-	 int cont[3];
-	 void initializecount() {
-		 cont[0] = 200;
-		 cont[1] = 100;
-		 cont[2] = 0;
-	 }
 
 };
 

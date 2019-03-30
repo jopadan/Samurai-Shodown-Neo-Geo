@@ -4,6 +4,7 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
+#include "SDL/include/SDL.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -61,9 +62,7 @@ ModulePlayer::ModulePlayer()
 }
 
 ModulePlayer::~ModulePlayer()
-{
-
-}
+{}
 
 // Load assets
 bool ModulePlayer::Start()
@@ -133,4 +132,10 @@ update_status ModulePlayer::Update()
 	App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y - r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r);
 	
 	return UPDATE_CONTINUE;
+}
+
+bool ModulePlayer::CleanUp() {
+	SDL_DestroyTexture(graphics);
+
+	return true;
 }

@@ -3,14 +3,15 @@
 #include "Application.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleRender.h"
-#include "ModuleSceneKen.h"
-#include "ModuleSceneHonda.h"
+#include "ModuleSceneHaohmaru.h"
+#include "ModuleSceneNakoruru.h"
 #include "SDL/include/SDL_render.h"
 #include "SDL/include/SDL_timer.h"
 
+
 ModuleFadeToBlack::ModuleFadeToBlack()
 {
-	screen = {0, 0, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE};
+	screen = { 0, 0, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE };
 }
 
 ModuleFadeToBlack::~ModuleFadeToBlack()
@@ -27,36 +28,36 @@ bool ModuleFadeToBlack::Start()
 // Update: draw background
 update_status ModuleFadeToBlack::Update()
 {
-	if(current_step == fade_step::none)
+	if (current_step == fade_step::none)
 		return UPDATE_CONTINUE;
 
 	Uint32 now = SDL_GetTicks() - start_time;
 	float normalized = MIN(1.0f, (float)now / (float)total_time);
 
-	switch(current_step)
+	switch (current_step)
 	{
-		case fade_step::fade_to_black:
+	case fade_step::fade_to_black:
+	{
+		if (now >= total_time)
 		{
-			if(now >= total_time)
-			{
-				// TODO 3: enable / disable the modules received when FadeToBlacks() gets called
-				moduleOff->Disable();
-				moduleOn->Enable();
-				
-				// ---
-				total_time += total_time;
-				start_time = SDL_GetTicks();
-				current_step = fade_step::fade_from_black;
-			}
-		} break;
+			// TODO 3: enable / disable the modules received when FadeToBlacks() gets called
+			moduleOff->Disable();
+			moduleOn->Enable();
 
-		case fade_step::fade_from_black:
-		{
-			normalized = 1.0f - normalized;
+			// ---
+			total_time += total_time;
+			start_time = SDL_GetTicks();
+			current_step = fade_step::fade_from_black;
+		}
+	} break;
 
-			if(now >= total_time)
-				current_step = fade_step::none;
-		} break;
+	case fade_step::fade_from_black:
+	{
+		normalized = 1.0f - normalized;
+
+		if (now >= total_time)
+			current_step = fade_step::none;
+	} break;
 	}
 
 	// Finally render the black square with alpha on the screen
@@ -71,7 +72,7 @@ bool ModuleFadeToBlack::FadeToBlack(Module* module_off, Module* module_on, float
 {
 	bool ret = false;
 
-	if(current_step == fade_step::none)
+	if (current_step == fade_step::none)
 	{
 		moduleOff = module_off;
 		moduleOn = module_on;

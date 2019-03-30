@@ -16,12 +16,9 @@ private:
 	float current_frame;
 	int last_frame = 0;
 	int speeddelay = 0;
-
 	bool animend = false;
-	
 
 public:
-
 
 	void PushBack(const SDL_Rect& rect, float delay, float px, float py)
 	{	
@@ -41,19 +38,18 @@ public:
 			animend = true;
 			current_frame = 0;
 			speeddelay = 0;
-
 		}
 
 		return frames[(int)current_frame];
 	}
+
 	int returnCurrentFrame() {
 		return (int)current_frame;
 	}
+
 	bool AnimationEnd() {
 		return animend;
-		
 	}
-	
 
 };
 

@@ -1,12 +1,16 @@
 #include "Globals.h"
 #include "Application.h"
+#include "ModuleSceneNakoruru.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
-#include "ModuleBackground.h"
+#include "ModulePlayer.h"
+#include "ModuleInput.h"
+#include "ModuleFadeToBlack.h"
+#include "ModuleSceneHaohmaru.h"
+#include "SDL/include/SDL.h"
 
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
-ModuleBackground::ModuleBackground()
+ModuleSceneHaohmaru::ModuleSceneHaohmaru()
 {
 
 	// splash animation
@@ -57,31 +61,37 @@ ModuleBackground::ModuleBackground()
 	
 }
 
-ModuleBackground::~ModuleBackground()
+ModuleSceneHaohmaru::~ModuleSceneHaohmaru()
 {}
 
 // Load assets
-bool ModuleBackground::Start()
+bool ModuleSceneHaohmaru::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
 
 	graphics = App->textures->Load("haohmaru_stage.png");
+	App->player->Enable();
 
 	return ret;
-	initializecount();
-	
+}
+
+bool ModuleSceneHaohmaru::CleanUp()
+{
+	LOG("Unloading Haohmaru scene");
+	SDL_DestroyTexture(graphics);
+
+	App->player->Disable();
+
+	return true;
 }
 
 // Update: draw background
-update_status ModuleBackground::Update()
+update_status ModuleSceneHaohmaru::Update()
 {
-	for (int i = 0; i < 3; i++) {
-		cont[i]++;
-	}
 
 	// Draw everything --------------------------------------
-
+	
 	App->render->Blit(graphics, 0, -150, &ground);	
 
 	App->render->Blit(graphics, 0, 53, &(sea.GetCurrentFrame()), 1);
@@ -92,12 +102,11 @@ update_status ModuleBackground::Update()
 
 	App->render->Blit(graphics, 365 + splash3.pivotx[splash3.returnCurrentFrame()], 40 + splash3.pivoty[splash3.returnCurrentFrame()], &(splash3.GetCurrentFrame()), 1); // splash
 	
-
 	//background
 	
-
-
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
+		App->fade->FadeToBlack(App->scene_haohmaru, App->scene_nakoruru, 2);
+	}
 	
-
 	return UPDATE_CONTINUE;
 }
