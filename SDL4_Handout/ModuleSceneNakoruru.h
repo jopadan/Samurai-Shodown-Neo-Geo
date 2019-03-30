@@ -22,10 +22,7 @@ public:
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect ground;
 
-	Animation splash1;
-	Animation splash2;
-	Animation splash3;
-	Animation sea;
+	Animation animals;
 	
 
 };
