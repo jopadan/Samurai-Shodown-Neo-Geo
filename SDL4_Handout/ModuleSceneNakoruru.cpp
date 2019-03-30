@@ -46,11 +46,13 @@ bool ModuleSceneNakoruru::Start()
 	return ret;
 	
 }
+
 bool ModuleSceneNakoruru::CleanUp()
 {
 	// TODO 5: Remove all memory leaks
 	LOG("Unloading nakoruru scene");
 	App->textures->Unload(graphics);
+
 
 	App->player->Disable();
 
