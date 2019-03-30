@@ -10,7 +10,7 @@
 ModulePlayer::ModulePlayer()
 {
 	position.x = 100;
-	position.y = 220;
+	position.y = 207;
 	initialPos = position.y;
 
 	// idle animation (arcade sprite sheet)
@@ -20,7 +20,7 @@ ModulePlayer::ModulePlayer()
 	idle.PushBack({ 241, 279, 72, 107 }, 0.15, 0, 0);
 	
 	
-	// walk forward animation (arcade sprite sheet)
+
 	//forward.frames.PushBack({9, 136, 53, 83});
 	forward.PushBack({ 506, 150, 69, 112 }, 0.1, 0, 0);
 	forward.PushBack({ 580, 147, 59, 116 }, 0.25, 0, 0);
@@ -29,7 +29,6 @@ ModulePlayer::ModulePlayer()
 	forward.PushBack({ 773, 151, 70, 117 }, 0.1, 0, 0);
 	
 
-	// TODO 4: Make ryu walk backwards with the correct animations
 	backward.PushBack({ 4, 155, 82, 111 }, 0.2, 0, 0);
 	backward.PushBack({ 88, 152, 75, 114 }, 0.2, 0, 0);
 	backward.PushBack({ 165, 147, 69, 118 }, 0.2, 0, 0);
@@ -44,7 +43,7 @@ ModulePlayer::ModulePlayer()
 	jumpup.PushBack({ 363, 274, 60, 112 }, 0.1, 0, 0);
 
 	punch.PushBack({ 3, 0, 69, 127 }, 0.3, 0, 0); //127
-	punch.PushBack({ 74, 30, 79, 97 }, 0.1, 0, 0);
+	punch.PushBack({ 74, 30, 79, 97 }, 0.1, -10, 0);
 	punch.PushBack({ 158, 33, 132, 94 }, 0.6, 0, 0);
 	punch.PushBack({ 290, 33, 132, 94 }, 0.6, 0, 0);
 	punch.PushBack({ 423, 42, 131, 85 }, 0.6, 0, 0);

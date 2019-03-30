@@ -26,16 +26,6 @@ public:
 	Animation splash3;
 	Animation sea;
 
-	/*float  bounce = -26;
-
-	SDL_Rect ship;
-	Animation sea;
-	Animation girl;
-	float  bounce = -26;
-
-	float bouncespeed = 0;
-	float cont = 0;
-	*/
 	 int cont[3];
 	 void initializecount() {
 		 cont[0] = 200;
