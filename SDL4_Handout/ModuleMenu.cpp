@@ -3,7 +3,6 @@
 #include "ModuleSceneNakoruru.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
-#include "ModulePlayer.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleMenu.h"
@@ -15,7 +14,7 @@ ModuleMenu::ModuleMenu()
 {
 
 
-	// ground
+
 	menu.x = 0;
 	menu.y = 12;
 	menu.w = 640;
@@ -33,7 +32,7 @@ ModuleMenu::~ModuleMenu()
 // Load assets
 bool ModuleMenu::Start()
 {
-	LOG("Loading background assets");
+	LOG("Loading menu assets");
 	bool ret = true;
 
 	graphics = App->textures->Load("menu_victory.png");
@@ -46,9 +45,6 @@ bool ModuleMenu::CleanUp()
 {
 	LOG("Unloading Menu scene");
 	App->textures->Unload(graphics);
-
-	//App->player->Disable();
-
 	return true;
 }
 
