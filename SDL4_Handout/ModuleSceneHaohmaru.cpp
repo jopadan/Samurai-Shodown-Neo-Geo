@@ -8,6 +8,8 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneHaohmaru.h"
 #include "ModuleMenu.h"
+#include "ModuleSceneCongrats.h"
+#include "ModuleMenu.h"
 #include "SDL/include/SDL.h"
 
 

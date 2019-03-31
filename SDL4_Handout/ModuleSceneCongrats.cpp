@@ -8,32 +8,32 @@
 #include "ModuleMenu.h"
 #include "SDL/include/SDL.h"
 #include "ModuleSceneHaohmaru.h"
+#include "ModuleSceneCongrats.h"
 
 
-ModuleMenu::ModuleMenu()
+ModuleSceneCongrats::ModuleSceneCongrats()
 {
 
 
 
-	menu.x = 0;
-	menu.y = 204;
-	menu.w = 384;
-	menu.h = 225;
+	win.x = 1407;
+	win.y = 204;
+	win.w = 384;
+	win.h = 225;
 
 	//sea animation
-	menu2.PushBack({ 704, 204, 384, 225 }, 0.01f,0,0);
-	menu2.PushBack({ 0, 204, 384, 225 }, 0.04f, 0, 0);
 	
+
 
 }
 
-ModuleMenu::~ModuleMenu()
+ModuleSceneCongrats::~ModuleSceneCongrats()
 {}
 
 // Load assets
-bool ModuleMenu::Start()
+bool ModuleSceneCongrats::Start()
 {
-	LOG("Loading menu assets");
+	LOG("Loading win assets");
 	bool ret = true;
 
 	graphics = App->textures->Load("menu_victory.png");
@@ -42,7 +42,7 @@ bool ModuleMenu::Start()
 	return ret;
 }
 
-bool ModuleMenu::CleanUp()
+bool ModuleSceneCongrats::CleanUp()
 {
 	LOG("Unloading Menu scene");
 	App->textures->Unload(graphics);
@@ -50,19 +50,19 @@ bool ModuleMenu::CleanUp()
 }
 
 // Update: draw background
-update_status ModuleMenu::Update()
+update_status ModuleSceneCongrats::Update()
 {
 
 	// Draw everything --------------------------------------
 
-	App->render->Blit(graphics, 0, 0, &menu);
-	App->render->Blit(graphics, 0, 0, &(menu2.GetCurrentFrame()), 1);
+	App->render->Blit(graphics, 0, 0, &win);
 	
+
 
 	//background
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
-		App->fade->FadeToBlack(App->menu, App->scene_haohmaru, 1);
+		App->fade->FadeToBlack(App->congrats, App->menu, 1);
 	}
 
 	return UPDATE_CONTINUE;
