@@ -4,6 +4,8 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Globals.h"
+#include "ModuleMusic.h"
+
 
 struct SDL_Texture;
 
@@ -20,8 +22,9 @@ public:
 public:
 
 	SDL_Texture* graphics = nullptr;
+	Mix_Music* musload;
+	Mix_Chunk* chunkload;
 	SDL_Rect ground;
-
 	Animation animals;
 	
 

@@ -31,6 +31,7 @@ bool ModuleMusic::Init()
 		LOG("Could not initialize Music lib. Mix_Init: %s", Mix_GetError());
 		ret = false;
 	}
+	Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024);
 
 	return ret;
 
@@ -60,9 +61,9 @@ Mix_Music* const ModuleMusic::LoadMus(const char* path) {
 	{
 		if (musics[i] == nullptr)
 		{
-			musics[i] = Mix_LoadMUS("bulletSE.wav");
+			musics[i] = Mix_LoadMUS(path);
 			if (!musics[i]) {
-				LOG("Dude I AM TRYING");
+				LOG("Cannot load music");
 			}
 			room = true;
 			break;
@@ -82,8 +83,9 @@ Mix_Chunk* const ModuleMusic :: LoadChunk(const char* path) {
 		{
 			chunks[i] = Mix_LoadWAV(path);
 			if (!chunks[i]) {
-				LOG("Dude I AM TRYING");
+				LOG("Cannot load chunk");
 			}
+			
 			room = true;
 			break;
 		}
@@ -94,34 +96,30 @@ Mix_Chunk* const ModuleMusic :: LoadChunk(const char* path) {
 	return chunks[i];
 }
 void  ModuleMusic::Play(Mix_Music * music, Mix_Chunk * chunk) {
+
 	if (music != nullptr) {
-		Mix_PlayMusic(music, 0);
+		Mix_FadeInMusic(music, -1, 1000);
+		music = nullptr;
 	}
-	else{LOG("Cannot play")}
 
 	if (chunk != nullptr) {
-		Mix_PlayChannel(-1, chunk, 0);
+		Mix_FadeInChannel(-1, chunk, 10, 5000);
+		chunk = nullptr;
 	}
-	else { LOG("Cannot play") }
 
 }
-bool  ModuleMusic::Unload(Mix_Music * music, Mix_Chunk * chunk)
+bool  ModuleMusic::Unload( Mix_Chunk * chunk)
 {
 	bool ret = false;
 
-	if (music != nullptr)
-	{
 		for (int i = 0; i < MAX_MUSIC; ++i)
 		{
-			if (musics[i] == music)
-			{
 				musics[i] = nullptr;
+				
+				Mix_FreeMusic(musics[i]);
 				ret = true;
-				break;
-			}
 		}
-		Mix_FreeMusic(music);
-	}
+		
 	if (chunk != nullptr)
 	{
 		for (int i = 0; i < MAX_MUSIC; ++i)

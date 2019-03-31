@@ -70,7 +70,7 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("Haohmaru Spritesheet.png"); // arcade version
+	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet.png"); // arcade version
 	return ret;
 }
 

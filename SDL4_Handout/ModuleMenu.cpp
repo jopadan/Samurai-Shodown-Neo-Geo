@@ -3,6 +3,7 @@
 #include "ModuleSceneNakoruru.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
+#include "ModuleMusic.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleMenu.h"
@@ -12,19 +13,13 @@
 
 ModuleMenu::ModuleMenu()
 {
-
-
-
 	menu.x = 0;
 	menu.y = 204;
 	menu.w = 384;
 	menu.h = 225;
-
 	//sea animation
 	menu2.PushBack({ 704, 204, 384, 225 }, 0.01f,0,0);
 	menu2.PushBack({ 0, 204, 384, 225 }, 0.04f, 0, 0);
-	
-
 }
 
 ModuleMenu::~ModuleMenu()
@@ -36,7 +31,11 @@ bool ModuleMenu::Start()
 	LOG("Loading menu assets");
 	bool ret = true;
 
-	graphics = App->textures->Load("menu_victory.png");
+	chunkload = App->music->LoadChunk("Assets/Sound/Static and Dynamic (short).ogg");
+	graphics = App->textures->Load("Assets/Image/menu_victory.png");
+	App->music->Play(nullptr, chunkload);
+
+
 	//App->player->Enable();
 
 	return ret;
@@ -46,6 +45,7 @@ bool ModuleMenu::CleanUp()
 {
 	LOG("Unloading Menu scene");
 	App->textures->Unload(graphics);
+	App->music->Unload(chunkload);
 	return true;
 }
 
@@ -57,6 +57,8 @@ update_status ModuleMenu::Update()
 
 	App->render->Blit(graphics, 0, 0, &menu);
 	App->render->Blit(graphics, 0, 0, &(menu2.GetCurrentFrame()), 1);
+	App->music->Play(musload, nullptr);
+
 	
 
 	//background

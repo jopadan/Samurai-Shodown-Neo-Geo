@@ -19,7 +19,7 @@ public:
 	Mix_Music* const LoadMus(const char* path);
 	Mix_Chunk* const LoadChunk(const char* path);
 	void Play(Mix_Music * music, Mix_Chunk * chunk);
-	bool Unload(Mix_Music * music, Mix_Chunk * chunk);
+	bool Unload(Mix_Chunk * chunk);
 	
 public:
 	Mix_Music* musics[MAX_MUSIC];

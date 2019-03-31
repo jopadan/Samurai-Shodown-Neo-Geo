@@ -5,6 +5,8 @@
 #include "Animation.h"
 #include "Globals.h"
 #include "p2Point.h"
+#include "ModuleMusic.h"
+
 
 struct SDL_Texture;
 
@@ -28,7 +30,7 @@ public:
 public:
 
 	SDL_Texture* graphics = nullptr;
-
+	Mix_Music* musload;
 	Animation idle;
 	Animation forward;
 	Animation backward;

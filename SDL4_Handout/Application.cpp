@@ -20,10 +20,10 @@ Application::Application()
 	modules[4] = scene_nakoruru = new ModuleSceneNakoruru();
 	modules[5] = scene_haohmaru = new ModuleSceneHaohmaru();
 	modules[6] = player = new ModulePlayer();
-	modules[7] = fade = new ModuleFadeToBlack();
-	modules[8] = menu = new ModuleMenu();
-	modules[9] = music = new ModuleMusic();
-	modules[10] = congrats = new ModuleSceneCongrats();
+	modules[7] = menu = new ModuleMenu();
+	modules[8] = music = new ModuleMusic();
+	modules[9] = congrats = new ModuleSceneCongrats();
+	modules[10] = fade = new ModuleFadeToBlack();
 
 }	
 
