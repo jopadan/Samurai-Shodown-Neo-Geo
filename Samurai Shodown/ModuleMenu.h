@@ -25,7 +25,8 @@ public:
 	Mix_Music* musload;
 	Mix_Chunk* chunkload;
 	SDL_Rect menu;
-    Animation menu2;
+    Animation title;
+	Animation start;
 	
 
 };

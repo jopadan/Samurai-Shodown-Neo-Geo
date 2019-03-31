@@ -14,12 +14,29 @@
 ModuleMenu::ModuleMenu()
 {
 	menu.x = 0;
-	menu.y = 204;
-	menu.w = 309;
-	menu.h = 225;
+	menu.y = 444;
+	menu.w = 303;
+	menu.h = 223;
 
-	menu2.PushBack({ 704, 204, 309, 225 }, 0.01f,0,0);
-	menu2.PushBack({ 0, 204, 309, 225 }, 0.04f, 0, 0);
+	title.PushBack({ 0, 0, 303, 117 }, 0.005, 0, 0);
+	title.PushBack({ 349, 0, 303, 117 }, 0.2, 0, 0);
+	title.PushBack({ 698, 0, 303, 117 }, 0.2, 0, 0);
+	title.PushBack({ 1046, 0, 303, 117 }, 0.2, 0, 0);
+	title.PushBack({ 1395, 0, 303, 117 }, 0.2, 0, 0);
+	title.PushBack({ 1744, 0, 303, 117 }, 0.2, 0, 0);
+	title.PushBack({ 0, 148, 303, 117 }, 0.2, 0, 0);
+	title.PushBack({ 349, 148, 303, 117 }, 0.2, 0, 0);
+	title.PushBack({ 698, 148, 303, 117 }, 0.2, 0, 0);
+	title.PushBack({ 1046, 148, 303, 117 }, 0.2, 0, 0);
+	title.PushBack({ 1395, 148, 303, 117 }, 0.2, 0, 0);
+	title.PushBack({ 1743, 148, 303, 117 }, 0.2, 0, 0);
+	title.PushBack({ 0, 296, 303, 117 }, 0.2, 0, 0);
+	title.PushBack({ 349, 296, 303, 117 }, 0.2, 0, 0);
+	title.PushBack({ 698, 296, 303, 117 }, 0.2, 0, 0);
+	title.PushBack({ 1046, 296, 303, 117 }, 0.2, 0, 0);
+
+	start.PushBack({ 1395, 296, 120, 14 }, 0.04f,0,0);
+	start.PushBack({ 1395, 340, 120, 14 }, 0.025f, 0, 0);
 }
 
 ModuleMenu::~ModuleMenu()
@@ -32,7 +49,7 @@ bool ModuleMenu::Start()
 	bool ret = true;
 
 	chunkload = App->music->LoadChunk("Assets/Sound/Static and Dynamic (short).ogg");
-	graphics = App->textures->Load("Assets/Image/menu_victory.png");
+	graphics = App->textures->Load("Assets/Image/Menu Spritesheet.png");
 	App->music->Play(nullptr, chunkload);
 
 	return ret;
@@ -52,7 +69,8 @@ update_status ModuleMenu::Update()
 {
 
 	App->render->Blit(graphics, 38, 0, &menu);
-	App->render->Blit(graphics, 38, 0, &(menu2.GetCurrentFrame()), 1);
+	App->render->Blit(graphics, 38, 52, &(title.GetCurrentFrame()), 1);
+	App->render->Blit(graphics, 124, 172, &(start.GetCurrentFrame()), 1);
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 		App->fade->FadeToBlack(App->menu, App->scene_haohmaru, 1);
