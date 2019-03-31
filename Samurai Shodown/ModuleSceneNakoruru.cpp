@@ -52,11 +52,10 @@ bool ModuleSceneNakoruru::Start()
 
 bool ModuleSceneNakoruru::CleanUp()
 {
-	// TODO 5: Remove all memory leaks
+	
 	LOG("Unloading nakoruru scene");
+	App->music->Unload(chunkload); 
 	App->textures->Unload(graphics);
-	App->music->Unload(chunkload);
-
 	App->player->Disable();
 
 	return true;

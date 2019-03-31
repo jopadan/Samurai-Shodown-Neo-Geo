@@ -37,8 +37,9 @@ bool ModuleSceneCongrats::Start()
 bool ModuleSceneCongrats::CleanUp()
 {
 	LOG("Unloading Menu scene");
-	App->textures->Unload(graphics);
 	App->music->Unload(chunkload);
+	App->textures->Unload(graphics);
+	
 	return true;
 }
 

@@ -84,8 +84,8 @@ bool ModuleSceneHaohmaru::Start()
 bool ModuleSceneHaohmaru::CleanUp()
 {
 	LOG("Unloading Haohmaru scene");
-	App->textures->Unload(graphics);
 	App->music->Unload(chunkload);
+	App->textures->Unload(graphics);
 	App->player->Disable();
 
 	return true;

@@ -127,12 +127,13 @@ bool  ModuleMusic::Unload( Mix_Chunk * chunk)
 		{
 			if (chunks[i] == chunk)
 			{
+				Mix_FreeChunk(chunk);
 				chunks[i] = nullptr;
 				ret = true;
 				break;
 			}
 		}
-		Mix_FreeChunk(chunk);
+		
 	}
 
 	return ret;
