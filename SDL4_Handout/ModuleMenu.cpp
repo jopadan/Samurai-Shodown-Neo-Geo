@@ -15,11 +15,11 @@ ModuleMenu::ModuleMenu()
 {
 	menu.x = 0;
 	menu.y = 204;
-	menu.w = 384;
+	menu.w = 309;
 	menu.h = 225;
 	//sea animation
-	menu2.PushBack({ 704, 204, 384, 225 }, 0.01f,0,0);
-	menu2.PushBack({ 0, 204, 384, 225 }, 0.04f, 0, 0);
+	menu2.PushBack({ 704, 204, 309, 225 }, 0.01f,0,0);
+	menu2.PushBack({ 0, 204, 309, 225 }, 0.04f, 0, 0);
 }
 
 ModuleMenu::~ModuleMenu()
@@ -44,6 +44,7 @@ bool ModuleMenu::Start()
 bool ModuleMenu::CleanUp()
 {
 	LOG("Unloading Menu scene");
+	
 	App->textures->Unload(graphics);
 	App->music->Unload(chunkload);
 	return true;
@@ -55,9 +56,9 @@ update_status ModuleMenu::Update()
 
 	// Draw everything --------------------------------------
 
-	App->render->Blit(graphics, 0, 0, &menu);
-	App->render->Blit(graphics, 0, 0, &(menu2.GetCurrentFrame()), 1);
-	App->music->Play(musload, nullptr);
+	App->render->Blit(graphics, 38, 0, &menu);
+	App->render->Blit(graphics, 38, 0, &(menu2.GetCurrentFrame()), 1);
+	
 
 	
 

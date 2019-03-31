@@ -13,7 +13,7 @@ ModuleSceneCongrats::ModuleSceneCongrats()
 {
 	win.x = 1407;
 	win.y = 204;
-	win.w = 384;
+	win.w = 309;
 	win.h = 225;
 }
 
@@ -48,7 +48,7 @@ update_status ModuleSceneCongrats::Update()
 
 	// Draw everything --------------------------------------
 
-	App->render->Blit(graphics, 0, 0, &win);
+	App->render->Blit(graphics, 38, 0, &win);
 	
 
 
