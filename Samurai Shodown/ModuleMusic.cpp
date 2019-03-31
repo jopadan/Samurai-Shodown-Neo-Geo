@@ -112,6 +112,7 @@ bool  ModuleMusic::Unload( Mix_Chunk * chunk)
 {
 	bool ret = false;
 
+
 		for (int i = 0; i < MAX_MUSIC; ++i)
 		{
 				musics[i] = nullptr;
@@ -119,7 +120,7 @@ bool  ModuleMusic::Unload( Mix_Chunk * chunk)
 				Mix_FreeMusic(musics[i]);
 				ret = true;
 		}
-		
+	//	Mix_FadeOutChannel(-1, 3000);
 	if (chunk != nullptr)
 	{
 		for (int i = 0; i < MAX_MUSIC; ++i)
