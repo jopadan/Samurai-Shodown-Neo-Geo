@@ -7,7 +7,7 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneHaohmaru.h"
-#include "ModuleSceneCongrats.h"
+#include "ModuleVictoryHaohmaru.h"
 
 #include "SDL/include/SDL.h"
 
@@ -74,7 +74,7 @@ update_status ModuleSceneNakoruru::Update()
 	//background
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
-		App->fade->FadeToBlack(App->scene_nakoruru, App->congrats, 2);
+		App->fade->FadeToBlack(App->scene_nakoruru, App->winhaoh, 2);
 	}
 
 	return UPDATE_CONTINUE;

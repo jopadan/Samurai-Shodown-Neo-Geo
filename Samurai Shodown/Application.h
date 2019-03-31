@@ -15,7 +15,7 @@ class ModuleSceneHaohmaru;
 class ModuleSceneNakoruru;
 class ModuleMenu;
 class ModuleMusic;
-class ModuleSceneCongrats;
+class ModuleVictoryHaohmaru;
 class Module;
 
 class Application
@@ -33,7 +33,7 @@ public:
 	ModuleFadeToBlack* fade;
 	ModuleMusic* music;
 	ModuleMenu* menu;
-	ModuleSceneCongrats* congrats;
+	ModuleVictoryHaohmaru* winhaoh;
 
 
 public:

@@ -6,10 +6,10 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleMenu.h"
 #include "SDL/include/SDL.h"
-#include "ModuleSceneCongrats.h"
+#include "ModuleVictoryHaohmaru.h"
 
 
-ModuleSceneCongrats::ModuleSceneCongrats()
+ModuleVictoryHaohmaru::ModuleVictoryHaohmaru()
 {
 	win.x = 1407;
 	win.y = 204;
@@ -17,11 +17,11 @@ ModuleSceneCongrats::ModuleSceneCongrats()
 	win.h = 225;
 }
 
-ModuleSceneCongrats::~ModuleSceneCongrats()
+ModuleVictoryHaohmaru::~ModuleVictoryHaohmaru()
 {}
 
 // Load assets
-bool ModuleSceneCongrats::Start()
+bool ModuleVictoryHaohmaru::Start()
 {
 	LOG("Loading win assets");
 	bool ret = true;
@@ -33,7 +33,7 @@ bool ModuleSceneCongrats::Start()
 	return ret;
 }
 
-bool ModuleSceneCongrats::CleanUp()
+bool ModuleVictoryHaohmaru::CleanUp()
 {
 	LOG("Unloading Menu scene");
 	App->music->Unload(chunkload);
@@ -43,7 +43,7 @@ bool ModuleSceneCongrats::CleanUp()
 }
 
 // Update: draw background
-update_status ModuleSceneCongrats::Update()
+update_status ModuleVictoryHaohmaru::Update()
 {
 
 	// Draw everything --------------------------------------
@@ -55,7 +55,7 @@ update_status ModuleSceneCongrats::Update()
 	//background
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
-		App->fade->FadeToBlack(App->congrats, App->menu, 2);
+		App->fade->FadeToBlack(App->winhaoh, App->menu, 2);
 	}
 
 	return UPDATE_CONTINUE;

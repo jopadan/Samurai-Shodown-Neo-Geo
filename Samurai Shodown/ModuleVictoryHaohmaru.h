@@ -1,5 +1,5 @@
-#ifndef __ModuleSceneCongrats_H__
-#define __ModuleSceneCongrats_H__
+#ifndef __ModuleVictoryHaohmaru_H__
+#define __ModuleVictoryHaohmaru_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -9,11 +9,11 @@
 
 struct SDL_Texture;
 
-class ModuleSceneCongrats : public Module
+class ModuleVictoryHaohmaru : public Module
 {
 public:
-	ModuleSceneCongrats();
-	~ModuleSceneCongrats();
+	ModuleVictoryHaohmaru();
+	~ModuleVictoryHaohmaru();
 
 	bool Start();
 	update_status Update();

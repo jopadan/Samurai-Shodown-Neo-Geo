@@ -62,7 +62,7 @@
     <ClInclude Include="ModuleMenu.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleSceneCongrats.h">
+    <ClInclude Include="ModuleVictoryHaohmaru.h">
       <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
@@ -106,7 +106,7 @@
     <ClCompile Include="ModuleMenu.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleSceneCongrats.cpp">
+    <ClCompile Include="ModuleVictoryHaohmaru.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>

@@ -9,7 +9,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleMenu.h"
 #include "ModuleMusic.h"
-#include "ModuleSceneCongrats.h"
+#include "ModuleVictoryHaohmaru.h"
 
 Application::Application()
 {
@@ -21,7 +21,7 @@ Application::Application()
 	modules[5] = scene_haohmaru = new ModuleSceneHaohmaru();
 	modules[6] = player = new ModulePlayer();
 	modules[7] = menu = new ModuleMenu();
-	modules[8] = congrats = new ModuleSceneCongrats();
+	modules[8] = winhaoh = new ModuleVictoryHaohmaru();
 	modules[9] = music = new ModuleMusic();
 	modules[10] = fade = new ModuleFadeToBlack();
 
@@ -40,7 +40,7 @@ bool Application::Init()
 	player->Disable();
 	scene_nakoruru->Disable();
 	scene_haohmaru->Disable();
-	congrats->Disable();
+	winhaoh->Disable();
 
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
