@@ -29,7 +29,6 @@ bool ModuleSceneCongrats::Start()
 	chunkload = App->music->LoadChunk("Assets/Sound/Conclusion (Winning Demo).ogg");
 	graphics = App->textures->Load("Assets/Image/menu_victory.png");
 	App->music->Play(nullptr, chunkload);
-	//App->player->Enable();
 
 	return ret;
 }

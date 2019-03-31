@@ -21,8 +21,8 @@ Application::Application()
 	modules[5] = scene_haohmaru = new ModuleSceneHaohmaru();
 	modules[6] = player = new ModulePlayer();
 	modules[7] = menu = new ModuleMenu();
-	modules[8] = music = new ModuleMusic();
-	modules[9] = congrats = new ModuleSceneCongrats();
+	modules[8] = congrats = new ModuleSceneCongrats();
+	modules[9] = music = new ModuleMusic();
 	modules[10] = fade = new ModuleFadeToBlack();
 
 }	

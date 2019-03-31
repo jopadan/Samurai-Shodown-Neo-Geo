@@ -7,20 +7,20 @@
 class Animation
 {
 public:
-	float speed[MAX_FRAMES];
+	double speed[MAX_FRAMES];
 	SDL_Rect frames[MAX_FRAMES];
 	int pivotx[MAX_FRAMES];
 	int pivoty[MAX_FRAMES];
 
 private:
-	float current_frame;
+	double current_frame;
 	int last_frame = 0;
 	int speeddelay = 0;
 	bool animend = false;
 
 public:
 
-	void PushBack(const SDL_Rect& rect, float delay, float px, float py)
+	void PushBack(const SDL_Rect& rect, double delay, int px, int py)
 	{	
 		pivotx[last_frame] = px;
 		pivoty[last_frame] = py;

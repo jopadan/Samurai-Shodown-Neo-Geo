@@ -17,7 +17,7 @@ ModuleMenu::ModuleMenu()
 	menu.y = 204;
 	menu.w = 309;
 	menu.h = 225;
-	//sea animation
+
 	menu2.PushBack({ 704, 204, 309, 225 }, 0.01f,0,0);
 	menu2.PushBack({ 0, 204, 309, 225 }, 0.04f, 0, 0);
 }
@@ -35,9 +35,6 @@ bool ModuleMenu::Start()
 	graphics = App->textures->Load("Assets/Image/menu_victory.png");
 	App->music->Play(nullptr, chunkload);
 
-
-	//App->player->Enable();
-
 	return ret;
 }
 
@@ -54,15 +51,8 @@ bool ModuleMenu::CleanUp()
 update_status ModuleMenu::Update()
 {
 
-	// Draw everything --------------------------------------
-
 	App->render->Blit(graphics, 38, 0, &menu);
 	App->render->Blit(graphics, 38, 0, &(menu2.GetCurrentFrame()), 1);
-	
-
-	
-
-	//background
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 		App->fade->FadeToBlack(App->menu, App->scene_haohmaru, 1);
