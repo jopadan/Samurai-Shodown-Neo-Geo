@@ -78,6 +78,7 @@
     <ClInclude Include="ModuleFadeToBlack.h" />
     <ClInclude Include="ModuleMenu.h" />
     <ClInclude Include="ModuleMusic.h" />
+    <ClInclude Include="ModuleSceneCongrats.h" />
     <ClInclude Include="ModuleSceneHaohmaru.h" />
     <ClInclude Include="ModuleInput.h" />
     <ClInclude Include="ModulePlayer.h" />
@@ -94,6 +95,7 @@
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleMenu.cpp" />
     <ClCompile Include="ModuleMusic.cpp" />
+    <ClCompile Include="ModuleSceneCongrats.cpp" />
     <ClCompile Include="ModuleSceneHaohmaru.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModulePlayer.cpp" />

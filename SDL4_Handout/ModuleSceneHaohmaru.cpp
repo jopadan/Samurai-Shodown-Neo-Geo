@@ -9,6 +9,8 @@
 #include "ModuleSceneHaohmaru.h"
 #include "ModuleMusic.h"
 #include "ModuleMenu.h"
+#include "ModuleSceneCongrats.h"
+#include "ModuleMenu.h"
 #include "SDL/include/SDL.h"
 
 
