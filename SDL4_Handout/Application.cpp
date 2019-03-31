@@ -8,6 +8,7 @@
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleMenu.h"
+#include "ModuleMusic.h"
 
 Application::Application()
 {
@@ -20,6 +21,7 @@ Application::Application()
 	modules[6] = player = new ModulePlayer();
 	modules[7] = fade = new ModuleFadeToBlack();
 	modules[8] = menu = new ModuleMenu();
+	modules[9] = music = new ModuleMusic();
 
 }	
 

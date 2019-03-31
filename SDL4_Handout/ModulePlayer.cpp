@@ -3,6 +3,7 @@
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
+#include "ModuleMusic.h"
 #include "ModulePlayer.h"
 #include "SDL/include/SDL.h"
 
@@ -105,6 +106,7 @@ update_status ModulePlayer::Update()
 			jumpSpeed = 6;
 		}
 	}
+
 	if (App->input->keyboard[SDL_SCANCODE_P] == 1 || attAnim == true)
 	{
 		attAnim = true;

@@ -60,7 +60,10 @@ Mix_Music* const ModuleMusic::LoadMus(const char* path) {
 	{
 		if (musics[i] == nullptr)
 		{
-			musics[i] = Mix_LoadMUS(path);
+			musics[i] = Mix_LoadMUS("bulletSE.wav");
+			if (!musics[i]) {
+				LOG("Dude I AM TRYING");
+			}
 			room = true;
 			break;
 		}
@@ -78,15 +81,30 @@ Mix_Chunk* const ModuleMusic :: LoadChunk(const char* path) {
 		if (chunks[i] == nullptr)
 		{
 			chunks[i] = Mix_LoadWAV(path);
+			if (!chunks[i]) {
+				LOG("Dude I AM TRYING");
+			}
 			room = true;
 			break;
 		}
 	}
-	if (room == false)
-		LOG("Song buffer overflow");
+	if (room == false){
+		LOG("Song buffer overflow");}
+
 	return chunks[i];
 }
+void  ModuleMusic::Play(Mix_Music * music, Mix_Chunk * chunk) {
+	if (music != nullptr) {
+		Mix_PlayMusic(music, 0);
+	}
+	else{LOG("Cannot play")}
 
+	if (chunk != nullptr) {
+		Mix_PlayChannel(-1, chunk, 0);
+	}
+	else { LOG("Cannot play") }
+
+}
 bool  ModuleMusic::Unload(Mix_Music * music, Mix_Chunk * chunk)
 {
 	bool ret = false;

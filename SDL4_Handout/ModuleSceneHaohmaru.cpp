@@ -7,6 +7,7 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneHaohmaru.h"
+#include "ModuleMusic.h"
 #include "ModuleMenu.h"
 #include "SDL/include/SDL.h"
 
@@ -70,9 +71,10 @@ bool ModuleSceneHaohmaru::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
-
+	
 	graphics = App->textures->Load("haohmaru_stage.png");
 	App->player->Enable();
+	App->music->Play(App->music->LoadMus("bulletSE.wav"), App->music->LoadChunk("Backmusic.ogg"));
 
 	return ret;
 }
