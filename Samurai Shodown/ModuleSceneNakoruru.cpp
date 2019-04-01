@@ -41,9 +41,9 @@ bool ModuleSceneNakoruru::Start()
 	LOG("Loading background assets");
 	bool ret = true;
 
-	chunkload = App->music->LoadChunk("Assets/Sound/Banquet of Nature (Nakoruru).ogg");
+	musload = App->music->LoadMus("Assets/Sound/Banquet of Nature (Nakoruru).ogg");
 	graphics = App->textures->Load("Assets/Image/Nakoruru Map Spritesheet.png");
-	App->music->Play(nullptr, chunkload);
+	App->music->PlayMus(musload);
 	App->player->Enable();
 
 	return ret;
@@ -54,7 +54,7 @@ bool ModuleSceneNakoruru::CleanUp()
 {
 	
 	LOG("Unloading nakoruru scene");
-	App->music->Unload(chunkload); 
+	App->music->UnloadMus(musload);
 	App->textures->Unload(graphics);
 	App->player->Disable();
 

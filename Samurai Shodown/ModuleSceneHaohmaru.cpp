@@ -74,9 +74,9 @@ bool ModuleSceneHaohmaru::Start()
 	LOG("Loading background assets");
 	bool ret = true;
 
-	chunkload = App->music->LoadChunk("Assets/Sound/Masculine Song -Sun- (Haohmaru).ogg");
+	musload = App->music->LoadMus("Assets/Sound/Masculine Song -Sun- (Haohmaru).ogg");
 	graphics = App->textures->Load("Assets/Image/haohmaru_stage.png");
-	App->music->Play(nullptr, chunkload);
+	App->music->PlayMus(musload);
 	App->player->Enable();
 	return ret;
 }
@@ -84,7 +84,7 @@ bool ModuleSceneHaohmaru::Start()
 bool ModuleSceneHaohmaru::CleanUp()
 {
 	LOG("Unloading Haohmaru scene");
-	App->music->Unload(chunkload);
+	App->music->UnloadMus(musload);
 	App->textures->Unload(graphics);
 	App->player->Disable();
 

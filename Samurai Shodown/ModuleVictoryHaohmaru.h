@@ -23,6 +23,7 @@ public:
 
 	SDL_Texture* graphics = nullptr;
 	Mix_Chunk* chunkload;
+	Mix_Music* musload;
 	SDL_Rect win;
 	
 

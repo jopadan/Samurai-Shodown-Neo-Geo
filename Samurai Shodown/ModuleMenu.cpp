@@ -48,9 +48,9 @@ bool ModuleMenu::Start()
 	LOG("Loading menu assets");
 	bool ret = true;
 
-	chunkload = App->music->LoadChunk("Assets/Sound/Static and Dynamic (short).ogg");
+	musload = App->music->LoadMus("Assets/Sound/Static and Dynamic (short).ogg");
 	graphics = App->textures->Load("Assets/Image/Menu Spritesheet.png");
-	App->music->Play(nullptr, chunkload);
+	App->music->PlayMus(musload);
 
 	return ret;
 }
@@ -58,7 +58,7 @@ bool ModuleMenu::Start()
 bool ModuleMenu::CleanUp()
 {
 	LOG("Unloading Menu scene");
-	App->music->Unload(chunkload);
+	App->music->UnloadMus(musload);
 	App->textures->Unload(graphics);
 	
 	return true;

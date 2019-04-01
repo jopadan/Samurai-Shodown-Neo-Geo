@@ -31,7 +31,7 @@ bool ModuleMusic::Init()
 		LOG("Could not initialize Music lib. Mix_Init: %s", Mix_GetError());
 		ret = false;
 	}
-	Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024);
+	Mix_OpenAudio(48000, MIX_DEFAULT_FORMAT, 2, 1024);
 
 	return ret;
 
@@ -43,13 +43,15 @@ bool ModuleMusic::CleanUp()
 	
 	uint i = 0;
 	for (i = 0; i < MAX_MUSIC; ++i)
-		if (musics[i] != nullptr)
+		if (musics[i] != nullptr){
 			Mix_FreeMusic(musics[i]);
-	/*
+
+	}
 	for (i = 0; i < MAX_MUSIC; ++i)
-		if (chunks[i] != nullptr)
+		if (chunks[i] != nullptr){
 			Mix_FreeChunk(chunks[i]);
-	*/
+			chunks[i] = nullptr;
+	}
 	Mix_CloseAudio();
 	Mix_Quit();
 	return true;
@@ -93,28 +95,32 @@ Mix_Chunk* const ModuleMusic :: LoadChunk(const char* path) {
 		}
 	}
 	if (room == false){
-		LOG("Song buffer overflow");}
+		LOG("FX buffer overflow");}
 
 	return chunks[i];
 }
-void  ModuleMusic::Play(Mix_Music * music, Mix_Chunk * chunk) {
+void  ModuleMusic::PlayChunk(Mix_Chunk * chunk) {
+
+	if (chunk != nullptr) {
+		Mix_FadeInChannel(-1, chunk, 0, 500);
+		chunk = nullptr;
+	}
+}
+
+void  ModuleMusic::PlayMus(Mix_Music * music) {
 
 	if (music != nullptr) {
 		Mix_FadeInMusic(music, -1, 1000);
 		music = nullptr;
 	}
 
-	if (chunk != nullptr) {
-		Mix_FadeInChannel(-1, chunk, 10, 5000);
-		chunk = nullptr;
-	}
 }
 
-bool  ModuleMusic::Unload( Mix_Chunk * chunk)
+bool  ModuleMusic::UnloadChunk(Mix_Chunk * chunk)
 {
 	bool ret = false;
 	int i = 0;
-	//	Mix_FadeOutChannel(-1, 3000);
+
 	if (chunk != nullptr)
 	{
 		for (i = 0; i < MAX_MUSIC; ++i)
@@ -126,10 +132,29 @@ bool  ModuleMusic::Unload( Mix_Chunk * chunk)
 				break;
 			}
 		}
-
-		Mix_FreeChunk(chunk);
-
+		Mix_FadeOutChannel(-1, 1000);
 	}
+	return ret;
+}
+
+	bool  ModuleMusic::UnloadMus(Mix_Music * music)
+	{
+		bool ret = false;
+		int i = 0;
+
+		if (music != nullptr)
+		{
+			for (i = 0; i < MAX_MUSIC; ++i)
+			{
+				if (musics[i] == music)
+				{
+					musics[i] = nullptr;
+					ret = true;
+					break;
+				}
+			}
+			Mix_FadeOutMusic(1000);
+		}
 
 	return ret;
 }

@@ -26,9 +26,9 @@ bool ModuleVictoryHaohmaru::Start()
 	LOG("Loading win assets");
 	bool ret = true;
 
-	chunkload = App->music->LoadChunk("Assets/Sound/Conclusion (Winning Demo).ogg");
+	musload = App->music->LoadMus("Assets/Sound/Conclusion (Winning Demo).ogg");
 	graphics = App->textures->Load("Assets/Image/menu_victory.png");
-	App->music->Play(nullptr, chunkload);
+	App->music->PlayMus(musload);
 
 	return ret;
 }
@@ -36,7 +36,7 @@ bool ModuleVictoryHaohmaru::Start()
 bool ModuleVictoryHaohmaru::CleanUp()
 {
 	LOG("Unloading Menu scene");
-	App->music->Unload(chunkload);
+	App->music->UnloadMus(musload);
 	App->textures->Unload(graphics);
 	
 	return true;
