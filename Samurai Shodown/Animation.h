@@ -19,7 +19,6 @@ private:
 	bool animend = false;
 
 public:
-
 	void PushBack(const SDL_Rect& rect, double delay, int px, int py)
 	{	
 		pivotx[last_frame] = px;
