@@ -40,15 +40,16 @@ bool ModuleMusic::Init()
 bool ModuleMusic::CleanUp()
 {
 	LOG("Freeing music library");
+	
 	uint i = 0;
 	for (i = 0; i < MAX_MUSIC; ++i)
 		if (musics[i] != nullptr)
 			Mix_FreeMusic(musics[i]);
-
+	/*
 	for (i = 0; i < MAX_MUSIC; ++i)
 		if (chunks[i] != nullptr)
 			Mix_FreeChunk(chunks[i]);
-
+	*/
 	Mix_CloseAudio();
 	Mix_Quit();
 	return true;
@@ -113,28 +114,21 @@ bool  ModuleMusic::Unload( Mix_Chunk * chunk)
 {
 	bool ret = false;
 	int i = 0;
-
-		for (i = 0; i < MAX_MUSIC; ++i)
-		{
-				musics[i] = nullptr;
-				
-				Mix_FreeMusic(musics[i]);
-				ret = true;
-		}
 	//	Mix_FadeOutChannel(-1, 3000);
 	if (chunk != nullptr)
 	{
 		for (i = 0; i < MAX_MUSIC; ++i)
 		{
-			if (chunks[i] != chunk)
+			if (chunks[i] == chunk)
 			{
-				Mix_FreeChunk(chunk);
 				chunks[i] = nullptr;
 				ret = true;
 				break;
 			}
 		}
-		
+
+		Mix_FreeChunk(chunk);
+
 	}
 
 	return ret;
