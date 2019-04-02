@@ -5,12 +5,15 @@
 #include "ModuleRender.h"
 #include "ModuleMusic.h"
 #include "ModulePlayer.h"
-#include "SDL/include/SDL.h"
+//#include "SDL/include/SDL.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 ModulePlayer::ModulePlayer()
 {
+	graphics = NULL;
+	current_animation = NULL;
+
 	position.x = 100;
 	position.y = 207;
 	initialPos = position.y;
@@ -65,10 +68,19 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
+
 	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet.png");
 	return ret;
 }
 
+bool ModulePlayer::CleanUp() {
+
+	LOG("Unloading Player")
+
+	App->textures->Unload(graphics);
+
+	return true;
+}
 
 update_status ModulePlayer::Update()
 {
@@ -76,17 +88,17 @@ update_status ModulePlayer::Update()
 
 	int speed = 2;
 
-	if(App->input->keyboard[SDL_SCANCODE_D] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
 		current_animation = &forward;
 		position.x += speed;
 	}
-	if (App->input->keyboard[SDL_SCANCODE_A] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
 		current_animation = &backward;
 		position.x -= speed;
 	}
-	if (App->input->keyboard[SDL_SCANCODE_W] == 1 || floor == false)
+	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN||floor == false)
 	{
 		floor = false;
 		current_animation = &jumpup;
@@ -101,27 +113,21 @@ update_status ModulePlayer::Update()
 			jumpSpeed = 6;
 		}
 	}
-
-	if (App->input->keyboard[SDL_SCANCODE_P] == 1 || attAnim == true)
+	
+	if (App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN || attAnim == true)
 	{
 		attAnim = true;
 		current_animation = &punch;
+		if (current_animation->AnimationEnd() == true) attAnim = false;
 
-	if (current_animation->AnimationEnd() == true) {
-			attAnim = false;
-		}
 	}
-	if (App->input->keyboard[SDL_SCANCODE_K] == 1 || kickAnim == true)
+	if (App->input->keyboard[SDL_SCANCODE_K] == KEY_STATE::KEY_DOWN || kickAnim == true)
 	{
 		kickAnim = true;
 		current_animation = &kick;
-
-
-		if (current_animation->AnimationEnd() == true) {
-			kickAnim = false;
-		}
+		if (current_animation->AnimationEnd() == true) kickAnim = false;
 	}
-
+	
 
 
 	SDL_Rect r = current_animation->GetCurrentFrame();
@@ -131,8 +137,3 @@ update_status ModulePlayer::Update()
 	return UPDATE_CONTINUE;
 }
 
-bool ModulePlayer::CleanUp() {
-	App->textures->Unload(graphics);
-
-	return true;
-}

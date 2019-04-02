@@ -30,7 +30,8 @@ public:
 public:
 
 	SDL_Texture* graphics = nullptr;
-	Mix_Music* musload;
+	Animation* current_animation = nullptr;
+	Mix_Chunk* chunkload;
 	Animation idle;
 	Animation forward;
 	Animation backward;

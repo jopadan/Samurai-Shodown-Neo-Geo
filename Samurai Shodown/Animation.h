@@ -11,12 +11,14 @@ public:
 	SDL_Rect frames[MAX_FRAMES];
 	int pivotx[MAX_FRAMES];
 	int pivoty[MAX_FRAMES];
+	bool loop = true;
 
 private:
 	double current_frame;
+	bool animend = false;
 	int last_frame = 0;
 	int speeddelay = 0;
-	bool animend = false;
+	int loops = 0;
 
 public:
 	void PushBack(const SDL_Rect& rect, double delay, int px, int py)
@@ -35,7 +37,8 @@ public:
 		current_frame += speed[(int)current_frame];
 		if(current_frame >= last_frame){
 			animend = true;
-			current_frame = 0;
+			current_frame = (loop) ? 0.0f : last_frame - 1;
+			loops;;
 			speeddelay = 0;
 		}
 
@@ -45,9 +48,14 @@ public:
 	int returnCurrentFrame() {
 		return (int)current_frame;
 	}
-
 	bool AnimationEnd() {
 		return animend;
+	}
+	bool Finished() {
+		return loops > 0;
+	}
+	void Reset() {
+		current_frame = 0;
 	}
 
 };
