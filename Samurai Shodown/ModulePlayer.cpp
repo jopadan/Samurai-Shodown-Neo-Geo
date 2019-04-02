@@ -5,7 +5,8 @@
 #include "ModuleRender.h"
 #include "ModuleMusic.h"
 #include "ModulePlayer.h"
-//#include "SDL/include/SDL.h"
+#include "ModuleParticles.h"
+
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 

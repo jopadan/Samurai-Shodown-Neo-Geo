@@ -10,6 +10,7 @@
 #include "ModuleMenu.h"
 #include "ModuleMusic.h"
 #include "ModuleVictoryHaohmaru.h"
+#include "ModuleParticles.h"
 
 Application::Application()
 {
@@ -17,13 +18,14 @@ Application::Application()
 	modules[1] = render = new ModuleRender();
 	modules[2] = input = new ModuleInput();
 	modules[3] = textures = new ModuleTextures();
-	modules[4] = scene_nakoruru = new ModuleSceneNakoruru();
-	modules[5] = scene_haohmaru = new ModuleSceneHaohmaru();
-	modules[6] = player = new ModulePlayer();
-	modules[7] = menu = new ModuleMenu();
-	modules[8] = winhaoh = new ModuleVictoryHaohmaru();
-	modules[9] = music = new ModuleMusic();
-	modules[10] = fade = new ModuleFadeToBlack();
+	modules[4] = particles = new ModuleParticles();
+	modules[5] = scene_nakoruru = new ModuleSceneNakoruru();
+	modules[6] = scene_haohmaru = new ModuleSceneHaohmaru();
+	modules[7] = player = new ModulePlayer();
+	modules[8] = menu = new ModuleMenu();
+	modules[9] = winhaoh = new ModuleVictoryHaohmaru();
+	modules[10] = music = new ModuleMusic();
+	modules[11] = fade = new ModuleFadeToBlack();
 
 }	
 
