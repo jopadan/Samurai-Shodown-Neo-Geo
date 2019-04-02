@@ -66,8 +66,8 @@ ModulePlayer::ModulePlayer()
 	cyclone.PushBack({ 261, 449, 58, 91 }, 0.2, 0, 0);
 	cyclone.PushBack({ 326, 442, 94, 98 }, 0.2, 0, 0);
 	cyclone.PushBack({ 427, 387, 62, 153 }, 0.2, 0, 0);
-	cyclone.PushBack({ 496, 442, 97, 98 }, 0.2, 0, 0);
-	cyclone.PushBack({ 600, 450, 97, 90 }, 0.1, 0, 0);
+	cyclone.PushBack({ 496, 442, 97, 98 }, 0.2, -20, 0);
+	cyclone.PushBack({ 600, 450, 97, 90 }, 0.08, -20, 0);
 }
 
 ModulePlayer::~ModulePlayer()
