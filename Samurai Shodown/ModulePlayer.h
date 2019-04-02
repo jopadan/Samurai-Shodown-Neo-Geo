@@ -17,6 +17,7 @@ private:
 	bool floor = true;
 	bool attAnim= false;
 	bool kickAnim = false;
+	bool cycloneAnim = false;
 	int initialPos;
 	float jumpSpeed = 6;
 public:
@@ -38,6 +39,7 @@ public:
 	Animation jumpup;
 	Animation punch;
 	Animation kick;
+	Animation cyclone;
 	iPoint position;
 
 };

@@ -18,10 +18,10 @@ Application::Application()
 	modules[1] = render = new ModuleRender();
 	modules[2] = input = new ModuleInput();
 	modules[3] = textures = new ModuleTextures();
-	modules[4] = particles = new ModuleParticles();
-	modules[5] = scene_nakoruru = new ModuleSceneNakoruru();
-	modules[6] = scene_haohmaru = new ModuleSceneHaohmaru();
-	modules[7] = player = new ModulePlayer();
+	modules[4] = scene_nakoruru = new ModuleSceneNakoruru();
+	modules[5] = scene_haohmaru = new ModuleSceneHaohmaru();
+	modules[6] = player = new ModulePlayer();
+	modules[7] = particles = new ModuleParticles();
 	modules[8] = menu = new ModuleMenu();
 	modules[9] = winhaoh = new ModuleVictoryHaohmaru();
 	modules[10] = music = new ModuleMusic();

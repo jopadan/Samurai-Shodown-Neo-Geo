@@ -59,6 +59,15 @@ ModulePlayer::ModulePlayer()
 	kick.PushBack({ 768, 288, 94, 98 }, 0.2, 0, 0);
 	kick.PushBack({ 867, 287, 97, 99 }, 0.2, 0, 0);
 	kick.PushBack({ 969, 286, 82, 100 }, 0.2, 0, 0);
+
+	cyclone.PushBack({ 8, 452, 90, 88 }, 0.1, 0, 0);
+	cyclone.PushBack({ 105, 451, 70, 89 }, 0.2, 0, 0);
+	cyclone.PushBack({ 181, 457, 73, 83 }, 0.2, 0, 0);
+	cyclone.PushBack({ 261, 449, 58, 91 }, 0.2, 0, 0);
+	cyclone.PushBack({ 326, 442, 94, 98 }, 0.2, 0, 0);
+	cyclone.PushBack({ 427, 387, 62, 153 }, 0.2, 0, 0);
+	cyclone.PushBack({ 496, 442, 97, 98 }, 0.2, 0, 0);
+	cyclone.PushBack({ 600, 450, 97, 90 }, 0.1, 0, 0);
 }
 
 ModulePlayer::~ModulePlayer()
@@ -127,6 +136,12 @@ update_status ModulePlayer::Update()
 		kickAnim = true;
 		current_animation = &kick;
 		if (current_animation->AnimationEnd() == true) kickAnim = false;
+	}
+	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN || cycloneAnim == true)
+	{
+		cycloneAnim = true;
+		current_animation = &cyclone;
+		if (current_animation->AnimationEnd() == true) cycloneAnim = false;
 	}
 	
 
