@@ -137,13 +137,15 @@ update_status ModulePlayer::Update()
 		current_animation = &kick;
 		if (current_animation->AnimationEnd() == true) kickAnim = false;
 	}
-	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN || cycloneAnim == true)
+	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN)
 	{
 		cycloneAnim = true;
+		App->particles->AddParticle(App->particles->cyclone, position.x, position.y - 100);
+	}
+	if (cycloneAnim == true) {
 		current_animation = &cyclone;
 		if (current_animation->AnimationEnd() == true) cycloneAnim = false;
 	}
-	
 
 
 	SDL_Rect r = current_animation->GetCurrentFrame();

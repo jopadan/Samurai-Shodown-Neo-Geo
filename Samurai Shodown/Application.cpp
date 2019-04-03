@@ -21,9 +21,9 @@ Application::Application()
 	modules[4] = scene_nakoruru = new ModuleSceneNakoruru();
 	modules[5] = scene_haohmaru = new ModuleSceneHaohmaru();
 	modules[6] = player = new ModulePlayer();
-	modules[7] = particles = new ModuleParticles();
-	modules[8] = menu = new ModuleMenu();
-	modules[9] = winhaoh = new ModuleVictoryHaohmaru();
+	modules[7] = menu = new ModuleMenu();
+	modules[8] = winhaoh = new ModuleVictoryHaohmaru();
+	modules[9] = particles = new ModuleParticles();
 	modules[10] = music = new ModuleMusic();
 	modules[11] = fade = new ModuleFadeToBlack();
 
