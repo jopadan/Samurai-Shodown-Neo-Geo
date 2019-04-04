@@ -48,6 +48,9 @@ bool ModuleMenu::Start()
 	LOG("Loading menu assets");
 	bool ret = true;
 
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
+
 	musload = App->music->LoadMus("Assets/Sound/Static and Dynamic (short).ogg");
 	graphics = App->textures->Load("Assets/Image/Menu Spritesheet.png");
 	App->music->PlayMus(musload);

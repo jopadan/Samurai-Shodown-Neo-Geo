@@ -79,6 +79,9 @@ bool ModulePlayer::Start()
 	LOG("Loading player textures");
 	bool ret = true;
 
+	position.x = 100;
+	position.y = 207;
+
 	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet.png");
 	return ret;
 }

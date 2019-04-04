@@ -41,6 +41,9 @@ bool ModuleSceneNakoruru::Start()
 	LOG("Loading background assets");
 	bool ret = true;
 
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
+
 	musload = App->music->LoadMus("Assets/Sound/Banquet of Nature (Nakoruru).ogg");
 	graphics = App->textures->Load("Assets/Image/Nakoruru Map Spritesheet.png");
 	App->music->PlayMus(musload);

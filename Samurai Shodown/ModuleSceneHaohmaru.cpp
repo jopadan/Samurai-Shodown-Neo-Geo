@@ -74,6 +74,9 @@ bool ModuleSceneHaohmaru::Start()
 	LOG("Loading background assets");
 	bool ret = true;
 
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
+
 	musload = App->music->LoadMus("Assets/Sound/Masculine Song -Sun- (Haohmaru).ogg");
 	graphics = App->textures->Load("Assets/Image/haohmaru_stage.png");
 	App->music->PlayMus(musload);
