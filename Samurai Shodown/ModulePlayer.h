@@ -20,6 +20,7 @@ private:
 	bool cycloneAnim = false;
 	int initialPos;
 	float jumpSpeed = 6;
+	int animstart=0;
 public:
 	ModulePlayer();
 	~ModulePlayer();

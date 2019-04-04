@@ -50,7 +50,7 @@ bool ModuleMusic::CleanUp()
 	for (i = 0; i < MAX_MUSIC; ++i)
 		if (chunks[i] != nullptr){
 			Mix_FreeChunk(chunks[i]);
-			chunks[i] = nullptr;
+			
 	}
 	Mix_CloseAudio();
 	Mix_Quit();

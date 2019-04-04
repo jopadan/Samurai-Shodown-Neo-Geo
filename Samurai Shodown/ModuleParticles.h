@@ -16,8 +16,8 @@ struct Particle
 	uint fx = 0;
 	iPoint position;
 	iPoint speed;
-	Uint32 born = 0;
-	Uint32 life = 0;
+	int born = 0;
+	int life = 0;
 	bool fx_played = false;
 
 	Particle();
@@ -35,7 +35,7 @@ public:
 	update_status Update();
 	bool CleanUp();
 
-	void AddParticle(const Particle& particle, int x, int y, Uint32 delay = 0);
+	void AddParticle(const Particle& particle, int x, int y, int delay);
 
 private:
 

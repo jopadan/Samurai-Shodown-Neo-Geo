@@ -98,17 +98,17 @@ update_status ModulePlayer::Update()
 
 	int speed = 2;
 
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+	if ((App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) && (animstart == 0))
 	{
 		current_animation = &forward;
 		position.x += speed;
 	}
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+	if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT) && (animstart == 0))
 	{
 		current_animation = &backward;
 		position.x -= speed;
 	}
-	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN||floor == false)
+	if ((App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN||floor == false))
 	{
 		floor = false;
 		current_animation = &jumpup;
@@ -124,27 +124,30 @@ update_status ModulePlayer::Update()
 		}
 	}
 	
-	if (App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN || attAnim == true)
+	if ((App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN || attAnim == true) && (animstart == 0 || animstart == 1))
 	{
 		attAnim = true;
+		animstart = 1;
 		current_animation = &punch;
-		if (current_animation->AnimationEnd() == true) attAnim = false;
+		if (current_animation->AnimationEnd() == true) { attAnim = false; animstart = 0; }
 
 	}
-	if (App->input->keyboard[SDL_SCANCODE_K] == KEY_STATE::KEY_DOWN || kickAnim == true)
+	if ((App->input->keyboard[SDL_SCANCODE_K] == KEY_STATE::KEY_DOWN || kickAnim == true) && (animstart == 0 || animstart == 2))
 	{
 		kickAnim = true;
+		animstart = 2;
 		current_animation = &kick;
-		if (current_animation->AnimationEnd() == true) kickAnim = false;
+		if (current_animation->AnimationEnd() == true) { kickAnim = false; animstart = 0;}
 	}
-	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN)
+	if ((App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN ) && (animstart == 0 || animstart == 3))
 	{
 		cycloneAnim = true;
-		App->particles->AddParticle(App->particles->cyclone, position.x, position.y - 100);
+		animstart = 3;
+		App->particles->AddParticle(App->particles->cyclone, position.x, position.y - 100, 450);
 	}
 	if (cycloneAnim == true) {
 		current_animation = &cyclone;
-		if (current_animation->AnimationEnd() == true) cycloneAnim = false;
+		if (current_animation->AnimationEnd() == true) {cycloneAnim = false; animstart = 0;}
 	}
 
 

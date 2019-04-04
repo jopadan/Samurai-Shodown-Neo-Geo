@@ -45,9 +45,9 @@ bool ModuleParticles::Start()
 	cyclone.anim.PushBack({ 1427, 0, 52, 90 }, 0.3, 0, 0);
 	cyclone.anim.PushBack({ 1481, 0, 42, 90 }, 0.3, 0, 0);
 
-	cyclone.anim.loop = false;
+	cyclone.anim.loop = true;
 	cyclone.speed = { 5, 0 };
-	cyclone.life = 1000;
+	cyclone.life = 2000;
 /*
 	// Explosion particle
 	explosion.anim.PushBack({ 274, 296, 33, 30 });
@@ -116,11 +116,11 @@ update_status ModuleParticles::Update()
 	return UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Uint32 delay)
+void ModuleParticles::AddParticle(const Particle& particle, int x, int y, int delay)
 {
 	Particle* p = new Particle(particle);
 	p->born = SDL_GetTicks() + delay;
-	p->position.x = x;
+	p->position.x = x-120;
 	p->position.y = y;
 
 	active[last_particle++] = p;
@@ -144,7 +144,7 @@ bool Particle::Update()
 
 	if (life > 0)
 	{
-		if ((SDL_GetTicks() - born) > life)
+		if (((int)SDL_GetTicks() - born) > life)
 			ret = false;
 	}
 	else
