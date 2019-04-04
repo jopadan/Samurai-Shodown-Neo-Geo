@@ -1,5 +1,5 @@
-#ifndef __ModulePlayer_H__
-#define __ModulePlayer_H__
+#ifndef __ModulePlayer2_H__
+#define __ModulePlayer2_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -10,20 +10,20 @@
 
 struct SDL_Texture;
 
-class ModulePlayer : public Module
+class ModulePlayer2 : public Module
 {
 private:
 	int jump;
 	bool floor = true;
-	bool attAnim= false;
+	bool attAnim = false;
 	bool kickAnim = false;
 	bool cycloneAnim = false;
 	int initialPos;
 	float jumpSpeed = 6;
-	int animstart=0;
+	int animstart = 0;
 public:
-	ModulePlayer();
-	~ModulePlayer();
+	ModulePlayer2();
+	~ModulePlayer2();
 
 	bool Start();
 	update_status Update();
@@ -44,5 +44,4 @@ public:
 	iPoint position;
 
 };
-
 #endif
