@@ -6,6 +6,7 @@
 #include "ModuleMusic.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
+#include "ModulePlayer.h"
 #include "ModuleParticles.h"
 
 
@@ -101,6 +102,8 @@ update_status ModulePlayer2::Update()
 {
 	Animation* current_animation = &idle;
 
+	
+
 	int speed = 2;
 
 	if ((App->input->keyboard[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) && (animstart == 0))
@@ -171,6 +174,7 @@ update_status ModulePlayer2::Update()
 		LOG("Collision");
 		position.x++;
 	}
+
 
 	App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y - r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r);
 

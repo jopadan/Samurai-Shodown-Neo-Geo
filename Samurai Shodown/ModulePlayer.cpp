@@ -157,6 +157,7 @@ update_status ModulePlayer::Update()
 
 
 	SDL_Rect r = current_animation->GetCurrentFrame();
+
 	Hitbox.x = position.x;
 	Hitbox.y = position.y;
 	Hitbox.h = 100;
