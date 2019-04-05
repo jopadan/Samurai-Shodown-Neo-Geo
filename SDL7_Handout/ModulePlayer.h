@@ -17,7 +17,7 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
-	bool OnCollision(SDL_Rect);
+	void OnCollision(Collider* c1, Collider* c2);
 
 public:
 

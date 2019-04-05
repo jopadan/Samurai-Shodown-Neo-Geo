@@ -43,7 +43,7 @@ bool ModulePlayer::Start()
 	position.y = 120;
 
 	// TODO 2: Add a collider to the player
-	colliderPlayer = App->collision->AddCollider({ position.x, position.y, 32, 15 }, COLLIDER_PLAYER);
+	colliderPlayer = App->collision->AddCollider({ position.x, position.y, 32, 15 }, COLLIDER_PLAYER, this);
 	return true;
 }
 
@@ -110,7 +110,14 @@ update_status ModulePlayer::Update()
 }
 
 // TODO 4: Detect collision with a wall. If so, go back to intro screen.
-bool ModulePlayer::OnCollision(SDL_Rect hitbox) {
-	colliderPlayer->CheckCollision(hitbox);
-	return true;
+void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
+
+	if (colliderPlayer == c1)
+	{
+		{
+			LOG("COLISION");
+			App->fade->FadeToBlack((Module*)App->scene_space, (Module*)App->scene_intro);
+		}
+	}
+	
 }
