@@ -6,6 +6,7 @@
 #include "ModuleSceneHaohmaru.h"
 #include "ModuleSceneNakoruru.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleMenu.h"
 #include "ModuleMusic.h"
@@ -21,11 +22,12 @@ Application::Application()
 	modules[4] = scene_nakoruru = new ModuleSceneNakoruru();
 	modules[5] = scene_haohmaru = new ModuleSceneHaohmaru();
 	modules[6] = player = new ModulePlayer();
-	modules[7] = menu = new ModuleMenu();
-	modules[8] = winhaoh = new ModuleVictoryHaohmaru();
-	modules[9] = particles = new ModuleParticles();
-	modules[10] = music = new ModuleMusic();
-	modules[11] = fade = new ModuleFadeToBlack();
+	modules[7] = player2 = new ModulePlayer2();
+	modules[8] = menu = new ModuleMenu();
+	modules[9] = winhaoh = new ModuleVictoryHaohmaru();
+	modules[10] = particles = new ModuleParticles();
+	modules[11] = music = new ModuleMusic();
+	modules[12] = fade = new ModuleFadeToBlack();
 
 }	
 
@@ -40,6 +42,7 @@ bool Application::Init()
 	bool ret = true;
 
 	player->Disable();
+	player2->Disable();
 	scene_nakoruru->Disable();
 	scene_haohmaru->Disable();
 	winhaoh->Disable();

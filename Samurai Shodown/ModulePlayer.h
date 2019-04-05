@@ -33,7 +33,7 @@ public:
 
 	SDL_Texture* graphics = nullptr;
 	Animation* current_animation = nullptr;
-	Mix_Chunk* chunkload;
+	Mix_Chunk* senpuu;
 	Animation idle;
 	Animation forward;
 	Animation backward;
@@ -42,6 +42,8 @@ public:
 	Animation kick;
 	Animation cyclone;
 	iPoint position;
+
+	SDL_Rect Hitbox;
 
 };
 

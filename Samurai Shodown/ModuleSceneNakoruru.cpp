@@ -4,6 +4,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneHaohmaru.h"
@@ -48,6 +49,7 @@ bool ModuleSceneNakoruru::Start()
 	graphics = App->textures->Load("Assets/Image/Nakoruru Map Spritesheet.png");
 	App->music->PlayMus(musload);
 	App->player->Enable();
+	App->player2->Enable();
 
 	return ret;
 	
@@ -60,6 +62,7 @@ bool ModuleSceneNakoruru::CleanUp()
 	App->music->UnloadMus(musload);
 	App->textures->Unload(graphics);
 	App->player->Disable();
+	App->player2->Enable();
 
 	return true;
 }

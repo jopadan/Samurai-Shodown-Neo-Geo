@@ -4,6 +4,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneHaohmaru.h"
@@ -81,6 +82,7 @@ bool ModuleSceneHaohmaru::Start()
 	graphics = App->textures->Load("Assets/Image/haohmaru_stage.png");
 	App->music->PlayMus(musload);
 	App->player->Enable();
+	App->player2->Enable();
 	return ret;
 }
 
@@ -90,6 +92,8 @@ bool ModuleSceneHaohmaru::CleanUp()
 	App->music->UnloadMus(musload);
 	App->textures->Unload(graphics);
 	App->player->Disable();
+	App->player2->Disable();
+
 
 	return true;
 }
