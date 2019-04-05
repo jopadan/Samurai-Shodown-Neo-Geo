@@ -128,7 +128,7 @@ update_status ModulePlayer::Update()
 		}
 	}
 	
-	if ((App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN || attAnim == true) && (animstart == 0 || animstart == 1))
+	if ((App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN || attAnim == true) && (animstart == 0 || animstart == 1))
 	{
 		attAnim = true;
 		animstart = 1;
@@ -136,14 +136,14 @@ update_status ModulePlayer::Update()
 		if (current_animation->AnimationEnd() == true) { attAnim = false; animstart = 0; }
 
 	}
-	if ((App->input->keyboard[SDL_SCANCODE_K] == KEY_STATE::KEY_DOWN || kickAnim == true) && (animstart == 0 || animstart == 2))
+	if ((App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_DOWN || kickAnim == true) && (animstart == 0 || animstart == 2))
 	{
 		kickAnim = true;
 		animstart = 2;
 		current_animation = &kick;
 		if (current_animation->AnimationEnd() == true) { kickAnim = false; animstart = 0;}
 	}
-	if ((App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN ) && (animstart == 0 || animstart == 3))
+	if ((App->input->keyboard[SDL_SCANCODE_3] == KEY_STATE::KEY_DOWN ) && (animstart == 0 || animstart == 3))
 	{
 		cycloneAnim = true;
 		animstart = 3;
