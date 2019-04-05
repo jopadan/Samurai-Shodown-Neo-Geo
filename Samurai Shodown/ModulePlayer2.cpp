@@ -4,6 +4,7 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModuleMusic.h"
+#include "ModulePlayer.h"
 #include "ModulePlayer2.h"
 #include "ModuleParticles.h"
 
@@ -158,6 +159,18 @@ update_status ModulePlayer2::Update()
 
 
 	SDL_Rect r = current_animation->GetCurrentFrame();
+	Hitbox2.x = position.x;
+	Hitbox2.y = position.y;
+	Hitbox2.h = 100;
+	Hitbox2.w = 50;
+
+	if ((App->player->Hitbox.x + App->player->Hitbox.w) < Hitbox2.x||(Hitbox2.x+Hitbox2.w)<App->player->Hitbox.x|| (App->player->Hitbox.y+ App->player->Hitbox.h)<Hitbox2.y||(Hitbox2.y+Hitbox2.h)<App->player->Hitbox.y){
+
+}
+	else {
+		LOG("Collision");
+		position.x++;
+	}
 
 	App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y - r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r);
 

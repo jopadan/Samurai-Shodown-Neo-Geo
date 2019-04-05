@@ -42,6 +42,6 @@ public:
 	Animation kick;
 	Animation cyclone;
 	iPoint position;
-
+	SDL_Rect Hitbox2;
 };
 #endif
