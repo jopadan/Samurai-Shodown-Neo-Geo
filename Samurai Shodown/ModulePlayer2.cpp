@@ -15,7 +15,7 @@ ModulePlayer2::ModulePlayer2()
 	graphics = NULL;
 	current_animation = NULL;
 
-	position.x = 150;
+	position.x = 240;
 	position.y = 207;
 	initialPos = position.y;
 
@@ -79,7 +79,7 @@ bool ModulePlayer2::Start()
 	LOG("Loading player2 textures");
 	bool ret = true;
 
-	position.x = 150;
+	position.x = 240;
 	position.y = 207;
 
 	graphics = App->textures->Load("Assets/Image/paja_sprite.png");
