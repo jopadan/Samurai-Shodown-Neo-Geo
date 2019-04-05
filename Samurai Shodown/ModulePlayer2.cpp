@@ -5,6 +5,7 @@
 #include "ModuleRender.h"
 #include "ModuleMusic.h"
 #include "ModulePlayer2.h"
+#include "ModulePlayer.h"
 #include "ModuleParticles.h"
 
 
@@ -100,6 +101,8 @@ update_status ModulePlayer2::Update()
 {
 	Animation* current_animation = &idle;
 
+	
+
 	int speed = 2;
 
 	if ((App->input->keyboard[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) && (animstart == 0))
@@ -158,6 +161,13 @@ update_status ModulePlayer2::Update()
 
 
 	SDL_Rect r = current_animation->GetCurrentFrame();
+
+
+	if ((App->player->hitbox.x + App->player->hitbox.w) < r.x || (r.x + r.w) < App->player->hitbox.x || (App->player->hitbox.y + App->player->hitbox.h) < r.y || App->player->hitbox.y > (r.y + r.h)) {
+	}
+	else {
+		position.x += 10;
+	}
 
 	App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y - r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r);
 

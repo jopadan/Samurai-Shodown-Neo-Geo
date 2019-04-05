@@ -157,6 +157,7 @@ update_status ModulePlayer::Update()
 
 
 	SDL_Rect r = current_animation->GetCurrentFrame();
+	hitbox = r;
 
 	App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y - r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r);
 	
