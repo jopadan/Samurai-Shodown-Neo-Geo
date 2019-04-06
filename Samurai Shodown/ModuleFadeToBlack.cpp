@@ -42,10 +42,8 @@ update_status ModuleFadeToBlack::Update()
 	{
 		if (now >= total_time)
 		{
-			moduleOff->Disable();
-			moduleOn->Enable();
-
-			// ---
+			to_disable->Disable();
+			to_enable->Enable();
 			total_time += total_time;
 			start_time = SDL_GetTicks();
 			current_step = fade_step::fade_from_black;
@@ -75,8 +73,8 @@ bool ModuleFadeToBlack::FadeToBlack(Module* module_off, Module* module_on, float
 
 	if (current_step == fade_step::none)
 	{
-		moduleOff = module_off;
-		moduleOn = module_on;
+		to_enable = module_on;
+		to_disable = module_off;
 
 		current_step = fade_step::fade_to_black;
 		start_time = SDL_GetTicks();
@@ -85,4 +83,9 @@ bool ModuleFadeToBlack::FadeToBlack(Module* module_off, Module* module_on, float
 	}
 
 	return ret;
+}
+
+bool ModuleFadeToBlack::IsFading() const
+{
+	return current_step != fade_step::none;
 }

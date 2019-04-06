@@ -13,6 +13,8 @@ public:
 	bool Start();
 	update_status Update();
 	bool FadeToBlack(Module* module_off, Module* module_on, float time = 2.0f);
+	bool IsFading() const;
+
 
 private:
 
@@ -23,8 +25,8 @@ private:
 		fade_from_black
 	} current_step = fade_step::none;
 
-	Module * moduleOff = nullptr;
-	Module * moduleOn = nullptr;
+	Module* to_enable = nullptr;
+	Module* to_disable = nullptr;
 
 	Uint32 start_time = 0;
 	Uint32 total_time = 0;

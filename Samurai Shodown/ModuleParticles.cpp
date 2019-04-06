@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
+#include "ModuleCollision.h"
 #include "ModuleParticles.h"
 
 #include "SDL/include/SDL_timer.h"
@@ -48,25 +49,6 @@ bool ModuleParticles::Start()
 	cyclone.anim.loop = true;
 	cyclone.speed = { 5, 0 };
 	cyclone.life = 2000;
-/*
-	// Explosion particle
-	explosion.anim.PushBack({ 274, 296, 33, 30 });
-	explosion.anim.PushBack({ 313, 296, 33, 30 });
-	explosion.anim.PushBack({ 346, 296, 33, 30 });
-	explosion.anim.PushBack({ 382, 296, 33, 30 });
-	explosion.anim.PushBack({ 419, 296, 33, 30 });
-	explosion.anim.PushBack({ 457, 296, 33, 30 });
-	explosion.anim.loop = false;
-	explosion.anim.speed = 0.3f;
-
-	// TODO 2: Create the template for a new particle "laser"
-	laser.anim.PushBack({ 168, 137, 47, 11 });
-	laser.anim.PushBack({ 217, 136, 47, 13 });
-	laser.anim.loop = true;
-	laser.anim.speed = 0.1f;
-	laser.speed = { 7, 0 };
-	laser.life = 2000;
-*/
 	return true;
 }
 
@@ -116,16 +98,38 @@ update_status ModuleParticles::Update()
 	return UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, int delay)
+void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, int delay)
 {
-	Particle* p = new Particle(particle);
-	p->born = SDL_GetTicks() + delay;
-	p->position.x = x-120;
-	p->position.y = y;
 
-	active[last_particle++] = p;
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	{
+		if (active[i]==nullptr)
+		{
+			Particle* p = new Particle(particle);
+			p->born = SDL_GetTicks() + delay;
+			p->position.x = x - 120;
+			p->position.y = y;
+			if (collider_type != COLLIDER_NONE)
+				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
+			active[i] = p;
+			break;
+		}
+	}
 }
 
+void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
+{
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	{
+		// Always destroy particles that collide
+		if (active[i] != nullptr && active[i]->collider == c1)
+		{
+			delete active[i];
+			active[i] = nullptr;
+			break;
+		}
+	}
+}
 
 Particle::Particle()
 {
@@ -137,6 +141,11 @@ Particle::Particle(const Particle& p) :
 	anim(p.anim), position(p.position), speed(p.speed),
 	fx(p.fx), born(p.born), life(p.life)
 {}
+Particle::~Particle()
+{
+	if (collider != nullptr)
+		collider->to_delete = true;
+}
 
 bool Particle::Update()
 {
@@ -153,6 +162,9 @@ bool Particle::Update()
 
 	position.x += speed.x;
 	position.y += speed.y;
+
+	if (collider != nullptr)
+		collider->SetPos(position.x, position.y);
 
 	return ret;
 }

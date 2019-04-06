@@ -13,7 +13,7 @@
 #include "ModuleVictoryHaohmaru.h"
 #include "ModuleMenu.h"
 #include "SDL/include/SDL.h"
-
+#include "ModuleCollision.h"
 
 ModuleSceneHaohmaru::ModuleSceneHaohmaru()
 {
@@ -77,12 +77,19 @@ bool ModuleSceneHaohmaru::Start()
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
+	App->collision->Enable();
 
 	musload = App->music->LoadMus("Assets/Sound/Masculine Song -Sun- (Haohmaru).ogg");
 	graphics = App->textures->Load("Assets/Image/haohmaru_stage.png");
 	App->music->PlayMus(musload);
 	App->player->Enable();
 	App->player2->Enable();
+	App->collision->Enable();
+
+
+	/* COLLIDERS PARA LOS LIMITES DEL MAPA
+	App->collision->AddCollider({ 0, 224, 3930, 16 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1376, 0, 111, 97 }, COLLIDER_WALL);*/
 	return ret;
 }
 

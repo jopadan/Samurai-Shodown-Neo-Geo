@@ -6,7 +6,7 @@
 #include "ModuleMusic.h"
 #include "ModulePlayer.h"
 #include "ModuleParticles.h"
-
+#include "ModuleCollision.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -84,6 +84,7 @@ bool ModulePlayer::Start()
 
 	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet.png");
 	senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
+	colliderPlayer = App->collision->AddCollider({ position.x, position.y, 32, 15 }, COLLIDER_PLAYER, this);
 	return ret;
 }
 
@@ -147,7 +148,7 @@ update_status ModulePlayer::Update()
 	{
 		cycloneAnim = true;
 		animstart = 3;
-		App->particles->AddParticle(App->particles->cyclone, position.x, position.y - 100, 450);
+		App->particles->AddParticle(App->particles->cyclone, position.x, position.y - 100, COLLIDER_PLAYER_SHOT, 450);
 		App->music->PlayChunk(senpuu);
 	}
 	if (cycloneAnim == true) {
@@ -155,17 +156,20 @@ update_status ModulePlayer::Update()
 		if (current_animation->AnimationEnd() == true) {cycloneAnim = false; animstart = 0;}
 	}
 
-
 	SDL_Rect r = current_animation->GetCurrentFrame();
-
-	Hitbox.x = position.x;
-	Hitbox.y = position.y;
-	Hitbox.h = 100;
-	Hitbox.w = 50;
-
-
-	App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y - r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r);
-	
+	App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y -r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r);
+	colliderPlayer->SetPos(position.x, position.y);
 	return UPDATE_CONTINUE;
 }
 
+void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
+
+	if (colliderPlayer == c1)
+	{
+		{
+			LOG("COLISION");
+			//App->fade->FadeToBlack((Module*)App->scene_space, (Module*)App->scene_intro);
+		}
+	}
+
+}

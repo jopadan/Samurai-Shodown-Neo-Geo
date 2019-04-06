@@ -11,6 +11,7 @@
 #include "ModuleVictoryHaohmaru.h"
 
 #include "SDL/include/SDL.h"
+#include "ModuleCollision.h"
 
 ModuleSceneNakoruru::ModuleSceneNakoruru()
 {
@@ -39,17 +40,24 @@ ModuleSceneNakoruru::~ModuleSceneNakoruru()
 // Load assets
 bool ModuleSceneNakoruru::Start()
 {
-	LOG("Loading background assets");
-	bool ret = true;
-
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
+	bool ret = true;
+
+	LOG("Loading background assets");
+	
 
 	musload = App->music->LoadMus("Assets/Sound/Banquet of Nature (Nakoruru).ogg");
 	graphics = App->textures->Load("Assets/Image/Nakoruru Map Spritesheet.png");
+
 	App->music->PlayMus(musload);
 	App->player->Enable();
 	App->player2->Enable();
+	App->collision->Enable();
+
+	/* COLLIDERS PARA LOS LIMITES DEL MAPA
+	App->collision->AddCollider({ 0, 224, 3930, 16 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1376, 0, 111, 97 }, COLLIDER_WALL);*/
 
 	return ret;
 	
@@ -63,6 +71,7 @@ bool ModuleSceneNakoruru::CleanUp()
 	App->textures->Unload(graphics);
 	App->player->Disable();
 	App->player2->Enable();
+
 
 	return true;
 }
@@ -80,7 +89,7 @@ update_status ModuleSceneNakoruru::Update()
 	//background
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
-		App->fade->FadeToBlack(App->scene_nakoruru, App->winhaoh, 2);
+		App->fade->FadeToBlack(App->scene_nakoruru,(Module*)App->winhaoh, 2);
 	}
 
 	return UPDATE_CONTINUE;

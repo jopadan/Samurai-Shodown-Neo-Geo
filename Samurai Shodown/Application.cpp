@@ -12,9 +12,12 @@
 #include "ModuleMusic.h"
 #include "ModuleVictoryHaohmaru.h"
 #include "ModuleParticles.h"
+#include "ModuleCollision.h"
+
 
 Application::Application()
 {
+	
 	modules[0] = window = new ModuleWindow();
 	modules[1] = render = new ModuleRender();
 	modules[2] = input = new ModuleInput();
@@ -26,9 +29,10 @@ Application::Application()
 	modules[8] = menu = new ModuleMenu();
 	modules[9] = winhaoh = new ModuleVictoryHaohmaru();
 	modules[10] = particles = new ModuleParticles();
-	modules[11] = music = new ModuleMusic();
-	modules[12] = fade = new ModuleFadeToBlack();
-
+	modules[11] = collision = new ModuleCollision();
+	modules[12] = music = new ModuleMusic();
+	modules[13] = fade = new ModuleFadeToBlack();
+	
 }	
 
 Application::~Application()
@@ -46,6 +50,7 @@ bool Application::Init()
 	scene_nakoruru->Disable();
 	scene_haohmaru->Disable();
 	winhaoh->Disable();
+	collision->Disable();
 
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)

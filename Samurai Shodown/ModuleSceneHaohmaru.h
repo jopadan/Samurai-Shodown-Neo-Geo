@@ -29,7 +29,6 @@ public:
 	Animation splash2;
 	Animation splash3;
 	Animation sea;
-
 };
 
 #endif

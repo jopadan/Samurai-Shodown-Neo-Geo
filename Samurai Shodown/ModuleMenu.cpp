@@ -11,6 +11,7 @@
 #include "ModuleSceneHaohmaru.h"
 
 
+
 ModuleMenu::ModuleMenu()
 {
 	menu.x = 0;
@@ -76,7 +77,7 @@ update_status ModuleMenu::Update()
 	App->render->Blit(graphics, 124, 172, &(start.GetCurrentFrame()), 1);
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
-		App->fade->FadeToBlack(App->menu, App->scene_haohmaru, 1);
+		App->fade->FadeToBlack(App->menu, (Module*)App->scene_haohmaru, 1);
 	}
 
 	return UPDATE_CONTINUE;
