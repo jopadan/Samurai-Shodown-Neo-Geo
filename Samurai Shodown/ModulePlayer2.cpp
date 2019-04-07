@@ -39,14 +39,16 @@ bool ModulePlayer2::Start()
 	position.y = 207;
 
 	graphics = App->textures->Load("Assets/Image/paja_sprite.png");
-	colliderPlayer2 = App->collision->AddCollider({ position.x, position.y, 32, 15 }, COLLIDER_ENEMY, this);
+	colliderPlayer2 = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_ENEMY, this);
 	return ret;
 }
 
 bool ModulePlayer2::CleanUp() {
 
 	LOG("Unloading Player2")
-
+		if (colliderPlayer2 != nullptr) {
+			colliderPlayer2->to_delete = true;
+		}
 		App->textures->Unload(graphics);
 	return true;
 }
@@ -91,7 +93,7 @@ update_status ModulePlayer2::Update()
 	SDL_Rect r = current_animation->GetCurrentFrame();
 	
 
-	colliderPlayer2->SetPos(position.x, position.y);
+	colliderPlayer2->SetPos(position.x, position.y - 90);
 
 	App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y - r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r);
 
@@ -100,11 +102,10 @@ update_status ModulePlayer2::Update()
 
 void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 
-	/*if (colliderPlayer2 == c1)
+	if (colliderPlayer2 == c1 && c2->type== COLLIDER_PLAYER_SHOT)
 	{
-		{
-			LOG("COLISION");
-		}
-	}*/
+		LOG("Impact");
+		//current_animation =
+	}
 
 }

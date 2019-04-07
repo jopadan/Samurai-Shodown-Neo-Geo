@@ -87,9 +87,9 @@ bool ModuleSceneHaohmaru::Start()
 	App->collision->Enable();
 
 
-	/* COLLIDERS PARA LOS LIMITES DEL MAPA
-	App->collision->AddCollider({ 0, 224, 3930, 16 }, COLLIDER_WALL);
-	App->collision->AddCollider({ 1376, 0, 111, 97 }, COLLIDER_WALL);*/
+	// COLLIDERS PARA LOS LIMITES DEL MAPA
+	App->collision->AddCollider({ 0, -150, 50, 500  }, COLLIDER_WALL);
+	App->collision->AddCollider({ 580, -150, 50, 500 }, COLLIDER_WALL);
 	return ret;
 }
 

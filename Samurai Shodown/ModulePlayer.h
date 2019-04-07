@@ -22,6 +22,7 @@ private:
 	int initialPos;
 	float jumpSpeed = 6;
 	int animstart=0;
+	bool wall = false;
 public:
 	ModulePlayer();
 	~ModulePlayer();

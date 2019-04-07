@@ -110,7 +110,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 			p->position.x = x - 120;
 			p->position.y = y;
 			if (collider_type != COLLIDER_NONE)
-				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
+				p->collider = App->collision->AddCollider({p->position.x, p->position.y+30, 52, 70 }, collider_type, this);
 			active[i] = p;
 			break;
 		}
@@ -119,6 +119,8 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
+	if (c2->type == COLLIDER_ENEMY)
+	{
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		// Always destroy particles that collide
@@ -129,6 +131,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 			break;
 		}
 	}
+}
 }
 
 Particle::Particle()
@@ -164,7 +167,7 @@ bool Particle::Update()
 	position.y += speed.y;
 
 	if (collider != nullptr)
-		collider->SetPos(position.x, position.y);
+		collider->SetPos(position.x, position.y+30);
 
 	return ret;
 }

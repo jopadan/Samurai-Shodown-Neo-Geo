@@ -84,14 +84,15 @@ bool ModulePlayer::Start()
 
 	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet.png");
 	senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
-	colliderPlayer = App->collision->AddCollider({ position.x, position.y, 32, 15 }, COLLIDER_PLAYER, this);
+	colliderPlayer = App->collision->AddCollider({ position.x, position.y-90, 60, 90 }, COLLIDER_PLAYER, this);
 	return ret;
 }
 
 bool ModulePlayer::CleanUp() {
 
 	LOG("Unloading Player")
-
+		if (colliderPlayer != nullptr){
+	colliderPlayer->to_delete = true;}
 	App->textures->Unload(graphics);
 	App->music->UnloadChunk(senpuu);
 	return true;
@@ -102,17 +103,23 @@ update_status ModulePlayer::Update()
 	Animation* current_animation = &idle;
 
 	int speed = 2;
-
+	if (wall && position.x > 100) {}
+	else{
 	if ((App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) && (animstart == 0))
 	{
 		current_animation = &forward;
 		position.x += speed;
 	}
+	}
+	if(wall && position.x < 100){}
+	else{
 	if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT) && (animstart == 0))
 	{
 		current_animation = &backward;
 		position.x -= speed;
 	}
+	}
+	
 	if ((App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN||floor == false))
 	{
 		floor = false;
@@ -156,20 +163,18 @@ update_status ModulePlayer::Update()
 		if (current_animation->AnimationEnd() == true) {cycloneAnim = false; animstart = 0;}
 	}
 
+	wall = false;
 	SDL_Rect r = current_animation->GetCurrentFrame();
 	App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y -r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r);
-	colliderPlayer->SetPos(position.x, position.y);
+	colliderPlayer->SetPos(position.x, position.y - 90);
 	return UPDATE_CONTINUE;
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 
-	if (colliderPlayer == c1)
+	if (colliderPlayer == c1 && c2->type== COLLIDER_WALL)
 	{
-		{
-			LOG("COLISION");
-			//App->fade->FadeToBlack((Module*)App->scene_space, (Module*)App->scene_intro);
-		}
+		wall = true;
 	}
 
 }
