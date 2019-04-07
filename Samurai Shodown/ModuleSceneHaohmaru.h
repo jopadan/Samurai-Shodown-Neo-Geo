@@ -7,6 +7,7 @@
 #include "ModuleMusic.h"
 
 struct SDL_Texture;
+struct Collider;
 
 class ModuleSceneHaohmaru : public Module
 {
@@ -24,7 +25,9 @@ public:
 	Mix_Music* musload;
 	Mix_Chunk* chunkload;
 	SDL_Rect ground;
-
+	
+	Collider* colliderMap;
+	Collider* colliderMap2;
 	Animation splash1;
 	Animation splash2;
 	Animation splash3;

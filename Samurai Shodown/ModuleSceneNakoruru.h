@@ -8,6 +8,7 @@
 
 
 struct SDL_Texture;
+struct Collider;
 
 class ModuleSceneNakoruru : public Module
 {
@@ -26,7 +27,8 @@ public:
 	Mix_Chunk* chunkload;
 	SDL_Rect ground;
 	Animation animals;
-	
+	Collider *colliderMap;
+	Collider *colliderMap2;
 
 };
 #endif

@@ -161,13 +161,13 @@ update_status ModulePlayer::Update()
 		current_animation = &kick;
 		if (current_animation->AnimationEnd() == true) { kickAnim = false; animstart = 0;}
 	}
-	if ((App->input->keyboard[SDL_SCANCODE_3] == KEY_STATE::KEY_DOWN ) && (animstart == 0 || animstart == 3))
+	if ((App->input->keyboard[SDL_SCANCODE_3] == KEY_STATE::KEY_DOWN ) && (animstart == 0))
 	{
 		cycloneAnim = true;
-		animstart = 3;
+		animstart = 3;	App->music->PlayChunk(senpuu);
 		App->particles->AddParticle(App->particles->cyclone, position.x, position.y - 100, COLLIDER_PLAYER_SHOT, 450);
-		App->music->PlayChunk(senpuu);
 	}
+
 	if (cycloneAnim == true) {
 		current_animation = &cyclone;
 		if (current_animation->AnimationEnd() == true) {cycloneAnim = false; animstart = 0;}

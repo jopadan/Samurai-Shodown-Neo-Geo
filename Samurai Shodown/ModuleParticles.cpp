@@ -47,7 +47,7 @@ bool ModuleParticles::Start()
 	cyclone.anim.PushBack({ 1481, 0, 42, 90 }, 0.3,  0, 10);
 
 	cyclone.anim.loop = true;
-	cyclone.speed = { 5, 0 };
+	cyclone.speed = { 4, 0 };
 	cyclone.life = 2000;
 	return true;
 }

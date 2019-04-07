@@ -15,6 +15,7 @@
 #include "SDL/include/SDL.h"
 #include "ModuleCollision.h"
 
+
 ModuleSceneHaohmaru::ModuleSceneHaohmaru()
 {
 
@@ -88,14 +89,20 @@ bool ModuleSceneHaohmaru::Start()
 
 
 	// COLLIDERS PARA LOS LIMITES DEL MAPA
-	App->collision->AddCollider({ 0, -150, 50, 500  }, COLLIDER_WALL);
-	App->collision->AddCollider({ 590, -150, 50, 500 }, COLLIDER_WALL);
+	colliderMap = App->collision->AddCollider({ 0, -150, 50, 500  }, COLLIDER_WALL);
+	colliderMap2 = App->collision->AddCollider({ 590, -150, 50, 500 }, COLLIDER_WALL);
 	return ret;
 }
 
 bool ModuleSceneHaohmaru::CleanUp()
 {
 	LOG("Unloading Haohmaru scene");
+	if (colliderMap != nullptr) {
+		colliderMap->to_delete = true;
+	}
+	if (colliderMap2 != nullptr) {
+		colliderMap2->to_delete = true;
+	}
 	App->music->UnloadMus(musload);
 	App->textures->Unload(graphics);
 	App->player->Disable();

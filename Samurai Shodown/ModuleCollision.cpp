@@ -93,9 +93,18 @@ update_status ModuleCollision::PreUpdate()
 // Called before render is available
 update_status ModuleCollision::Update()
 {
-
-	DebugDraw();
-
+	if(App->input->keyboard[SDL_SCANCODE_Z] == KEY_STATE::KEY_DOWN){
+		if (!draw) {
+			draw = true;
+		}
+		else {
+			draw = false;
+		}
+}
+	if (draw == true)
+	{
+		DebugDraw();
+	}
 	return UPDATE_CONTINUE;
 }
 

@@ -55,9 +55,8 @@ bool ModuleSceneNakoruru::Start()
 	App->player2->Enable();
 	App->collision->Enable();
 
-	/* COLLIDERS PARA LOS LIMITES DEL MAPA
-	App->collision->AddCollider({ 0, 224, 3930, 16 }, COLLIDER_WALL);
-	App->collision->AddCollider({ 1376, 0, 111, 97 }, COLLIDER_WALL);*/
+	colliderMap = App->collision->AddCollider({ 0, -150, 50, 500 }, COLLIDER_WALL);
+	colliderMap2 = App->collision->AddCollider({ 590, -150, 50, 500 }, COLLIDER_WALL);
 
 	return ret;
 	
@@ -65,12 +64,17 @@ bool ModuleSceneNakoruru::Start()
 
 bool ModuleSceneNakoruru::CleanUp()
 {
-	
 	LOG("Unloading nakoruru scene");
+	if (colliderMap != nullptr) {
+		colliderMap->to_delete = true;
+	}
+	if (colliderMap2 != nullptr) {
+		colliderMap2->to_delete = true;
+	}
 	App->music->UnloadMus(musload);
 	App->textures->Unload(graphics);
 	App->player->Disable();
-	App->player2->Enable();
+	App->player2->Disable();
 
 
 	return true;
@@ -78,8 +82,6 @@ bool ModuleSceneNakoruru::CleanUp()
 // Update: draw background
 update_status ModuleSceneNakoruru::Update()
 {
-
-
 	// Draw everything --------------------------------------
 	
 	App->render->Blit(graphics, 0, -150, &ground);
