@@ -15,6 +15,8 @@ class ModulePlayer : public Module
 {
 private:
 	int jump;
+	int speed = 2;
+	bool deletecol = true;
 	bool floor = true;
 	bool attAnim= false;
 	bool kickAnim = false;

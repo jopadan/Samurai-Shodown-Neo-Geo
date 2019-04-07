@@ -102,7 +102,17 @@ update_status ModulePlayer::Update()
 {
 	Animation* current_animation = &idle;
 
-	int speed = 2;
+	if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_STATE::KEY_DOWN) {
+		if (deletecol == true) {
+			colliderPlayer->to_delete = true;
+			deletecol = false;
+		}
+		else {
+			colliderPlayer=	App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_PLAYER, this);
+			deletecol = true;
+		}
+		
+	}
 	if (wall && position.x > 100) {}
 	else{
 	if ((App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) && (animstart == 0))
@@ -162,7 +172,7 @@ update_status ModulePlayer::Update()
 		current_animation = &cyclone;
 		if (current_animation->AnimationEnd() == true) {cycloneAnim = false; animstart = 0;}
 	}
-
+	speed = 2; 
 	wall = false;
 	SDL_Rect r = current_animation->GetCurrentFrame();
 	App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y -r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r);
@@ -175,6 +185,10 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	if (colliderPlayer == c1 && c2->type== COLLIDER_WALL)
 	{
 		wall = true;
+	}
+	if (colliderPlayer == c1 && c2->type == COLLIDER_ENEMY)
+	{
+		speed = 1;
 	}
 
 }
