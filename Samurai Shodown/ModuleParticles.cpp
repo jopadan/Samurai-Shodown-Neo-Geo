@@ -5,6 +5,7 @@
 #include "ModuleRender.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
+#include "ModulePlayer2.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -49,7 +50,28 @@ bool ModuleParticles::Start()
 	cyclone.anim.loop = true;
 	cyclone.speed = { 4, 0 };
 	cyclone.life = 2000;
+	
+
+	tornado.anim.PushBack({ 0, 172, 60, 217 }, 0.4, 0, 50);
+	tornado.anim.PushBack({ 85, 172, 60, 217 }, 0.4, 0, 50);
+	tornado.anim.PushBack({ 181, 172, 60, 217 }, 0.4, 0, 50);
+	tornado.anim.PushBack({ 298, 172, 60, 217 }, 0.4, 0, 50);
+	tornado.anim.PushBack({ 404, 172, 60, 217 }, 0.4, 0, 50);
+	tornado.anim.PushBack({ 507, 172, 60, 217 }, 0.4, 0, 50);
+	tornado.anim.PushBack({ 627, 172, 60, 217 }, 0.4, 0, 50);
+	tornado.anim.PushBack({ 760, 172, 60, 217 }, 0.4, 0, 50);
+	tornado.anim.PushBack({ 865, 172, 60, 217 }, 0.4, 0, 50);
+	tornado.anim.loop = true;
+	tornado.speed = { 4, 0 };
+	tornado.life = 2000;
 	return true;
+
+
+	
+
+
+
+
 }
 
 // Unload assets
@@ -123,11 +145,13 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 	{
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
+		
 		// Always destroy particles that collide
 		if (active[i] != nullptr && active[i]->collider == c1)
 		{
 			delete active[i];
 			active[i] = nullptr;
+			
 			break;
 		}
 	}

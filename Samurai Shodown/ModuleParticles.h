@@ -52,6 +52,7 @@ private:
 public:
 
 	Particle cyclone;
+	Particle tornado;
 };
 
 #endif // __MODULEPARTICLES_H__

@@ -14,6 +14,7 @@ class ModulePlayer2 : public Module
 {
 private:
 	int jump;
+	int speed = 2;
 	bool floor = true;
 	int initialPos;
 	float jumpSpeed = 6;

@@ -7,6 +7,8 @@
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
 #include "ModulePlayer.h"
+
+
 #include "ModuleParticles.h"
 
 #include "ModuleCollision.h"
@@ -105,7 +107,25 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 	if (colliderPlayer2 == c1 && c2->type== COLLIDER_PLAYER_SHOT)
 	{
 		LOG("Impact");
+		floor = false;
+		//current_animation = &jumpup;
+		position.y -= jumpSpeed;
+
+		if (position.y < 170) {
+			jumpSpeed -= 0.5;
+			if (jumpSpeed < 0) jumpSpeed = -6;
+		}
+		if (position.y >= initialPos && jumpSpeed < 0) {
+			floor = true;
+			position.y = initialPos;
+			jumpSpeed = 6;
+		}
 		//current_animation =
+	}
+	if (colliderPlayer2 == c1 && c2->type == COLLIDER_ENEMY)
+	{
+		App->player->position.x = position.x -60;
+		speed = 1;
 	}
 
 }

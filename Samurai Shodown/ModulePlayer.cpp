@@ -6,6 +6,7 @@
 #include "ModuleMusic.h"
 #include "ModulePlayer.h"
 #include "ModuleParticles.h"
+#include "ModulePlayer2.h"
 #include "ModuleCollision.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
@@ -188,6 +189,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	}
 	if (colliderPlayer == c1 && c2->type == COLLIDER_ENEMY)
 	{
+		App->player2->position.x = position.x+60;
 		speed = 1;
 	}
 
