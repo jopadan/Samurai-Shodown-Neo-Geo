@@ -156,7 +156,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 			active[i]->anim = tornado.anim;
 			active[i]->speed = tornado.speed;
 			active[i]->life = tornado.life;
-			active[i]->position.x += 20;
+			active[i]->position.x += 50;
 			active[i]->position.y -= 150;
 			active[i]->collider->to_delete = true;
 		
