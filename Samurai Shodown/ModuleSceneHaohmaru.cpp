@@ -61,7 +61,7 @@ ModuleSceneHaohmaru::ModuleSceneHaohmaru()
 	sea.PushBack({ 0, 156, 640, 140 }, 0.08f, 0, 0);
 	sea.PushBack({ 704, 156, 640, 140 }, 0.08f, 0, 0);
 	sea.PushBack({ 1408, 156, 640, 140 }, 0.08f, 0, 0);
-	sea.PushBack({ 0, 312, 630, 140 }, 0.08f, 0, 0);
+	sea.PushBack({ 0, 312, 640, 140 }, 0.08f, 0, 0);
 	sea.PushBack({ 704, 311, 640, 140 }, 0.08f, 0, 0);
 	sea.PushBack({ 1408, 311, 640, 140 }, 0.08f, 0, 0);
 	
