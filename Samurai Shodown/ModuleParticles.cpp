@@ -62,8 +62,8 @@ bool ModuleParticles::Start()
 	tornado.anim.PushBack({ 760, 172, 60, 217 }, 0.4, 0, 50);
 	tornado.anim.PushBack({ 865, 172, 60, 217 }, 0.4, 0, 50);
 	tornado.anim.loop = true;
-	tornado.speed = { 4, 0 };
-	tornado.life = 2000;
+	tornado.speed = { 0, 0 };
+	tornado.life = 1000;
 	return true;
 
 
@@ -108,6 +108,7 @@ update_status ModuleParticles::Update()
 		}
 		else if (SDL_GetTicks() >= p->born)
 		{
+			
 			App->render->Blit(graphics, p->position.x + p->anim.pivotx[p->anim.returnCurrentFrame()], p->position.y + p->anim.pivoty[p->anim.returnCurrentFrame()], &(p->anim.GetCurrentFrame()));
 			if (p->fx_played == false)
 			{
@@ -149,9 +150,16 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		// Always destroy particles that collide
 		if (active[i] != nullptr && active[i]->collider == c1)
 		{
-			delete active[i];
+			/*delete active[i];
 			active[i] = nullptr;
-			
+			*/
+			active[i]->anim = tornado.anim;
+			active[i]->speed = tornado.speed;
+			active[i]->life = tornado.life;
+			active[i]->position.x += 20;
+			active[i]->position.y -= 150;
+			active[i]->collider->to_delete = true;
+		
 			break;
 		}
 	}

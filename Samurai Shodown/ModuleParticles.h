@@ -50,7 +50,7 @@ private:
 	//uint last_particle = 0;
 
 public:
-
+	Animation * current_animation = nullptr;
 	Particle cyclone;
 	Particle tornado;
 };
