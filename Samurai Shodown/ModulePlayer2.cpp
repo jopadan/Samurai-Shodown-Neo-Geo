@@ -62,7 +62,7 @@ update_status ModulePlayer2::Update()
 	
 
 	int speed = 2;
-
+/*
 	if ((App->input->keyboard[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) && (animstart == 0))
 	{
 		//current_animation = &forward;
@@ -91,7 +91,7 @@ update_status ModulePlayer2::Update()
 	}
 
 	
-
+*/
 	SDL_Rect r = current_animation->GetCurrentFrame();
 	
 

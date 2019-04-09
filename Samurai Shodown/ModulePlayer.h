@@ -6,7 +6,7 @@
 #include "Globals.h"
 #include "p2Point.h"
 #include "ModuleMusic.h"
-
+#include "ModuleInput.h"
 
 struct SDL_Texture;
 struct Collider;
@@ -34,6 +34,7 @@ public:
 	update_status Update();
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
+	player_states process_fsm(p2Qeue<player_inputs>& inputs);
 
 public:
 
