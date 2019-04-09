@@ -113,14 +113,47 @@ if (state != current_state)
 	case ST_IDLE:
 	
 		break;
+
 	case ST_WALK_FORWARD:
-		LOG("FORWARD >>>\n");
+		if (wall && position.x > 100) {}
+		else {
+			if (animstart == 0)
+			{
+				current_animation = &forward;
+				position.x += speed;
+			}
+		}
+		
 		break;
 	case ST_WALK_BACKWARD:
-		LOG("BACKWARD <<<\n");
+		if (wall && position.x < 100) {}
+		else {
+			if (animstart == 0)
+			{
+				current_animation = &backward;
+				position.x -= speed;
+			}
+		}
+	
 		break;
 	case ST_JUMP_NEUTRAL:
-		LOG("JUMPING NEUTRAL ^^^^\n");
+		if ( floor == false)
+		{
+			floor = false;
+			current_animation = &jumpup;
+			position.y -= jumpSpeed;
+
+			if (position.y < 120) {
+				jumpSpeed -= 0.5;
+				if (jumpSpeed < 0) jumpSpeed = -6;
+			}
+			if (position.y >= initialPos && jumpSpeed < 0) {
+				floor = true;
+				position.y = initialPos;
+				jumpSpeed = 6;
+			}
+		}
+		
 		break;
 	case ST_JUMP_FORWARD:
 		LOG("JUMPING FORWARD ^^>>\n");
@@ -135,11 +168,18 @@ if (state != current_state)
 		LOG("PUNCH CROUCHING **++\n");
 		break;
 	case ST_PUNCH_STANDING:
+		if ((attAnim == true) && (animstart == 0 || animstart == 1))
+		{
+			attAnim = true;
+			animstart = 1;
+			current_animation = &punch;
+			if (current_animation->AnimationEnd() == true) { attAnim = false; animstart = 0; }
+		}
+		break;
 		LOG("PUNCH STANDING ++++\n");
 		break;
 	case ST_PUNCH_NEUTRAL_JUMP:
-		LOG("PUNCH JUMP NEUTRAL ^^++\n");
-		break;
+		LOG("PUNCH NEUTRAL JUMP ++++\n");
 	case ST_PUNCH_FORWARD_JUMP:
 		LOG("PUNCH JUMP FORWARD ^>>+\n");
 		break;
@@ -150,7 +190,7 @@ if (state != current_state)
 }
 current_state = state;
 
-/*
+
 	if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_STATE::KEY_DOWN) {
 		if (deletecol == true) {
 			colliderPlayer->to_delete = true;
@@ -162,47 +202,12 @@ current_state = state;
 		}
 		
 	}
-	if (wall && position.x > 100) {}
-	else{
-	if ((App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) && (animstart == 0))
-	{
-		current_animation = &forward;
-		position.x += speed;
-	}
-	}
-	if(wall && position.x < 100){}
-	else{
-	if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT) && (animstart == 0))
-	{
-		current_animation = &backward;
-		position.x -= speed;
-	}
-	}
+	/*
 	
-	if ((App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN||floor == false))
-	{
-		floor = false;
-		current_animation = &jumpup;
-		position.y -= jumpSpeed;
-
-		if (position.y < 120) { jumpSpeed-=0.5;
-		if (jumpSpeed<0) jumpSpeed = -6;
-		}
-		if (position.y >= initialPos && jumpSpeed<0) { 
-			floor = true; 
-			position.y = initialPos;
-			jumpSpeed = 6;
-		}
-	}
 	
-	if ((App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN || attAnim == true) && (animstart == 0 || animstart == 1))
-	{
-		attAnim = true;
-		animstart = 1;
-		current_animation = &punch;
-		if (current_animation->AnimationEnd() == true) { attAnim = false; animstart = 0; }
-
-	}
+	
+	
+	
 	if ((App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_DOWN || kickAnim == true) && (animstart == 0 || animstart == 2))
 	{
 		kickAnim = true;
@@ -228,6 +233,7 @@ current_state = state;
 	colliderPlayer->SetPos(position.x, position.y - 90);
 	return UPDATE_CONTINUE;
 }
+
 
 player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 	static player_states state = ST_IDLE;
