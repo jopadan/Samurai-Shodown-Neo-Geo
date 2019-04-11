@@ -30,7 +30,7 @@ bool ModuleInput::Init()
 	return ret;
 }
 
-bool ModuleInput:: external_input(p2Qeue<player_inputs>& inputs)
+bool ModuleInput::external_input(p2Qeue<player_inputs>& inputs)
 {
 	static bool left = false;
 	static bool right = false;
@@ -137,6 +137,7 @@ update_status ModuleInput::PreUpdate()
 
 	const Uint8* keys = SDL_GetKeyboardState(NULL);
 
+	// Para el input que no sean estados
 	for (int i = 0; i < MAX_KEYS; ++i)
 	{
 		if (keys[i] == 1)
@@ -154,7 +155,7 @@ update_status ModuleInput::PreUpdate()
 				keyboard[i] = KEY_IDLE;
 		}
 	}
-
+	// Para el input que sean estados
 	if (external_input(inputs) == false){		return update_status::UPDATE_STOP;}
 	else{ 
 		internal_input(inputs);

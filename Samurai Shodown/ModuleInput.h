@@ -7,8 +7,8 @@
 #include "SDL\include\SDL_scancode.h"
 
 #define MAX_KEYS 300
-#define JUMP_TIME 3000
-#define PUNCH_TIME 1000
+#define JUMP_TIME 1000
+#define PUNCH_TIME 700
 
 enum player_states
 {

@@ -36,6 +36,7 @@ public:
 	void OnCollision(Collider* c1, Collider* c2);
 	player_states process_fsm(p2Qeue<player_inputs>& inputs);
 
+
 public:
 
 	SDL_Texture* graphics = nullptr;

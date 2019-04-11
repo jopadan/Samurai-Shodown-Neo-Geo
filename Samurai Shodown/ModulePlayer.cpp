@@ -117,29 +117,25 @@ if (state != current_state)
 	case ST_WALK_FORWARD:
 		if (wall && position.x > 100) {}
 		else {
-			if (animstart == 0)
-			{
 				current_animation = &forward;
 				position.x += speed;
-			}
+			
 		}
 		
 		break;
 	case ST_WALK_BACKWARD:
 		if (wall && position.x < 100) {}
 		else {
-			if (animstart == 0)
-			{
+			
 				current_animation = &backward;
 				position.x -= speed;
-			}
+			
 		}
 	
 		break;
 	case ST_JUMP_NEUTRAL:
-		if ( floor == false)
+		if (animstart == 0)
 		{
-			floor = false;
 			current_animation = &jumpup;
 			position.y -= jumpSpeed;
 
@@ -148,11 +144,12 @@ if (state != current_state)
 				if (jumpSpeed < 0) jumpSpeed = -6;
 			}
 			if (position.y >= initialPos && jumpSpeed < 0) {
-				floor = true;
+				animstart = 1;
 				position.y = initialPos;
 				jumpSpeed = 6;
 			}
 		}
+		
 		
 		break;
 	case ST_JUMP_FORWARD:
@@ -168,12 +165,10 @@ if (state != current_state)
 		LOG("PUNCH CROUCHING **++\n");
 		break;
 	case ST_PUNCH_STANDING:
-		if ((attAnim == true) && (animstart == 0 || animstart == 1))
+		if (animstart == 0)
 		{
-			attAnim = true;
-			animstart = 1;
 			current_animation = &punch;
-			if (current_animation->AnimationEnd() == true) { attAnim = false; animstart = 0; }
+			if (current_animation->AnimationEnd() == true) { animstart = 1; }
 		}
 		break;
 		LOG("PUNCH STANDING ++++\n");
@@ -203,11 +198,6 @@ current_state = state;
 		
 	}
 	/*
-	
-	
-	
-	
-	
 	if ((App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_DOWN || kickAnim == true) && (animstart == 0 || animstart == 2))
 	{
 		kickAnim = true;
@@ -264,6 +254,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_LEFT_AND_RIGHT: state = ST_IDLE; break;
 			case IN_JUMP: state = ST_JUMP_FORWARD;  App->input->jump_timer = SDL_GetTicks();  break;
 			case IN_CROUCH_DOWN: state = ST_CROUCH; break;
+			case IN_1: state = ST_PUNCH_STANDING;  App->input->punch_timer = SDL_GetTicks();  break;
 			}
 		}
 		break;
@@ -276,6 +267,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_LEFT_AND_RIGHT: state = ST_IDLE; break;
 			case IN_JUMP: state = ST_JUMP_BACKWARD;  App->input->jump_timer = SDL_GetTicks();  break;
 			case IN_CROUCH_DOWN: state = ST_CROUCH; break;
+				case IN_1: state = ST_PUNCH_STANDING;  App->input->punch_timer = SDL_GetTicks();  break;
 			}
 		}
 		break;
@@ -284,7 +276,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		{
 			switch (last_input)
 			{
-			case IN_JUMP_FINISH: state = ST_IDLE; break;
+			case IN_JUMP_FINISH: state = ST_IDLE; animstart = 0; break;
 			case IN_1: state = ST_PUNCH_NEUTRAL_JUMP;  App->input->punch_timer = SDL_GetTicks(); break;
 			}
 		}
@@ -315,7 +307,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		{
 			switch (last_input)
 			{
-			case IN_PUNCH_FINISH: state = ST_IDLE; break;
+			case IN_PUNCH_FINISH: state = ST_IDLE;  break;
 			}
 		}
 		break;
@@ -342,7 +334,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		{
 			switch (last_input)
 			{
-			case IN_PUNCH_FINISH: state = ST_IDLE; break;
+			case IN_PUNCH_FINISH: state = ST_IDLE; animstart = 0; break;
 			}
 		}
 		break;
