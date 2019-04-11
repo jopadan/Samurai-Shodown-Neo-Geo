@@ -72,6 +72,9 @@ bool ModuleInput::external_input(p2Qeue<player_inputs>& inputs)
 			case SDLK_1:
 				inputs.Push(IN_1);
 				break;
+			case SDLK_2:
+				inputs.Push(IN_2);
+				break;
 			case SDLK_w:
 				up = true;
 				break;
@@ -127,6 +130,14 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs)
 		{
 			inputs.Push(IN_PUNCH_FINISH);
 			punch_timer = 0;
+		}
+	}
+	if (kick_timer > 0)
+	{
+		if (SDL_GetTicks() - kick_timer > KICK_TIME)
+		{
+			inputs.Push(IN_KICK_FINISH);
+			kick_timer = 0;
 		}
 	}
 }

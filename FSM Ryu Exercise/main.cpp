@@ -8,6 +8,7 @@
 
 #define JUMP_TIME 3000
 #define PUNCH_TIME 1000
+#define KICK_TIME  1000
 
 enum ryu_states
 {
@@ -24,7 +25,12 @@ enum ryu_states
 	ST_PUNCH_NEUTRAL_JUMP,
 	ST_PUNCH_FORWARD_JUMP,
 	ST_PUNCH_BACKWARD_JUMP,
-	ST_PUNCH_CROUCH
+	ST_PUNCH_CROUCH,
+	ST_KICK_STANDING,
+	ST_KICK_NEUTRAL_JUMP,
+	ST_KICK_FORWARD_JUMP,
+	ST_KICK_BACKWARD_JUMP,
+	ST_KICK_CROUCH
 };
 
 enum ryu_inputs
@@ -39,12 +45,15 @@ enum ryu_inputs
 	IN_CROUCH_DOWN,
 	IN_JUMP_AND_CROUCH,
 	IN_X,
+	IN_Z,
 	IN_JUMP_FINISH,
-	IN_PUNCH_FINISH
+	IN_PUNCH_FINISH,
+	IN_KICK_FINISH
 };
 
 Uint32 jump_timer = 0;
 Uint32 punch_timer = 0;
+Uint32 kick_timer = 0;
 
 bool external_input(p2Qeue<ryu_inputs>& inputs)
 {
@@ -88,6 +97,9 @@ bool external_input(p2Qeue<ryu_inputs>& inputs)
 				case SDLK_SPACE:
 				inputs.Push(IN_X);
 				break;
+				case SDLK_c:
+					inputs.Push(IN_Z);
+					break;
 				case SDLK_UP:
 				up = true;
 				break;
@@ -145,6 +157,16 @@ void internal_input(p2Qeue<ryu_inputs>& inputs)
 			punch_timer = 0;
 		}
 	}
+
+	if (kick_timer > 0)
+	{
+		if (SDL_GetTicks() - kick_timer > KICK_TIME)
+		{
+			inputs.Push(IN_KICK_FINISH);
+			kick_timer = 0;
+		}
+	}
+
 }
 
 ryu_states process_fsm(p2Qeue<ryu_inputs>& inputs)
@@ -165,6 +187,7 @@ ryu_states process_fsm(p2Qeue<ryu_inputs>& inputs)
 					case IN_JUMP: state = ST_JUMP_NEUTRAL; jump_timer = SDL_GetTicks();  break;
 					case IN_CROUCH_DOWN: state = ST_CROUCH; break;
 					case IN_X: state = ST_PUNCH_STANDING; punch_timer = SDL_GetTicks();  break;
+					case IN_Z: state = ST_KICK_STANDING; kick_timer = SDL_GetTicks();  break;
 				}
 			}
 			break;
@@ -199,6 +222,7 @@ ryu_states process_fsm(p2Qeue<ryu_inputs>& inputs)
 				{
 					case IN_JUMP_FINISH: state = ST_IDLE; break;
 					case IN_X: state = ST_PUNCH_NEUTRAL_JUMP; punch_timer = SDL_GetTicks(); break;
+					case IN_Z: state = ST_KICK_NEUTRAL_JUMP; kick_timer = SDL_GetTicks(); break;
 				}
 			}
 			break;
@@ -209,6 +233,7 @@ ryu_states process_fsm(p2Qeue<ryu_inputs>& inputs)
 				{
 				case IN_JUMP_FINISH: state = ST_IDLE; break;
 				case IN_X: state = ST_PUNCH_FORWARD_JUMP; punch_timer = SDL_GetTicks(); break;
+				case IN_Z: state = ST_KICK_FORWARD_JUMP; kick_timer = SDL_GetTicks(); break;
 					
 				}
 			}
@@ -220,6 +245,7 @@ ryu_states process_fsm(p2Qeue<ryu_inputs>& inputs)
 				{
 				case IN_JUMP_FINISH: state = ST_IDLE; break;
 				case IN_X: state = ST_PUNCH_BACKWARD_JUMP; punch_timer = SDL_GetTicks(); break;
+				case IN_Z: state = ST_KICK_BACKWARD_JUMP; kick_timer = SDL_GetTicks(); break;
 				}
 			}
 			break;
@@ -259,6 +285,41 @@ ryu_states process_fsm(p2Qeue<ryu_inputs>& inputs)
 				}
 			}
 			break;
+			case ST_KICK_NEUTRAL_JUMP:
+			{
+				switch (last_input)
+				{
+				case IN_KICK_FINISH: state = ST_IDLE; break;
+				}
+			}
+			break;
+
+			case ST_KICK_FORWARD_JUMP:
+			{
+				switch (last_input)
+				{
+				case IN_KICK_FINISH: state = ST_IDLE;  break;
+				}
+			}
+			break;
+
+			case ST_KICK_BACKWARD_JUMP:
+			{
+				switch (last_input)
+				{
+				case IN_KICK_FINISH: state = ST_IDLE;  break;
+				}
+			}
+			break;
+
+			case ST_KICK_STANDING:
+			{
+				switch (last_input)
+				{
+				case IN_KICK_FINISH: state = ST_IDLE; break;
+				}
+			}
+			break;
 
 			case ST_CROUCH:
 			{
@@ -266,6 +327,7 @@ ryu_states process_fsm(p2Qeue<ryu_inputs>& inputs)
 				{
 				case IN_CROUCH_UP: state = ST_IDLE; break;
 				case IN_X: state = ST_PUNCH_CROUCH; punch_timer = SDL_GetTicks(); break;
+				case IN_Z: state = ST_KICK_CROUCH; kick_timer = SDL_GetTicks(); break;
 				}
 			}
 			break;
@@ -274,6 +336,14 @@ ryu_states process_fsm(p2Qeue<ryu_inputs>& inputs)
 				switch(last_input)
 				{
 				case IN_PUNCH_FINISH: state = ST_IDLE; break;
+				}
+			}
+			break;
+			case ST_KICK_CROUCH:
+			{
+				switch (last_input)
+				{
+				case IN_KICK_FINISH: state = ST_IDLE; break;
 				}
 			}
 			break;
@@ -342,6 +412,21 @@ int main(int argc, char** argv)
 				case ST_PUNCH_BACKWARD_JUMP:
 				printf("PUNCH JUMP BACKWARD ^<<+\n");
 				break;
+				case ST_KICK_CROUCH:
+					printf("KICK CROUCHING **--\n");
+					break;
+				case ST_KICK_STANDING:
+					printf("KICK STANDING ----\n");
+					break;
+				case ST_KICK_NEUTRAL_JUMP:
+					printf("KICK JUMP NEUTRAL ^^--\n");
+					break;
+				case ST_KICK_FORWARD_JUMP:
+					printf("KICK JUMP FORWARD ^>>-\n");
+					break;
+				case ST_KICK_BACKWARD_JUMP:
+					printf("KICK JUMP BACKWARD ^<<-\n");
+					break;
 			}
 		}
 		current_state = state;

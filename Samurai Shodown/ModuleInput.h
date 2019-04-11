@@ -9,6 +9,7 @@
 #define MAX_KEYS 300
 #define JUMP_TIME 1000
 #define PUNCH_TIME 700
+#define KICK_TIME  700
 
 enum player_states
 {
@@ -25,7 +26,12 @@ enum player_states
 	ST_PUNCH_NEUTRAL_JUMP,
 	ST_PUNCH_FORWARD_JUMP,
 	ST_PUNCH_BACKWARD_JUMP,
-	ST_PUNCH_CROUCH
+	ST_PUNCH_CROUCH,
+	ST_KICK_STANDING,
+	ST_KICK_NEUTRAL_JUMP,
+	ST_KICK_FORWARD_JUMP,
+	ST_KICK_BACKWARD_JUMP,
+	ST_KICK_CROUCH
 };
 enum player_inputs
 {
@@ -39,8 +45,10 @@ enum player_inputs
 	IN_CROUCH_DOWN,
 	IN_JUMP_AND_CROUCH,
 	IN_1,
+	IN_2,
 	IN_JUMP_FINISH,
-	IN_PUNCH_FINISH
+	IN_PUNCH_FINISH,
+	IN_KICK_FINISH
 };
 
 
@@ -73,6 +81,7 @@ public:
 	KEY_STATE keyboard[MAX_KEYS];
 	Uint32 jump_timer = 0;
 	Uint32 punch_timer = 0;
+	Uint32 kick_timer = 0;
 	p2Qeue<player_inputs> inputs;
 
 
