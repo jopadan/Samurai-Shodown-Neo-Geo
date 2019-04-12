@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleInput.h"
+#include "ModuleInputPlayer.h"
 #include "p2Qeue.h"
 #include "SDL/include/SDL.h"
 
@@ -29,18 +30,16 @@ bool ModuleInput::Init()
 
 	return ret;
 }
-/*
+
 bool ModuleInput::external_input(p2Qeue<player_inputs>& inputs)
 {
-	static bool left = false;
-	static bool right = false;
-	static bool down = false;
-	static bool up = false;
+
 
 	SDL_Event event;
 
 	while (SDL_PollEvent(&event) != 0)
 	{
+		
 		if (event.type == SDL_KEYUP && event.key.repeat == 0)
 		{
 			switch (event.key.keysym.sym)
@@ -49,19 +48,22 @@ bool ModuleInput::external_input(p2Qeue<player_inputs>& inputs)
 				return false;
 				break;
 			case SDLK_s:
-				inputs.Push(IN_CROUCH_UP);
-				down = false;
+				key = CROUCH_UP;
+				//inputs.Push(IN_CROUCH_UP);
+			
 				break;
 			case SDLK_w:
-				up = false;
+				key = JUMP_UP;
 				break;
 			case SDLK_a:
-				inputs.Push(IN_LEFT_UP);
-				left = false;
+				key = LEFT_UP;
+				//inputs.Push(IN_LEFT_UP);
+			//	left = false;
 				break;
 			case SDLK_d:
-				inputs.Push(IN_RIGHT_UP);
-				right = false;
+				key = RIGHT_UP;
+			//	inputs.Push(IN_RIGHT_UP);
+			
 				break;
 			}
 		}
@@ -70,27 +72,25 @@ bool ModuleInput::external_input(p2Qeue<player_inputs>& inputs)
 			switch (event.key.keysym.sym)
 			{
 			case SDLK_1:
-				inputs.Push(IN_1);
-				break;
-			case SDLK_2:
-				inputs.Push(IN_2);
+				key = ONE;
 				break;
 			case SDLK_w:
-				up = true;
+				key = JUMP;
 				break;
 			case SDLK_s:
-				down = true;
+				key = CROUCH_DOWN;
 				break;
 			case SDLK_a:
-				left = true;
+				key = LEFT_DOWN;
 				break;
 			case SDLK_d:
-				right = true;
+				key = RIGHT_DOWN;
 				break;
 			}
 		}
+		
 	}
-
+/*
 	if (left && right)
 		inputs.Push(IN_LEFT_AND_RIGHT);
 	{
@@ -109,7 +109,7 @@ bool ModuleInput::external_input(p2Qeue<player_inputs>& inputs)
 		if (up)
 			inputs.Push(IN_JUMP);
 	}
-
+*/
 	return true;
 }
 
@@ -132,17 +132,9 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs)
 			punch_timer = 0;
 		}
 	}
-	if (kick_timer > 0)
-	{
-		if (SDL_GetTicks() - kick_timer > KICK_TIME)
-		{
-			inputs.Push(IN_KICK_FINISH);
-			kick_timer = 0;
-		}
-	}
 }
 
-*/
+
 update_status ModuleInput::PreUpdate()
 {
 
@@ -166,24 +158,23 @@ update_status ModuleInput::PreUpdate()
 				keyboard[i] = KEY_IDLE;
 		}
 	}
-	if (keyboard[SDL_SCANCODE_ESCAPE] == 1) {
-		return update_status::UPDATE_STOP;
-	}
-
 	// Para el input que sean estados
-	
-	/*if (external_input(inputs) == false){		return update_status::UPDATE_STOP;}
+	if (external_input(inputs) == false){		return update_status::UPDATE_STOP;}
 	else{ 
 		internal_input(inputs);
 		
+	
 		return update_status::UPDATE_CONTINUE;
-	}*/
+	}
 	SDL_PumpEvents();
-	return update_status::UPDATE_CONTINUE;
+
 
 
 }
-
+update_status ModuleInput::PostUpdate() {
+	key = -1;
+	return update_status::UPDATE_CONTINUE;
+}
 // Called before quitting
 bool ModuleInput::CleanUp()
 {

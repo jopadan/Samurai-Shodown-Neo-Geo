@@ -9,11 +9,23 @@
 #define MAX_KEYS 300
 #define JUMP_TIME 1000
 #define PUNCH_TIME 700
-#define KICK_TIME  700
-/*
+
+#define LEFT_DOWN 0
+#define LEFT_UP 1
+#define RIGHT_DOWN 2
+#define RIGHT_UP 3
+#define LEFT_AND_RIGHT 4
+#define JUMP 5
+#define CROUCH_UP 6
+#define CROUCH_DOWN 7
+#define JUMP_AND_CROUCH 8
+#define ONE 9
+#define JUMP_FINISH 10
+#define PUNCH_FINISH 11
+#define JUMP_UP 12
+
 enum player_states
 {
-	
 	ST_UNKNOWN,
 
 	ST_IDLE,
@@ -27,12 +39,7 @@ enum player_states
 	ST_PUNCH_NEUTRAL_JUMP,
 	ST_PUNCH_FORWARD_JUMP,
 	ST_PUNCH_BACKWARD_JUMP,
-	ST_PUNCH_CROUCH,
-	ST_KICK_STANDING,
-	ST_KICK_NEUTRAL_JUMP,
-	ST_KICK_FORWARD_JUMP,
-	ST_KICK_BACKWARD_JUMP,
-	ST_KICK_CROUCH
+	ST_PUNCH_CROUCH
 };
 enum player_inputs
 {
@@ -46,13 +53,11 @@ enum player_inputs
 	IN_CROUCH_DOWN,
 	IN_JUMP_AND_CROUCH,
 	IN_1,
-	IN_2,
 	IN_JUMP_FINISH,
-	IN_PUNCH_FINISH,
-	IN_KICK_FINISH
+	IN_PUNCH_FINISH
 };
 
-*/
+
 
 
 enum KEY_STATE
@@ -63,7 +68,7 @@ enum KEY_STATE
 	KEY_UP
 };
 
-typedef unsigned char Uint8;
+//typedef unsigned char Uint8;
 
 class ModuleInput : public Module
 {
@@ -74,17 +79,18 @@ public:
 
 	bool Init();
 	update_status PreUpdate();
+	update_status PostUpdate();
 	bool CleanUp();
-	/*
 	bool external_input(p2Qeue<player_inputs>& inputs);
 	void internal_input(p2Qeue<player_inputs>& inputs);
-*/
+
 public:
+
 	KEY_STATE keyboard[MAX_KEYS];
+	p2Qeue<player_inputs> inputs;
+	int key = -1;
 	Uint32 jump_timer = 0;
 	Uint32 punch_timer = 0;
-	Uint32 kick_timer = 0;
-//	p2Qeue<player_inputs> inputs;
 
 
 };

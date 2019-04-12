@@ -2,6 +2,7 @@
 #include "ModuleWindow.h"
 #include "ModuleRender.h"
 #include "ModuleInput.h"
+#include "ModuleInputPlayer.h"
 #include "ModuleTextures.h"
 #include "ModuleSceneHaohmaru.h"
 #include "ModuleSceneNakoruru.h"
@@ -21,17 +22,18 @@ Application::Application()
 	modules[0] = window = new ModuleWindow();
 	modules[1] = render = new ModuleRender();
 	modules[2] = input = new ModuleInput();
-	modules[3] = textures = new ModuleTextures();
-	modules[4] = scene_nakoruru = new ModuleSceneNakoruru();
-	modules[5] = scene_haohmaru = new ModuleSceneHaohmaru();
-	modules[7] = player = new ModulePlayer();
-	modules[6] = player2 = new ModulePlayer2();
-	modules[8] = menu = new ModuleMenu();
-	modules[9] = winhaoh = new ModuleVictoryHaohmaru();
-	modules[10] = particles = new ModuleParticles();
-	modules[11] = collision = new ModuleCollision();
-	modules[12] = music = new ModuleMusic();
-	modules[13] = fade = new ModuleFadeToBlack();
+	modules[3] = input_player = new ModuleInputPlayer();
+	modules[4] = textures = new ModuleTextures();
+	modules[5] = scene_nakoruru = new ModuleSceneNakoruru();
+	modules[6] = scene_haohmaru = new ModuleSceneHaohmaru();
+	modules[8] = player = new ModulePlayer();
+	modules[7] = player2 = new ModulePlayer2();
+	modules[9] = menu = new ModuleMenu();
+	modules[10] = winhaoh = new ModuleVictoryHaohmaru();
+	modules[11] = particles = new ModuleParticles();
+	modules[12] = collision = new ModuleCollision();
+	modules[13] = music = new ModuleMusic();
+	modules[14] = fade = new ModuleFadeToBlack();
 	
 }	
 
@@ -44,7 +46,7 @@ Application::~Application()
 bool Application::Init()
 {
 	bool ret = true;
-
+	input_player->Disable();
 	player->Disable();
 	player2->Disable();
 	scene_nakoruru->Disable();

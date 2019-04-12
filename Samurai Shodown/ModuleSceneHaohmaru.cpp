@@ -6,6 +6,7 @@
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
 #include "ModuleInput.h"
+#include "ModuleInputPlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneHaohmaru.h"
 #include "ModuleMusic.h"
@@ -85,6 +86,7 @@ bool ModuleSceneHaohmaru::Start()
 	App->music->PlayMus(musload);
 	App->player->Enable();
 	App->player2->Enable();
+	App->input_player->Enable();
 	App->collision->Enable();
 
 
@@ -107,6 +109,8 @@ bool ModuleSceneHaohmaru::CleanUp()
 	App->textures->Unload(graphics);
 	App->player->Disable();
 	App->player2->Disable();
+	App->input_player->Disable();
+
 
 
 	return true;
