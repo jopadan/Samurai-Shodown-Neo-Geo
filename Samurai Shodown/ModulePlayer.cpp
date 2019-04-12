@@ -278,10 +278,8 @@ bool ModulePlayer::external_input(p2Qeue<player_inputs>& inputs)
 		down = true;
 		LOG("anda");
 	}
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
-	{
-		inputs.Push(IN_LEFT_DOWN);
-	}
+
+	
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
 		inputs.Push(IN_LEFT_DOWN);
