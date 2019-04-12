@@ -10,7 +10,6 @@
 #include "ModuleCollision.h"
 #include "SDL/include/SDL_timer.h"
 
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 ModulePlayer::ModulePlayer()
 {
@@ -105,7 +104,9 @@ update_status ModulePlayer::Update()
 	Animation* current_animation = &idle;
 
 	player_states current_state = ST_UNKNOWN;
-	player_states state = process_fsm(App->input->inputs);
+	player_states state = process_fsm(inputs);
+	external_input(inputs);
+	internal_input(inputs);
 if (state != current_state)
 {
 	switch (state)
@@ -245,10 +246,105 @@ current_state = state;
 	return UPDATE_CONTINUE;
 }
 
+bool ModulePlayer::external_input(p2Qeue<player_inputs>& inputs)
+{
+	static bool left = false;
+	static bool right = false;
+	static bool down = false;
+	static bool up = false;
+	static bool punch = false;
+	static bool kick = false;
 
+	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_UP) {
+				down = false;
+	}
+	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_UP) {
+		up = false;
+		LOG("Salta finish");
+	}
+
+				
+	
+	if (App->input->keyboard[SDL_SCANCODE_1] == KEY_DOWN) {
+		punch = true;
+	}
+	if (App->input->keyboard[SDL_SCANCODE_2] == KEY_DOWN) {
+		kick = true;
+	}
+	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN) {
+		up = true;
+	}
+	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_DOWN) {
+		down = true;
+		LOG("anda");
+	}
+	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+	{
+		inputs.Push(IN_LEFT_DOWN);
+	}
+	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+	{
+		inputs.Push(IN_LEFT_DOWN);
+	}
+	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
+	inputs.Push(IN_RIGHT_DOWN);
+	}
+	
+	if (left && right)
+		
+		inputs.Push(IN_LEFT_AND_RIGHT);
+	else
+	{
+		if (left)
+			inputs.Push(IN_LEFT_DOWN);
+		if (right)
+			inputs.Push(IN_RIGHT_DOWN);
+	}
+
+	if (up && down)
+		inputs.Push(IN_JUMP_AND_CROUCH);
+	else
+	{
+		if (down)
+			inputs.Push(IN_CROUCH_DOWN);
+		if (up)
+			inputs.Push(IN_JUMP);
+	}
+
+	return true;
+}
+
+void ModulePlayer::internal_input(p2Qeue<player_inputs>& inputs)
+{
+	if (jump_timer > 0)
+	{
+		if (SDL_GetTicks() - jump_timer > JUMP_TIME)
+		{
+			inputs.Push(IN_JUMP_FINISH);
+			jump_timer = 0;
+		}
+	}
+
+	if (punch_timer > 0)
+	{
+		if (SDL_GetTicks() - punch_timer > PUNCH_TIME)
+		{
+			inputs.Push(IN_PUNCH_FINISH);
+			punch_timer = 0;
+		}
+	}
+	if (kick_timer > 0)
+	{
+		if (SDL_GetTicks() - kick_timer > KICK_TIME)
+		{
+			inputs.Push(IN_KICK_FINISH);
+			kick_timer = 0;
+		}
+	}
+}
 player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 	static player_states state = ST_IDLE;
-	player_inputs last_input;
+	
 
 	while (inputs.Pop(last_input))
 	{

@@ -29,7 +29,7 @@ bool ModuleInput::Init()
 
 	return ret;
 }
-
+/*
 bool ModuleInput::external_input(p2Qeue<player_inputs>& inputs)
 {
 	static bool left = false;
@@ -142,7 +142,7 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs)
 	}
 }
 
-
+*/
 update_status ModuleInput::PreUpdate()
 {
 
@@ -166,15 +166,20 @@ update_status ModuleInput::PreUpdate()
 				keyboard[i] = KEY_IDLE;
 		}
 	}
+	if (keyboard[SDL_SCANCODE_ESCAPE] == 1) {
+		return update_status::UPDATE_STOP;
+	}
+
 	// Para el input que sean estados
-	if (external_input(inputs) == false){		return update_status::UPDATE_STOP;}
+	
+	/*if (external_input(inputs) == false){		return update_status::UPDATE_STOP;}
 	else{ 
 		internal_input(inputs);
-
+		
 		return update_status::UPDATE_CONTINUE;
-	}
+	}*/
 	SDL_PumpEvents();
-
+	return update_status::UPDATE_CONTINUE;
 
 
 }

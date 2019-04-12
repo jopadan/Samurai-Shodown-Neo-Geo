@@ -10,9 +10,10 @@
 #define JUMP_TIME 1000
 #define PUNCH_TIME 700
 #define KICK_TIME  700
-
+/*
 enum player_states
 {
+	
 	ST_UNKNOWN,
 
 	ST_IDLE,
@@ -51,7 +52,7 @@ enum player_inputs
 	IN_KICK_FINISH
 };
 
-
+*/
 
 
 enum KEY_STATE
@@ -62,7 +63,7 @@ enum KEY_STATE
 	KEY_UP
 };
 
-//typedef unsigned char Uint8;
+typedef unsigned char Uint8;
 
 class ModuleInput : public Module
 {
@@ -74,15 +75,16 @@ public:
 	bool Init();
 	update_status PreUpdate();
 	bool CleanUp();
+	/*
 	bool external_input(p2Qeue<player_inputs>& inputs);
 	void internal_input(p2Qeue<player_inputs>& inputs);
-
+*/
 public:
 	KEY_STATE keyboard[MAX_KEYS];
 	Uint32 jump_timer = 0;
 	Uint32 punch_timer = 0;
 	Uint32 kick_timer = 0;
-	p2Qeue<player_inputs> inputs;
+//	p2Qeue<player_inputs> inputs;
 
 
 };
