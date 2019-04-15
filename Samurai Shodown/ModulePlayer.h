@@ -57,6 +57,7 @@ public:
 
 	Collider *colliderPlayer;
 	Collider *colliderAttack;
+	SDL_RendererFlip flip = SDL_FLIP_NONE;
 
 };
 

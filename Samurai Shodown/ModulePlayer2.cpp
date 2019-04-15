@@ -97,7 +97,7 @@ update_status ModulePlayer2::Update()
 
 	colliderPlayer2->SetPos(position.x, position.y - 90);
 
-	App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y - r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r);
+	App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y - r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r, SDL_FLIP_NONE);
 
 	return UPDATE_CONTINUE;
 }

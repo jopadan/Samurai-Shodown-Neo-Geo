@@ -51,7 +51,7 @@ update_status ModuleVictoryHaohmaru::Update()
 
 	// Draw everything --------------------------------------
 
-	App->render->Blit(graphics, 38, 0, &win);
+	App->render->Blit(graphics, 38, 0, &win, SDL_FLIP_NONE);
 	
 
 

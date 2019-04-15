@@ -86,9 +86,9 @@ update_status ModuleSceneNakoruru::Update()
 {
 	// Draw everything --------------------------------------
 	
-	App->render->Blit(graphics, 0, -150, &ground);
+	App->render->Blit(graphics, 0, -150, &ground, SDL_FLIP_NONE);
 
-	App->render->Blit(graphics, 0, 7, &(animals.GetCurrentFrame()), 1);
+	App->render->Blit(graphics, 0, 7, &(animals.GetCurrentFrame()), SDL_FLIP_NONE, 1);
 	
 	//background
 

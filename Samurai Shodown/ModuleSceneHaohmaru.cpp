@@ -122,15 +122,15 @@ update_status ModuleSceneHaohmaru::Update()
 
 	// Draw everything --------------------------------------
 	
-	App->render->Blit(graphics, 0, -150, &ground);	
+	App->render->Blit(graphics, 0, -150, &ground, SDL_FLIP_NONE);
 
-	App->render->Blit(graphics, 0, 53, &(sea.GetCurrentFrame()), 1);
+	App->render->Blit(graphics, 0, 53, &(sea.GetCurrentFrame()), SDL_FLIP_NONE, 1);
 
-	App->render->Blit(graphics, 80 + splash1.pivotx[splash1.returnCurrentFrame()], 75 + splash1.pivoty[splash1.returnCurrentFrame()], &(splash1.GetCurrentFrame()), 1); // splash
+	App->render->Blit(graphics, 80 + splash1.pivotx[splash1.returnCurrentFrame()], 75 + splash1.pivoty[splash1.returnCurrentFrame()], &(splash1.GetCurrentFrame()), SDL_FLIP_NONE, 1); // splash
 	
-	App->render->Blit(graphics, 210 + splash2.pivotx[splash2.returnCurrentFrame()], 75 + splash2.pivoty[splash2.returnCurrentFrame()], &(splash2.GetCurrentFrame()), 1); // splash
+	App->render->Blit(graphics, 210 + splash2.pivotx[splash2.returnCurrentFrame()], 75 + splash2.pivoty[splash2.returnCurrentFrame()], &(splash2.GetCurrentFrame()), SDL_FLIP_NONE, 1); // splash
 
-	App->render->Blit(graphics, 365 + splash3.pivotx[splash3.returnCurrentFrame()], 40 + splash3.pivoty[splash3.returnCurrentFrame()], &(splash3.GetCurrentFrame()), 1); // splash
+	App->render->Blit(graphics, 365 + splash3.pivotx[splash3.returnCurrentFrame()], 40 + splash3.pivoty[splash3.returnCurrentFrame()], &(splash3.GetCurrentFrame()), SDL_FLIP_NONE, 1); // splash
 	
 	//background
 	
