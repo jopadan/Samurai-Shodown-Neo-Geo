@@ -14,7 +14,7 @@ ModuleInputPlayer::ModuleInputPlayer()
 ModuleInputPlayer::~ModuleInputPlayer()
 {}
 
-update_status ModuleInputPlayer::PreUpdate() {
+update_status ModuleInputPlayer::Update() {
 
 	switch (App->input->key) {
 	case LEFT_UP:

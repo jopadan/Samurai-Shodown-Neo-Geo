@@ -17,7 +17,7 @@ public:
 	bool Init() {
 		return true;
 	}
-	update_status PreUpdate();
+	update_status Update();
 //	void internal_input();
 
 	bool CleanUp() { return true; }

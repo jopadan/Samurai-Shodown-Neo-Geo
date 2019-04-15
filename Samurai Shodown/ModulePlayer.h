@@ -26,6 +26,7 @@ private:
 	float jumpSpeed = 6;
 	int animstart=0;
 	bool shoot = true;
+	bool collider = true;
 	bool wall = false;
 
 public:
@@ -55,6 +56,7 @@ public:
 	iPoint position;
 
 	Collider *colliderPlayer;
+	Collider *colliderAttack;
 
 };
 

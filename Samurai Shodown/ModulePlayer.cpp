@@ -200,10 +200,17 @@ if (state != current_state)
 		LOG("PUNCH CROUCHING **++\n");
 		break;
 	case ST_PUNCH_STANDING:
+		if (collider == true){
+		colliderAttack = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_PLAYER_SHOT, this);
+		collider = false;
+		}
+
+		if (colliderAttack != nullptr)
+			colliderAttack->SetPos(position.x+50, position.y - 90);
 		if (animstart == 0)
 		{
 			current_animation = &punch;
-			if (current_animation->AnimationEnd() == true) { animstart = 1; }
+			if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
 		}
 		break;
 		LOG("PUNCH STANDING ++++\n");
@@ -220,10 +227,17 @@ if (state != current_state)
 		LOG("KICK CROUCHING **--\n");
 		break;
 	case ST_KICK_STANDING:
+		if (collider == true) {
+			colliderAttack = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_PLAYER_SHOT, this);
+			collider = false;
+		}
+
+		if (colliderAttack != nullptr)
+			colliderAttack->SetPos(position.x + 50, position.y - 90);
 		if (animstart == 0)
 		{
 			current_animation = &kick;
-			if (current_animation->AnimationEnd() == true) { animstart = 1; }
+			if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true;}
 		}
 
 		break;
@@ -282,6 +296,8 @@ current_state = state;
 		current_animation = &cyclone;
 		if (current_animation->AnimationEnd() == true) {cycloneAnim = false; animstart = 0;}
 	}*/
+	
+
 	speed = 2; 
 	wall = false;
 	SDL_Rect r = current_animation->GetCurrentFrame();
@@ -404,7 +420,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		{
 			switch (last_input)
 			{
-			case IN_PUNCH_FINISH: state = ST_IDLE; animstart = 0; break;
+			case IN_PUNCH_FINISH: state = ST_IDLE; animstart = 0; collider = true; break;
 			}
 		}
 		break;
@@ -412,7 +428,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		{
 			switch (last_input)
 			{
-			case IN_KICK_FINISH: state = ST_IDLE; animstart = 0; break;
+			case IN_KICK_FINISH: state = ST_IDLE; animstart = 0; collider = true; break;
 			}
 		}
 		break;
