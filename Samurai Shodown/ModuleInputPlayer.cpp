@@ -20,7 +20,6 @@ update_status ModuleInputPlayer::PreUpdate() {
 	case LEFT_UP:
 		LOG("Suelto Left");
 		left = false;
-		App->input->inputs.Push(IN_LEFT_UP);
 		break;
 	case LEFT_DOWN:
 		LOG("Pulso left");
@@ -29,7 +28,6 @@ update_status ModuleInputPlayer::PreUpdate() {
 	case RIGHT_UP:
 		LOG("Suelto right");
 		right = false;
-		App->input->inputs.Push(IN_RIGHT_UP);
 		break;
 	case RIGHT_DOWN:
 		LOG("Pulso right");
@@ -37,6 +35,12 @@ update_status ModuleInputPlayer::PreUpdate() {
 		break;
 	case ONE:
 		App->input->inputs.Push(IN_1);
+		break;
+	case TWO:
+		App->input->inputs.Push(IN_2);
+		break;
+	case THREE:
+		App->input->inputs.Push(IN_3);
 		break;
 	case JUMP:
 		up = true;
@@ -60,6 +64,14 @@ update_status ModuleInputPlayer::PreUpdate() {
 		if (right)
 			App->input->inputs.Push(IN_RIGHT_DOWN);
 	}
+	
+		if (!left)
+			App->input->inputs.Push(IN_LEFT_UP);
+		if (!right)
+			App->input->inputs.Push(IN_RIGHT_UP);
+		if (!down)
+			App->input->inputs.Push(IN_CROUCH_UP);
+	
 
 	if (up && down)
 		App->input->inputs.Push(IN_JUMP_AND_CROUCH);

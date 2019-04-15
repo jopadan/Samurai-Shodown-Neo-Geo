@@ -33,13 +33,10 @@ bool ModuleInput::Init()
 
 bool ModuleInput::external_input(p2Qeue<player_inputs>& inputs)
 {
-
-
 	SDL_Event event;
 
 	while (SDL_PollEvent(&event) != 0)
 	{
-		
 		if (event.type == SDL_KEYUP && event.key.repeat == 0)
 		{
 			switch (event.key.keysym.sym)
@@ -50,7 +47,6 @@ bool ModuleInput::external_input(p2Qeue<player_inputs>& inputs)
 			case SDLK_s:
 				key = CROUCH_UP;
 				//inputs.Push(IN_CROUCH_UP);
-			
 				break;
 			case SDLK_w:
 				key = JUMP_UP;
@@ -73,6 +69,12 @@ bool ModuleInput::external_input(p2Qeue<player_inputs>& inputs)
 			{
 			case SDLK_1:
 				key = ONE;
+				break;
+			case SDLK_2:
+				key = TWO;
+				break;
+			case SDLK_3:
+				key = THREE;
 				break;
 			case SDLK_w:
 				key = JUMP;
@@ -130,6 +132,22 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs)
 		{
 			inputs.Push(IN_PUNCH_FINISH);
 			punch_timer = 0;
+		}
+	}
+	if (kick_timer > 0)
+	{
+		if (SDL_GetTicks() - kick_timer > KICK_TIME)
+		{
+			inputs.Push(IN_KICK_FINISH);
+			kick_timer = 0;
+		}
+	}
+	if (tornado_timer > 0)
+	{
+		if (SDL_GetTicks() - tornado_timer > TORNADO_TIME)
+		{
+			inputs.Push(IN_TORNADO_FINISH);
+			tornado_timer = 0;
 		}
 	}
 }

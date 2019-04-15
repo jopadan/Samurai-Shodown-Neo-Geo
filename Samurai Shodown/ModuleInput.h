@@ -7,8 +7,10 @@
 #include "SDL\include\SDL_scancode.h"
 
 #define MAX_KEYS 300
-#define JUMP_TIME 1000
+#define JUMP_TIME 800
 #define PUNCH_TIME 700
+#define KICK_TIME  700
+#define TORNADO_TIME  1000
 
 #define LEFT_DOWN 0
 #define LEFT_UP 1
@@ -20,14 +22,15 @@
 #define CROUCH_DOWN 7
 #define JUMP_AND_CROUCH 8
 #define ONE 9
-#define JUMP_FINISH 10
-#define PUNCH_FINISH 11
-#define JUMP_UP 12
+#define TWO 10
+#define THREE 11
+#define JUMP_FINISH 12
+#define PUNCH_FINISH 13
+#define JUMP_UP 14
 
 enum player_states
 {
 	ST_UNKNOWN,
-
 	ST_IDLE,
 	ST_WALK_FORWARD,
 	ST_WALK_BACKWARD,
@@ -39,7 +42,13 @@ enum player_states
 	ST_PUNCH_NEUTRAL_JUMP,
 	ST_PUNCH_FORWARD_JUMP,
 	ST_PUNCH_BACKWARD_JUMP,
-	ST_PUNCH_CROUCH
+	ST_PUNCH_CROUCH,
+	ST_KICK_STANDING,
+	ST_KICK_NEUTRAL_JUMP,
+	ST_KICK_FORWARD_JUMP,
+	ST_KICK_BACKWARD_JUMP,
+	ST_KICK_CROUCH,
+	ST_TORNADO
 };
 enum player_inputs
 {
@@ -53,8 +62,12 @@ enum player_inputs
 	IN_CROUCH_DOWN,
 	IN_JUMP_AND_CROUCH,
 	IN_1,
+	IN_2,
+	IN_3,
 	IN_JUMP_FINISH,
-	IN_PUNCH_FINISH
+	IN_PUNCH_FINISH,
+	IN_KICK_FINISH,
+	IN_TORNADO_FINISH
 };
 
 
@@ -91,7 +104,8 @@ public:
 	int key = -1;
 	Uint32 jump_timer = 0;
 	Uint32 punch_timer = 0;
-
+	Uint32 kick_timer = 0;
+	Uint32 tornado_timer = 0;
 
 };
 
