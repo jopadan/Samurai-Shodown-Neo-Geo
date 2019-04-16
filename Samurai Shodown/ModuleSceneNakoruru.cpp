@@ -24,14 +24,14 @@ ModuleSceneNakoruru::ModuleSceneNakoruru()
 	ground.h = 416;
 
 	//animals animation
-	animals.PushBack({ 702, 0, 640, 208 }, 0.225f, 0, 0);
-	animals.PushBack({ 1408, 0, 640, 208 }, 0.225f, 0, 0);
-	animals.PushBack({ 0, 233, 640, 208 }, 0.225f, 0, 0);
-	animals.PushBack({ 702, 233, 640, 208 }, 0.225f, 0, 0);
-	animals.PushBack({ 1408, 233, 640, 208 }, 0.225f, 0, 0);
-	animals.PushBack({ 0, 467, 640, 208 }, 0.225f, 0, 0);
-	animals.PushBack({ 702, 467, 640, 208 }, 0.225f, 0, 0);
-	animals.PushBack({ 1408, 467, 640, 208 }, 0.225f, 0, 0);
+	animals.PushBack({ 702, 0, 640, 208 }, 0.225f, 0, 0, 0, 0);
+	animals.PushBack({ 1408, 0, 640, 208 }, 0.225f, 0, 0, 0, 0);
+	animals.PushBack({ 0, 233, 640, 208 }, 0.225f, 0, 0, 0, 0);
+	animals.PushBack({ 702, 233, 640, 208 }, 0.225f, 0, 0, 0, 0);
+	animals.PushBack({ 1408, 233, 640, 208 }, 0.225f, 0, 0, 0, 0);
+	animals.PushBack({ 0, 467, 640, 208 }, 0.225f, 0, 0, 0, 0);
+	animals.PushBack({ 702, 467, 640, 208 }, 0.225f, 0, 0, 0, 0);
+	animals.PushBack({ 1408, 467, 640, 208 }, 0.225f, 0, 0, 0, 0);
 
 }
 

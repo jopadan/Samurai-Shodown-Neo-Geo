@@ -25,7 +25,7 @@ ModulePlayer2::ModulePlayer2()
 	position.y = 207;
 	initialPos = position.y;
 
-	idle.PushBack({ 0, 0, 69, 100 }, 0, 0, 0);
+	idle.PushBack({ 0, 0, 69, 100 }, 0, 0, 0, 0, 0);
 }
 
 ModulePlayer2::~ModulePlayer2()

@@ -22,32 +22,32 @@ ModuleSceneHaohmaru::ModuleSceneHaohmaru()
 
 	// splash animation
 
-	splash1.PushBack({ 0, 0, 0, 0 }, 0.01, 0, 0);
-	splash1.PushBack({ 0, 465, 50, 105 }, 0.2, 39, 0);
-	splash1.PushBack({ 261, 465, 95, 105 }, 0.2, 17, 0);
-	splash1.PushBack({ 376, 465, 116, 105 }, 0.2, 6, 0);
-	splash1.PushBack({ 531, 465, 128, 105 }, 0.2, 0, 0);
-	splash1.PushBack({ 698, 465, 119, 105 }, 0.2, 5, 0);
-	splash1.PushBack({ 836, 465, 129, 105 }, 0.2, 0, 0);
-	splash1.PushBack({ 1023, 465, 126, 105 }, 0.2, 1, 0);
+	splash1.PushBack({ 0, 0, 0, 0 }, 0.01, 0, 0, 0, 0);
+	splash1.PushBack({ 0, 465, 50, 105 }, 0.2, 39, 0, 0, 0);
+	splash1.PushBack({ 261, 465, 95, 105 }, 0.2, 17, 0, 0, 0);
+	splash1.PushBack({ 376, 465, 116, 105 }, 0.2, 6, 0, 0, 0);
+	splash1.PushBack({ 531, 465, 128, 105 }, 0.2, 0, 0, 0, 0);
+	splash1.PushBack({ 698, 465, 119, 105 }, 0.2, 5, 0, 0, 0);
+	splash1.PushBack({ 836, 465, 129, 105 }, 0.2, 0, 0, 0, 0);
+	splash1.PushBack({ 1023, 465, 126, 105 }, 0.2, 1, 0, 0, 0);
 
-	splash2.PushBack({ 0, 0, 0, 0 }, 0.007, 0, 0);
-	splash2.PushBack({ 0, 465, 50, 105 }, 0.2, 39, 0);
-	splash2.PushBack({ 261, 465, 95, 105 }, 0.2, 17, 0);
-	splash2.PushBack({ 376, 465, 116, 105 }, 0.2, 6, 0);
-	splash2.PushBack({ 531, 465, 128, 105 }, 0.2, 0, 0);
-	splash2.PushBack({ 698, 465, 119, 105 }, 0.2, 5, 0);
-	splash2.PushBack({ 836, 465, 129, 105 }, 0.2, 0, 0);
-	splash2.PushBack({ 1023, 465, 126, 105 }, 0.2, 1, 0);
+	splash2.PushBack({ 0, 0, 0, 0 }, 0.007, 0, 0, 0, 0);
+	splash2.PushBack({ 0, 465, 50, 105 }, 0.2, 39, 0, 0, 0);
+	splash2.PushBack({ 261, 465, 95, 105 }, 0.2, 17, 0, 0, 0);
+	splash2.PushBack({ 376, 465, 116, 105 }, 0.2, 6, 0, 0, 0);
+	splash2.PushBack({ 531, 465, 128, 105 }, 0.2, 0, 0, 0, 0);
+	splash2.PushBack({ 698, 465, 119, 105 }, 0.2, 5, 0, 0, 0);
+	splash2.PushBack({ 836, 465, 129, 105 }, 0.2, 0, 0, 0, 0);
+	splash2.PushBack({ 1023, 465, 126, 105 }, 0.2, 1, 0, 0, 0);
 
-	splash3.PushBack({ 0, 0, 0, 0 }, 0.005, 0, 0);
-	splash3.PushBack({ 0, 465, 50, 105 }, 0.2, 39, 0);
-	splash3.PushBack({ 261, 465, 95, 105 }, 0.2, 17, 0);
-	splash3.PushBack({ 376, 465, 116, 105 }, 0.2, 6, 0);
-	splash3.PushBack({ 531, 465, 128, 105 }, 0.2, 0, 0);
-	splash3.PushBack({ 698, 465, 119, 105 }, 0.2, 5, 0);
-	splash3.PushBack({ 836, 465, 129, 105 }, 0.2, 0, 0);
-	splash3.PushBack({ 1023, 465, 126, 105 }, 0.2, 1, 0);
+	splash3.PushBack({ 0, 0, 0, 0 }, 0.005, 0, 0, 0, 0);
+	splash3.PushBack({ 0, 465, 50, 105 }, 0.2, 39, 0, 0, 0);
+	splash3.PushBack({ 261, 465, 95, 105 }, 0.2, 17, 0, 0, 0);
+	splash3.PushBack({ 376, 465, 116, 105 }, 0.2, 6, 0, 0, 0);
+	splash3.PushBack({ 531, 465, 128, 105 }, 0.2, 0, 0, 0, 0);
+	splash3.PushBack({ 698, 465, 119, 105 }, 0.2, 5, 0, 0, 0);
+	splash3.PushBack({ 836, 465, 129, 105 }, 0.2, 0, 0, 0, 0);
+	splash3.PushBack({ 1023, 465, 126, 105 }, 0.2, 1, 0, 0, 0);
 
 	// ground
 	ground.x = 0;
@@ -56,15 +56,15 @@ ModuleSceneHaohmaru::ModuleSceneHaohmaru()
 	ground.h = 416;
 
 	 //sea animation
-	sea.PushBack({ 0, 0, 640, 140 }, 0.08f, 0, 0);
-	sea.PushBack({ 704, 4, 640, 140 }, 0.08f, 0, 0);
-	sea.PushBack({ 1408, 4, 640, 140 }, 0.08f, 0, 0);
-	sea.PushBack({ 0, 156, 640, 140 }, 0.08f, 0, 0);
-	sea.PushBack({ 704, 156, 640, 140 }, 0.08f, 0, 0);
-	sea.PushBack({ 1408, 156, 640, 140 }, 0.08f, 0, 0);
-	sea.PushBack({ 0, 312, 640, 140 }, 0.08f, 0, 0);
-	sea.PushBack({ 704, 311, 640, 140 }, 0.08f, 0, 0);
-	sea.PushBack({ 1408, 311, 640, 140 }, 0.08f, 0, 0);
+	sea.PushBack({ 0, 0, 640, 140 }, 0.08f, 0, 0, 0, 0);
+	sea.PushBack({ 704, 4, 640, 140 }, 0.08f, 0, 0, 0, 0);
+	sea.PushBack({ 1408, 4, 640, 140 }, 0.08f, 0, 0, 0, 0);
+	sea.PushBack({ 0, 156, 640, 140 }, 0.08f, 0, 0, 0, 0);
+	sea.PushBack({ 704, 156, 640, 140 }, 0.08f, 0, 0, 0, 0);
+	sea.PushBack({ 1408, 156, 640, 140 }, 0.08f, 0, 0, 0, 0);
+	sea.PushBack({ 0, 312, 640, 140 }, 0.08f, 0, 0, 0, 0);
+	sea.PushBack({ 704, 311, 640, 140 }, 0.08f, 0, 0, 0, 0);
+	sea.PushBack({ 1408, 311, 640, 140 }, 0.08f, 0, 0, 0, 0);
 	
 }
 

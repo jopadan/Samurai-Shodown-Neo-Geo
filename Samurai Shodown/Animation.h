@@ -11,6 +11,8 @@ public:
 	SDL_Rect frames[MAX_FRAMES];
 	int pivotx[MAX_FRAMES];
 	int pivoty[MAX_FRAMES];
+	int pivotx2[MAX_FRAMES];
+	int pivoty2[MAX_FRAMES];
 	bool loop = true;
 
 private:
@@ -29,10 +31,12 @@ public:
 	{
 		SDL_memcpy(&frames, anim.frames, sizeof(frames));
 	}*/
-	void PushBack(const SDL_Rect& rect, double delay, int px, int py)
+	void PushBack(const SDL_Rect& rect, double delay, int px, int py, int px2, int py2)
 	{	
 		pivotx[last_frame] = px;
 		pivoty[last_frame] = py;
+		pivotx2[last_frame] = px2;
+		pivoty2[last_frame] = py2;
 		frames[last_frame++] = rect;
 		speed[speeddelay++]= delay;
 

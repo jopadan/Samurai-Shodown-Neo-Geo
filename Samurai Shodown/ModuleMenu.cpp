@@ -19,25 +19,25 @@ ModuleMenu::ModuleMenu()
 	menu.w = 303;
 	menu.h = 223;
 
-	title.PushBack({ 0, 0, 303, 117 }, 0.005, 0, 0);
-	title.PushBack({ 349, 0, 303, 117 }, 0.2, 0, 0);
-	title.PushBack({ 698, 0, 303, 117 }, 0.2, 0, 0);
-	title.PushBack({ 1046, 0, 303, 117 }, 0.2, 0, 0);
-	title.PushBack({ 1395, 0, 303, 117 }, 0.2, 0, 0);
-	title.PushBack({ 1744, 0, 303, 117 }, 0.2, 0, 0);
-	title.PushBack({ 0, 148, 303, 117 }, 0.2, 0, 0);
-	title.PushBack({ 349, 148, 303, 117 }, 0.2, 0, 0);
-	title.PushBack({ 698, 148, 303, 117 }, 0.2, 0, 0);
-	title.PushBack({ 1046, 148, 303, 117 }, 0.2, 0, 0);
-	title.PushBack({ 1395, 148, 303, 117 }, 0.2, 0, 0);
-	title.PushBack({ 1743, 148, 303, 117 }, 0.2, 0, 0);
-	title.PushBack({ 0, 296, 303, 117 }, 0.2, 0, 0);
-	title.PushBack({ 349, 296, 303, 117 }, 0.2, 0, 0);
-	title.PushBack({ 698, 296, 303, 117 }, 0.2, 0, 0);
-	title.PushBack({ 1046, 296, 303, 117 }, 0.2, 0, 0);
+	title.PushBack({ 0, 0, 303, 117 }, 0.005, 0, 0, 0, 0);
+	title.PushBack({ 349, 0, 303, 117 }, 0.2, 0, 0, 0, 0);
+	title.PushBack({ 698, 0, 303, 117 }, 0.2, 0, 0, 0, 0);
+	title.PushBack({ 1046, 0, 303, 117 }, 0.2, 0, 0, 0, 0);
+	title.PushBack({ 1395, 0, 303, 117 }, 0.2, 0, 0, 0, 0);
+	title.PushBack({ 1744, 0, 303, 117 }, 0.2, 0, 0, 0, 0);
+	title.PushBack({ 0, 148, 303, 117 }, 0.2, 0, 0, 0, 0);
+	title.PushBack({ 349, 148, 303, 117 }, 0.2, 0, 0, 0, 0);
+	title.PushBack({ 698, 148, 303, 117 }, 0.2, 0, 0, 0, 0);
+	title.PushBack({ 1046, 148, 303, 117 }, 0.2, 0, 0, 0, 0);
+	title.PushBack({ 1395, 148, 303, 117 }, 0.2, 0, 0, 0, 0);
+	title.PushBack({ 1743, 148, 303, 117 }, 0.2, 0, 0, 0, 0);
+	title.PushBack({ 0, 296, 303, 117 }, 0.2, 0, 0, 0, 0);
+	title.PushBack({ 349, 296, 303, 117 }, 0.2, 0, 0, 0, 0);
+	title.PushBack({ 698, 296, 303, 117 }, 0.2, 0, 0, 0, 0);
+	title.PushBack({ 1046, 296, 303, 117 }, 0.2, 0, 0, 0, 0);
 
-	start.PushBack({ 1395, 296, 120, 14 }, 0.04f,0,0);
-	start.PushBack({ 1395, 340, 120, 14 }, 0.025f, 0, 0);
+	start.PushBack({ 1395, 296, 120, 14 }, 0.04f,0,0, 0, 0);
+	start.PushBack({ 1395, 340, 120, 14 }, 0.025f, 0, 0, 0, 0);
 }
 
 ModuleMenu::~ModuleMenu()

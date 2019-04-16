@@ -28,7 +28,7 @@ private:
 	bool shoot = true;
 	bool collider = true;
 	bool wall = false;
-
+	int pivotey = 0, pivotex = 0;
 public:
 	ModulePlayer();
 	~ModulePlayer();
