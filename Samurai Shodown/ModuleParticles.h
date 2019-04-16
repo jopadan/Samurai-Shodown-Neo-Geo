@@ -23,6 +23,7 @@ struct Particle
 	int born = 0;
 	int life = 0;
 	bool fx_played = false;
+	char* direction;
 
 	Particle();
 	Particle(const Particle& p);
@@ -53,6 +54,7 @@ public:
 	Animation * current_animation = nullptr;
 	Particle cyclone;
 	Particle tornado;
+	int* direction[MAX_ACTIVE_PARTICLES];
 };
 
 #endif // __MODULEPARTICLES_H__

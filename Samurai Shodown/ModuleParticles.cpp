@@ -130,8 +130,18 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 		if (active[i]==nullptr)
 		{
 			Particle* p = new Particle(particle);
+			if (collider_type == COLLIDER_PLAYER_SHOT) {
+				if (App->player->flip == SDL_FLIP_NONE) {
+					p->direction = "right";
+					p->position.x = x - 120;
+				}
+				if (App->player->flip == SDL_FLIP_HORIZONTAL) {
+					p->direction = "left";
+					p->position.x = x + 120;
+				}
+			}
 			p->born = SDL_GetTicks() + delay;
-			p->position.x = x - 120;
+			
 			p->position.y = y;
 			if (collider_type != COLLIDER_NONE)
 				p->collider = App->collision->AddCollider({p->position.x, p->position.y+30, 52, 70 }, collider_type, this);
@@ -157,7 +167,12 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 			active[i]->anim = tornado.anim;
 			active[i]->speed = tornado.speed;
 			active[i]->life = tornado.life;
-			active[i]->position.x += 50;
+			if (active[i]->direction == "right") {
+				active[i]->position.x += 50;
+			}
+			if (active[i]->direction == "left") {
+				active[i]->position.x -= 50;
+			}
 			active[i]->position.y -= 150;
 			active[i]->collider->to_delete = true;
 		
@@ -195,8 +210,12 @@ bool Particle::Update()
 	else
 		if (anim.Finished())
 			ret = false;
-
-	position.x += speed.x;
+	if (direction == "right") {
+		position.x += speed.x;
+	}
+	if (direction == "left") {
+		position.x -= speed.x;
+	}
 	position.y += speed.y;
 
 	if (collider != nullptr)
