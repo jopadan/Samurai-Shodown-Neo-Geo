@@ -29,6 +29,7 @@ private:
 	bool collider = true;
 	bool wall = false;
 	int pivotey = 0, pivotex = 0;
+	
 public:
 	ModulePlayer();
 	~ModulePlayer();
@@ -50,6 +51,7 @@ public:
 	Animation backward;
 	Animation jumpup;
 	Animation punch;
+	
 	Animation kick;
 	Animation cyclone;
 	Animation tornado;
