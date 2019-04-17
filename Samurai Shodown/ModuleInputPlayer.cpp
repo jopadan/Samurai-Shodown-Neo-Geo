@@ -18,11 +18,9 @@ update_status ModuleInputPlayer::Update() {
 	
 	switch (App->input->key) {
 	case LEFT_UP:
-		LOG("Suelto Left");
 		left = false;
 		break;
 	case LEFT_DOWN:
-		LOG("Pulso left");
 		left = true;
 		break;
 	case RIGHT_UP:
@@ -52,13 +50,18 @@ update_status ModuleInputPlayer::Update() {
 	case CROUCH_UP:
 		down = false;
 		break;
-		
+	case LEFT_AND_RIGHT:
+		left = true;
+		right = true;
+		break;
+	case LEFT_AND_RIGHT2:
+		left2 = true;
+		right2 = true;
+		break;
 	case LEFT_UP2:
-		LOG("Suelto Left");
 		left2 = false;
 		break;
 	case LEFT_DOWN2:
-		LOG("Pulso left");
 		left2 = true;
 		break;
 	case RIGHT_UP2:
@@ -106,7 +109,7 @@ update_status ModuleInputPlayer::Update() {
 			App->input->inputs.Push(IN_RIGHT_UP);
 		if (!down)
 			App->input->inputs.Push(IN_CROUCH_UP);
-	
+		
 
 	if (up && down)
 		App->input->inputs.Push(IN_JUMP_AND_CROUCH);
@@ -144,6 +147,7 @@ update_status ModuleInputPlayer::Update() {
 			App->input->inputs2.Push(IN_JUMP_P2);
 	}
 	App->input->key = -1;
+
 	return update_status::UPDATE_CONTINUE;
 }
 
