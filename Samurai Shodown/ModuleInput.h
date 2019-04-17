@@ -126,8 +126,8 @@ public:
 	update_status PreUpdate();
 	update_status PostUpdate();
 	bool CleanUp();
-	bool external_input(p2Qeue<player_inputs>& inputs);
-	void internal_input(p2Qeue<player_inputs>& inputs);
+	bool external_input();
+	void internal_input(p2Qeue<player_inputs>& inputs, p2Qeue<player_inputs>& inputs2);
 
 public:
 

@@ -31,7 +31,7 @@ bool ModuleInput::Init()
 	return ret;
 }
 
-bool ModuleInput::external_input(p2Qeue<player_inputs>& inputs)
+bool ModuleInput::external_input()
 {
 	SDL_Event event;
 
@@ -143,7 +143,7 @@ bool ModuleInput::external_input(p2Qeue<player_inputs>& inputs)
 	return true;
 }
 
-void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs)
+void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs, p2Qeue<player_inputs>& inputs2)
 {
 	if (jump_timer > 0)
 	{
@@ -182,7 +182,7 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs)
 	{
 		if (SDL_GetTicks() - jump_timer2 > JUMP_TIME)
 		{
-			inputs.Push(IN_JUMP_FINISH_P2);
+			inputs2.Push(IN_JUMP_FINISH_P2);
 			jump_timer2 = 0;
 		}
 	}
@@ -191,7 +191,7 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs)
 	{
 		if (SDL_GetTicks() - punch_timer2 > PUNCH_TIME)
 		{
-			inputs.Push(IN_PUNCH_FINISH_P2);
+			inputs2.Push(IN_PUNCH_FINISH_P2);
 			punch_timer2 = 0;
 		}
 	}
@@ -199,7 +199,7 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs)
 	{
 		if (SDL_GetTicks() - kick_timer2 > KICK_TIME)
 		{
-			inputs.Push(IN_KICK_FINISH_P2);
+			inputs2.Push(IN_KICK_FINISH_P2);
 			kick_timer2 = 0;
 		}
 	}
@@ -207,7 +207,7 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs)
 	{
 		if (SDL_GetTicks() - tornado_timer2 > TORNADO_TIME)
 		{
-			inputs.Push(IN_TORNADO_FINISH_P2);
+			inputs2.Push(IN_TORNADO_FINISH_P2);
 			tornado_timer2 = 0;
 		}
 	}
@@ -238,14 +238,11 @@ update_status ModuleInput::PreUpdate()
 		}
 	}
 	// Para el input que sean estados
-	if (external_input(inputs) == false){		return update_status::UPDATE_STOP;}
+	if (external_input() == false){		return update_status::UPDATE_STOP;}
 	else {
-		internal_input(inputs);
+		internal_input(inputs, inputs2);
 	}
-	if (external_input(inputs2) == false) { return update_status::UPDATE_STOP; }
-	else {
-		internal_input(inputs2);
-	}
+
 	
 		return update_status::UPDATE_CONTINUE;
 	

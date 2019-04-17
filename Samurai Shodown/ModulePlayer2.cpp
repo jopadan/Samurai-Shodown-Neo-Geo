@@ -102,7 +102,7 @@ bool ModulePlayer2::Start()
 	position.x = 240;
 	position.y = 207;
 
-	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet.png");
+	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet p2.png");
 	senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
 	if (flip == SDL_FLIP_HORIZONTAL) {
 		colliderPlayer2 = App->collision->AddCollider({ position.x + 60, position.y - 90, 60, 90 }, COLLIDER_ENEMY, this);
@@ -141,7 +141,12 @@ update_status ModulePlayer2::Update()
 		case ST_WALK_FORWARD:
 			if (wall && position.x > 100) {}
 			else {
-				current_animation = &forward;
+				if(flip == SDL_FLIP_HORIZONTAL){
+				current_animation = &backward;
+				}
+				if (flip == SDL_FLIP_NONE) {
+					current_animation = &forward;
+				}
 				position.x += speed;
 
 			}
@@ -151,7 +156,12 @@ update_status ModulePlayer2::Update()
 			if (wall && position.x < 100) {}
 			else {
 
-				current_animation = &backward;
+				if (flip == SDL_FLIP_HORIZONTAL) {
+					current_animation = &forward;
+				}
+				if (flip == SDL_FLIP_NONE) {
+					current_animation = &backward;
+				}
 				position.x -= speed;
 
 			}

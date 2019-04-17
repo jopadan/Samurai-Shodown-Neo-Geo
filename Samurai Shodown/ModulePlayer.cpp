@@ -156,7 +156,12 @@ if (state != current_state)
 	case ST_WALK_FORWARD:
 		if (wall && position.x > 100) {}
 		else {
+			if (flip == SDL_FLIP_HORIZONTAL) {
+				current_animation = &backward;
+			}
+			if (flip == SDL_FLIP_NONE) {
 				current_animation = &forward;
+			}
 				position.x += speed;
 			
 		}
@@ -166,7 +171,12 @@ if (state != current_state)
 		if (wall && position.x < 100) {}
 		else {
 			
+			if (flip == SDL_FLIP_HORIZONTAL) {
+				current_animation = &forward;
+			}
+			if (flip == SDL_FLIP_NONE) {
 				current_animation = &backward;
+			}
 				position.x -= speed;
 			
 		}

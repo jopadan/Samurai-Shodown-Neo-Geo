@@ -68,13 +68,13 @@ update_status ModuleInputPlayer::Update() {
 		right2 = true;
 		break;
 	case ONE2:
-		App->input->inputs.Push(IN_1_P2);
+		App->input->inputs2.Push(IN_1_P2);
 		break;
 	case TWO2:
-		App->input->inputs.Push(IN_2_P2);
+		App->input->inputs2.Push(IN_2_P2);
 		break;
 	case THREE2:
-		App->input->inputs.Push(IN_3_P2);
+		App->input->inputs2.Push(IN_3_P2);
 		break;
 	case JUMP2:
 		up2 = true;
