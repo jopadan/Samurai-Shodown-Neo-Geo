@@ -26,8 +26,8 @@ Application::Application()
 	modules[4] = textures = new ModuleTextures();
 	modules[5] = scene_nakoruru = new ModuleSceneNakoruru();
 	modules[6] = scene_haohmaru = new ModuleSceneHaohmaru();
-	modules[8] = player = new ModulePlayer();
-	modules[7] = player2 = new ModulePlayer2();
+	modules[7] = player = new ModulePlayer();
+	modules[8] = player2 = new ModulePlayer2();
 	modules[9] = menu = new ModuleMenu();
 	modules[10] = winhaoh = new ModuleVictoryHaohmaru();
 	modules[11] = particles = new ModuleParticles();

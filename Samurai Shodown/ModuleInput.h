@@ -28,6 +28,22 @@
 #define PUNCH_FINISH 13
 #define JUMP_UP 14
 
+#define LEFT_DOWN2 15
+#define LEFT_UP2 16
+#define RIGHT_DOWN2 17
+#define RIGHT_UP2 18
+#define LEFT_AND_RIGHT2 19
+#define JUMP2 20
+#define CROUCH_UP2 21
+#define CROUCH_DOWN2 22
+#define JUMP_AND_CROUCH2 23
+#define ONE2 24
+#define TWO2 25
+#define THREE2 26
+#define JUMP_FINISH2 27
+#define PUNCH_FINISH2 28
+#define JUMP_UP2 29
+
 enum player_states
 {
 	ST_UNKNOWN,
@@ -67,7 +83,23 @@ enum player_inputs
 	IN_JUMP_FINISH,
 	IN_PUNCH_FINISH,
 	IN_KICK_FINISH,
-	IN_TORNADO_FINISH
+	IN_TORNADO_FINISH,
+	IN_LEFT_DOWN_P2,
+	IN_LEFT_UP_P2,
+	IN_RIGHT_DOWN_P2,
+	IN_RIGHT_UP_P2,
+	IN_LEFT_AND_RIGHT_P2,
+	IN_JUMP_P2,
+	IN_CROUCH_UP_P2,
+	IN_CROUCH_DOWN_P2,
+	IN_JUMP_AND_CROUCH_P2,
+	IN_1_P2,
+	IN_2_P2,
+	IN_3_P2,
+	IN_JUMP_FINISH_P2,
+	IN_PUNCH_FINISH_P2,
+	IN_KICK_FINISH_P2,
+	IN_TORNADO_FINISH_P2
 };
 
 
@@ -101,11 +133,16 @@ public:
 
 	KEY_STATE keyboard[MAX_KEYS];
 	p2Qeue<player_inputs> inputs;
+	p2Qeue<player_inputs> inputs2;
 	int key = -1;
 	Uint32 jump_timer = 0;
 	Uint32 punch_timer = 0;
 	Uint32 kick_timer = 0;
 	Uint32 tornado_timer = 0;
+	Uint32 jump_timer2 = 0;
+	Uint32 punch_timer2 = 0;
+	Uint32 kick_timer2 = 0;
+	Uint32 tornado_timer2 = 0;
 
 };
 

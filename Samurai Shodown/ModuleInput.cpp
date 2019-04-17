@@ -46,20 +46,27 @@ bool ModuleInput::external_input(p2Qeue<player_inputs>& inputs)
 				break;
 			case SDLK_s:
 				key = CROUCH_UP;
-				//inputs.Push(IN_CROUCH_UP);
+				break;
+			case SDLK_k:
+				key = CROUCH_UP2;
 				break;
 			case SDLK_w:
 				key = JUMP_UP;
 				break;
+			case SDLK_i:
+				key = JUMP_UP2;
+				break;
 			case SDLK_a:
 				key = LEFT_UP;
-				//inputs.Push(IN_LEFT_UP);
-			//	left = false;
+				break;
+			case SDLK_j:
+				key = LEFT_UP2;
 				break;
 			case SDLK_d:
 				key = RIGHT_UP;
-			//	inputs.Push(IN_RIGHT_UP);
-			
+				break;
+			case SDLK_l:
+				key = RIGHT_UP2;
 				break;
 			}
 		}
@@ -87,6 +94,27 @@ bool ModuleInput::external_input(p2Qeue<player_inputs>& inputs)
 				break;
 			case SDLK_d:
 				key = RIGHT_DOWN;
+				break;
+			case SDLK_7:
+				key = ONE2;
+				break;
+			case SDLK_8:
+				key = TWO2;
+				break;
+			case SDLK_9:
+				key = THREE2;
+				break;
+			case SDLK_i:
+				key = JUMP2;
+				break;
+			case SDLK_k:
+				key = CROUCH_DOWN2;
+				break;
+			case SDLK_j:
+				key = LEFT_DOWN2;
+				break;
+			case SDLK_l:
+				key = RIGHT_DOWN2;
 				break;
 			}
 		}
@@ -150,6 +178,39 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs)
 			tornado_timer = 0;
 		}
 	}
+	if (jump_timer2 > 0)
+	{
+		if (SDL_GetTicks() - jump_timer2 > JUMP_TIME)
+		{
+			inputs.Push(IN_JUMP_FINISH_P2);
+			jump_timer2 = 0;
+		}
+	}
+
+	if (punch_timer2 > 0)
+	{
+		if (SDL_GetTicks() - punch_timer2 > PUNCH_TIME)
+		{
+			inputs.Push(IN_PUNCH_FINISH_P2);
+			punch_timer2 = 0;
+		}
+	}
+	if (kick_timer2 > 0)
+	{
+		if (SDL_GetTicks() - kick_timer2 > KICK_TIME)
+		{
+			inputs.Push(IN_KICK_FINISH_P2);
+			kick_timer2 = 0;
+		}
+	}
+	if (tornado_timer2 > 0)
+	{
+		if (SDL_GetTicks() - tornado_timer2 > TORNADO_TIME)
+		{
+			inputs.Push(IN_TORNADO_FINISH_P2);
+			tornado_timer2 = 0;
+		}
+	}
 }
 
 
@@ -178,12 +239,16 @@ update_status ModuleInput::PreUpdate()
 	}
 	// Para el input que sean estados
 	if (external_input(inputs) == false){		return update_status::UPDATE_STOP;}
-	else{ 
+	else {
 		internal_input(inputs);
-		
+	}
+	if (external_input(inputs2) == false) { return update_status::UPDATE_STOP; }
+	else {
+		internal_input(inputs2);
+	}
 	
 		return update_status::UPDATE_CONTINUE;
-	}
+	
 	SDL_PumpEvents();
 
 

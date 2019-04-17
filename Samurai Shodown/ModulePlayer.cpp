@@ -10,8 +10,6 @@
 #include "ModuleCollision.h"
 #include "SDL/include/SDL_timer.h"
 
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
-
 ModulePlayer::ModulePlayer()
 {
 	graphics = NULL;
@@ -133,8 +131,9 @@ bool ModulePlayer::Start()
 bool ModulePlayer::CleanUp() {
 
 	LOG("Unloading Player")
-		if (colliderPlayer != nullptr){
-	colliderPlayer->to_delete = true;}
+		if (colliderPlayer != nullptr) {
+	colliderPlayer->to_delete = true;
+		}
 	App->textures->Unload(graphics);
 	App->music->UnloadChunk(senpuu);
 	return true;
