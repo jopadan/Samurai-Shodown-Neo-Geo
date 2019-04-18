@@ -116,9 +116,10 @@ bool ModulePlayer::Start()
 
 	position.x = 100;
 	position.y = 207;
-
 	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet.png");
 	senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
+	
+
 	if (flip == SDL_FLIP_HORIZONTAL) {
 		colliderPlayer = App->collision->AddCollider({ position.x+60, position.y - 90, 60, 90 }, COLLIDER_PLAYER, this);
 	}

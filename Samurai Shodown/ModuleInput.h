@@ -143,6 +143,14 @@ public:
 	Uint32 punch_timer2 = 0;
 	Uint32 kick_timer2 = 0;
 	Uint32 tornado_timer2 = 0;
+	bool left = false;
+	bool right = false;
+	bool down = false;
+	bool up = false;
+	bool left2 = false;
+	bool right2 = false;
+	bool down2 = false;
+	bool up2 = false;
 
 };
 
