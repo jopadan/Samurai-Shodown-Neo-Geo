@@ -118,6 +118,8 @@ bool ModulePlayer::Start()
 	position.y = 207;
 	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet.png");
 	senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
+	sword = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - A- 01.ogg");
+	kicks = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - KICK 01.ogg");
 	
 
 	if (flip == SDL_FLIP_HORIZONTAL) {
@@ -137,6 +139,8 @@ bool ModulePlayer::CleanUp() {
 		}
 	App->textures->Unload(graphics);
 	App->music->UnloadChunk(senpuu);
+	App->music->UnloadChunk(sword);
+	App->music->UnloadChunk(kicks);
 	return true;
 }
 
@@ -251,6 +255,7 @@ if (state != current_state)
 		break;
 	case ST_PUNCH_STANDING:
 		if (flip == SDL_FLIP_NONE) {
+			
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y - 90  , 60, 90 }, COLLIDER_PLAYER_SHOT, this);
 				collider = false;
@@ -261,10 +266,13 @@ if (state != current_state)
 			if (animstart == 0)
 			{
 				current_animation = &punch;
+				
 				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
 			}
+			
 		}
 		else if (flip == SDL_FLIP_HORIZONTAL) {
+			
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_PLAYER_SHOT, this);
 				collider = false;
@@ -275,8 +283,10 @@ if (state != current_state)
 			if (animstart == 0)
 			{
 				current_animation = &punch;
+				
 				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
 			}
+			App->music->PlayChunk(sword);
 		}
 		break;
 		LOG("PUNCH STANDING ++++\n");
@@ -304,6 +314,7 @@ if (state != current_state)
 			if (animstart == 0)
 			{
 				current_animation = &kick;
+				App->music->PlayChunk(kicks);
 				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
 			}
 		}
@@ -319,6 +330,7 @@ if (state != current_state)
 			if (animstart == 0)
 			{
 				current_animation = &kick;
+				App->music->PlayChunk(kicks);
 				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
 			}
 		
@@ -495,6 +507,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		{
 			switch (last_input)
 			{
+				
 			case IN_PUNCH_FINISH: state = ST_IDLE; animstart = 0; collider = true; break;
 			}
 		}
