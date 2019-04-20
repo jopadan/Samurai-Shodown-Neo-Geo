@@ -16,6 +16,7 @@ ModulePlayer::ModulePlayer()
 	current_animation = NULL;
 
 	position.x = 100;
+	
 	position.y = 207;
 	initialPos = position.y;
 
@@ -115,6 +116,7 @@ bool ModulePlayer::Start()
 	bool ret = true;
 
 	position.x = 100;
+	
 	position.y = 207;
 	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet.png");
 	senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
@@ -257,12 +259,12 @@ if (state != current_state)
 		if (flip == SDL_FLIP_NONE) {
 			
 			if (collider == true) {
-				colliderAttack = App->collision->AddCollider({ position.x, position.y - 90  , 60, 90 }, COLLIDER_PLAYER_SHOT, this);
+				colliderAttack = App->collision->AddCollider({ position.x, position.y - 70 , 70, 70 }, COLLIDER_PLAYER_SHOT, this);
 				collider = false;
 			}
 
 			if (colliderAttack != nullptr)
-				colliderAttack->SetPos(position.x + 60, position.y - 90);
+				colliderAttack->SetPos(position.x + 60, position.y - 70);
 			if (animstart == 0)
 			{
 				current_animation = &punch;
@@ -274,19 +276,19 @@ if (state != current_state)
 		else if (flip == SDL_FLIP_HORIZONTAL) {
 			
 			if (collider == true) {
-				colliderAttack = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_PLAYER_SHOT, this);
+				colliderAttack = App->collision->AddCollider({ position.x, position.y - 70, 70, 70 }, COLLIDER_PLAYER_SHOT, this);
 				collider = false;
 			}
 
 			if (colliderAttack != nullptr)
-				colliderAttack->SetPos(position.x -60, position.y - 90);
+				colliderAttack->SetPos(position.x -70, position.y - 70);
 			if (animstart == 0)
 			{
 				current_animation = &punch;
 				
 				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
 			}
-			App->music->PlayChunk(sword);
+			
 		}
 		break;
 		LOG("PUNCH STANDING ++++\n");
@@ -305,32 +307,33 @@ if (state != current_state)
 	case ST_KICK_STANDING:
 		if (flip == SDL_FLIP_NONE) {
 			if (collider == true) {
-				colliderAttack = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_PLAYER_SHOT, this);
+				colliderAttack = App->collision->AddCollider({ position.x, position.y - 90, 40, 50 }, COLLIDER_PLAYER_SHOT, this);
 				collider = false;
 			}
 
 			if (colliderAttack != nullptr)
-				colliderAttack->SetPos(position.x + 50, position.y - 90);
+				colliderAttack->SetPos(position.x + 60, position.y - 90);
+			
 			if (animstart == 0)
 			{
 				current_animation = &kick;
-				App->music->PlayChunk(kicks);
+				
 				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
 			}
 		}
 		else if (flip == SDL_FLIP_HORIZONTAL) {
 		
 			if (collider == true) {
-				colliderAttack = App->collision->AddCollider({ position.x-50, position.y - 90, 60, 90 }, COLLIDER_PLAYER_SHOT, this);
+				colliderAttack = App->collision->AddCollider({ position.x-50, position.y - 90, 40, 50 }, COLLIDER_PLAYER_SHOT, this);
 				collider = false;
 			}
 
 			if (colliderAttack != nullptr)
-				colliderAttack->SetPos(position.x - 50, position.y - 90);
+				colliderAttack->SetPos(position.x - 40, position.y - 90);
 			if (animstart == 0)
 			{
 				current_animation = &kick;
-				App->music->PlayChunk(kicks);
+			
 				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
 			}
 		
@@ -387,7 +390,7 @@ current_state = state;
 	App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y -r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r, flip);
 	}
 	if (flip == SDL_FLIP_HORIZONTAL) {
-		App->render->Blit(graphics, position.x +/*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()]*2, position.y - r.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
+		App->render->Blit(graphics, position.x -10 +/*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()]*2, position.y - r.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
 	}
 	colliderPlayer->SetPos(position.x, position.y - 90);
 	return UPDATE_CONTINUE;
@@ -516,6 +519,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		break;
 		case ST_KICK_STANDING:
 		{
+			
 			switch (last_input)
 			{
 			case IN_KICK_FINISH: state = ST_IDLE; animstart = 0; collider = true; break;
