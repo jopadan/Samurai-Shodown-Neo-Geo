@@ -320,7 +320,7 @@ update_status ModulePlayer2::Update()
 		case ST_TORNADO:
 			if (shoot)
 			{
-				App->particles->AddParticle(App->particles->cyclone, position.x, position.y - 100, COLLIDER_PLAYER_SHOT, 450);
+				App->particles->AddParticle(App->particles->cyclone, position.x, position.y - 100, COLLIDER_ENEMY_SHOT, 450);
 			}
 			shoot = false;
 			if (animstart == 0)

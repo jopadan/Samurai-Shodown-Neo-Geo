@@ -427,6 +427,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_CROUCH_DOWN: state = ST_CROUCH; break;
 			case IN_1: state = ST_PUNCH_STANDING;  App->input->punch_timer = SDL_GetTicks();  break;
 			case IN_2: state = ST_KICK_STANDING;  App->input->kick_timer = SDL_GetTicks();  break;
+			case IN_3: state = ST_TORNADO;  App->input->tornado_timer = SDL_GetTicks();  break;
 			}
 		}
 		break;
@@ -441,6 +442,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_CROUCH_DOWN: state = ST_CROUCH; break;
 			case IN_1: state = ST_PUNCH_STANDING;  App->input->punch_timer = SDL_GetTicks();  break;
 			case IN_2: state = ST_KICK_STANDING;  App->input->kick_timer = SDL_GetTicks();  break;
+			case IN_3: state = ST_TORNADO;  App->input->tornado_timer = SDL_GetTicks();  break;
 			}
 		}
 		break;

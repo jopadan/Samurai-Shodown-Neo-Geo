@@ -10,7 +10,7 @@
 #define JUMP_TIME 800
 #define PUNCH_TIME 700
 #define KICK_TIME  700
-#define TORNADO_TIME  1000
+#define TORNADO_TIME  1100
 
 #define LEFT_DOWN 0
 #define LEFT_UP 1
