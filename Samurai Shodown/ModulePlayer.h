@@ -21,6 +21,8 @@ private:
 	bool attAnim= false;
 	bool kickAnim = false;
 	bool cycloneAnim = false;
+	bool crouch = false;
+	//bool hit = false;
 	bool tornadoAnim;
 	int initialPos;
 	float jumpSpeed = 6;
@@ -53,8 +55,9 @@ public:
 	Animation backward;
 	Animation jumpup;
 	Animation punch;
-	
+	Animation grounch;
 	Animation kick;
+	//Animation hit;
 	Animation cyclone;
 	Animation tornado;
 	iPoint position;

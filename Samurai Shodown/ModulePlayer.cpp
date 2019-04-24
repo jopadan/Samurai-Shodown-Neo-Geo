@@ -25,6 +25,9 @@ ModulePlayer::ModulePlayer()
 	idle.PushBack({ 164, 277, 72, 109 },	0.15,	0, 0, 0, 0);
 	idle.PushBack({ 241, 279, 72, 107 },	0.15,	0, 0, 0, 0);
 
+	grounch.PushBack({ 750, 432, 81, 121 }, 0.05, 0, 10, 0, 10);
+	grounch.PushBack({ 840, 463, 99, 94}, 0.05,-9, 13, 0, 13);
+
 	forward.PushBack({ 506, 150, 69, 112 }, 0.1,	0, 0, 0, 0);
 	forward.PushBack({ 580, 147, 59, 116 }, 0.25,	0, 0, 0, 0);
 	forward.PushBack({ 644, 145, 57, 118 }, 0.1,	0, 0, 0, 0);
@@ -104,6 +107,8 @@ ModulePlayer::ModulePlayer()
 	cyclone.PushBack({ 427, 387, 62, 153 }, 0.2,	0, 0, 0, 0);
 	cyclone.PushBack({ 496, 442, 97, 98 },	0.2,  -20, 0, 0, 0);
 	cyclone.PushBack({ 600, 450, 97, 90 },	0.08, -20, 0, 0, 0);
+
+	//hit.PushBack({ 982, 446, 92, 107 }, 0.08, -20, 0, 0, 0);
 }
 
 ModulePlayer::~ModulePlayer()
@@ -250,6 +255,12 @@ if (state != current_state)
 		break;
 		break;
 	case ST_CROUCH:
+		if (animstart == 0)
+		{
+			current_animation = &grounch;
+			
+		}
+
 		LOG("CROUCHING ****\n");
 		break;
 	case ST_PUNCH_CROUCH:
@@ -276,12 +287,12 @@ if (state != current_state)
 		else if (flip == SDL_FLIP_HORIZONTAL) {
 			
 			if (collider == true) {
-				colliderAttack = App->collision->AddCollider({ position.x, position.y - 70, 70, 70 }, COLLIDER_PLAYER_SHOT, this);
+				colliderAttack = App->collision->AddCollider({ position.x, position.y - 70, 50, 70 }, COLLIDER_PLAYER_SHOT, this);
 				collider = false;
 			}
 
 			if (colliderAttack != nullptr)
-				colliderAttack->SetPos(position.x -70, position.y - 70);
+				colliderAttack->SetPos(position.x -50, position.y - 70);
 			if (animstart == 0)
 			{
 				current_animation = &punch;
@@ -324,12 +335,12 @@ if (state != current_state)
 		else if (flip == SDL_FLIP_HORIZONTAL) {
 		
 			if (collider == true) {
-				colliderAttack = App->collision->AddCollider({ position.x-50, position.y - 90, 40, 50 }, COLLIDER_PLAYER_SHOT, this);
+				colliderAttack = App->collision->AddCollider({ position.x-50, position.y - 90, 20, 50 }, COLLIDER_PLAYER_SHOT, this);
 				collider = false;
 			}
 
 			if (colliderAttack != nullptr)
-				colliderAttack->SetPos(position.x - 40, position.y - 90);
+				colliderAttack->SetPos(position.x - 20, position.y - 90);
 			if (animstart == 0)
 			{
 				current_animation = &kick;

@@ -250,12 +250,12 @@ update_status ModulePlayer2::Update()
 			}
 			else if (flip == SDL_FLIP_HORIZONTAL) {
 				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ position.x, position.y - 70, 70, 70 }, COLLIDER_PLAYER_SHOT, this);
+					colliderAttack = App->collision->AddCollider({ position.x, position.y - 70, 50, 70 }, COLLIDER_PLAYER_SHOT, this);
 					collider = false;
 				}
 
 				if (colliderAttack != nullptr)
-					colliderAttack->SetPos(position.x - 70, position.y - 70);
+					colliderAttack->SetPos(position.x - 50, position.y - 70);
 				if (animstart == 0)
 				{
 					current_animation = &punch;
@@ -294,12 +294,12 @@ update_status ModulePlayer2::Update()
 			else if (flip == SDL_FLIP_HORIZONTAL) {
 
 				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ position.x - 50, position.y - 90, 40, 50 }, COLLIDER_PLAYER_SHOT, this);
+					colliderAttack = App->collision->AddCollider({ position.x - 50, position.y - 90, 20, 50 }, COLLIDER_PLAYER_SHOT, this);
 					collider = false;
 				}
 
 				if (colliderAttack != nullptr)
-					colliderAttack->SetPos(position.x - 40, position.y - 90);
+					colliderAttack->SetPos(position.x - 20, position.y - 90);
 				if (animstart == 0)
 				{
 					current_animation = &kick;
