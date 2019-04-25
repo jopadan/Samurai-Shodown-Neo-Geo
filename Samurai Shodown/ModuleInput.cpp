@@ -37,39 +37,6 @@ bool ModuleInput::external_input()
 
 	while (SDL_PollEvent(&event) != 0)
 	{
-		if (event.type == SDL_KEYUP && event.key.repeat == 0)
-		{
-			switch (event.key.keysym.sym)
-			{
-			case SDLK_ESCAPE:
-				return false;
-				break;
-			case SDLK_s:
-				key = CROUCH_UP;
-				break;
-			case SDLK_k:
-				key = CROUCH_UP2;
-				break;
-			case SDLK_w:
-				key = JUMP_UP;
-				break;
-			case SDLK_i:
-				key = JUMP_UP2;
-				break;
-			case SDLK_a:
-				key = LEFT_UP;
-				break;
-			case SDLK_j:
-				key = LEFT_UP2;
-				break;
-			case SDLK_d:
-				key = RIGHT_UP;
-				break;
-			case SDLK_l:
-				key = RIGHT_UP2;
-				break;
-			}
-		}
 		if (event.type == SDL_KEYDOWN && event.key.repeat == 0)
 		{
 			switch (event.key.keysym.sym)
@@ -118,6 +85,40 @@ bool ModuleInput::external_input()
 				break;
 			}
 		}
+		if (event.type == SDL_KEYUP && event.key.repeat == 0)
+		{
+			switch (event.key.keysym.sym)
+			{
+			case SDLK_ESCAPE:
+				return false;
+				break;
+			case SDLK_s:
+				key = CROUCH_UP;
+				break;
+			case SDLK_k:
+				key = CROUCH_UP2;
+				break;
+			case SDLK_w:
+				key = JUMP_UP;
+				break;
+			case SDLK_i:
+				key = JUMP_UP2;
+				break;
+			case SDLK_a:
+				key = LEFT_UP;
+				break;
+			case SDLK_j:
+				key = LEFT_UP2;
+				break;
+			case SDLK_d:
+				key = RIGHT_UP;
+				break;
+			case SDLK_l:
+				key = RIGHT_UP2;
+				break;
+			}
+		}
+	
 		
 	}
 /*
