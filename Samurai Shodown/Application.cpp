@@ -14,26 +14,27 @@
 #include "ModuleVictoryHaohmaru.h"
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
-
+#include "ModuleFonts.h"
 
 Application::Application()
 {
-	
-	modules[0] = window = new ModuleWindow();
-	modules[1] = render = new ModuleRender();
-	modules[2] = input = new ModuleInput();
-	modules[3] = input_player = new ModuleInputPlayer();
-	modules[4] = textures = new ModuleTextures();
-	modules[5] = scene_nakoruru = new ModuleSceneNakoruru();
-	modules[6] = scene_haohmaru = new ModuleSceneHaohmaru();
-	modules[7] = player = new ModulePlayer();
-	modules[8] = player2 = new ModulePlayer2();
-	modules[9] = menu = new ModuleMenu();
-	modules[10] = winhaoh = new ModuleVictoryHaohmaru();
-	modules[11] = particles = new ModuleParticles();
-	modules[12] = collision = new ModuleCollision();
-	modules[13] = music = new ModuleMusic();
-	modules[14] = fade = new ModuleFadeToBlack();
+	int i = 0;
+	modules[i++] = window = new ModuleWindow();
+	modules[i++] = render = new ModuleRender();
+	modules[i++] = input = new ModuleInput();
+	modules[i++] = input_player = new ModuleInputPlayer();
+	modules[i++] = textures = new ModuleTextures();
+	modules[i++] = fonts = new ModuleFonts();
+	modules[i++] = scene_nakoruru = new ModuleSceneNakoruru();
+	modules[i++] = scene_haohmaru = new ModuleSceneHaohmaru();
+	modules[i++] = player = new ModulePlayer();
+	modules[i++] = player2 = new ModulePlayer2();
+	modules[i++] = menu = new ModuleMenu();
+	modules[i++] = winhaoh = new ModuleVictoryHaohmaru();
+	modules[i++] = particles = new ModuleParticles();
+	modules[i++] = collision = new ModuleCollision();
+	modules[i++] = music = new ModuleMusic();
+	modules[i++] = fade = new ModuleFadeToBlack();
 	
 }	
 

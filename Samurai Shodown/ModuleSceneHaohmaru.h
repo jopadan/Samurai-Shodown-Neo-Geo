@@ -26,6 +26,10 @@ public:
 	Mix_Chunk* chunkload;
 	SDL_Rect ground;
 	
+	char timer_text[10];
+	int font_timer = -1;
+	uint timer;
+	int starttime;
 	Collider* colliderMap;
 	Collider* colliderMap2;
 	Animation splash1;

@@ -10,6 +10,7 @@
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
 
+
 ModulePlayer2::ModulePlayer2()
 {
 	graphics = NULL;
@@ -339,7 +340,7 @@ update_status ModulePlayer2::Update()
 			deletecol = false;
 		}
 		else {
-			colliderPlayer2 = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_PLAYER, this);
+			colliderPlayer2 = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_ENEMY, this);
 			deletecol = true;
 		}
 

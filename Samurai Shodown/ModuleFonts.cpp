@@ -93,18 +93,12 @@ void ModuleFonts::BlitText(int x, int y, int font_id, const char* text) const
 // TODO 2: Find the character in the table and its position in the texture, then Blit
 	for(uint i = 0; i < len; ++i)
 	{
-		
 		for (uint j = 0; j < fonts[font_id].row_chars; ++j) {
 			if ( fonts[font_id].table[j] == text[i]){
 				rect.x = j * fonts[font_id].char_w;
-				App->render->Blit(fonts[font_id].graphic, x, y, &rect, 1);
-				LOG("We got a MATCH");
-			
+				App->render->Blit(fonts[font_id].graphic, x, y, &rect, SDL_FLIP_NONE);	
 				x += rect.w;
 			}
-			
-			
 		}
 	}
-	
 }

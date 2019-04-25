@@ -15,6 +15,9 @@
 #include "ModuleMenu.h"
 #include "SDL/include/SDL.h"
 #include "ModuleCollision.h"
+#include "ModuleFonts.h"
+
+#include<stdio.h>
 
 
 ModuleSceneHaohmaru::ModuleSceneHaohmaru()
@@ -76,13 +79,16 @@ bool ModuleSceneHaohmaru::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
-
+	
+	starttime = SDL_GetTicks();
+	timer = 99;
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 	App->collision->Enable();
 
 	musload = App->music->LoadMus("Assets/Sound/Masculine Song -Sun- (Haohmaru).ogg");
 	graphics = App->textures->Load("Assets/Image/haohmaru_stage.png");
+	font_timer = App->fonts->Load("Ui/UI_Numbers_1.png", "9876543210", 1);
 	App->music->PlayMus(musload);
 	App->player->Enable();
 	App->player2->Enable();
@@ -110,7 +116,7 @@ bool ModuleSceneHaohmaru::CleanUp()
 	App->player->Disable();
 	App->player2->Disable();
 	App->input_player->Disable();
-
+	App->fonts->UnLoad(font_timer);
 
 
 	return true;
@@ -137,6 +143,13 @@ update_status ModuleSceneHaohmaru::Update()
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 		App->fade->FadeToBlack(App->scene_haohmaru, App->scene_nakoruru, 2);
 	}
-	
+
+	if (SDL_GetTicks() - starttime >= 1000) {
+		starttime = SDL_GetTicks();
+		timer--;
+	}
+	sprintf_s(timer_text, 10, "%d", timer);
+
+	App->fonts->BlitText(SCREEN_WIDTH/2-20, 10, font_timer, timer_text);
 	return UPDATE_CONTINUE;
 }
