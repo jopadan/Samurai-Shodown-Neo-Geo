@@ -10,6 +10,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneHaohmaru.h"
 #include "ModuleVictoryHaohmaru.h"
+#include "ModuleUI.h"
 
 #include "SDL/include/SDL.h"
 #include "ModuleCollision.h"
@@ -56,6 +57,7 @@ bool ModuleSceneNakoruru::Start()
 	App->player2->Enable();
 	App->input_player->Enable();
 	App->collision->Enable();
+	App->ui->Enable();
 
 	colliderMap = App->collision->AddCollider({ 0, -150, 50, 500 }, COLLIDER_WALL);
 	colliderMap2 = App->collision->AddCollider({ 590, -150, 50, 500 }, COLLIDER_WALL);
@@ -78,6 +80,7 @@ bool ModuleSceneNakoruru::CleanUp()
 	App->player->Disable();
 	App->player2->Disable();
 	App->input_player->Disable();
+	App->ui->Disable();
 
 	return true;
 }

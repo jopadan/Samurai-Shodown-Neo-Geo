@@ -16,6 +16,7 @@
 #include "SDL/include/SDL.h"
 #include "ModuleCollision.h"
 #include "ModuleFonts.h"
+#include "ModuleUI.h"
 
 #include<stdio.h>
 
@@ -94,6 +95,7 @@ bool ModuleSceneHaohmaru::Start()
 	App->player2->Enable();
 	App->input_player->Enable();
 	App->collision->Enable();
+	App->ui->Enable();
 
 
 	// COLLIDERS PARA LOS LIMITES DEL MAPA
@@ -117,6 +119,7 @@ bool ModuleSceneHaohmaru::CleanUp()
 	App->player2->Disable();
 	App->input_player->Disable();
 	App->fonts->UnLoad(font_timer);
+	App->ui->Disable();
 
 
 	return true;

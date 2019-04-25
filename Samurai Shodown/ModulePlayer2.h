@@ -49,6 +49,8 @@ public:
 	Animation jumpup;
 	Animation punch;
 
+	int health = 127;
+
 	Animation kick;
 	Animation cyclone;
 	Animation tornado;

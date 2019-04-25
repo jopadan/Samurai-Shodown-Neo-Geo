@@ -62,6 +62,8 @@ public:
 	Animation tornado;
 	iPoint position;
 
+	int health = 127;
+
 	Collider *colliderPlayer;
 	Collider *colliderAttack;
 	SDL_RendererFlip flip = SDL_FLIP_NONE;

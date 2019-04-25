@@ -15,6 +15,7 @@
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
 #include "ModuleFonts.h"
+#include "ModuleUI.h";
 
 Application::Application()
 {
@@ -33,6 +34,7 @@ Application::Application()
 	modules[i++] = winhaoh = new ModuleVictoryHaohmaru();
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = collision = new ModuleCollision();
+	modules[i++] = ui = new ModuleUI();
 	modules[i++] = music = new ModuleMusic();
 	modules[i++] = fade = new ModuleFadeToBlack();
 	
@@ -54,6 +56,7 @@ bool Application::Init()
 	scene_haohmaru->Disable();
 	winhaoh->Disable();
 	collision->Disable();
+	ui->Disable();
 
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
