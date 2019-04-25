@@ -6,6 +6,8 @@
 #include "Animation.h"
 #include "p2Point.h"
 
+#include "SDL/include/SDL.h"
+
 
 class ModuleUI : public Module {
 public:

@@ -5,7 +5,7 @@
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
-#include "SDL/include/SDL_timer.h"
+#include "SDL/include/SDL.h"
 
 ModuleUI::ModuleUI() {
 
@@ -35,6 +35,8 @@ ModuleUI::ModuleUI() {
 	end.PushBack({ 484, 441, 28, 21 }, 0.2, 0, 0, 0, 0);
 	end.PushBack({ 484, 465, 28, 21 }, 0.2, 0, 0, 0, 0);
 
+	
+	if (App != nullptr){
 	health.x = 273;//25, 9,,207, 9
 	health.y = 310;
 	health.w = App->player->health;
@@ -54,16 +56,15 @@ ModuleUI::ModuleUI() {
 	lowHealth2.y = 326;
 	lowHealth2.w = App->player2->health;
 	lowHealth2.h = 8;
-
 }
-
+}
 ModuleUI::~ModuleUI()
 {}
 
 bool ModuleUI::Start() {
 	LOG("Loading UI textures");
 	bool ret = true;
-	graphics = App->textures->Load("Assets/Image/Sprite_Sheet_UI_1.png");
+	graphics = App->textures->Load("UI/Sprite_Sheet_UI_1.png");
 	return ret;
 }
 
@@ -77,16 +78,16 @@ bool ModuleUI::CleanUp() {
 update_status ModuleUI::Update() {
 
 	if (App->render->camera.x++) {
-		position.x++;
+		//position.x++;
 	}
 	if (App->render->camera.x--) {
-		position.x--;
+		//position.x--;
 	}
 	if (App->render->camera.y++) {
-		position.y++;
+		//position.y++;
 	}
 	if (App->render->camera.y--) {
-		position.y--;
+		//position.y--;
 	}
 
 	if (App->player->health <= 32) {
@@ -107,10 +108,5 @@ update_status ModuleUI::Update() {
 	App->render->Blit(graphics, position.x + 206, position.y + 8, &healthCont2, SDL_FLIP_NONE, 1);
 	App->render->Blit(graphics, position.x + 178, position.y + 5, &ko, SDL_FLIP_NONE, 1);
 
-}
-
-bool ModuleUI::CleanUp() {
-	LOG("Unloading UI")
-	App->textures->Unload(graphics);
-	return true;
+	return UPDATE_CONTINUE;
 }
