@@ -25,8 +25,9 @@ ModulePlayer::ModulePlayer()
 	idle.PushBack({ 164, 277, 72, 109 },	0.15,	0, 0, 0, 0);
 	idle.PushBack({ 241, 279, 72, 107 },	0.15,	0, 0, 0, 0);
 
-	grounch.PushBack({ 750, 432, 81, 121 }, 0.05, 0, 10, 0, 10);
-	grounch.PushBack({ 840, 463, 99, 94}, 0.05,-9, 13, 0, 13);
+	crounch.PushBack({ 750, 432, 81, 121 }, 0.05, 0, 10, 0, 10);
+	crounch.PushBack({ 840, 463, 99, 94}, 0.05,-9, 13, 0, 13);
+	crounch.loop = false;
 
 	forward.PushBack({ 506, 150, 69, 112 }, 0.1,	0, 0, 0, 0);
 	forward.PushBack({ 580, 147, 59, 116 }, 0.25,	0, 0, 0, 0);
@@ -126,7 +127,7 @@ bool ModulePlayer::Start()
 	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet.png");
 	senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
 	sword = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - A- 01.ogg");
-	kicks = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - KICK 01.ogg");
+	kicks = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - KICK 01.wav");
 	
 
 	if (flip == SDL_FLIP_HORIZONTAL) {
@@ -257,7 +258,7 @@ if (state != current_state)
 	case ST_CROUCH:
 		if (animstart == 0)
 		{
-			current_animation = &grounch;
+			current_animation = &crounch;
 			
 		}
 
@@ -328,7 +329,7 @@ if (state != current_state)
 			if (animstart == 0)
 			{
 				current_animation = &kick;
-				
+				App->music->PlayChunk(kicks);
 				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
 			}
 		}

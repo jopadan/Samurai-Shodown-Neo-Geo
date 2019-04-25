@@ -55,7 +55,7 @@ public:
 	Animation backward;
 	Animation jumpup;
 	Animation punch;
-	Animation grounch;
+	Animation crounch;
 	Animation kick;
 	//Animation hit;
 	Animation cyclone;
