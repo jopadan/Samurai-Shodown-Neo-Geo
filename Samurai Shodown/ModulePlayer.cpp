@@ -320,6 +320,7 @@ if (state != current_state)
 		if (flip == SDL_FLIP_NONE) {
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y - 90, 40, 50 }, COLLIDER_PLAYER_SHOT, this);
+				App->music->PlayChunk(kicks);
 				collider = false;
 			}
 
@@ -329,7 +330,7 @@ if (state != current_state)
 			if (animstart == 0)
 			{
 				current_animation = &kick;
-				App->music->PlayChunk(kicks);
+				
 				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
 			}
 		}

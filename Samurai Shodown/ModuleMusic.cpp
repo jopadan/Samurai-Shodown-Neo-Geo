@@ -31,7 +31,7 @@ bool ModuleMusic::Init()
 		LOG("Could not initialize Music lib. Mix_Init: %s", Mix_GetError());
 		ret = false;
 	}
-	Mix_OpenAudio(48000, MIX_DEFAULT_FORMAT, 2, 1024);
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024);
 
 	return ret;
 
