@@ -10,6 +10,7 @@
 #include "ModulePlayer2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleMenu.h"
+#include "ModuleEnding.h"
 #include "ModuleMusic.h"
 #include "ModuleVictoryHaohmaru.h"
 #include "ModuleParticles.h"
@@ -31,6 +32,7 @@ Application::Application()
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = player2 = new ModulePlayer2();
 	modules[i++] = menu = new ModuleMenu();
+	modules[i++] = end = new ModuleEnding();
 	modules[i++] = winhaoh = new ModuleVictoryHaohmaru();
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = collision = new ModuleCollision();
@@ -57,7 +59,7 @@ bool Application::Init()
 	winhaoh->Disable();
 	collision->Disable();
 	ui->Disable();
-
+	end->Disable();
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();

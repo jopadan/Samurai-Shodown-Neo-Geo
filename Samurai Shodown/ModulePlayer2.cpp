@@ -24,6 +24,10 @@ ModulePlayer2::ModulePlayer2()
 	idle.PushBack({ 86, 275, 73, 111 }, 0.15, 0, 0, 0, 0);
 	idle.PushBack({ 164, 277, 72, 109 }, 0.15, 0, 0, 0, 0);
 	idle.PushBack({ 241, 279, 72, 107 }, 0.15, 0, 0, 0, 0);
+	
+	crounch.PushBack({ 755, 432, 81, 121 }, 0.05, 0, 10, 0, 10);
+	crounch.PushBack({ 854, 463, 99, 94 }, 0.05, -26, 13, 0, 13);
+	crounch.loop = false;
 
 	forward.PushBack({ 506, 150, 69, 112 }, 0.1, 0, 0, 0, 0);
 	forward.PushBack({ 580, 147, 59, 116 }, 0.25, 0, 0, 0, 0);
@@ -89,6 +93,8 @@ ModulePlayer2::ModulePlayer2()
 	cyclone.PushBack({ 427, 387, 62, 153 }, 0.2, 0, 0, 0, 0);
 	cyclone.PushBack({ 496, 442, 97, 98 }, 0.2, -20, 0, 0, 0);
 	cyclone.PushBack({ 600, 450, 97, 90 }, 0.08, -20, 0, 0, 0);
+
+	//hit.PushBack({ 985, 446, 92, 107 }, 0.08, -20, 0, 0, 0);
 }
 
 ModulePlayer2::~ModulePlayer2()
@@ -105,6 +111,8 @@ bool ModulePlayer2::Start()
 
 	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet p2.png");
 	senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
+	sword = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - A- 01.wav");
+	kicks = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - KICK (MISS) - 01.wav");
 	if (flip == SDL_FLIP_HORIZONTAL) {
 		colliderPlayer2 = App->collision->AddCollider({ position.x + 60, position.y - 90, 60, 90 }, COLLIDER_ENEMY, this);
 	}
@@ -229,6 +237,11 @@ update_status ModulePlayer2::Update()
 			break;
 			break;
 		case ST_CROUCH:
+			if (animstart == 0)
+			{
+				current_animation = &crounch;
+
+			}
 			LOG("CROUCHING ****\n");
 			break;
 		case ST_PUNCH_CROUCH:
@@ -238,6 +251,7 @@ update_status ModulePlayer2::Update()
 			if (flip == SDL_FLIP_NONE) {
 				if (collider == true) {
 					colliderAttack = App->collision->AddCollider({ position.x, position.y - 70  , 70, 70 }, COLLIDER_PLAYER_SHOT, this);
+					App->music->PlayChunk(sword);
 					collider = false;
 				}
 
@@ -252,6 +266,7 @@ update_status ModulePlayer2::Update()
 			else if (flip == SDL_FLIP_HORIZONTAL) {
 				if (collider == true) {
 					colliderAttack = App->collision->AddCollider({ position.x, position.y - 70, 50, 70 }, COLLIDER_PLAYER_SHOT, this);
+					App->music->PlayChunk(sword);
 					collider = false;
 				}
 
@@ -281,6 +296,7 @@ update_status ModulePlayer2::Update()
 			if (flip == SDL_FLIP_NONE) {
 				if (collider == true) {
 					colliderAttack = App->collision->AddCollider({ position.x, position.y - 90, 40, 50 }, COLLIDER_PLAYER_SHOT, this);
+					App->music->PlayChunk(kicks);
 					collider = false;
 				}
 
@@ -296,6 +312,7 @@ update_status ModulePlayer2::Update()
 
 				if (collider == true) {
 					colliderAttack = App->collision->AddCollider({ position.x - 50, position.y - 90, 20, 50 }, COLLIDER_PLAYER_SHOT, this);
+					App->music->PlayChunk(kicks);
 					collider = false;
 				}
 
@@ -322,6 +339,7 @@ update_status ModulePlayer2::Update()
 			if (shoot)
 			{
 				App->particles->AddParticle(App->particles->cyclone, position.x, position.y - 100, COLLIDER_ENEMY_SHOT, 450);
+				App->music->PlayChunk(senpuu);
 			}
 			shoot = false;
 			if (animstart == 0)

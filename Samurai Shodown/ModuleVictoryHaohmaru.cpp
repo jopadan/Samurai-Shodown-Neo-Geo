@@ -7,6 +7,7 @@
 #include "ModuleMenu.h"
 #include "SDL/include/SDL.h"
 #include "ModuleVictoryHaohmaru.h"
+#include "ModuleEnding.h"
 
 
 ModuleVictoryHaohmaru::ModuleVictoryHaohmaru()
@@ -58,7 +59,7 @@ update_status ModuleVictoryHaohmaru::Update()
 	//background
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
-		App->fade->FadeToBlack(App->winhaoh, App->menu, 2);
+		App->fade->FadeToBlack(App->winhaoh, App->end, 2);
 	}
 
 	return UPDATE_CONTINUE;

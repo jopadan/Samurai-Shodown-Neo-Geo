@@ -20,6 +20,7 @@ private:
 	bool floor = true;
 	bool attAnim = false;
 	bool kickAnim = false;
+	bool crouch = false;
 	bool cycloneAnim = false;
 	bool tornadoAnim;
 	int initialPos;
@@ -43,12 +44,14 @@ public:
 	SDL_Texture* graphics = nullptr;
 	Animation* current_animation = nullptr;
 	Mix_Chunk* senpuu;
+	Mix_Chunk* sword;
+	Mix_Chunk* kicks;
 	Animation idle;
 	Animation forward;
 	Animation backward;
 	Animation jumpup;
 	Animation punch;
-
+	Animation crounch;
 	int health = 127;
 
 	Animation kick;

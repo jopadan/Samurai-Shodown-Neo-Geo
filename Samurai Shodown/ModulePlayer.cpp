@@ -26,7 +26,7 @@ ModulePlayer::ModulePlayer()
 	idle.PushBack({ 241, 279, 72, 107 },	0.15,	0, 0, 0, 0);
 
 	crounch.PushBack({ 750, 432, 81, 121 }, 0.05, 0, 10, 0, 10);
-	crounch.PushBack({ 840, 463, 99, 94}, 0.05,-9, 13, 0, 13);
+	crounch.PushBack({ 840, 463, 99, 94}, 0.05, -26, 13, 0, 13);
 	crounch.loop = false;
 
 	forward.PushBack({ 506, 150, 69, 112 }, 0.1,	0, 0, 0, 0);
@@ -126,8 +126,8 @@ bool ModulePlayer::Start()
 	position.y = 207;
 	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet.png");
 	senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
-	sword = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - A- 01.ogg");
-	kicks = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - KICK 01.wav");
+	sword = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - A- 01.wav");
+	kicks = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - KICK (MISS) - 01.wav");
 	
 
 	if (flip == SDL_FLIP_HORIZONTAL) {
@@ -272,6 +272,7 @@ if (state != current_state)
 			
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y - 70 , 70, 70 }, COLLIDER_PLAYER_SHOT, this);
+				App->music->PlayChunk(sword);
 				collider = false;
 			}
 
@@ -289,6 +290,7 @@ if (state != current_state)
 			
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y - 70, 50, 70 }, COLLIDER_PLAYER_SHOT, this);
+				App->music->PlayChunk(sword);
 				collider = false;
 			}
 
@@ -338,7 +340,9 @@ if (state != current_state)
 		
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x-50, position.y - 90, 20, 50 }, COLLIDER_PLAYER_SHOT, this);
+				App->music->PlayChunk(kicks);
 				collider = false;
+
 			}
 
 			if (colliderAttack != nullptr)
@@ -365,6 +369,7 @@ if (state != current_state)
 		if (shoot)
 		{
 		App->particles->AddParticle(App->particles->cyclone, position.x, position.y - 100, COLLIDER_PLAYER_SHOT, 450);
+		App->music->PlayChunk(senpuu);
 		}
 		shoot = false;
 		if (animstart == 0)
