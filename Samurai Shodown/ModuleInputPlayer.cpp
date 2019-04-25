@@ -16,7 +16,7 @@ ModuleInputPlayer::~ModuleInputPlayer()
 
 update_status ModuleInputPlayer::Update() {
 	
-	switch (App->input->key) {
+	/*switch (App->input->key) {
 	case LEFT_UP:
 		left = false;
 		break;
@@ -146,8 +146,7 @@ update_status ModuleInputPlayer::Update() {
 		if (up2)
 			App->input->inputs2.Push(IN_JUMP_P2);
 	}
-	App->input->key = -1;
-
+	App->input->key = -1;*/
 	return update_status::UPDATE_CONTINUE;
 }
 

@@ -21,6 +21,8 @@ private:
 	bool attAnim= false;
 	bool kickAnim = false;
 	bool cycloneAnim = false;
+	bool crouch = false;
+	//bool hit = false;
 	bool tornadoAnim;
 	int initialPos;
 	float jumpSpeed = 6;
@@ -46,13 +48,16 @@ public:
 	SDL_Texture* graphics = nullptr;
 	Animation* current_animation = nullptr;
 	Mix_Chunk* senpuu;
+	Mix_Chunk* sword;
+	Mix_Chunk* kicks;
 	Animation idle;
 	Animation forward;
 	Animation backward;
 	Animation jumpup;
 	Animation punch;
-	
+	Animation crounch;
 	Animation kick;
+	//Animation hit;
 	Animation cyclone;
 	Animation tornado;
 	iPoint position;

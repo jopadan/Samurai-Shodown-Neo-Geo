@@ -236,12 +236,12 @@ update_status ModulePlayer2::Update()
 		case ST_PUNCH_STANDING:
 			if (flip == SDL_FLIP_NONE) {
 				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ position.x, position.y - 90  , 60, 90 }, COLLIDER_PLAYER_SHOT, this);
+					colliderAttack = App->collision->AddCollider({ position.x, position.y - 70  , 70, 70 }, COLLIDER_PLAYER_SHOT, this);
 					collider = false;
 				}
 
 				if (colliderAttack != nullptr)
-					colliderAttack->SetPos(position.x + 60, position.y - 90);
+					colliderAttack->SetPos(position.x + 60, position.y - 70);
 				if (animstart == 0)
 				{
 					current_animation = &punch;
@@ -250,12 +250,12 @@ update_status ModulePlayer2::Update()
 			}
 			else if (flip == SDL_FLIP_HORIZONTAL) {
 				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_PLAYER_SHOT, this);
+					colliderAttack = App->collision->AddCollider({ position.x, position.y - 70, 50, 70 }, COLLIDER_PLAYER_SHOT, this);
 					collider = false;
 				}
 
 				if (colliderAttack != nullptr)
-					colliderAttack->SetPos(position.x - 60, position.y - 90);
+					colliderAttack->SetPos(position.x - 50, position.y - 70);
 				if (animstart == 0)
 				{
 					current_animation = &punch;
@@ -279,12 +279,12 @@ update_status ModulePlayer2::Update()
 		case ST_KICK_STANDING:
 			if (flip == SDL_FLIP_NONE) {
 				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_PLAYER_SHOT, this);
+					colliderAttack = App->collision->AddCollider({ position.x, position.y - 90, 40, 50 }, COLLIDER_PLAYER_SHOT, this);
 					collider = false;
 				}
 
 				if (colliderAttack != nullptr)
-					colliderAttack->SetPos(position.x + 50, position.y - 90);
+					colliderAttack->SetPos(position.x + 60, position.y - 90);
 				if (animstart == 0)
 				{
 					current_animation = &kick;
@@ -294,12 +294,12 @@ update_status ModulePlayer2::Update()
 			else if (flip == SDL_FLIP_HORIZONTAL) {
 
 				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ position.x - 50, position.y - 90, 60, 90 }, COLLIDER_PLAYER_SHOT, this);
+					colliderAttack = App->collision->AddCollider({ position.x - 50, position.y - 90, 20, 50 }, COLLIDER_PLAYER_SHOT, this);
 					collider = false;
 				}
 
 				if (colliderAttack != nullptr)
-					colliderAttack->SetPos(position.x - 50, position.y - 90);
+					colliderAttack->SetPos(position.x - 20, position.y - 90);
 				if (animstart == 0)
 				{
 					current_animation = &kick;
@@ -320,7 +320,7 @@ update_status ModulePlayer2::Update()
 		case ST_TORNADO:
 			if (shoot)
 			{
-				App->particles->AddParticle(App->particles->cyclone, position.x, position.y - 100, COLLIDER_PLAYER_SHOT, 450);
+				App->particles->AddParticle(App->particles->cyclone, position.x, position.y - 100, COLLIDER_ENEMY_SHOT, 450);
 			}
 			shoot = false;
 			if (animstart == 0)
@@ -359,7 +359,7 @@ update_status ModulePlayer2::Update()
 		App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y - r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r, flip);
 	}
 	if (flip == SDL_FLIP_HORIZONTAL) {
-		App->render->Blit(graphics, position.x +/*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()] * 2, position.y - r.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
+		App->render->Blit(graphics, position.x -10+/*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()] * 2, position.y - r.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
 	}
 	colliderPlayer2->SetPos(position.x, position.y - 90);
 	return UPDATE_CONTINUE;

@@ -102,7 +102,7 @@ Mix_Chunk* const ModuleMusic :: LoadChunk(const char* path) {
 void  ModuleMusic::PlayChunk(Mix_Chunk * chunk) {
 
 	if (chunk != nullptr) {
-		Mix_FadeInChannel(-1, chunk, 0, 500);
+		Mix_PlayChannel(-1, chunk, 0);
 		chunk = nullptr;
 	}
 }

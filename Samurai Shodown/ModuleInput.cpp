@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleInput.h"
+
 #include "ModuleInputPlayer.h"
 #include "p2Qeue.h"
 #include "SDL/include/SDL.h"
@@ -35,56 +36,9 @@ bool ModuleInput::external_input()
 {
 	SDL_Event event;
 
-	while (SDL_PollEvent(&event) != 0)
+	while (SDL_PollEvent(&event))
 	{
-		if (event.type == SDL_KEYDOWN && event.key.repeat == 0)
-		{
-			switch (event.key.keysym.sym)
-			{
-			case SDLK_1:
-				key = ONE;
-				break;
-			case SDLK_2:
-				key = TWO;
-				break;
-			case SDLK_3:
-				key = THREE;
-				break;
-			case SDLK_w:
-				key = JUMP;
-				break;
-			case SDLK_s:
-				key = CROUCH_DOWN;
-				break;
-			case SDLK_a:
-				key = LEFT_DOWN;
-				break;
-			case SDLK_d:
-				key = RIGHT_DOWN;
-				break;
-			case SDLK_7:
-				key = ONE2;
-				break;
-			case SDLK_8:
-				key = TWO2;
-				break;
-			case SDLK_9:
-				key = THREE2;
-				break;
-			case SDLK_i:
-				key = JUMP2;
-				break;
-			case SDLK_k:
-				key = CROUCH_DOWN2;
-				break;
-			case SDLK_j:
-				key = LEFT_DOWN2;
-				break;
-			case SDLK_l:
-				key = RIGHT_DOWN2;
-				break;
-			}
-		}
+
 		if (event.type == SDL_KEYUP && event.key.repeat == 0)
 		{
 			switch (event.key.keysym.sym)
@@ -93,54 +47,157 @@ bool ModuleInput::external_input()
 				return false;
 				break;
 			case SDLK_s:
-				key = CROUCH_UP;
+				if (App->input_player->IsEnabled() == true)
+					down = false;
 				break;
 			case SDLK_k:
-				key = CROUCH_UP2;
+				if (App->input_player->IsEnabled() == true)
+					down2 = false;
 				break;
 			case SDLK_w:
-				key = JUMP_UP;
+				if (App->input_player->IsEnabled() == true)
+					up = false;
 				break;
 			case SDLK_i:
-				key = JUMP_UP2;
+				if (App->input_player->IsEnabled() == true)
+					up2 = false;
 				break;
 			case SDLK_a:
-				key = LEFT_UP;
+				if (App->input_player->IsEnabled() == true)
+					left = false;
 				break;
 			case SDLK_j:
-				key = LEFT_UP2;
+				if (App->input_player->IsEnabled() == true)
+					left2 = false;
 				break;
 			case SDLK_d:
-				key = RIGHT_UP;
+				if (App->input_player->IsEnabled() == true)
+					right = false;
 				break;
 			case SDLK_l:
-				key = RIGHT_UP2;
+				if (App->input_player->IsEnabled() == true)
+					right2 = false;
 				break;
 			}
 		}
-	
+
+		if (event.type == SDL_KEYDOWN && event.key.repeat == 0)
+		{
+			switch (event.key.keysym.sym)
+			{
+			case SDLK_1:
+				if (App->input_player->IsEnabled() == true)
+					App->input->inputs.Push(IN_1);
+				break;
+			case SDLK_2:
+				if (App->input_player->IsEnabled() == true)
+				App->input->inputs.Push(IN_2);
+				break;
+			case SDLK_3:
+				if (App->input_player->IsEnabled() == true)
+				App->input->inputs.Push(IN_3);
+				break;
+			case SDLK_w:
+				if (App->input_player->IsEnabled() == true)
+					up = true;
+				break;
+			case SDLK_s:
+				if (App->input_player->IsEnabled() == true)
+					down = true;
+				break;
+			case SDLK_a:
+				if (App->input_player->IsEnabled() == true)
+					left = true;
+				break;
+			case SDLK_d:
+				if (App->input_player->IsEnabled() == true)
+					right = true;
+				break;
+			case SDLK_7:
+				if (App->input_player->IsEnabled() == true)
+					App->input->inputs2.Push(IN_1_P2);
+				break;
+			case SDLK_8:
+				if (App->input_player->IsEnabled() == true)
+					App->input->inputs2.Push(IN_2_P2);
+				break;
+			case SDLK_9:
+				if (App->input_player->IsEnabled() == true)
+					App->input->inputs2.Push(IN_3_P2);
+				break;
+			case SDLK_i:
+				if (App->input_player->IsEnabled() == true)
+					up2 = true;
+				break;
+			case SDLK_k:
+				if (App->input_player->IsEnabled() == true)
+					down2 = true;
+				break;
+			case SDLK_j:
+				if (App->input_player->IsEnabled() == true)
+					left2 = true;
+				break;
+			case SDLK_l:
+				if (App->input_player->IsEnabled() == true)
+					right2 = true;
+				break;
+			}
+		}
+
 		
 	}
-/*
 	if (left && right)
-		inputs.Push(IN_LEFT_AND_RIGHT);
+		App->input->inputs.Push(IN_LEFT_AND_RIGHT);
 	{
 		if (left)
-			inputs.Push(IN_LEFT_DOWN);
+			App->input->inputs.Push(IN_LEFT_DOWN);
 		if (right)
-			inputs.Push(IN_RIGHT_DOWN);
+			App->input->inputs.Push(IN_RIGHT_DOWN);
 	}
 
+	if (!left)
+		App->input->inputs.Push(IN_LEFT_UP);
+	if (!right)
+		App->input->inputs.Push(IN_RIGHT_UP);
+	if (!down)
+		App->input->inputs.Push(IN_CROUCH_UP);
+
+
 	if (up && down)
-		inputs.Push(IN_JUMP_AND_CROUCH);
+		App->input->inputs.Push(IN_JUMP_AND_CROUCH);
 	else
 	{
 		if (down)
-			inputs.Push(IN_CROUCH_DOWN);
+			App->input->inputs.Push(IN_CROUCH_DOWN);
 		if (up)
-			inputs.Push(IN_JUMP);
+			App->input->inputs.Push(IN_JUMP);
 	}
-*/
+	if (left2 && right2)
+		App->input->inputs2.Push(IN_LEFT_AND_RIGHT_P2);
+	{
+		if (left2)
+			App->input->inputs2.Push(IN_LEFT_DOWN_P2);
+		if (right2)
+			App->input->inputs2.Push(IN_RIGHT_DOWN_P2);
+	}
+
+	if (!left2)
+		App->input->inputs2.Push(IN_LEFT_UP_P2);
+	if (!right2)
+		App->input->inputs2.Push(IN_RIGHT_UP_P2);
+	if (!down2)
+		App->input->inputs2.Push(IN_CROUCH_UP_P2);
+
+
+	if (up2 && down2)
+		App->input->inputs2.Push(IN_JUMP_AND_CROUCH_P2);
+	else
+	{
+		if (down2)
+			App->input->inputs2.Push(IN_CROUCH_DOWN_P2);
+		if (up2)
+			App->input->inputs2.Push(IN_JUMP_P2);
+	}
 	return true;
 }
 

@@ -25,7 +25,7 @@ int ModuleFonts::Load(const char* texture_path, const char* characters, uint row
 		return id;
 	}
 
-	SDL_Texture* tex = App->textures->Load(texture_path);
+	tex = App->textures->Load(texture_path);
 
 	if(tex == nullptr || strlen(characters) >= MAX_FONT_CHARS)
 	{
@@ -52,13 +52,13 @@ int ModuleFonts::Load(const char* texture_path, const char* characters, uint row
 	uint width, height;
 	App->textures->GetSize(tex, width, height);
 
-	strcpy(fonts[id].table, characters);
+	strcpy_s(fonts[id].table, characters);
 	fonts[id].row_chars = fonts[id].len / rows;
 	fonts[id].char_w = width / fonts[id].row_chars;
 	fonts[id].char_h = height / rows;
 	
 	LOG("Successfully loaded BMP font from %s", texture_path);
-
+	LOG("%d", id);
 	return id;
 }
 
@@ -80,6 +80,7 @@ void ModuleFonts::BlitText(int x, int y, int font_id, const char* text) const
 		LOG("Unable to render text with bmp font id %d", font_id);
 		return;
 	}
+	
 
 	const Font* font = &fonts[font_id];
 	SDL_Rect rect;
@@ -87,10 +88,21 @@ void ModuleFonts::BlitText(int x, int y, int font_id, const char* text) const
 
 	rect.w = font->char_w;
 	rect.h = font->char_h;
-
+	rect.y = fonts[font_id].char_h;
+// TODO 2: Find the character in the table and its position in the texture, then Blit
 	for(uint i = 0; i < len; ++i)
 	{
-		// TODO 2: Find the character in the table and its position in the texture, then Blit
 		
+		for (uint j = 0; j < fonts[font_id].row_chars; ++j) {
+			if ( fonts[font_id].table[j] == text[i]){
+				rect.x = j * fonts[font_id].char_w;
+			
+				App->render->Blit(fonts[font_id].graphic, x, y, &rect);
+				x += rect.w;
+			}
+			
+			
+		}
 	}
+	
 }

@@ -16,6 +16,7 @@ ModulePlayer::ModulePlayer()
 	current_animation = NULL;
 
 	position.x = 100;
+	
 	position.y = 207;
 	initialPos = position.y;
 
@@ -23,6 +24,10 @@ ModulePlayer::ModulePlayer()
 	idle.PushBack({ 86, 275, 73, 111 },		0.15,	0, 0, 0, 0);
 	idle.PushBack({ 164, 277, 72, 109 },	0.15,	0, 0, 0, 0);
 	idle.PushBack({ 241, 279, 72, 107 },	0.15,	0, 0, 0, 0);
+
+	crounch.PushBack({ 750, 432, 81, 121 }, 0.05, 0, 10, 0, 10);
+	crounch.PushBack({ 840, 463, 99, 94}, 0.05,-9, 13, 0, 13);
+	crounch.loop = false;
 
 	forward.PushBack({ 506, 150, 69, 112 }, 0.1,	0, 0, 0, 0);
 	forward.PushBack({ 580, 147, 59, 116 }, 0.25,	0, 0, 0, 0);
@@ -103,6 +108,8 @@ ModulePlayer::ModulePlayer()
 	cyclone.PushBack({ 427, 387, 62, 153 }, 0.2,	0, 0, 0, 0);
 	cyclone.PushBack({ 496, 442, 97, 98 },	0.2,  -20, 0, 0, 0);
 	cyclone.PushBack({ 600, 450, 97, 90 },	0.08, -20, 0, 0, 0);
+
+	//hit.PushBack({ 982, 446, 92, 107 }, 0.08, -20, 0, 0, 0);
 }
 
 ModulePlayer::~ModulePlayer()
@@ -115,10 +122,14 @@ bool ModulePlayer::Start()
 	bool ret = true;
 
 	position.x = 100;
+	
 	position.y = 207;
-
 	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet.png");
 	senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
+	sword = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - A- 01.ogg");
+	kicks = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - KICK 01.wav");
+	
+
 	if (flip == SDL_FLIP_HORIZONTAL) {
 		colliderPlayer = App->collision->AddCollider({ position.x+60, position.y - 90, 60, 90 }, COLLIDER_PLAYER, this);
 	}
@@ -136,6 +147,8 @@ bool ModulePlayer::CleanUp() {
 		}
 	App->textures->Unload(graphics);
 	App->music->UnloadChunk(senpuu);
+	App->music->UnloadChunk(sword);
+	App->music->UnloadChunk(kicks);
 	return true;
 }
 
@@ -243,6 +256,12 @@ if (state != current_state)
 		break;
 		break;
 	case ST_CROUCH:
+		if (animstart == 0)
+		{
+			current_animation = &crounch;
+			
+		}
+
 		LOG("CROUCHING ****\n");
 		break;
 	case ST_PUNCH_CROUCH:
@@ -250,32 +269,38 @@ if (state != current_state)
 		break;
 	case ST_PUNCH_STANDING:
 		if (flip == SDL_FLIP_NONE) {
+			
 			if (collider == true) {
-				colliderAttack = App->collision->AddCollider({ position.x, position.y - 90  , 60, 90 }, COLLIDER_PLAYER_SHOT, this);
+				colliderAttack = App->collision->AddCollider({ position.x, position.y - 70 , 70, 70 }, COLLIDER_PLAYER_SHOT, this);
 				collider = false;
 			}
 
 			if (colliderAttack != nullptr)
-				colliderAttack->SetPos(position.x + 60, position.y - 90);
+				colliderAttack->SetPos(position.x + 60, position.y - 70);
 			if (animstart == 0)
 			{
 				current_animation = &punch;
+				
 				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
 			}
+			
 		}
 		else if (flip == SDL_FLIP_HORIZONTAL) {
+			
 			if (collider == true) {
-				colliderAttack = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_PLAYER_SHOT, this);
+				colliderAttack = App->collision->AddCollider({ position.x, position.y - 70, 50, 70 }, COLLIDER_PLAYER_SHOT, this);
 				collider = false;
 			}
 
 			if (colliderAttack != nullptr)
-				colliderAttack->SetPos(position.x -60, position.y - 90);
+				colliderAttack->SetPos(position.x -50, position.y - 70);
 			if (animstart == 0)
 			{
 				current_animation = &punch;
+				
 				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
 			}
+			
 		}
 		break;
 		LOG("PUNCH STANDING ++++\n");
@@ -294,30 +319,33 @@ if (state != current_state)
 	case ST_KICK_STANDING:
 		if (flip == SDL_FLIP_NONE) {
 			if (collider == true) {
-				colliderAttack = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_PLAYER_SHOT, this);
+				colliderAttack = App->collision->AddCollider({ position.x, position.y - 90, 40, 50 }, COLLIDER_PLAYER_SHOT, this);
 				collider = false;
 			}
 
 			if (colliderAttack != nullptr)
-				colliderAttack->SetPos(position.x + 50, position.y - 90);
+				colliderAttack->SetPos(position.x + 60, position.y - 90);
+			
 			if (animstart == 0)
 			{
 				current_animation = &kick;
+				App->music->PlayChunk(kicks);
 				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
 			}
 		}
 		else if (flip == SDL_FLIP_HORIZONTAL) {
 		
 			if (collider == true) {
-				colliderAttack = App->collision->AddCollider({ position.x-50, position.y - 90, 60, 90 }, COLLIDER_PLAYER_SHOT, this);
+				colliderAttack = App->collision->AddCollider({ position.x-50, position.y - 90, 20, 50 }, COLLIDER_PLAYER_SHOT, this);
 				collider = false;
 			}
 
 			if (colliderAttack != nullptr)
-				colliderAttack->SetPos(position.x - 50, position.y - 90);
+				colliderAttack->SetPos(position.x - 20, position.y - 90);
 			if (animstart == 0)
 			{
 				current_animation = &kick;
+			
 				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
 			}
 		
@@ -374,7 +402,7 @@ current_state = state;
 	App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y -r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r, flip);
 	}
 	if (flip == SDL_FLIP_HORIZONTAL) {
-		App->render->Blit(graphics, position.x +/*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()]*2, position.y - r.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
+		App->render->Blit(graphics, position.x -10 +/*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()]*2, position.y - r.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
 	}
 	colliderPlayer->SetPos(position.x, position.y - 90);
 	return UPDATE_CONTINUE;
@@ -414,6 +442,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_CROUCH_DOWN: state = ST_CROUCH; break;
 			case IN_1: state = ST_PUNCH_STANDING;  App->input->punch_timer = SDL_GetTicks();  break;
 			case IN_2: state = ST_KICK_STANDING;  App->input->kick_timer = SDL_GetTicks();  break;
+			case IN_3: state = ST_TORNADO;  App->input->tornado_timer = SDL_GetTicks();  break;
 			}
 		}
 		break;
@@ -428,6 +457,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_CROUCH_DOWN: state = ST_CROUCH; break;
 			case IN_1: state = ST_PUNCH_STANDING;  App->input->punch_timer = SDL_GetTicks();  break;
 			case IN_2: state = ST_KICK_STANDING;  App->input->kick_timer = SDL_GetTicks();  break;
+			case IN_3: state = ST_TORNADO;  App->input->tornado_timer = SDL_GetTicks();  break;
 			}
 		}
 		break;
@@ -494,12 +524,14 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		{
 			switch (last_input)
 			{
+				
 			case IN_PUNCH_FINISH: state = ST_IDLE; animstart = 0; collider = true; break;
 			}
 		}
 		break;
 		case ST_KICK_STANDING:
 		{
+			
 			switch (last_input)
 			{
 			case IN_KICK_FINISH: state = ST_IDLE; animstart = 0; collider = true; break;

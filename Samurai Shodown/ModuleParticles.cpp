@@ -130,12 +130,23 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 		if (active[i]==nullptr)
 		{
 			Particle* p = new Particle(particle);
+			
 			if (collider_type == COLLIDER_PLAYER_SHOT) {
 				if (App->player->flip == SDL_FLIP_NONE) {
 					p->direction = "right";
 					p->position.x = x - 120;
 				}
 				if (App->player->flip == SDL_FLIP_HORIZONTAL) {
+					p->direction = "left";
+					p->position.x = x + 120;
+				}
+			}
+			if (collider_type == COLLIDER_ENEMY_SHOT) {
+				if (App->player2->flip == SDL_FLIP_NONE) {
+					p->direction = "right";
+					p->position.x = x - 120;
+				}
+				if (App->player2->flip == SDL_FLIP_HORIZONTAL) {
 					p->direction = "left";
 					p->position.x = x + 120;
 				}
@@ -153,7 +164,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
-	if (c2->type == COLLIDER_ENEMY)
+	if (c1->type == COLLIDER_PLAYER_SHOT && c2->type == COLLIDER_ENEMY)
 	{
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
@@ -180,6 +191,33 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		}
 	}
 }
+	if (c1->type == COLLIDER_ENEMY_SHOT && c2->type == COLLIDER_PLAYER)
+	{
+		for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+		{
+
+			// Always destroy particles that collide
+			if (active[i] != nullptr && active[i]->collider == c1)
+			{
+				/*delete active[i];
+				active[i] = nullptr;
+				*/
+				active[i]->anim = tornado.anim;
+				active[i]->speed = tornado.speed;
+				active[i]->life = tornado.life;
+				if (active[i]->direction == "right") {
+					active[i]->position.x += 50;
+				}
+				if (active[i]->direction == "left") {
+					active[i]->position.x -= 50;
+				}
+				active[i]->position.y -= 150;
+				active[i]->collider->to_delete = true;
+
+				break;
+			}
+		}
+	}
 }
 
 Particle::Particle()
