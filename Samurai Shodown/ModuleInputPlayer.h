@@ -11,16 +11,16 @@ class ModuleInputPlayer : public Module
 {
 public:
 
-	ModuleInputPlayer();
-	~ModuleInputPlayer();
+	ModuleInputPlayer() {};
+	~ModuleInputPlayer() {};
 
 	bool Init() {
 		return true;
 	}
-	update_status Update();
-//	void internal_input();
+	update_status Update() {
+		return UPDATE_CONTINUE;
+	}
 
-	bool CleanUp() { return true; }
 	
 
 public:

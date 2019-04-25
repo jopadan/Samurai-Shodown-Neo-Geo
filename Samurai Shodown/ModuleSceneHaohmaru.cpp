@@ -81,7 +81,7 @@ bool ModuleSceneHaohmaru::Start()
 	bool ret = true;
 	
 	starttime = SDL_GetTicks();
-	timer = 99;
+	timer = 100;
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 	App->collision->Enable();

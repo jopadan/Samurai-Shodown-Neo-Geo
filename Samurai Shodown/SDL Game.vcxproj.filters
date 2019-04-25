@@ -103,9 +103,6 @@
     <ClCompile Include="ModuleInput.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleInputPlayer.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleMenu.cpp">
       <Filter>Modules</Filter>
     </ClCompile>

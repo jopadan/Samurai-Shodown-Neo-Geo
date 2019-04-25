@@ -101,7 +101,6 @@
     <ClCompile Include="ModuleCollision.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleFonts.cpp" />
-    <ClCompile Include="ModuleInputPlayer.cpp" />
     <ClCompile Include="ModuleMenu.cpp" />
     <ClCompile Include="ModuleMusic.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
