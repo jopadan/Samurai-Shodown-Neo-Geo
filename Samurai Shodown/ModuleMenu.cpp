@@ -77,7 +77,7 @@ update_status ModuleMenu::Update()
 	App->render->Blit(graphics, 124, 172, &(start.GetCurrentFrame()), SDL_FLIP_NONE, 1);
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
-		App->fade->FadeToBlack(App->menu, (Module*)App->scene_haohmaru, 1);
+		App->fade->FadeToBlack(App->menu, (Module*)App->end, 1);
 	}
 
 	return UPDATE_CONTINUE;

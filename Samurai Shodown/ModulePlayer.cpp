@@ -583,7 +583,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	}
 	if (colliderPlayer == c1 && c2->type == COLLIDER_ENEMY)
 	{
-		App->player2->position.x = position.x+60;
+		App->player2->position.x += 5 ;
 		speed = 1;
 	}
 

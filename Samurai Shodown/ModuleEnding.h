@@ -25,6 +25,7 @@ public:
 	Mix_Music* musload;
 	Mix_Chunk* chunkload;
 	SDL_Rect end;
+	SDL_Rect black;
 	Animation flower;
 	
 
