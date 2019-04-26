@@ -595,7 +595,8 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 	}
 	if (colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER_SHOT)
 	{
-		App->player->colliderAttack->to_delete = true;
+		if(App->player->colliderAttack!=nullptr)
+			App->player->colliderAttack->to_delete = true;
 		App->ui->Health_Bar_p2 -= App->player->Damage;
 		App->input->inputs2.Push(IN_DAMAGE_P2);
 	}
