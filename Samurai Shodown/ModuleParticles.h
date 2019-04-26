@@ -47,6 +47,7 @@ public:
 private:
 
 	SDL_Texture* graphics = nullptr;
+	
 	Particle* active[MAX_ACTIVE_PARTICLES];
 	//uint last_particle = 0;
 
@@ -54,6 +55,7 @@ public:
 	Animation * current_animation = nullptr;
 	Particle cyclone;
 	Particle tornado;
+	//Particle flower;
 	int* direction[MAX_ACTIVE_PARTICLES];
 };
 
