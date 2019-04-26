@@ -15,8 +15,6 @@ class ModulePlayer : public Module
 {
 private:
 	int jump;
-	int speed = 2;
-	bool deletecol = true;
 	bool floor = true;
 	bool attAnim= false;
 	bool kickAnim = false;
@@ -36,6 +34,7 @@ public:
 	ModulePlayer();
 	~ModulePlayer();
 
+	int speed = 2;
 	bool Start();
 	update_status Update();
 	bool CleanUp();
@@ -61,7 +60,7 @@ public:
 	Animation cyclone;
 	Animation tornado;
 	iPoint position;
-
+	bool deletecol = true;
 	int health = 127;
 
 	Collider *colliderPlayer;

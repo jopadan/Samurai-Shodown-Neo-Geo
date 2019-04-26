@@ -89,9 +89,9 @@ update_status ModuleUI::Update() {
 		App->render->Blit(graphics, -App->render->camera.x / 3 + 207, -App->render->camera.y / 3 + 9, &health2, SDL_FLIP_NONE, 1);
 	}
 
-	App->render->Blit(graphics, -App->render->camera.x / 3 + 45, -App->render->camera.y / 3 + 12, &healthCont, SDL_FLIP_NONE, 1);
-	App->render->Blit(graphics, -App->render->camera.x / 3 + 206, -App->render->camera.y / 3 + 12, &healthCont2, SDL_FLIP_NONE, 1);
-	App->render->Blit(graphics, -App->render->camera.x / 3 + 178, -App->render->camera.y / 3 + 5, &ko, SDL_FLIP_NONE, 1);
+	App->render->Blit(graphics, -App->render->camera.x / 3 + 15, -App->render->camera.y / 3 + 12, &healthCont, SDL_FLIP_NONE, 1);
+	App->render->Blit(graphics, -App->render->camera.x / 3 + 150, -App->render->camera.y / 3 + 12, &healthCont2, SDL_FLIP_NONE, 1);
+	App->render->Blit(graphics, -App->render->camera.x / 3 + 128, -App->render->camera.y / 3 + 5, &ko, SDL_FLIP_NONE, 1);
 
 	return UPDATE_CONTINUE;
 }

@@ -37,7 +37,7 @@ bool ModuleRender::Init()
 		LOG("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
-	camera.x += App->player->position.x -30;
+	camera.x += App->player->position.x - 30;
 	return ret;
 }
 
@@ -51,23 +51,32 @@ update_status ModuleRender::PreUpdate()
 
 update_status ModuleRender::Update()
 {
-
-	camera.x = (-(App->player->position.x + App->player2->position.x) / 2);
-	
-
-	/*if (App->player->position.x +30 < camera.x - SCREEN_SIZE) {
-		camera.x -= speed;
+	int speed = 12;
+	/*if ((App->player->position.x + App->player2->position.x) / 2 > camera.x + SCREEN_WIDTH / 2 ) {
+		//camera.x += speed;
+	}
+	if ((App->player->position.x + App->player2->position.x) / 2 < camera.x + SCREEN_WIDTH / 2) {
+		//camera.x -= speed;
+	}
+	if ((App->player2->position.x - App->player->position.x) >140){
+	//camera.x = (-(App->player->position.x + App->player2->position.x) + SCREEN_WIDTH) * 3;
+		camera.x += -(App->player->position.x/3);
 	}
 	*/
-	
-	/*
-	if (camera.y > 0 && App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT)
+	if((-(((App->player->position.x + App->player2->position.x + 60) / 2 - SCREEN_WIDTH / 2) * 3)) < 0 && (-(((App->player->position.x + App->player2->position.x + 60) / 2 - SCREEN_WIDTH / 2) * 3)) > -1000)
+	if ((camera.x - 912) / -2 != (App->player->position.x + App->player2->position.x) / 2){
+		camera.x = -(((App->player->position.x + App->player2->position.x+60) / 2 - SCREEN_WIDTH/2 )* 3);
+}
+	LOG("jugadores %d", (App->player->position.x));
+	LOG("screen %d ", camera.x);
+/*
+	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT)
 		camera.y -= speed;
 
-	if (camera.x < 0 && App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_REPEAT)
 		camera.x += speed;
 
-	if (camera.x > -745 && App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_REPEAT)
 		camera.x -= speed;
 */
 	return update_status::UPDATE_CONTINUE;

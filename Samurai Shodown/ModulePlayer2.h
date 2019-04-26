@@ -15,8 +15,6 @@ class ModulePlayer2 : public Module
 {
 private:
 	int jump;
-	int speed = 2;
-	bool deletecol = true;
 	bool floor = true;
 	bool attAnim = false;
 	bool kickAnim = false;
@@ -41,6 +39,7 @@ public:
 
 public:
 
+	bool deletecol = true;
 	SDL_Texture* graphics = nullptr;
 	Animation* current_animation = nullptr;
 	Mix_Chunk* senpuu;
@@ -53,7 +52,7 @@ public:
 	Animation punch;
 	Animation crounch;
 	int health = 127;
-
+	int speed = 2;
 	Animation kick;
 	Animation cyclone;
 	Animation tornado;

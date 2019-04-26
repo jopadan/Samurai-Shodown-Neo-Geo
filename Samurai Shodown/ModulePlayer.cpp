@@ -15,7 +15,7 @@ ModulePlayer::ModulePlayer()
 	graphics = NULL;
 	current_animation = NULL;
 
-	position.x = 100;
+	position.x = 208;
 	
 	position.y = 207;
 	initialPos = position.y;
@@ -121,7 +121,7 @@ bool ModulePlayer::Start()
 	LOG("Loading player textures");
 	bool ret = true;
 
-	position.x = 100;
+	position.x = 208;
 	
 	position.y = 207;
 	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet.png");
@@ -167,7 +167,8 @@ if (state != current_state)
 		break;
 
 	case ST_WALK_FORWARD:
-		if (wall && position.x > 100) {}
+		if (wall && position.x > 100 ) {}
+		else if (position.x+60 > (-App->render->camera.x + 912) / 3) {}
 		else {
 			if (flip == SDL_FLIP_HORIZONTAL) {
 				current_animation = &backward;
@@ -182,6 +183,7 @@ if (state != current_state)
 		break;
 	case ST_WALK_BACKWARD:
 		if (wall && position.x < 100) {}
+		else if (position.x < -(App->render->camera.x / 3)) {}
 		else {
 			
 			if (flip == SDL_FLIP_HORIZONTAL) {
@@ -583,8 +585,11 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	}
 	if (colliderPlayer == c1 && c2->type == COLLIDER_ENEMY)
 	{
-		App->player2->position.x += 5 ;
-		speed = 1;
+	
+		if (flip == SDL_FLIP_HORIZONTAL)
+		position.x += App->player2->speed/2;
+		if (flip == SDL_FLIP_NONE)
+			position.x -= App->player2->speed/2;
 	}
 
 }

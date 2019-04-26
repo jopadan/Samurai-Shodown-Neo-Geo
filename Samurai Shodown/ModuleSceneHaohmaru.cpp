@@ -80,7 +80,8 @@ bool ModuleSceneHaohmaru::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
-	
+	App->player->deletecol = true;
+	App->player2->deletecol = true;
 	starttime = SDL_GetTicks();
 	timer = 100;
 	App->render->camera.x = 0;
@@ -99,8 +100,8 @@ bool ModuleSceneHaohmaru::Start()
 
 
 	// COLLIDERS PARA LOS LIMITES DEL MAPA
-	colliderMap = App->collision->AddCollider({ 0, -150, 50, 500  }, COLLIDER_WALL);
-	colliderMap2 = App->collision->AddCollider({ 590, -150, 50, 500 }, COLLIDER_WALL);
+	colliderMap = App->collision->AddCollider({ -55, -150, 50, 500  }, COLLIDER_WALL);
+	colliderMap2 = App->collision->AddCollider({ 635, -150, 50, 500 }, COLLIDER_WALL);
 	return ret;
 }
 
@@ -113,6 +114,8 @@ bool ModuleSceneHaohmaru::CleanUp()
 	if (colliderMap2 != nullptr) {
 		colliderMap2->to_delete = true;
 	}
+	App->player->deletecol = true;
+	App->player2->deletecol = true;
 	App->music->UnloadMus(musload);
 	App->textures->Unload(graphics);
 	App->player->Disable();
