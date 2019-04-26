@@ -188,7 +188,7 @@ update_status ModulePlayer2::Update()
 				if (wall && position.x > 100) {}
 				else if (position.x + 60 > (-App->render->camera.x + 912) / 3) {}
 				else {
-					position.x += 2;
+					position.x += 3;
 				}
 				if (position.y < 120) {
 					jumpSpeed -= 0.5;
@@ -209,7 +209,7 @@ update_status ModulePlayer2::Update()
 				if (wall && position.x < 100) {}
 				else if (position.x < -(App->render->camera.x / 3)) {}
 				else {
-					position.x -= 2;
+					position.x -= 3;
 				}
 				if (position.y < 120) {
 					jumpSpeed -= 0.5;
