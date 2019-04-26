@@ -76,7 +76,8 @@ ModulePlayer::ModulePlayer()
 	cyclone.PushBack({ 496, 442, 97, 98 },	0.2,  -20, 0, 0, 0);
 	cyclone.PushBack({ 600, 450, 97, 90 },	0.08, -20, 0, 0, 0);
 
-	//hit.PushBack({ 982, 446, 92, 107 }, 0.08, -20, 0, 0, 0);
+	hit.PushBack({ 982, 446, 92, 107 }, 0.08, -20, 0, 0, 0);
+
 }
 
 ModulePlayer::~ModulePlayer()
@@ -236,6 +237,28 @@ if (state != current_state)
 	case ST_PUNCH_CROUCH:
 		LOG("PUNCH CROUCHING **++\n");
 		break;
+	case ST_DAMAGE:
+		
+			if (animstart == 0)
+			{
+				current_animation = &hit;
+				if (flip == SDL_FLIP_NONE) {
+					position.x -= 4;
+				}
+				if (flip == SDL_FLIP_HORIZONTAL) {
+					position.x += 4;
+				}
+				if (position.y != initialPos) {
+					current_animation = &hit; 
+					jumpSpeed = 3;
+					position.y += jumpSpeed;
+					
+				}
+				else {
+				
+				if (current_animation->AnimationEnd() == true) { animstart = 1; App->input->inputs.Push(IN_DAMAGE_FINISH); }}
+			}
+		break;
 	case ST_PUNCH_STANDING:
 		if (flip == SDL_FLIP_NONE) {
 			
@@ -274,8 +297,7 @@ if (state != current_state)
 			
 		}
 		break;
-		LOG("PUNCH STANDING ++++\n");
-		break;
+	
 	case ST_PUNCH_NEUTRAL_JUMP:
 		LOG("PUNCH NEUTRAL JUMP ++++\n");
 	case ST_PUNCH_FORWARD_JUMP:
@@ -403,6 +425,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_1: state = ST_PUNCH_STANDING;  App->input->punch_timer = SDL_GetTicks();  break;
 			case IN_2: state = ST_KICK_STANDING;  App->input->kick_timer = SDL_GetTicks();  break;
 			case IN_3: state = ST_TORNADO;  App->input->tornado_timer = SDL_GetTicks();  break;
+			case IN_DAMAGE: state = ST_DAMAGE;  break;
 			}
 		}
 		break;
@@ -418,6 +441,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_1: state = ST_PUNCH_STANDING;  App->input->punch_timer = SDL_GetTicks();  break;
 			case IN_2: state = ST_KICK_STANDING;  App->input->kick_timer = SDL_GetTicks();  break;
 			case IN_3: state = ST_TORNADO;  App->input->tornado_timer = SDL_GetTicks();  break;
+			case IN_DAMAGE: state = ST_DAMAGE;  break;
 			}
 		}
 		break;
@@ -433,6 +457,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_1: state = ST_PUNCH_STANDING;  App->input->punch_timer = SDL_GetTicks();  break;
 			case IN_2: state = ST_KICK_STANDING;  App->input->kick_timer = SDL_GetTicks();  break;
 			case IN_3: state = ST_TORNADO;  App->input->tornado_timer = SDL_GetTicks();  break;
+			case IN_DAMAGE: state = ST_DAMAGE;  break;
 			}
 		}
 		break;
@@ -442,7 +467,8 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			switch (last_input)
 			{
 			case IN_JUMP_FINISH: state = ST_IDLE; animstart = 0; break;
-		//	case IN_1: state = ST_PUNCH_NEUTRAL_JUMP;  App->input->punch_timer = SDL_GetTicks(); break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0; break;
+				//	case IN_1: state = ST_PUNCH_NEUTRAL_JUMP;  App->input->punch_timer = SDL_GetTicks(); break;
 			}
 		}
 		break;
@@ -452,7 +478,8 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			switch (last_input)
 			{
 			case IN_JUMP_FINISH: state = ST_IDLE; animstart = 0; break;
-		//	case IN_1: state = ST_PUNCH_FORWARD_JUMP;  App->input->punch_timer = SDL_GetTicks(); break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0; break;
+				//	case IN_1: state = ST_PUNCH_FORWARD_JUMP;  App->input->punch_timer = SDL_GetTicks(); break;
 
 			}
 		}
@@ -463,7 +490,8 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			switch (last_input)
 			{
 			case IN_JUMP_FINISH: state = ST_IDLE; animstart = 0; break;
-		//	case IN_1: state = ST_PUNCH_BACKWARD_JUMP;  App->input->punch_timer = SDL_GetTicks(); break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
+				//	case IN_1: state = ST_PUNCH_BACKWARD_JUMP;  App->input->punch_timer = SDL_GetTicks(); break;
 			}
 		}
 		break;
@@ -473,6 +501,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			switch (last_input)
 			{
 			case IN_PUNCH_FINISH: state = ST_IDLE;  break;
+				case IN_DAMAGE: state = ST_DAMAGE;  break;
 			}
 		}
 		break;
@@ -482,6 +511,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			switch (last_input)
 			{
 			case IN_PUNCH_FINISH: state = ST_IDLE;  break;
+			case IN_DAMAGE: state = ST_DAMAGE;  break;
 			}
 		}
 		break;
@@ -491,6 +521,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			switch (last_input)
 			{
 			case IN_PUNCH_FINISH: state = ST_IDLE;  break;
+			case IN_DAMAGE: state = ST_DAMAGE;  break;
 			}
 		}
 		break;
@@ -499,17 +530,19 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		{
 			switch (last_input)
 			{
-				
+
 			case IN_PUNCH_FINISH: state = ST_IDLE; animstart = 0; collider = true; break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
 			}
 		}
 		break;
 		case ST_KICK_STANDING:
 		{
-			
+
 			switch (last_input)
 			{
 			case IN_KICK_FINISH: state = ST_IDLE; animstart = 0; collider = true; break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
 			}
 		}
 		break;
@@ -517,6 +550,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			switch (last_input)
 			{
 			case IN_TORNADO_FINISH: state = ST_IDLE; animstart = 0; shoot = true; break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
 			}
 			break;
 
@@ -526,6 +560,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			{
 			case IN_CROUCH_UP: state = ST_IDLE; break;
 			case IN_1: state = ST_PUNCH_CROUCH; App->input->punch_timer = SDL_GetTicks(); break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
 			}
 		}
 		break;
@@ -534,9 +569,19 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			switch (last_input)
 			{
 			case IN_PUNCH_FINISH: state = ST_IDLE; break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
 			}
+			break;
 		}
-		break;
+		case ST_DAMAGE:
+		{
+			switch (last_input)
+			{
+			case IN_DAMAGE_FINISH: state = ST_IDLE; animstart = 0; break;
+			}
+			break;
+		}
+
 		}
 	}
 
@@ -562,6 +607,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	{
 		App->player2->colliderAttack->to_delete = true;
 		App->ui->HealthBar_p1 -= App->player2->Damage;
+		App->input->inputs.Push(IN_DAMAGE);
 	
 	}
 

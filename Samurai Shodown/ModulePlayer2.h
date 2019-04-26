@@ -50,6 +50,7 @@ public:
 	Animation jumpup;
 	Animation punch;
 	Animation crounch;
+	Animation hit;
 	Uint32 speed = 2;
 	bool deletecol = true;
 	Uint32 Damage = 20;

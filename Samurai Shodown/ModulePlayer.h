@@ -55,7 +55,7 @@ public:
 	Animation punch;
 	Animation crounch;
 	Animation kick;
-	//Animation hit;
+	Animation hit;
 	Animation cyclone;
 	Animation tornado;
 	iPoint position;

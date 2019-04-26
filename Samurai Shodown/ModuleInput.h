@@ -64,7 +64,8 @@ enum player_states
 	ST_KICK_FORWARD_JUMP,
 	ST_KICK_BACKWARD_JUMP,
 	ST_KICK_CROUCH,
-	ST_TORNADO
+	ST_TORNADO,
+	ST_DAMAGE
 };
 enum player_inputs
 {
@@ -99,7 +100,11 @@ enum player_inputs
 	IN_JUMP_FINISH_P2,
 	IN_PUNCH_FINISH_P2,
 	IN_KICK_FINISH_P2,
-	IN_TORNADO_FINISH_P2
+	IN_TORNADO_FINISH_P2,
+	IN_DAMAGE,
+	IN_DAMAGE_P2,
+	IN_DAMAGE_FINISH,
+	IN_DAMAGE_FINISH_P2
 };
 
 
@@ -143,6 +148,7 @@ public:
 	Uint32 punch_timer2 = 0;
 	Uint32 kick_timer2 = 0;
 	Uint32 tornado_timer2 = 0;
+
 	bool left = false;
 	bool right = false;
 	bool down = false;
