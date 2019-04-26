@@ -20,7 +20,6 @@ private:
 	bool kickAnim = false;
 	bool cycloneAnim = false;
 	bool crouch = false;
-	//bool hit = false;
 	bool tornadoAnim;
 	int initialPos;
 	float jumpSpeed = 6;
@@ -28,13 +27,13 @@ private:
 	bool shoot = true;
 	bool collider = true;
 	bool wall = false;
-//	int pivotey = 0, pivotex = 0;
+
 	
 public:
 	ModulePlayer();
 	~ModulePlayer();
 
-	int speed = 2;
+	
 	bool Start();
 	update_status Update();
 	bool CleanUp();
@@ -43,7 +42,7 @@ public:
 
 
 public:
-
+	Uint32 speed = 2;
 	SDL_Texture* graphics = nullptr;
 	Animation* current_animation = nullptr;
 	Mix_Chunk* senpuu;
@@ -60,9 +59,8 @@ public:
 	Animation cyclone;
 	Animation tornado;
 	iPoint position;
+	Uint32 Damage = 20;
 	bool deletecol = true;
-	int health = 127;
-
 	Collider *colliderPlayer;
 	Collider *colliderAttack;
 	SDL_RendererFlip flip = SDL_FLIP_NONE;

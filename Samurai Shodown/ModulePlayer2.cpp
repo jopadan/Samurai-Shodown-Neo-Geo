@@ -9,6 +9,7 @@
 #include "ModulePlayer.h"
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
+#include "ModuleUI.h"
 
 
 ModulePlayer2::ModulePlayer2()
@@ -60,31 +61,12 @@ ModulePlayer2::ModulePlayer2()
 	punch.PushBack({ 940, 44, 83, 94 }, 0.2, 0, 11, 4, 11);
 	punch.PushBack({ 1025, 42, 131, 85 }, 0.1, 0, 0, -20, 0);
 
-	/* punch.PushBack({ 3, 0, 69, 127 }, 0.3, 0, 0, -10, 0);
-	punch.PushBack({ 74, 30, 79, 97 }, 0.1, -10, 0, -20, 0);
-	punch.PushBack({ 158, 33, 132, 94 }, 0.6, 0, 0, -10, 0); //
-	punch.PushBack({ 290, 33, 132, 94 }, 0.6, 0, 0, -10 ,0);
-	punch.PushBack({ 423, 42, 131, 85 }, 0.6, 0, 0, -10, 0);
-	punch.PushBack({ 556, 44, 130, 94 }, 0.6, 0, 11, -10, 11);
-	punch.PushBack({ 688, 44, 128, 94 }, 0.6, 0, 11, -10, 11);
-	punch.PushBack({ 818, 44, 120, 94 }, 0.6, 0, 11, -10, 11);
-	punch.PushBack({ 940, 44, 83, 94 }, 0.2, 0, 11, -10, 11);
-	punch.PushBack({ 1025, 42, 131, 85 }, 0.1, 0, 0, -10, 0);*/
-
 	kick.PushBack({ 647, 274, 58, 112 }, 0.2, 0, 0, 4, 0);
 	kick.PushBack({ 710, 276, 53, 110 }, 0.1, 0, 0, -4, 0);
 	kick.PushBack({ 768, 288, 94, 98 }, 0.1, 0, 0, -4, 0);
 	kick.PushBack({ 867, 287, 97, 99 }, 0.1, 0, 0, -4, 0);
 	kick.PushBack({ 969, 286, 82, 100 }, 0.2, 0, 0, 4, 0);
 
-	/*
-	kick.PushBack({ 647, 274, 58, 112 },	0.2,	0, 0, -10, 0);
-	kick.PushBack({ 710, 276, 53, 110 },	0.2,	0, 0, -10, 0);
-	kick.PushBack({ 768, 288, 94, 98 },		0.2,	0, 0, -10, 0);
-	kick.PushBack({ 867, 287, 97, 99 },		0.2,	0, 0, -10, 0);
-	kick.PushBack({ 969, 286, 82, 100 },	0.2,	0, 0, -10, 0);
-
-	*/
 	cyclone.PushBack({ 8, 452, 90, 88 }, 0.1, 0, 0, 0, 0);
 	cyclone.PushBack({ 105, 451, 70, 89 }, 0.2, 0, 0, 0, 0);
 	cyclone.PushBack({ 181, 457, 73, 83 }, 0.2, 0, 0, 0, 0);
@@ -252,7 +234,7 @@ update_status ModulePlayer2::Update()
 		case ST_PUNCH_STANDING:
 			if (flip == SDL_FLIP_NONE) {
 				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ position.x, position.y - 70  , 70, 70 }, COLLIDER_PLAYER_SHOT, this);
+					colliderAttack = App->collision->AddCollider({ position.x, position.y - 70  , 70, 70 }, COLLIDER_ENEMY_SHOT, this);
 					App->music->PlayChunk(sword);
 					collider = false;
 				}
@@ -267,7 +249,7 @@ update_status ModulePlayer2::Update()
 			}
 			else if (flip == SDL_FLIP_HORIZONTAL) {
 				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ position.x, position.y - 70, 50, 70 }, COLLIDER_PLAYER_SHOT, this);
+					colliderAttack = App->collision->AddCollider({ position.x, position.y - 70, 50, 70 }, COLLIDER_ENEMY_SHOT, this);
 					App->music->PlayChunk(sword);
 					collider = false;
 				}
@@ -297,7 +279,7 @@ update_status ModulePlayer2::Update()
 		case ST_KICK_STANDING:
 			if (flip == SDL_FLIP_NONE) {
 				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ position.x, position.y - 90, 40, 50 }, COLLIDER_PLAYER_SHOT, this);
+					colliderAttack = App->collision->AddCollider({ position.x, position.y - 90, 40, 50 }, COLLIDER_ENEMY_SHOT, this);
 					App->music->PlayChunk(kicks);
 					collider = false;
 				}
@@ -313,7 +295,7 @@ update_status ModulePlayer2::Update()
 			else if (flip == SDL_FLIP_HORIZONTAL) {
 
 				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ position.x - 50, position.y - 90, 20, 50 }, COLLIDER_PLAYER_SHOT, this);
+					colliderAttack = App->collision->AddCollider({ position.x - 50, position.y - 90, 20, 50 }, COLLIDER_ENEMY_SHOT, this);
 					App->music->PlayChunk(kicks);
 					collider = false;
 				}
@@ -558,5 +540,12 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 			position.x -= App->player->speed/2;
 		
 	}
+	if (colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER_SHOT)
+	{
+		App->player->colliderAttack->to_delete = true;
+		App->ui->Health_Bar_p2 -= App->player->Damage;
+		
+	}
+
 
 }

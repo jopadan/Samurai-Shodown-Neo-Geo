@@ -3,8 +3,6 @@
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
-#include "ModulePlayer.h"
-#include "ModulePlayer2.h"
 #include "SDL/include/SDL.h"
 
 ModuleUI::ModuleUI() {
@@ -33,27 +31,27 @@ ModuleUI::ModuleUI() {
 	end.PushBack({ 484, 465, 28, 21 }, 0.2, 0, 0, 0, 0);
 
 	
-	if (App != nullptr){
+	
 	health.x = 273;//25, 9,,207, 9
 	health.y = 310;
-	health.w = App->player->health;
+	health.w = HealthBar_p1;
 	health.h = 8;
 
 	health2.x = 273;
 	health2.y = 310;
-	health2.w = App->player2->health;
+	health2.w = Health_Bar_p2;
 	health2.h = 8;
 
 	lowHealth.x = 277;
 	lowHealth.y = 326;
-	lowHealth.w = App->player->health;
+	lowHealth.w = HealthBar_p1;
 	lowHealth.h = 8;
 
 	lowHealth2.x = 277;
 	lowHealth2.y = 326;
-	lowHealth2.w = App->player2->health;
+	lowHealth2.w = Health_Bar_p2;
 	lowHealth2.h = 8;
-}
+
 }
 ModuleUI::~ModuleUI()
 {}
@@ -75,14 +73,14 @@ bool ModuleUI::CleanUp() {
 update_status ModuleUI::Update() {
 
 
-	if (App->player->health <= 32) {
-		App->render->Blit(graphics, -App->render->camera.x / 3 + 25 + (127 - App->player->health), -App->render->camera.y / 3, &lowHealth, SDL_FLIP_NONE, 1);
+	if (HealthBar_p1 <= 32) {
+		App->render->Blit(graphics, -App->render->camera.x / 3 + 25 + (127 - HealthBar_p1), -App->render->camera.y / 3, &lowHealth, SDL_FLIP_NONE, 1);
 	}
 	else {
-		App->render->Blit(graphics, -App->render->camera.x / 3 + 25 + (127 - App->player->health), -App->render->camera.y / 3, &health, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x / 3 + 25 + (127 - HealthBar_p1), -App->render->camera.y / 3, &health, SDL_FLIP_NONE, 1);
 	}
 	
-	if (App->player2->health <= 32) {
+	if (Health_Bar_p2 <= 32) {
 		App->render->Blit(graphics, -App->render->camera.x / 3 + 207, -App->render->camera.y / 3 + 9, &lowHealth2, SDL_FLIP_NONE, 1);
 	}
 	else {

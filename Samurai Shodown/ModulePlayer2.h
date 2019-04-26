@@ -50,9 +50,9 @@ public:
 	Animation jumpup;
 	Animation punch;
 	Animation crounch;
-	int health = 127;
-	int speed = 2;
+	Uint32 speed = 2;
 	bool deletecol = true;
+	Uint32 Damage = 20;
 	Animation kick;
 	Animation cyclone;
 	Animation tornado;

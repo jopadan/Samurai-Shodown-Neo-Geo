@@ -67,8 +67,6 @@ update_status ModuleRender::Update()
 	if ((camera.x - 912) / -2 != (App->player->position.x + App->player2->position.x) / 2){
 		camera.x = -(((App->player->position.x + App->player2->position.x+60) / 2 - SCREEN_WIDTH/2 )* 3);
 }
-	LOG("jugadores %d", (App->player->position.x));
-	LOG("screen %d ", camera.x);
 /*
 	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT)
 		camera.y -= speed;
