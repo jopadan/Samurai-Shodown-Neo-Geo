@@ -77,12 +77,17 @@ bool ModuleUI::CleanUp() {
 
 update_status ModuleUI::Update() {
 
+	health.w = HealthBar_p1;
+	health2.w = Health_Bar_p2;
+	lowHealth.w = HealthBar_p1;
+	lowHealth2.w = Health_Bar_p2;
+
 	App->render->Blit(graphics, -App->render->camera.x / 3 + 4, -App->render->camera.y / 3 + 12, &healthCont1, SDL_FLIP_NONE, 1);
 	App->render->Blit(graphics, -App->render->camera.x / 3 + 166, -App->render->camera.y / 3 + 12, &healthCont2, SDL_FLIP_NONE, 1);
 	App->render->Blit(graphics, -App->render->camera.x / 3 + 138, -App->render->camera.y / 3 + 5, &ko, SDL_FLIP_NONE, 1);
 
 	if (HealthBar_p1 <= 32) {
-		App->render->Blit(graphics, -App->render->camera.x / 3 + 9 + (128 - HealthBar_p1), -App->render->camera.y / 3 + 14, &lowHealth, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x / 3 + 8 + (128 - HealthBar_p1), -App->render->camera.y / 3 + 14, &lowHealth, SDL_FLIP_NONE, 1);
 	}
 	else {
 		App->render->Blit(graphics, -App->render->camera.x / 3 + 8, -App->render->camera.y / 3 + 12, &healthCont, SDL_FLIP_NONE, 1);
