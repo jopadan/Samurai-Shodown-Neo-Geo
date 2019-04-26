@@ -78,6 +78,9 @@ ModulePlayer::ModulePlayer()
 
 	hit.PushBack({ 982, 446, 92, 107 }, 0.08, -20, 10, 0, 10);
 
+	shadow.PushBack({ 1002, 247, 85, 38 }, 0.08, 0, 0, 0, 0);
+	shadow.PushBack({ 1087, 1281, 85, 38 }, 0.08, 0, 0, 0, 0);
+
 }
 
 ModulePlayer::~ModulePlayer()
@@ -92,6 +95,7 @@ bool ModulePlayer::Start()
 	position.x = 208;
 	position.y = 207;
 	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet.png");
+	graphicsobj = App->textures->Load("Assets/Image/objectes.png");
 	senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
 	sword = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - A- 01.wav");
 	kicks = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - KICK (MISS) - 01.wav");
@@ -115,6 +119,7 @@ bool ModulePlayer::CleanUp() {
 	position.x = 208;
 	position.y = 207;
 	App->textures->Unload(graphics);
+	App->textures->Unload(graphicsobj);
 	App->music->UnloadChunk(senpuu);
 	App->music->UnloadChunk(sword);
 	App->music->UnloadChunk(kicks);
@@ -398,7 +403,11 @@ current_state = state;
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
 	if (flip == SDL_FLIP_NONE){
+		App->render->Blit(graphicsobj, position.x, position.y - 1, &r, flip);
+
 	App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y -r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r, flip);
+   //App->render->Blit(graphicsobj, position.x , position.y -1 , &r, flip);
+	
 	}
 	if (flip == SDL_FLIP_HORIZONTAL) {
 		App->render->Blit(graphics, position.x -10 +/*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()]*2, position.y - r.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);

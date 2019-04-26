@@ -28,6 +28,7 @@ private:
 	bool collider = true;
 	bool wall = false;
 
+
 	
 public:
 	ModulePlayer();
@@ -46,6 +47,7 @@ public:
 	Uint32 combo1 = 0;
 	Uint32 combotime;
 	SDL_Texture* graphics = nullptr;
+	SDL_Texture* graphicsobj = nullptr;
 	Animation* current_animation = nullptr;
 	Mix_Chunk* senpuu;
 	Mix_Chunk* sword;
@@ -58,6 +60,7 @@ public:
 	Animation crounch;
 	Animation kick;
 	Animation hit;
+	Animation shadow;
 	Animation cyclone;
 	Animation tornado;
 	iPoint position;
