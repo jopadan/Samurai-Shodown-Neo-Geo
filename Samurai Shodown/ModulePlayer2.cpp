@@ -77,6 +77,9 @@ ModulePlayer2::ModulePlayer2()
 	cyclone.PushBack({ 600, 450, 97, 90 }, 0.08, -20, 0, 0, 0);
 
 	hit.PushBack({ 985, 446, 92, 107 }, 0.08, -20, 10, 0, 10);
+
+	shadow.PushBack({ 659, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
+	shadow.PushBack({ 733, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
 }
 
 ModulePlayer2::~ModulePlayer2()
@@ -92,6 +95,7 @@ bool ModulePlayer2::Start()
 	position.y = 207;
 
 	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet p2.png");
+	graphicsobj = App->textures->Load("Assets/Image/objectes.png");
 	senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
 	sword = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - A- 01.wav");
 	kicks = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - KICK (MISS) - 01.wav");
@@ -114,14 +118,20 @@ bool ModulePlayer2::CleanUp() {
 		}
 	position.x = 372;
 	position.y = 207;
-		App->textures->Unload(graphics);
-		App->music->UnloadChunk(senpuu);
+	App->textures->Unload(graphics);
+	App->textures->Unload(graphicsobj);
+	App->music->UnloadChunk(senpuu);
 	return true;
 }
 
 update_status ModulePlayer2::Update()
 {
 	Animation* current_animation = &idle;
+
+	Animation* shadow_animation = &shadow;
+
+	SDL_Rect r2 = shadow_animation->GetCurrentFrame();
+	App->render->Blit(graphicsobj, position.x - 3, 201, &r2, SDL_FLIP_NONE);
 
 	player_states current_state = ST_UNKNOWN;
 	player_states state = process_fsm(App->input->inputs2);

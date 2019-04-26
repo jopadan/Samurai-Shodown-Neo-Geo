@@ -72,4 +72,4 @@ public:
 
 };
 
-#endif
+#endif// __ModulePlayer_H__

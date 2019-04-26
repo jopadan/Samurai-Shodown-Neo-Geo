@@ -78,8 +78,8 @@ ModulePlayer::ModulePlayer()
 
 	hit.PushBack({ 982, 446, 92, 107 }, 0.08, -20, 10, 0, 10);
 
-	shadow.PushBack({ 1002, 247, 85, 38 }, 0.08, 0, 0, 0, 0);
-	shadow.PushBack({ 1087, 1281, 85, 38 }, 0.08, 0, 0, 0, 0);
+	shadow.PushBack({ 659, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
+	shadow.PushBack({ 733, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
 
 }
 
@@ -130,6 +130,10 @@ bool ModulePlayer::CleanUp() {
 update_status ModulePlayer::Update()
 {
 	Animation* current_animation = &idle;
+	Animation* shadow_animation = &shadow;
+
+	SDL_Rect r2 = shadow_animation->GetCurrentFrame();
+	App->render->Blit(graphicsobj, position.x, 201, &r2, SDL_FLIP_NONE);
 
 	player_states current_state = ST_UNKNOWN;
 	player_states state = process_fsm(App->input->inputs);
@@ -404,7 +408,6 @@ current_state = state;
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
 	if (flip == SDL_FLIP_NONE){
-		App->render->Blit(graphicsobj, position.x, position.y - 1, &r, flip);
 
 	App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y -r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r, flip);
    //App->render->Blit(graphicsobj, position.x , position.y -1 , &r, flip);

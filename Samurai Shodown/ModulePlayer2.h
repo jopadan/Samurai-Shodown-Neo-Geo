@@ -42,6 +42,7 @@ public:
 	Uint32 combo1 = 0;
 	Uint32 combotime;
 	SDL_Texture* graphics = nullptr;
+	SDL_Texture* graphicsobj = nullptr;
 	Animation* current_animation = nullptr;
 	Mix_Chunk* senpuu;
 	Mix_Chunk* sword;
@@ -59,6 +60,7 @@ public:
 	Animation kick;
 	Animation cyclone;
 	Animation tornado;
+	Animation shadow;
 	iPoint position;
 	Collider *colliderPlayer2; 
 	Collider *colliderAttack;
