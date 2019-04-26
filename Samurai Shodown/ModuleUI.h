@@ -32,6 +32,7 @@ public:
 	SDL_Rect lowHealth;
 	SDL_Rect lowHealth2;
 	SDL_Rect healthCont;
+	SDL_Rect healthCont1;
 	SDL_Rect healthCont2;
 	SDL_Rect ko;
 	int HealthBar_p1 = 128;
