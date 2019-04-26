@@ -32,10 +32,11 @@ public:
 	SDL_Rect lowHealth;
 	SDL_Rect lowHealth2;
 	SDL_Rect healthCont;
+	SDL_Rect healthCont1;
 	SDL_Rect healthCont2;
 	SDL_Rect ko;
-	int HealthBar_p1 = 127;
-	int Health_Bar_p2 = 127;
+	int HealthBar_p1 = 128;
+	int Health_Bar_p2 = 128;
 };
 
 #endif // !__ModuleUI_H__

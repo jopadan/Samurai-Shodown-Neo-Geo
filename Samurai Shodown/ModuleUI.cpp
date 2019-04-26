@@ -14,16 +14,21 @@ ModuleUI::ModuleUI() {
 	ko.w = 28;
 	ko.h = 21;
 
-	healthCont.x = 273;
-	healthCont.y = 421;
-	healthCont.w = 133;
-	healthCont.h = 14;
+	healthCont1.x = 273;
+	healthCont1.y = 421;
+	healthCont1.w = 134;
+	healthCont1.h = 14;
 
 	healthCont2.x = 273;
 	healthCont2.y = 405;
-	healthCont2.w = 133;
+	healthCont2.w = 134;
 	healthCont2.h = 14;
 
+	healthCont.x = 273;
+	healthCont.y = 308;
+	healthCont.w = 130;
+	healthCont.h = 2;
+		
 	lowKo.PushBack({ 484, 394, 28, 21 }, 0.2, 0, 0, 0, 0);//178, 5
 	lowKo.PushBack({ 484, 417, 28, 21 }, 0.2, 0, 0, 0, 0);
 
@@ -35,22 +40,22 @@ ModuleUI::ModuleUI() {
 	health.x = 273;//25, 9,,207, 9
 	health.y = 310;
 	health.w = HealthBar_p1;
-	health.h = 8;
+	health.h = 9;
 
 	health2.x = 273;
 	health2.y = 310;
 	health2.w = Health_Bar_p2;
-	health2.h = 8;
+	health2.h = 9;
 
 	lowHealth.x = 277;
 	lowHealth.y = 326;
 	lowHealth.w = HealthBar_p1;
-	lowHealth.h = 8;
+	lowHealth.h = 9;
 
 	lowHealth2.x = 277;
 	lowHealth2.y = 326;
 	lowHealth2.w = Health_Bar_p2;
-	lowHealth2.h = 8;
+	lowHealth2.h = 9;
 
 }
 ModuleUI::~ModuleUI()
@@ -72,24 +77,27 @@ bool ModuleUI::CleanUp() {
 
 update_status ModuleUI::Update() {
 
+	App->render->Blit(graphics, -App->render->camera.x / 3 + 4, -App->render->camera.y / 3 + 12, &healthCont1, SDL_FLIP_NONE, 1);
+	App->render->Blit(graphics, -App->render->camera.x / 3 + 166, -App->render->camera.y / 3 + 12, &healthCont2, SDL_FLIP_NONE, 1);
+	App->render->Blit(graphics, -App->render->camera.x / 3 + 138, -App->render->camera.y / 3 + 5, &ko, SDL_FLIP_NONE, 1);
 
 	if (HealthBar_p1 <= 32) {
-		App->render->Blit(graphics, -App->render->camera.x / 3 + 25 + (127 - HealthBar_p1), -App->render->camera.y / 3, &lowHealth, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x / 3 + 9 + (128 - HealthBar_p1), -App->render->camera.y / 3 + 14, &lowHealth, SDL_FLIP_NONE, 1);
 	}
 	else {
-		App->render->Blit(graphics, -App->render->camera.x / 3 + 25 + (127 - HealthBar_p1), -App->render->camera.y / 3, &health, SDL_FLIP_NONE, 1);
-	}
-	
-	if (Health_Bar_p2 <= 32) {
-		App->render->Blit(graphics, -App->render->camera.x / 3 + 207, -App->render->camera.y / 3 + 9, &lowHealth2, SDL_FLIP_NONE, 1);
-	}
-	else {
-		App->render->Blit(graphics, -App->render->camera.x / 3 + 207, -App->render->camera.y / 3 + 9, &health2, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x / 3 + 8, -App->render->camera.y / 3 + 12, &healthCont, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x / 3 + 8, -App->render->camera.y / 3 + 23, &healthCont, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x / 3 + 8 + (128 - HealthBar_p1), -App->render->camera.y / 3 + 14, &health, SDL_FLIP_NONE, 1);
 	}
 
-	App->render->Blit(graphics, -App->render->camera.x / 3 + 15, -App->render->camera.y / 3 + 12, &healthCont, SDL_FLIP_NONE, 1);
-	App->render->Blit(graphics, -App->render->camera.x / 3 + 150, -App->render->camera.y / 3 + 12, &healthCont2, SDL_FLIP_NONE, 1);
-	App->render->Blit(graphics, -App->render->camera.x / 3 + 128, -App->render->camera.y / 3 + 5, &ko, SDL_FLIP_NONE, 1);
+	if (Health_Bar_p2 <= 32) {
+		App->render->Blit(graphics, -App->render->camera.x / 3 + 168, -App->render->camera.y / 3 + 14, &lowHealth2, SDL_FLIP_NONE, 1);
+	}
+	else {
+		App->render->Blit(graphics, -App->render->camera.x / 3 + 168, -App->render->camera.y / 3 + 12, &healthCont, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x / 3 + 168, -App->render->camera.y / 3 + 23, &healthCont, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x / 3 + 168, -App->render->camera.y / 3 + 14, &health2, SDL_FLIP_NONE, 1);
+	}
 
 	return UPDATE_CONTINUE;
 }
