@@ -416,7 +416,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		{
 		case ST_IDLE:
 		{
-			if (SDL_GetTicks() - combotime < 60) {
+			if (SDL_GetTicks() - combotime < 200) {
 				if (combo1 == 2)combo1 = 3;
 			}
 			switch (last_input)
@@ -439,7 +439,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		case ST_WALK_FORWARD:
 		{
 			if (flip == SDL_FLIP_NONE) {
-				if (SDL_GetTicks() - combotime < 100) {
+				if (SDL_GetTicks() - combotime < 120) {
 					if (combo1 == 1)combo1 = 2;
 					combotime = SDL_GetTicks();
 				}
@@ -462,7 +462,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		case ST_WALK_BACKWARD:
 		{
 			if (flip == SDL_FLIP_HORIZONTAL) {
-				if (SDL_GetTicks() - combotime < 80) {
+				if (SDL_GetTicks() - combotime < 120) {
 					if (combo1 == 1)combo1 = 2;
 					combotime = SDL_GetTicks();
 				}
