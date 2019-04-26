@@ -99,6 +99,7 @@ bool ModulePlayer::Start()
 	senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
 	sword = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - A- 01.wav");
 	kicks = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - KICK (MISS) - 01.wav");
+	App->ui->HealthBar_p1 = 128;
 	
 
 	if (flip == SDL_FLIP_HORIZONTAL) {
