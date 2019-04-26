@@ -108,14 +108,21 @@ update_status ModuleParticles::Update()
 			active[i] = nullptr;
 		}
 		else if (SDL_GetTicks() >= p->born)
-		{
-			
-			App->render->Blit(graphics, p->position.x + p->anim.pivotx[p->anim.returnCurrentFrame()], p->position.y + p->anim.pivoty[p->anim.returnCurrentFrame()], &(p->anim.GetCurrentFrame()), App->player->flip);
+		{ if (p->direction == "right"){
+			App->render->Blit(graphics, p->position.x + p->anim.pivotx[p->anim.returnCurrentFrame()], p->position.y + p->anim.pivoty[p->anim.returnCurrentFrame()], &(p->anim.GetCurrentFrame()), SDL_FLIP_NONE);
+			if (p->fx_played == false)
+			{
+				p->fx_played = true;
+				// Play particle fx here
+			}}
+		if (p->direction == "left") {
+			App->render->Blit(graphics, p->position.x + p->anim.pivotx[p->anim.returnCurrentFrame()], p->position.y + p->anim.pivoty[p->anim.returnCurrentFrame()], &(p->anim.GetCurrentFrame()), SDL_FLIP_HORIZONTAL);
 			if (p->fx_played == false)
 			{
 				p->fx_played = true;
 				// Play particle fx here
 			}
+		}
 		}
 	}
 

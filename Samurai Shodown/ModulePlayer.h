@@ -43,6 +43,8 @@ public:
 
 public:
 	Uint32 speed = 2;
+	Uint32 combo1 = 0;
+	Uint32 combotime;
 	SDL_Texture* graphics = nullptr;
 	Animation* current_animation = nullptr;
 	Mix_Chunk* senpuu;

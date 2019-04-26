@@ -399,15 +399,19 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 		{
 		case ST_IDLE:
 		{
+			if (SDL_GetTicks() - combotime < 60) {
+				if (combo1 == 2)combo1 = 3;
+			}
 			switch (last_input)
 			{
 			case IN_RIGHT_DOWN_P2: state = ST_WALK_FORWARD; break;
 			case IN_LEFT_DOWN_P2: state = ST_WALK_BACKWARD; break;
 			case IN_JUMP_P2: state = ST_JUMP_NEUTRAL;  App->input->jump_timer2 = SDL_GetTicks();  break;
 			case IN_CROUCH_DOWN_P2: state = ST_CROUCH; break;
-			case IN_1_P2: state = ST_PUNCH_STANDING;  App->input->punch_timer2 = SDL_GetTicks();  break;
+			case IN_1_P2: if (combo1 == 3){ state = ST_TORNADO;  App->input->tornado_timer2 = SDL_GetTicks(); combo1 = 0; break; }
+						  else { state = ST_PUNCH_STANDING;  App->input->punch_timer2 = SDL_GetTicks();  break; }
 			case IN_2_P2: state = ST_KICK_STANDING;  App->input->kick_timer2 = SDL_GetTicks();  break;
-			case IN_3_P2: state = ST_TORNADO;  App->input->tornado_timer2 = SDL_GetTicks();  break;
+			//case IN_3_P2: state = ST_TORNADO;  App->input->tornado_timer2 = SDL_GetTicks();  break;
 			case IN_DAMAGE_P2: state = ST_DAMAGE;  break;
 			}
 		}
@@ -415,6 +419,10 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 
 		case ST_WALK_FORWARD:
 		{
+		if (flip == SDL_FLIP_NONE)	{if (SDL_GetTicks() - combotime < 80) {
+				if (combo1 == 1)combo1 = 2;
+				combotime = SDL_GetTicks();
+			}}
 			switch (last_input)
 			{
 			case IN_RIGHT_UP_P2: state = ST_IDLE; break;
@@ -430,6 +438,12 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 
 		case ST_WALK_BACKWARD:
 		{
+			if (flip == SDL_FLIP_HORIZONTAL) {
+				if (SDL_GetTicks() - combotime < 60) {
+					if (combo1 == 1)combo1 = 2;
+					combotime = SDL_GetTicks();
+				}
+			}
 			switch (last_input)
 			{
 			case IN_LEFT_UP_P2: state = ST_IDLE; break;
@@ -542,6 +556,8 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 
 		case ST_CROUCH:
 		{
+			combotime = SDL_GetTicks();
+			combo1 = 1;
 			switch (last_input)
 			{
 			case IN_CROUCH_UP_P2: state = ST_IDLE; break;
