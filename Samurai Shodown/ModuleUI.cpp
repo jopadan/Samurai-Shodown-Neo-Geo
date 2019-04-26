@@ -105,8 +105,8 @@ update_status ModuleUI::Update() {
 		App->render->Blit(graphics, position.x + 207, position.y + 9, &health2, SDL_FLIP_NONE, 1);
 	}
 
-	App->render->Blit(graphics, position.x + 24, position.y + 8, &healthCont, SDL_FLIP_NONE, 1);
-	App->render->Blit(graphics, position.x + 206, position.y + 8, &healthCont2, SDL_FLIP_NONE, 1);
+	App->render->Blit(graphics, position.x + 45, position.y + 12, &healthCont, SDL_FLIP_NONE, 1);
+	App->render->Blit(graphics, position.x + 206, position.y + 12, &healthCont2, SDL_FLIP_NONE, 1);
 	App->render->Blit(graphics, position.x + 178, position.y + 5, &ko, SDL_FLIP_NONE, 1);
 
 	return UPDATE_CONTINUE;
