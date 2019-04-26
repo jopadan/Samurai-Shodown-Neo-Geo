@@ -52,7 +52,7 @@ ModulePlayer::ModulePlayer()
 	
 	punch.PushBack({ 3, 0, 69, 127 }, 0.3, 0, 0, 0, 0);
 	punch.PushBack({ 74, 30, 79, 97 }, 0.1, -10, 0, 0, 0);
-	punch.PushBack({ 158, 33, 132, 94 }, 0.6, 0, 0, -20, 0); //
+	punch.PushBack({ 158, 33, 132, 94 }, 0.6, 0, 0, -20, 0);
 	punch.PushBack({ 290, 33, 132, 94 }, 0.6, 0, 0, -20, 0);
 	punch.PushBack({ 423, 42, 131, 85 }, 0.6, 0, 0, -20, 0);
 	punch.PushBack({ 556, 44, 130, 94 }, 0.6, 0, 11, -20, 11);
@@ -61,11 +61,11 @@ ModulePlayer::ModulePlayer()
 	punch.PushBack({ 940, 44, 83, 94 }, 0.2, 0, 11, 4, 11);
 	punch.PushBack({ 1025, 42, 131, 85 }, 0.1, 0, 0, -20, 0);
 											
-	kick.PushBack({ 647, 274, 58, 112 },	0.2,	0, 0, 4, 0); 
-	kick.PushBack({ 710, 276, 53, 110 },	0.1,	0, 0, -4, 0);
-	kick.PushBack({ 768, 288, 94, 98 },		0.1,	0, 0, -4, 0);
-	kick.PushBack({ 867, 287, 97, 99 },		0.1,	0, 0, -4, 0);
-	kick.PushBack({ 969, 286, 82, 100 },	0.2,	0, 0, 4, 0);
+	kick.PushBack({ 647, 274, 58, 112 }, 0.2, 0, 0, 4, 0);
+	kick.PushBack({ 710, 276, 53, 110 }, 0.1, 0, 0, 2, 0);
+	kick.PushBack({ 768, 288, 94, 98 }, 0.1, 0, 0, -14, 0);
+	kick.PushBack({ 867, 287, 97, 99 }, 0.1, 0, 0, -14, 0);
+	kick.PushBack({ 969, 286, 82, 100 }, 0.2, 0, 0, -4, 0);
 			
 	cyclone.PushBack({ 8, 452, 90, 88 },	0.1,	0, 0, 0, 0);
 	cyclone.PushBack({ 105, 451, 70, 89 },	0.2,	0, 0, 0, 0);
