@@ -76,7 +76,7 @@ ModulePlayer::ModulePlayer()
 	cyclone.PushBack({ 496, 442, 97, 98 },	0.2,  -20, 0, 0, 0);
 	cyclone.PushBack({ 600, 450, 97, 90 },	0.08, -20, 0, 0, 0);
 
-	hit.PushBack({ 982, 446, 92, 107 }, 0.08, -20, 0, 0, 0);
+	hit.PushBack({ 982, 446, 92, 107 }, 0.08, -20, 10, 0, 10);
 
 }
 
@@ -333,14 +333,14 @@ if (state != current_state)
 		else if (flip == SDL_FLIP_HORIZONTAL) {
 		
 			if (collider == true) {
-				colliderAttack = App->collision->AddCollider({ position.x-50, position.y - 90, 20, 50 }, COLLIDER_PLAYER_SHOT, this);
+				colliderAttack = App->collision->AddCollider({ position.x+100, position.y - 90, 40, 50 }, COLLIDER_PLAYER_SHOT, this);
 				App->music->PlayChunk(kicks);
 				collider = false;
 
 			}
 
 			if (colliderAttack != nullptr)
-				colliderAttack->SetPos(position.x - 20, position.y - 90);
+				colliderAttack->SetPos(position.x - 40, position.y - 90);
 			if (animstart == 0)
 			{
 				current_animation = &kick;
