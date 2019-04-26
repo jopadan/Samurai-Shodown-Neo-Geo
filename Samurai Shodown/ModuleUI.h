@@ -26,7 +26,6 @@ public:
 	Animation lowKo;
 	Animation end;
 	//Animation lowHealth;
-	iPoint position;
 	bool lowAnim = false;
 	SDL_Rect health;
 	SDL_Rect health2;

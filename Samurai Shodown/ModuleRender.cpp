@@ -3,6 +3,8 @@
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
+#include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "SDL/include/SDL.h"
 
 ModuleRender::ModuleRender() : Module()
@@ -35,7 +37,7 @@ bool ModuleRender::Init()
 		LOG("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
-
+	camera.x += App->player->position.x -30;
 	return ret;
 }
 
@@ -49,11 +51,16 @@ update_status ModuleRender::PreUpdate()
 
 update_status ModuleRender::Update()
 {
-	int speed = 12;
 
-	if (camera.y < 300 && App->input->keyboard[SDL_SCANCODE_UP] == KEY_REPEAT)
-		camera.y += speed;
+	camera.x = (-(App->player->position.x + App->player2->position.x) / 2);
+	
 
+	/*if (App->player->position.x +30 < camera.x - SCREEN_SIZE) {
+		camera.x -= speed;
+	}
+	*/
+	
+	/*
 	if (camera.y > 0 && App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT)
 		camera.y -= speed;
 
@@ -62,7 +69,7 @@ update_status ModuleRender::Update()
 
 	if (camera.x > -745 && App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_REPEAT)
 		camera.x -= speed;
-
+*/
 	return update_status::UPDATE_CONTINUE;
 }
 

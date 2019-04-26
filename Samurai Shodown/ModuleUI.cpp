@@ -10,9 +10,6 @@
 ModuleUI::ModuleUI() {
 
 	current_animation = NULL;
-
-	position.x = 0;
-	position.y = 0;
 	
 	ko.x = 484;
 	ko.y = 394;
@@ -77,36 +74,24 @@ bool ModuleUI::CleanUp() {
 
 update_status ModuleUI::Update() {
 
-	if (App->render->camera.x++) {
-		//position.x++;
-	}
-	if (App->render->camera.x--) {
-		//position.x--;
-	}
-	if (App->render->camera.y++) {
-		//position.y++;
-	}
-	if (App->render->camera.y--) {
-		//position.y--;
-	}
 
 	if (App->player->health <= 32) {
-		App->render->Blit(graphics, position.x + 25 + (127 - App->player->health), position.y + 9, &lowHealth, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x / 3 + 25 + (127 - App->player->health), -App->render->camera.y / 3, &lowHealth, SDL_FLIP_NONE, 1);
 	}
 	else {
-		App->render->Blit(graphics, position.x + 25 + (127 - App->player->health), position.y + 9, &health, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x / 3 + 25 + (127 - App->player->health), -App->render->camera.y / 3, &health, SDL_FLIP_NONE, 1);
 	}
 	
 	if (App->player2->health <= 32) {
-		App->render->Blit(graphics, position.x + 207, position.y + 9, &lowHealth2, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x / 3 + 207, -App->render->camera.y / 3 + 9, &lowHealth2, SDL_FLIP_NONE, 1);
 	}
 	else {
-		App->render->Blit(graphics, position.x + 207, position.y + 9, &health2, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x / 3 + 207, -App->render->camera.y / 3 + 9, &health2, SDL_FLIP_NONE, 1);
 	}
 
-	App->render->Blit(graphics, position.x + 24, position.y + 8, &healthCont, SDL_FLIP_NONE, 1);
-	App->render->Blit(graphics, position.x + 206, position.y + 8, &healthCont2, SDL_FLIP_NONE, 1);
-	App->render->Blit(graphics, position.x + 178, position.y + 5, &ko, SDL_FLIP_NONE, 1);
+	App->render->Blit(graphics, -App->render->camera.x / 3 + 45, -App->render->camera.y / 3 + 12, &healthCont, SDL_FLIP_NONE, 1);
+	App->render->Blit(graphics, -App->render->camera.x / 3 + 206, -App->render->camera.y / 3 + 12, &healthCont2, SDL_FLIP_NONE, 1);
+	App->render->Blit(graphics, -App->render->camera.x / 3 + 178, -App->render->camera.y / 3 + 5, &ko, SDL_FLIP_NONE, 1);
 
 	return UPDATE_CONTINUE;
 }
