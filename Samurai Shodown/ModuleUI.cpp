@@ -77,9 +77,10 @@ bool ModuleUI::CleanUp() {
 
 update_status ModuleUI::Update() {
 
-	if (App->render->camera.x++) {
-		//position.x++;
-	}
+
+	position.x = - App->render->camera.x/2;
+	
+	/*
 	if (App->render->camera.x--) {
 		//position.x--;
 	}
@@ -89,7 +90,7 @@ update_status ModuleUI::Update() {
 	if (App->render->camera.y--) {
 		//position.y--;
 	}
-
+	*/
 	if (App->player->health <= 32) {
 		App->render->Blit(graphics, position.x + 25 + (127 - App->player->health), position.y + 9, &lowHealth, SDL_FLIP_NONE, 1);
 	}
