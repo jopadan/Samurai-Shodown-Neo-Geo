@@ -95,6 +95,8 @@ bool ModulePlayer2::Start()
 	senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
 	sword = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - A- 01.wav");
 	kicks = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - KICK (MISS) - 01.wav");
+	App->ui->Health_Bar_p2 = 128;
+
 	if (flip == SDL_FLIP_HORIZONTAL) {
 		colliderPlayer2 = App->collision->AddCollider({ position.x + 60, position.y - 90, 60, 90 }, COLLIDER_ENEMY, this);
 	}
