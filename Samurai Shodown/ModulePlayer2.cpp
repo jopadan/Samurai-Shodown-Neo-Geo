@@ -110,6 +110,8 @@ bool ModulePlayer2::CleanUp() {
 		if (colliderPlayer2 != nullptr) {
 			colliderPlayer2->to_delete = true;
 		}
+	position.x = 372;
+	position.y = 207;
 		App->textures->Unload(graphics);
 		App->music->UnloadChunk(senpuu);
 	return true;
@@ -140,7 +142,6 @@ update_status ModulePlayer2::Update()
 					current_animation = &forward;
 				}
 				position.x += speed;
-
 			}
 
 			break;
@@ -185,6 +186,7 @@ update_status ModulePlayer2::Update()
 				current_animation = &jumpup;
 				position.y -= jumpSpeed;
 				if (wall && position.x > 100) {}
+				else if (position.x + 60 > (-App->render->camera.x + 912) / 3) {}
 				else {
 					position.x += 2;
 				}
@@ -205,6 +207,7 @@ update_status ModulePlayer2::Update()
 				current_animation = &jumpup;
 				position.y -= jumpSpeed;
 				if (wall && position.x < 100) {}
+				else if (position.x < -(App->render->camera.x / 3)) {}
 				else {
 					position.x -= 2;
 				}
@@ -237,10 +240,10 @@ update_status ModulePlayer2::Update()
 			{
 				current_animation = &hit;
 				if (flip == SDL_FLIP_NONE) {
-					position.x -= 4;
+					if (!wall)position.x -= 3;
 				}
 				if (flip == SDL_FLIP_HORIZONTAL) {
-					position.x += 4;
+					if (!wall)position.x += 3;
 				}
 				if (position.y != initialPos) {
 					current_animation = &hit;

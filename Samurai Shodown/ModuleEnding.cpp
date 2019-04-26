@@ -9,12 +9,15 @@
 #include "ModuleMenu.h"
 #include "SDL/include/SDL.h"
 #include "ModuleSceneHaohmaru.h"
+#include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleEnding.h"
 
 
 
 ModuleEnding::ModuleEnding()
 {
+
 	end.x = 27;
 	end.y = 39;
 	end.w = 319;
