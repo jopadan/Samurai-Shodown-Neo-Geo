@@ -191,7 +191,7 @@ if (state != current_state)
 			position.y -= jumpSpeed;
 			if (wall && position.x > 100) {}
 			else {
-				position.x += 2;
+				position.x += 4;
 			}
 			if (position.y < 120) {
 				jumpSpeed -= 0.5;
@@ -211,7 +211,7 @@ if (state != current_state)
 			position.y -= jumpSpeed;
 			if (wall && position.x < 100) {}
 			else {
-				position.x -= 2;
+				position.x -= 4;
 			}
 			if (position.y < 120) {
 				jumpSpeed -= 0.5;
@@ -243,10 +243,10 @@ if (state != current_state)
 			{
 				current_animation = &hit;
 				if (flip == SDL_FLIP_NONE) {
-					position.x -= 4;
+					if (!wall)position.x -= 4;
 				}
 				if (flip == SDL_FLIP_HORIZONTAL) {
-					position.x += 4;
+					if (!wall)position.x += 4;
 				}
 				if (position.y != initialPos) {
 					current_animation = &hit; 
@@ -401,7 +401,7 @@ current_state = state;
 	if (flip == SDL_FLIP_HORIZONTAL) {
 		App->render->Blit(graphics, position.x -10 +/*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()]*2, position.y - r.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
 	}
-	colliderPlayer->SetPos(position.x, position.y - 90);
+	if (colliderPlayer != nullptr)colliderPlayer->SetPos(position.x, position.y - 90);
 	return UPDATE_CONTINUE;
 }
 

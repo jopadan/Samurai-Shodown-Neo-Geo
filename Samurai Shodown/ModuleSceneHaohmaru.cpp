@@ -17,6 +17,7 @@
 #include "ModuleCollision.h"
 #include "ModuleFonts.h"
 #include "ModuleUI.h"
+#include "ModuleEnding.h"
 
 #include<stdio.h>
 
@@ -146,8 +147,11 @@ update_status ModuleSceneHaohmaru::Update()
 	
 	//background
 	
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
-		App->fade->FadeToBlack(App->scene_haohmaru, App->scene_nakoruru, 2);
+	if (App->ui->Health_Bar_p2 <=0) {
+		App->fade->FadeToBlack(App->scene_haohmaru, App->winhaoh, 2);
+	}
+	if (App->ui->HealthBar_p1 <= 0) {
+		App->fade->FadeToBlack(App->scene_haohmaru, App->end, 2);
 	}
 
 	if (SDL_GetTicks() - starttime >= 1000) {
