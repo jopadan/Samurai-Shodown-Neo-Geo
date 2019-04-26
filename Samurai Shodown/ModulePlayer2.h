@@ -39,7 +39,6 @@ public:
 
 public:
 
-	bool deletecol = true;
 	SDL_Texture* graphics = nullptr;
 	Animation* current_animation = nullptr;
 	Mix_Chunk* senpuu;
@@ -53,6 +52,7 @@ public:
 	Animation crounch;
 	int health = 127;
 	int speed = 2;
+	bool deletecol = true;
 	Animation kick;
 	Animation cyclone;
 	Animation tornado;
