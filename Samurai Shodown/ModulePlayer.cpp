@@ -90,7 +90,6 @@ bool ModulePlayer::Start()
 	bool ret = true;
 
 	position.x = 208;
-	
 	position.y = 207;
 	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet.png");
 	senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
@@ -113,6 +112,8 @@ bool ModulePlayer::CleanUp() {
 		if (colliderPlayer != nullptr) {
 	colliderPlayer->to_delete = true;
 		}
+	position.x = 208;
+	position.y = 207;
 	App->textures->Unload(graphics);
 	App->music->UnloadChunk(senpuu);
 	App->music->UnloadChunk(sword);
@@ -190,8 +191,9 @@ if (state != current_state)
 			current_animation = &jumpup;
 			position.y -= jumpSpeed;
 			if (wall && position.x > 100) {}
+			else if (position.x + 60 > (-App->render->camera.x + 912) / 3) {}
 			else {
-				position.x += 4;
+				position.x += 3;
 			}
 			if (position.y < 120) {
 				jumpSpeed -= 0.5;
@@ -210,8 +212,9 @@ if (state != current_state)
 			current_animation = &jumpup;
 			position.y -= jumpSpeed;
 			if (wall && position.x < 100) {}
+			else if (position.x < -(App->render->camera.x / 3)) {}
 			else {
-				position.x -= 4;
+				if (position.x) position.x -= 3;
 			}
 			if (position.y < 120) {
 				jumpSpeed -= 0.5;
@@ -223,7 +226,6 @@ if (state != current_state)
 				jumpSpeed = 6;
 			}
 		}
-		break;
 		break;
 	case ST_CROUCH:
 		if (animstart == 0)
