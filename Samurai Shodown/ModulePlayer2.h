@@ -50,8 +50,12 @@ public:
 	Animation forward;
 	Animation backward;
 	Animation jumpup;
+	Animation jumpPunch;
+	Animation jumpKick;
 	Animation punch;
 	Animation crouch;
+	Animation crouchPunch;
+	Animation crouchKick;
 	Animation hit;
 	Uint32 speed = 2;
 	bool deletecol = true;
