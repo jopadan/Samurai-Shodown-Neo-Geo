@@ -278,13 +278,16 @@ update_status ModulePlayer2::Update()
 			Damage = 25;
 			if (flip == SDL_FLIP_NONE) {
 				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ position.x, position.y - 70  , 70, 70 }, COLLIDER_ENEMY_SHOT, this);
+					colliderAttack = App->collision->AddCollider({ 6000, 6000 , 100, 30 }, COLLIDER_ENEMY_SHOT, this);
 					App->music->PlayChunk(sword);
-					collider = false;
+					collider = false; 
+					time = SDL_GetTicks();
 				}
+				if (SDL_GetTicks() - time > 150) {
 
-				if (colliderAttack != nullptr)
-					colliderAttack->SetPos(position.x + 60, position.y - 70);
+					if (colliderAttack != nullptr)
+						colliderAttack->SetPos(position.x + 30, position.y - 70);
+				}
 				if (animstart == 0)
 				{
 					current_animation = &punch;
@@ -293,13 +296,14 @@ update_status ModulePlayer2::Update()
 			}
 			else if (flip == SDL_FLIP_HORIZONTAL) {
 				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ position.x, position.y - 70, 50, 70 }, COLLIDER_ENEMY_SHOT, this);
+					colliderAttack = App->collision->AddCollider({ 6000, 6000, 100, 30 }, COLLIDER_ENEMY_SHOT, this);
 					App->music->PlayChunk(sword);
-					collider = false;
+					collider = false; time = SDL_GetTicks();
 				}
-
-				if (colliderAttack != nullptr)
-					colliderAttack->SetPos(position.x - 50, position.y - 70);
+				if (SDL_GetTicks() - time > 150) {
+					if (colliderAttack != nullptr)
+						colliderAttack->SetPos(position.x - 75, position.y - 70);
+				}
 				if (animstart == 0)
 				{
 					current_animation = &punch;
@@ -323,13 +327,15 @@ update_status ModulePlayer2::Update()
 			Damage = 15;
 			if (flip == SDL_FLIP_NONE) {
 				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ position.x, position.y - 90, 40, 50 }, COLLIDER_ENEMY_SHOT, this);
+					colliderAttack = App->collision->AddCollider({ 6000, 6000, 40, 30 }, COLLIDER_ENEMY_SHOT, this);
 					App->music->PlayChunk(kicks);
-					collider = false;
+					collider = false; 
+					time = SDL_GetTicks();
 				}
-
-				if (colliderAttack != nullptr)
-					colliderAttack->SetPos(position.x + 60, position.y - 90);
+				if (SDL_GetTicks() - time > 100) {
+					if (colliderAttack != nullptr)
+						colliderAttack->SetPos(position.x + 60, position.y-80);
+				}
 				if (animstart == 0)
 				{
 					current_animation = &kick;
@@ -339,13 +345,14 @@ update_status ModulePlayer2::Update()
 			else if (flip == SDL_FLIP_HORIZONTAL) {
 
 				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ position.x - 100, position.y - 90, 40, 50 }, COLLIDER_ENEMY_SHOT, this);
+					colliderAttack = App->collision->AddCollider({ 6000, 6000, 40, 30 }, COLLIDER_ENEMY_SHOT, this);
 					App->music->PlayChunk(kicks);
-					collider = false;
+					collider = false; time = SDL_GetTicks();
 				}
-
-				if (colliderAttack != nullptr)
-					colliderAttack->SetPos(position.x - 40, position.y - 90);
+				if (SDL_GetTicks() - time > 100) {
+					if (colliderAttack != nullptr)
+						colliderAttack->SetPos(position.x - 40, position.y - 80);
+				}
 				if (animstart == 0)
 				{
 					current_animation = &kick;
@@ -381,7 +388,7 @@ update_status ModulePlayer2::Update()
 	current_state = state;
 
 
-	if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_STATE::KEY_DOWN) {
+	if (App->input->keyboard[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN) {
 		if (deletecol == true) {
 			colliderPlayer2->to_delete = true;
 			deletecol = false;
@@ -400,7 +407,7 @@ update_status ModulePlayer2::Update()
 		flip = SDL_FLIP_NONE;
 	}
 	speed = 2;
-	wall = false;
+	
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
 	if (flip == SDL_FLIP_NONE) {
@@ -624,15 +631,19 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 	{
 		wall = true;
 	}
-	if (colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER)
-	{
-	
-		if (flip == SDL_FLIP_HORIZONTAL)
-			position.x += App->player->speed/2;
-		if (flip == SDL_FLIP_NONE)
-			position.x -= App->player->speed/2;
-		
+	else {
+		wall = false;
 	}
+	if (App->input->keyboard[SDL_SCANCODE_J]|| App->input->keyboard[SDL_SCANCODE_L] && colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER) {
+		if (App->player->position.x > 0 && App->player2->position.x < 580){
+		if (flip == SDL_FLIP_HORIZONTAL)
+			App->player->position.x -= speed;
+		if (flip == SDL_FLIP_NONE)
+			App->player->position.x += speed;
+		}
+	}
+
+	
 	if (colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER_SHOT && defense == false)
 	{
 		if(App->player->colliderAttack!=nullptr)

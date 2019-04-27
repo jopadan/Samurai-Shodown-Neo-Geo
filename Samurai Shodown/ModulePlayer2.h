@@ -25,7 +25,8 @@ private:
 	int animstart = 0;
 	bool shoot = true;
 	bool collider = true;
-	bool wall = false;
+
+	int time = 0;
 public:
 	ModulePlayer2();
 	~ModulePlayer2();
@@ -69,5 +70,6 @@ public:
 	Collider *colliderPlayer2; 
 	Collider *colliderAttack;
 	SDL_RendererFlip flip = SDL_FLIP_HORIZONTAL;
+	bool wall = false;
 };
 #endif

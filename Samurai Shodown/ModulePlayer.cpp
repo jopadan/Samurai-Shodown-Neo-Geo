@@ -331,13 +331,15 @@ if (state != current_state)
 		if (flip == SDL_FLIP_NONE) {
 			
 			if (collider == true) {
-				colliderAttack = App->collision->AddCollider({ position.x, position.y - 70 , 70, 70 }, COLLIDER_PLAYER_SHOT, this);
+				colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_PLAYER_SHOT, this);
 				App->music->PlayChunk(sword);
 				collider = false;
+				time = SDL_GetTicks();
 			}
-
-			if (colliderAttack != nullptr)
-				colliderAttack->SetPos(position.x + 60, position.y - 70);
+			if (SDL_GetTicks() - time > 150) {
+				if (colliderAttack != nullptr)
+					colliderAttack->SetPos(position.x + 30, position.y - 70);
+			}
 			if (animstart == 0)
 			{
 				current_animation = &punch;
@@ -349,13 +351,15 @@ if (state != current_state)
 		else if (flip == SDL_FLIP_HORIZONTAL) {
 			
 			if (collider == true) {
-				colliderAttack = App->collision->AddCollider({ position.x, position.y - 70, 50, 70 }, COLLIDER_PLAYER_SHOT, this);
+				colliderAttack = App->collision->AddCollider({ 6000,6000, 100, 30 }, COLLIDER_PLAYER_SHOT, this);
 				App->music->PlayChunk(sword);
 				collider = false;
-			}
-
+			time = SDL_GetTicks();
+		}
+		if (SDL_GetTicks() - time > 150) {
 			if (colliderAttack != nullptr)
-				colliderAttack->SetPos(position.x -50, position.y - 70);
+				colliderAttack->SetPos(position.x - 75, position.y - 70);
+		}
 			if (animstart == 0)
 			{
 				current_animation = &punch;
@@ -418,14 +422,15 @@ if (state != current_state)
 		Damage = 15;
 		if (flip == SDL_FLIP_NONE) {
 			if (collider == true) {
-				colliderAttack = App->collision->AddCollider({ position.x, position.y - 90, 40, 50 }, COLLIDER_PLAYER_SHOT, this);
+				colliderAttack = App->collision->AddCollider({ 3000, 3000, 40, 30 }, COLLIDER_PLAYER_SHOT, this);
 				App->music->PlayChunk(kicks);
 				collider = false;
+				time = SDL_GetTicks();
 			}
-
+			if (SDL_GetTicks()-time > 100){
 			if (colliderAttack != nullptr)
-				colliderAttack->SetPos(position.x + 60, position.y - 90);
-			
+				colliderAttack->SetPos(position.x + 60, position.y-80);
+			}
 			if (animstart == 0)
 			{
 				current_animation = &kick;
@@ -436,14 +441,14 @@ if (state != current_state)
 		else if (flip == SDL_FLIP_HORIZONTAL) {
 		
 			if (collider == true) {
-				colliderAttack = App->collision->AddCollider({ position.x+100, position.y - 90, 40, 50 }, COLLIDER_PLAYER_SHOT, this);
+				colliderAttack = App->collision->AddCollider({ 3000, 3000, 40, 30 }, COLLIDER_PLAYER_SHOT, this);
 				App->music->PlayChunk(kicks);
 				collider = false;
 
 			}
 
 			if (colliderAttack != nullptr)
-				colliderAttack->SetPos(position.x - 40, position.y - 90);
+				colliderAttack->SetPos(position.x - 40, position.y - 80);
 			if (animstart == 0)
 			{
 				current_animation = &kick;
@@ -499,7 +504,7 @@ current_state = state;
 		flip = SDL_FLIP_NONE;
 	}
 	speed = 2; 
-	wall = false;
+	
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
 	if (flip == SDL_FLIP_NONE){
@@ -726,13 +731,16 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	{
 		wall = true;
 	}
-	if (colliderPlayer == c1 && c2->type == COLLIDER_ENEMY)
-	{
-	
-		if (flip == SDL_FLIP_HORIZONTAL)
-		position.x += App->player2->speed/2;
+	else { wall = false;
+	if (App->input->keyboard[SDL_SCANCODE_D]|| App->input->keyboard[SDL_SCANCODE_D] && colliderPlayer == c1 && c2->type == COLLIDER_ENEMY)  {
+		if (App->player2->position.x > 0 && App->player2->position.x < 580){
+			if (flip == SDL_FLIP_HORIZONTAL)
+			App->player2->position.x -= speed;
 		if (flip == SDL_FLIP_NONE)
-			position.x -= App->player2->speed/2;
+			App->player2->position.x += speed;
+		}
+	}
+		
 	}
 	if (colliderPlayer == c1 && c2->type == COLLIDER_ENEMY_SHOT && defense == false)
 	{
