@@ -57,6 +57,8 @@ public:
 	Uint32 speed = 2;
 	bool deletecol = true;
 	bool defense = false;
+	int height = 0;
+	int height2 = 0;
 	Uint32 Damage = 20;
 	Animation kick;
 	Animation cyclone;
@@ -64,6 +66,7 @@ public:
 	Animation shadow;
 	iPoint position;
 	Collider *colliderPlayer2; 
+	Collider *colliderPlayer2_2;
 	Collider *colliderAttack;
 	SDL_RendererFlip flip = SDL_FLIP_HORIZONTAL;
 	bool wall = false;

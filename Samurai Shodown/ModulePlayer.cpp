@@ -103,10 +103,16 @@ bool ModulePlayer::Start()
 	
 
 	if (flip == SDL_FLIP_HORIZONTAL) {
-		colliderPlayer = App->collision->AddCollider({ position.x+60, position.y - 90, 60, 90 }, COLLIDER_PLAYER, this);
+		colliderPlayer = App->collision->AddCollider({ position.x+60, position.y - 90, 47, 50 }, COLLIDER_PLAYER, this);
 	}
 	else {
-		colliderPlayer = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_PLAYER, this);
+		colliderPlayer = App->collision->AddCollider({ position.x+45, position.y - 90, 47, 50 }, COLLIDER_PLAYER, this);
+	}
+	if (flip == SDL_FLIP_HORIZONTAL) {
+		colliderPlayer_2 = App->collision->AddCollider({ position.x + 60, position.y - 90, 35, 40 }, COLLIDER_PLAYER, this);
+	}
+	else {
+		colliderPlayer_2 = App->collision->AddCollider({ position.x + 45, position.y - 90, 35, 40 }, COLLIDER_PLAYER, this);
 	}
 	return ret;
 }
@@ -145,6 +151,8 @@ if (state != current_state)
 	switch (state)
 	{
 	case ST_IDLE:
+		height = 0;
+		height2 = 0;
 		break;
 
 	case ST_WALK_FORWARD:
@@ -183,6 +191,7 @@ if (state != current_state)
 	
 		break;
 	case ST_JUMP_NEUTRAL:
+		height2 = 15;
 		if (animstart == 0)
 		{
 			current_animation = &jumpup;
@@ -202,6 +211,7 @@ if (state != current_state)
 		
 		break;
 	case ST_JUMP_FORWARD:
+		height2 = 15;
 		if (animstart == 0)
 		{
 			current_animation = &jumpup;
@@ -223,6 +233,7 @@ if (state != current_state)
 		}
 		break;
 	case ST_JUMP_BACKWARD:
+		height2 = 15;
 		if (animstart == 0)
 		{
 			current_animation = &jumpup;
@@ -244,6 +255,7 @@ if (state != current_state)
 		}
 		break;
 	case ST_CROUCH:
+		height = +20;
 		if (animstart == 0)
 		{
 		
@@ -398,18 +410,27 @@ if (state != current_state)
 	}
 }
 current_state = state;
-
-
-	if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_STATE::KEY_DOWN) {
-		if (deletecol == true) {
-			colliderPlayer->to_delete = true;
-			deletecol = false;
+if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_STATE::KEY_DOWN) {
+if (deletecol == true) {
+	colliderPlayer->to_delete = true;
+	colliderPlayer_2->to_delete = true;
+	deletecol = false;
+}
+else {
+		if (flip == SDL_FLIP_HORIZONTAL) {
+			colliderPlayer = App->collision->AddCollider({ position.x + 60, position.y - 90, 47, 50 }, COLLIDER_PLAYER, this);
 		}
 		else {
-			colliderPlayer=	App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_PLAYER, this);
-			deletecol = true;
+			colliderPlayer = App->collision->AddCollider({ position.x + 45, position.y - 90, 47, 50 }, COLLIDER_PLAYER, this);
 		}
-		
+		if (flip == SDL_FLIP_HORIZONTAL) {
+			colliderPlayer_2 = App->collision->AddCollider({ position.x + 60, position.y - 90, 35, 40 }, COLLIDER_PLAYER, this);
+		}
+		else {
+			colliderPlayer_2 = App->collision->AddCollider({ position.x + 45, position.y - 90, 35, 40 }, COLLIDER_PLAYER, this);
+		}
+		deletecol = true;}
+
 	}
 	
 	if (App->player2->position.x < position.x) {
@@ -431,7 +452,18 @@ current_state = state;
 	if (flip == SDL_FLIP_HORIZONTAL) {
 		App->render->Blit(graphics, position.x -10 +/*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()]*2, position.y - r.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
 	}
-	if (colliderPlayer != nullptr)colliderPlayer->SetPos(position.x, position.y - 90);
+	if (flip == SDL_FLIP_HORIZONTAL) {
+		if (colliderPlayer != nullptr)colliderPlayer->SetPos(position.x +9, position.y - 80 + height);
+	}
+	else {
+		if (colliderPlayer != nullptr)colliderPlayer->SetPos(position.x+9, position.y - 80 + height);
+	}
+	if (flip == SDL_FLIP_HORIZONTAL) {
+		if (colliderPlayer_2 != nullptr)colliderPlayer_2->SetPos(position.x + 15, position.y - 50 - height2);
+	}
+	else {
+		if (colliderPlayer_2 != nullptr)colliderPlayer_2->SetPos(position.x + 15, position.y - 50 - height2);
+	}
 	return UPDATE_CONTINUE;
 }
 
@@ -647,13 +679,14 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 		wall = true;
 	}
 	else { wall = false;
-	if (App->input->keyboard[SDL_SCANCODE_D]|| App->input->keyboard[SDL_SCANCODE_D] && colliderPlayer == c1 && c2->type == COLLIDER_ENEMY)  {
+	if (App->input->keyboard[SDL_SCANCODE_D]|| App->input->keyboard[SDL_SCANCODE_A] && colliderPlayer == c1 && c2->type == COLLIDER_ENEMY)  {
 		if (App->player2->position.x > 0 && App->player2->position.x < 580){
 			if (flip == SDL_FLIP_HORIZONTAL)
 			App->player2->position.x -= speed;
 		if (flip == SDL_FLIP_NONE)
 			App->player2->position.x += speed;
 		}
+		else { speed = 0; }
 	}
 		
 	}

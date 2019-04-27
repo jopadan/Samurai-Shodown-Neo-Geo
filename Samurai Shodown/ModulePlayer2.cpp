@@ -102,10 +102,16 @@ bool ModulePlayer2::Start()
 	App->ui->Health_Bar_p2 = 128;
 
 	if (flip == SDL_FLIP_HORIZONTAL) {
-		colliderPlayer2 = App->collision->AddCollider({ position.x + 60, position.y - 90, 60, 90 }, COLLIDER_ENEMY, this);
+		colliderPlayer2 = App->collision->AddCollider({ position.x + 60, position.y - 90, 47, 50 }, COLLIDER_ENEMY, this);
 	}
 	else {
-		colliderPlayer2 = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_ENEMY, this);
+		colliderPlayer2 = App->collision->AddCollider({ position.x + 45, position.y - 90, 47, 50 }, COLLIDER_ENEMY, this);
+	}
+	if (flip == SDL_FLIP_HORIZONTAL) {
+		colliderPlayer2_2 = App->collision->AddCollider({ position.x + 60, position.y - 90, 35, 40 }, COLLIDER_ENEMY, this);
+	}
+	else {
+		colliderPlayer2_2 = App->collision->AddCollider({ position.x + 45, position.y - 90, 35, 40 }, COLLIDER_ENEMY, this);
 	}
 	return ret;
 }
@@ -142,7 +148,8 @@ update_status ModulePlayer2::Update()
 		switch (state)
 		{
 		case ST_IDLE:
-			
+			height = 0;
+			height2 = 0;
 			break;
 
 		case ST_WALK_FORWARD:
@@ -182,6 +189,8 @@ update_status ModulePlayer2::Update()
 		case ST_JUMP_NEUTRAL:
 			if (animstart == 0)
 			{
+				height2 = 15;
+
 				current_animation = &jumpup;
 				position.y -= jumpSpeed;
 
@@ -201,6 +210,8 @@ update_status ModulePlayer2::Update()
 		case ST_JUMP_FORWARD:
 			if (animstart == 0)
 			{
+				height2 = 15;
+
 				current_animation = &jumpup;
 				position.y -= jumpSpeed;
 				if (wall && position.x > 100) {}
@@ -222,6 +233,7 @@ update_status ModulePlayer2::Update()
 		case ST_JUMP_BACKWARD:
 			if (animstart == 0)
 			{
+				height2 = 15;
 				current_animation = &jumpup;
 				position.y -= jumpSpeed;
 				if (wall && position.x < 100) {}
@@ -242,6 +254,7 @@ update_status ModulePlayer2::Update()
 			break;
 			break;
 		case ST_CROUCH:
+			height = +20;
 			if (animstart == 0)
 			{
 				current_animation = &crouch;
@@ -388,17 +401,31 @@ update_status ModulePlayer2::Update()
 	current_state = state;
 
 
+
 	if (App->input->keyboard[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN) {
 		if (deletecol == true) {
 			colliderPlayer2->to_delete = true;
+			colliderPlayer2_2->to_delete = true;
 			deletecol = false;
 		}
 		else {
-			colliderPlayer2 = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_ENEMY, this);
+			if (flip == SDL_FLIP_HORIZONTAL) {
+				colliderPlayer2 = App->collision->AddCollider({ position.x + 60, position.y - 90, 47, 50 }, COLLIDER_ENEMY, this);
+			}
+			else {
+				colliderPlayer2 = App->collision->AddCollider({ position.x + 45, position.y - 90, 47, 50 }, COLLIDER_ENEMY, this);
+			}
+			if (flip == SDL_FLIP_HORIZONTAL) {
+				colliderPlayer2_2 = App->collision->AddCollider({ position.x + 60, position.y - 90, 35, 40 }, COLLIDER_ENEMY, this);
+			}
+			else {
+				colliderPlayer2_2 = App->collision->AddCollider({ position.x + 45, position.y - 90, 35, 40 }, COLLIDER_ENEMY, this);
+			}
 			deletecol = true;
 		}
 
 	}
+
 
 	if (App->player->position.x < position.x) {
 		flip = SDL_FLIP_HORIZONTAL;
@@ -416,7 +443,19 @@ update_status ModulePlayer2::Update()
 	if (flip == SDL_FLIP_HORIZONTAL) {
 		App->render->Blit(graphics, position.x -10+/*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()] * 2, position.y - r.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
 	}
-	colliderPlayer2->SetPos(position.x, position.y - 90);
+	if (flip == SDL_FLIP_HORIZONTAL) {
+		if (colliderPlayer2 != nullptr)colliderPlayer2->SetPos(position.x + 9, position.y - 80 + height);
+	}
+	else {
+		if (colliderPlayer2 != nullptr)colliderPlayer2->SetPos(position.x + 9, position.y - 80 + height);
+	}
+
+	if (flip == SDL_FLIP_HORIZONTAL) {
+		if (colliderPlayer2_2 != nullptr)colliderPlayer2_2->SetPos(position.x + 15, position.y - 50 - height2);
+	}
+	else {
+		if (colliderPlayer2_2 != nullptr)colliderPlayer2_2->SetPos(position.x + 15, position.y - 50 - height2);
+	}
 	return UPDATE_CONTINUE;
 }
 
@@ -641,6 +680,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 		if (flip == SDL_FLIP_NONE)
 			App->player->position.x += speed;
 		}
+		else { speed = 0; }
 	}
 
 	

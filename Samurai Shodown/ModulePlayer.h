@@ -66,7 +66,10 @@ public:
 	Uint32 Damage = 20;
 	bool deletecol = true;
 	bool defense = false;
+	int height = 0;
+	int height2 = 0;
 	Collider *colliderPlayer;
+	Collider *colliderPlayer_2;
 	Collider *colliderAttack;
 	Uint32 time = 0;
 	SDL_RendererFlip flip = SDL_FLIP_NONE;
