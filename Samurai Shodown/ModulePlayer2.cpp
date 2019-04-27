@@ -491,7 +491,7 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_1_P2: if (combo1 == 3){ state = ST_TORNADO;  App->input->tornado_timer2 = SDL_GetTicks(); combo1 = 0; break; }
 						  else { state = ST_PUNCH_STANDING;  App->input->punch_timer2 = SDL_GetTicks();  break; }
 			case IN_2_P2: state = ST_KICK_STANDING;  App->input->kick_timer2 = SDL_GetTicks();  break;
-			//case IN_3_P2: state = ST_TORNADO;  App->input->tornado_timer2 = SDL_GetTicks();  break;
+			case IN_3_P2: state = ST_TORNADO;  App->input->tornado_timer2 = SDL_GetTicks();  break;
 			case IN_DAMAGE_P2: state = ST_DAMAGE;  break;
 			}
 		}
@@ -512,6 +512,7 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_CROUCH_DOWN_P2: state = ST_CROUCH; break;
 			case IN_1_P2: state = ST_PUNCH_STANDING;  App->input->punch_timer2 = SDL_GetTicks();  break;
 			case IN_2_P2: state = ST_KICK_STANDING;  App->input->kick_timer2 = SDL_GetTicks();  break;
+			case IN_3_P2: state = ST_TORNADO;  App->input->tornado_timer2 = SDL_GetTicks();  break;
 			case IN_DAMAGE_P2: state = ST_DAMAGE;  break;
 			}
 		}
@@ -535,6 +536,7 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_CROUCH_DOWN_P2: state = ST_CROUCH; break;
 			case IN_1_P2: state = ST_PUNCH_STANDING;  App->input->punch_timer2 = SDL_GetTicks();  break;
 			case IN_2_P2: state = ST_KICK_STANDING;  App->input->kick_timer2 = SDL_GetTicks();  break;
+			case IN_3_P2: state = ST_TORNADO;  App->input->tornado_timer2 = SDL_GetTicks();  break;
 			case IN_DAMAGE_P2: state = ST_DAMAGE;  break;
 			}
 		}
