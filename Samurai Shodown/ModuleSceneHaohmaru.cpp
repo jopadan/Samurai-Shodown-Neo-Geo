@@ -146,14 +146,7 @@ update_status ModuleSceneHaohmaru::Update()
 	App->render->Blit(graphics, 365 + splash3.pivotx[splash3.returnCurrentFrame()], 40 + splash3.pivoty[splash3.returnCurrentFrame()], &(splash3.GetCurrentFrame()), SDL_FLIP_NONE, 1); // splash
 	
 	//background
-
-	if (App->input->keyboard[SDL_SCANCODE_F5] == 1) {
-		App->fade->FadeToBlack(App->scene_haohmaru, App->winhaoh, 2);
-	}
-	if (App->input->keyboard[SDL_SCANCODE_F6] == 1) {
-		App->fade->FadeToBlack(App->scene_haohmaru, App->end, 2);
-	}
-
+	
 	if (App->ui->Health_Bar_p2 <=0) {
 		App->fade->FadeToBlack(App->scene_haohmaru, App->winhaoh, 2);
 	}
