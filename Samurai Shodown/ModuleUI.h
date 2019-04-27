@@ -25,6 +25,9 @@ public:
 	Animation* current_animation = nullptr;
 	Animation lowKo;
 	Animation end;
+	bool roundstart = true;
+	bool roundend = false;
+	bool matchend = false;
 	//Animation lowHealth;
 	bool lowAnim = false;
 	SDL_Rect health;
@@ -35,6 +38,7 @@ public:
 	SDL_Rect healthCont1;
 	SDL_Rect healthCont2;
 	SDL_Rect ko;
+	SDL_Rect begin;
 	int HealthBar_p1 = 128;
 	int Health_Bar_p2 = 128;
 	int roundsp1 = 0;
