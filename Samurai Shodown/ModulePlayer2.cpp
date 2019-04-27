@@ -680,11 +680,9 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 	{
 		wall = true;
 	}
-	else {
-		wall = false;
-	}
+	else { wall = false; }
 	if (App->input->keyboard[SDL_SCANCODE_J]|| App->input->keyboard[SDL_SCANCODE_L] && colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER) {
-		if (App->player->position.x > 0 && App->player2->position.x < 580){
+		if (App->player->position.x > 0 && App->player2->position.x < 575){
 		if (flip == SDL_FLIP_HORIZONTAL)
 			App->player->position.x -= speed;
 		if (flip == SDL_FLIP_NONE)
@@ -692,7 +690,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 		}
 		else { speed = 0; }
 	}
-
+	
 	
 	if (colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER_SHOT && defense == false)
 	{

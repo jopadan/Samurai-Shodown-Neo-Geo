@@ -776,13 +776,13 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	}
 	else { wall = false;
 	if (App->input->keyboard[SDL_SCANCODE_D]|| App->input->keyboard[SDL_SCANCODE_A] && colliderPlayer == c1 && c2->type == COLLIDER_ENEMY)  {
-		if (App->player2->position.x > 0 && App->player2->position.x < 580){
+		if (App->player2->position.x > 0 && App->player2->position.x < 575){
 			if (flip == SDL_FLIP_HORIZONTAL)
 			App->player2->position.x -= speed;
 		if (flip == SDL_FLIP_NONE)
 			App->player2->position.x += speed;
 		}
-		else { speed = 0; }
+		else { speed = 0;}
 	}
 		
 	}

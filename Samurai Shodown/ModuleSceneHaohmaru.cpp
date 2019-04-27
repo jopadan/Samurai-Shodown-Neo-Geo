@@ -111,7 +111,7 @@ bool ModuleSceneHaohmaru::Start()
 
 	// COLLIDERS PARA LOS LIMITES DEL MAPA
 	colliderMap = App->collision->AddCollider({ -55, -150, 50, 500  }, COLLIDER_WALL);
-	colliderMap2 = App->collision->AddCollider({ 635, -150, 50, 500 }, COLLIDER_WALL);
+	colliderMap2 = App->collision->AddCollider({ 640, -150, 50, 500 }, COLLIDER_WALL);
 
 
 	return ret;
