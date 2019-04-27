@@ -62,7 +62,15 @@ ModulePlayer::ModulePlayer()
 	jumpup.PushBack({ 510, 303, 76, 83 },	0.09,	0, 0, 0, 0);
 	jumpup.PushBack({ 429, 295, 75, 91 },	0.11,	0, 0, 0, 0);
 	jumpup.PushBack({ 363, 274, 60, 112 },	0.11,	0, 0, 0, 0);
-														
+
+	jumpPunch.PushBack({ 197, 648, 90, 89 }, 0.1, 0, 0, 0, 0);//737
+	jumpPunch.PushBack({ 290, 650, 60, 87 }, 0.1, 0, 0, 0, 0);
+	jumpPunch.PushBack({ 353, 644, 96, 93 }, 0.1, 0, 0, 0, 0);
+	jumpPunch.PushBack({ 455, 637, 121, 100 }, 0.1, 0, 0, 0, 0);
+	jumpPunch.PushBack({ 586, 637, 124, 100 }, 0.1, 0, 0, 0, 0);
+	jumpPunch.PushBack({ 713, 637, 85, 100 }, 0.1, 0, 0, 0, 0);
+	jumpPunch.PushBack({ 801, 648, 90, 89 }, 0.1, 0, 0, 0, 0);
+	jumpPunch.PushBack({ 197, 650, 60, 87 }, 0.1, 0, 0, 0, 0);
 	
 	punch.PushBack({ 3, 0, 69, 127 }, 0.3, 0, 0, 0, 0);
 	punch.PushBack({ 74, 30, 79, 97 }, 0.1, -10, 0, 0, 0);
