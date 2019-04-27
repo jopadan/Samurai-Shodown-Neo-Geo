@@ -18,7 +18,6 @@ private:
 	bool floor = true;
 	bool attAnim = false;
 	bool kickAnim = false;
-	bool crouch = false;
 	bool cycloneAnim = false;
 	bool tornadoAnim;
 	int initialPos;
@@ -52,10 +51,11 @@ public:
 	Animation backward;
 	Animation jumpup;
 	Animation punch;
-	Animation crounch;
+	Animation crouch;
 	Animation hit;
 	Uint32 speed = 2;
 	bool deletecol = true;
+	bool defense = false;
 	Uint32 Damage = 20;
 	Animation kick;
 	Animation cyclone;

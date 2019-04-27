@@ -6,7 +6,6 @@
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
 #include "ModuleInput.h"
-#include "ModuleInputPlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneHaohmaru.h"
 #include "ModuleMusic.h"
@@ -83,8 +82,11 @@ bool ModuleSceneHaohmaru::Start()
 	bool ret = true;
 	App->player->deletecol = true;
 	App->player2->deletecol = true;
+	
 	starttime = SDL_GetTicks();
-	timer = 100;
+	rounds1 = App->ui->roundsp1;
+	rounds2 = App->ui->roundsp2;
+	timer = 99;
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 	App->collision->Enable();
@@ -95,7 +97,6 @@ bool ModuleSceneHaohmaru::Start()
 	App->music->PlayMus(musload);
 	App->player->Enable();
 	App->player2->Enable();
-	App->input_player->Enable();
 	App->collision->Enable();
 	App->ui->Enable();
 
@@ -109,6 +110,8 @@ bool ModuleSceneHaohmaru::Start()
 bool ModuleSceneHaohmaru::CleanUp()
 {
 	LOG("Unloading Haohmaru scene");
+	matchstart = false;
+	
 	if (colliderMap != nullptr) {
 		colliderMap->to_delete = true;
 	}
@@ -121,7 +124,6 @@ bool ModuleSceneHaohmaru::CleanUp()
 	App->textures->Unload(graphics);
 	App->player->Disable();
 	App->player2->Disable();
-	App->input_player->Disable();
 	App->fonts->UnLoad(font_timer);
 	App->ui->Disable();
 
@@ -132,7 +134,13 @@ bool ModuleSceneHaohmaru::CleanUp()
 // Update: draw background
 update_status ModuleSceneHaohmaru::Update()
 {
-
+	if(matchstart == false){
+	if (SDL_GetTicks() - starttime >= 4000) {
+		 matchstart = true;
+		 App->input->playerinput = true;
+		 timertime = SDL_GetTicks();
+	}
+	else{ timertime = SDL_GetTicks(); }}
 	// Draw everything --------------------------------------
 	
 	App->render->Blit(graphics, 0, -150, &ground, SDL_FLIP_NONE);
@@ -146,16 +154,48 @@ update_status ModuleSceneHaohmaru::Update()
 	App->render->Blit(graphics, 365 + splash3.pivotx[splash3.returnCurrentFrame()], 40 + splash3.pivoty[splash3.returnCurrentFrame()], &(splash3.GetCurrentFrame()), SDL_FLIP_NONE, 1); // splash
 	
 	//background
-	
+	if (timer == 0) {
+		if (App->ui->Health_Bar_p2 < App->ui->HealthBar_p1)App->ui->Health_Bar_p2 = 0;
+		else App->ui->HealthBar_p1 = 0;
+	}
 	if (App->ui->Health_Bar_p2 <=0) {
-		App->fade->FadeToBlack(App->scene_haohmaru, App->winhaoh, 2);
+		if(rounds1 == App->ui->roundsp1)App->ui->roundsp1++;
+		if (App->ui->roundsp1 == 3) {
+			App->input->playerinput = false;
+			if (endingtimer ==0)endingtimer = SDL_GetTicks();
+			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->winhaoh, 2);
+		}
+
+		else { 
+			App->input->playerinput = false;
+			if (endingtimer == 0)endingtimer = SDL_GetTicks();
+			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->scene_haohmaru, 1);
+		}
 	}
 	if (App->ui->HealthBar_p1 <= 0) {
-		App->fade->FadeToBlack(App->scene_haohmaru, App->end, 2);
+		if (rounds2 == App->ui->roundsp2)App->ui->roundsp2++;
+		if (App->ui->roundsp2 == 3) {
+			App->input->playerinput = false;
+			if (endingtimer == 0)endingtimer = SDL_GetTicks();
+			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->end, 2);
+		}
+		
+		else { 
+			App->input->playerinput = false;
+			if (endingtimer == 0)endingtimer = SDL_GetTicks();
+			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->scene_haohmaru, 1);
+		}
+	}
+	if (App->input->keyboard[SDL_SCANCODE_F2] == 1) {
+		App->ui->Health_Bar_p2=0;
+	}
+	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) {
+		App->ui->HealthBar_p1=0;
 	}
 
-	if (SDL_GetTicks() - starttime >= 1000) {
-		starttime = SDL_GetTicks();
+
+	if (SDL_GetTicks() - timertime >= 1000) {
+		timertime = SDL_GetTicks();
 		timer--;
 	}
 	sprintf_s(timer_text, 10, "%d", timer);

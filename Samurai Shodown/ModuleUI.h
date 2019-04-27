@@ -37,6 +37,8 @@ public:
 	SDL_Rect ko;
 	int HealthBar_p1 = 128;
 	int Health_Bar_p2 = 128;
+	int roundsp1 = 0;
+	int roundsp2 = 0;
 };
 
 #endif // !__ModuleUI_H__

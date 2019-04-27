@@ -47,9 +47,6 @@
     <ClInclude Include="ModuleInput.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleInputPlayer.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleMenu.h">
       <Filter>Modules</Filter>
     </ClInclude>

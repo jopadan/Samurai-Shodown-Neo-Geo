@@ -9,6 +9,7 @@
 #include "ModuleMenu.h"
 #include "SDL/include/SDL.h"
 #include "ModuleSceneHaohmaru.h"
+#include "ModuleUI.h"
 
 
 
@@ -55,7 +56,7 @@ bool ModuleMenu::Start()
 	musload = App->music->LoadMus("Assets/Sound/Static and Dynamic (short).ogg");
 	graphics = App->textures->Load("Assets/Image/Menu Spritesheet.png");
 	App->music->PlayMus(musload);
-
+	App->ui->roundsp1 = App->ui->roundsp2 = 0;
 	return ret;
 }
 

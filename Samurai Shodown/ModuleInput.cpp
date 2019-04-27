@@ -1,8 +1,6 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleInput.h"
-
-#include "ModuleInputPlayer.h"
 #include "p2Qeue.h"
 #include "SDL/include/SDL.h"
 
@@ -47,35 +45,35 @@ bool ModuleInput::external_input()
 				return false;
 				break;
 			case SDLK_s:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 					down = false;
 				break;
 			case SDLK_k:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 					down2 = false;
 				break;
 			case SDLK_w:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 					up = false;
 				break;
 			case SDLK_i:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 					up2 = false;
 				break;
 			case SDLK_a:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 					left = false;
 				break;
 			case SDLK_j:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 					left2 = false;
 				break;
 			case SDLK_d:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 					right = false;
 				break;
 			case SDLK_l:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 					right2 = false;
 				break;
 			}
@@ -86,59 +84,59 @@ bool ModuleInput::external_input()
 			switch (event.key.keysym.sym)
 			{
 			case SDLK_1:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 					App->input->inputs.Push(IN_1);
 				break;
 			case SDLK_2:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 				App->input->inputs.Push(IN_2);
 				break;
 			case SDLK_3:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 				App->input->inputs.Push(IN_3);
 				break;
 			case SDLK_w:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 					up = true;
 				break;
 			case SDLK_s:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 					down = true;
 				break;
 			case SDLK_a:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 					left = true;
 				break;
 			case SDLK_d:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 					right = true;
 				break;
 			case SDLK_7:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 					App->input->inputs2.Push(IN_1_P2);
 				break;
 			case SDLK_8:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 					App->input->inputs2.Push(IN_2_P2);
 				break;
 			case SDLK_9:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 					App->input->inputs2.Push(IN_3_P2);
 				break;
 			case SDLK_i:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 					up2 = true;
 				break;
 			case SDLK_k:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 					down2 = true;
 				break;
 			case SDLK_j:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 					left2 = true;
 				break;
 			case SDLK_l:
-				if (App->input_player->IsEnabled() == true)
+				if (playerinput == true)
 					right2 = true;
 				break;
 			}
@@ -236,6 +234,7 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs, p2Qeue<player_in
 			tornado_timer = 0;
 		}
 	}
+	
 	if (jump_timer2 > 0)
 	{
 		if (SDL_GetTicks() - jump_timer2 > JUMP_TIME)
@@ -269,6 +268,7 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs, p2Qeue<player_in
 			tornado_timer2 = 0;
 		}
 	}
+	
 	
 }
 

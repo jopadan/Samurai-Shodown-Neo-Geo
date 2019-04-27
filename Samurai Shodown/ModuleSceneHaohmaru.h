@@ -29,13 +29,19 @@ public:
 	char timer_text[10];
 	int font_timer = -1;
 	uint timer;
+	uint endingtimer=0;
 	int starttime;
+	int timertime;
 	Collider* colliderMap;
 	Collider* colliderMap2;
 	Animation splash1;
 	Animation splash2;
 	Animation splash3;
 	Animation sea;
+	uint rounds1;
+	uint rounds2;
+	bool matchstart=false;
+	
 };
 
 #endif

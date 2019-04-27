@@ -79,7 +79,6 @@
     <ClInclude Include="ModuleEnding.h" />
     <ClInclude Include="ModuleFadeToBlack.h" />
     <ClInclude Include="ModuleFonts.h" />
-    <ClInclude Include="ModuleInputPlayer.h" />
     <ClInclude Include="ModuleMenu.h" />
     <ClInclude Include="ModuleMusic.h" />
     <ClInclude Include="ModuleParticles.h" />
