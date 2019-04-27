@@ -21,8 +21,8 @@ ModulePlayer2::ModulePlayer2()
 	position.y = 207;
 	initialPos = position.y;
 
-	idle.PushBack({ 7, 273, 75, 113 }, 0.15, 0, 0, -1, 0);
-	idle.PushBack({ 86, 275, 73, 111 }, 0.15, 0, 0, 0, 0);
+	idle.PushBack({ 7, 273, 75, 113 }, 0.15, 0, 0, -2, 0);
+	idle.PushBack({ 86, 275, 73, 111 }, 0.15, 0, 0, -1, 0);
 	idle.PushBack({ 164, 277, 72, 109 }, 0.15, 0, 0, 0, 0);
 	idle.PushBack({ 241, 279, 72, 107 }, 0.15, 0, 0, 0, 0);
 	
@@ -131,7 +131,7 @@ update_status ModulePlayer2::Update()
 	Animation* shadow_animation = &shadow;
 
 	SDL_Rect r2 = shadow_animation->GetCurrentFrame();
-	App->render->Blit(graphicsobj, position.x - 3, 201, &r2, SDL_FLIP_NONE);
+	App->render->Blit(graphicsobj, position.x - 7, 201, &r2, SDL_FLIP_NONE);
 
 	player_states current_state = ST_UNKNOWN;
 	player_states state = process_fsm(App->input->inputs2);
