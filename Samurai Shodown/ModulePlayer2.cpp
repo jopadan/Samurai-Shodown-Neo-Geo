@@ -26,7 +26,7 @@ ModulePlayer2::ModulePlayer2()
 	idle.PushBack({ 164, 277, 72, 109 }, 0.15, 0, 0, 0, 0);
 	idle.PushBack({ 241, 279, 72, 107 }, 0.15, 0, 0, 0, 0);
 	
-	crouch.PushBack({ 755, 432, 81, 121 }, 0.15, 0, 10, 0, 10);
+	crouch.PushBack({ 755, 432, 81, 121 }, 0.25, 0, 10, 0, 10);
 	crouch.PushBack({ 854, 463, 99, 94 }, 0.1, -26, 13, 0, 13);
 	crouch.loop = false;
 
