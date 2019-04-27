@@ -129,7 +129,6 @@ update_status ModulePlayer2::Update()
 	Animation* current_animation = &idle;
 
 	Animation* shadow_animation = &shadow;
-	defense = false;
 	SDL_Rect r2 = shadow_animation->GetCurrentFrame();
 	App->render->Blit(graphicsobj, position.x - 3, 201, &r2, SDL_FLIP_NONE);
 
@@ -137,19 +136,23 @@ update_status ModulePlayer2::Update()
 	player_states state = process_fsm(App->input->inputs2);
 	if (state != current_state)
 	{
+		if (state != ST_WALK_BACKWARD || state != ST_WALK_FORWARD) {
+			defense = false;
+		}
 		switch (state)
 		{
 		case ST_IDLE:
-
+			
 			break;
 
 		case ST_WALK_FORWARD:
+			if (flip == SDL_FLIP_HORIZONTAL)defense = true;
 			if (wall && position.x > 100) {}
 			else if (position.x + 60 > (-App->render->camera.x + 912) / 3) {}
 			else {
 				if (flip == SDL_FLIP_HORIZONTAL) {
 					current_animation = &backward;
-					defense = true;
+					
 				}
 				if (flip == SDL_FLIP_NONE) {
 					current_animation = &forward;
@@ -159,6 +162,7 @@ update_status ModulePlayer2::Update()
 
 			break;
 		case ST_WALK_BACKWARD:
+			if (flip == SDL_FLIP_NONE)defense = true;
 			if (wall && position.x < 100) {}
 			else if (position.x < -(App->render->camera.x / 3)) {}
 			else {
@@ -168,7 +172,7 @@ update_status ModulePlayer2::Update()
 				}
 				if (flip == SDL_FLIP_NONE) {
 					current_animation = &backward;
-					defense = true;
+					
 				}
 				position.x -= speed;
 

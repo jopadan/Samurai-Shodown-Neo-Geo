@@ -137,6 +137,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 		if (active[i]==nullptr)
 		{
 			Particle* p = new Particle(particle);
+			p->anim = particle.anim;
 			
 			if (collider_type == COLLIDER_PLAYER_SHOT) {
 				if (App->player->flip == SDL_FLIP_NONE) {

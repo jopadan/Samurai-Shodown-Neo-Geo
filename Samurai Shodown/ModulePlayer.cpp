@@ -134,24 +134,27 @@ update_status ModulePlayer::Update()
 
 	SDL_Rect r2 = shadow_animation->GetCurrentFrame();
 	App->render->Blit(graphicsobj, position.x, 201, &r2, SDL_FLIP_NONE);
-	defense = false;
+
 	player_states current_state = ST_UNKNOWN;
 	player_states state = process_fsm(App->input->inputs);
 if (state != current_state)
 {
+	if (state != ST_WALK_BACKWARD || state != ST_WALK_FORWARD) {
+		defense = false;
+	}
 	switch (state)
 	{
 	case ST_IDLE:
-	
 		break;
 
 	case ST_WALK_FORWARD:
+		if (flip == SDL_FLIP_HORIZONTAL)defense = true;
 		if (wall && position.x > 100 ) {}
 		else if (position.x+60 > (-App->render->camera.x + 912) / 3) {}
 		else {
 			if (flip == SDL_FLIP_HORIZONTAL) {
 				current_animation = &backward;
-				defense = true;
+				
 			}
 			if (flip == SDL_FLIP_NONE) {
 				current_animation = &forward;
@@ -162,6 +165,7 @@ if (state != current_state)
 		
 		break;
 	case ST_WALK_BACKWARD:
+		if (flip == SDL_FLIP_NONE)defense = true;
 		if (wall && position.x < 100) {}
 		else if (position.x < -(App->render->camera.x / 3)) {}
 		else {
@@ -171,7 +175,7 @@ if (state != current_state)
 			}
 			if (flip == SDL_FLIP_NONE) {
 				current_animation = &backward;
-				defense = true;
+				
 			}
 				position.x -= speed;
 			
@@ -647,8 +651,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	}
 	if (colliderPlayer == c1 && c2->type == COLLIDER_ENEMY_SHOT && defense == false)
 	{
-		if (App->player2->colliderAttack != nullptr)
-			App->player2->colliderAttack->to_delete = true;
+		if (App->player2->colliderAttack != nullptr){
+			App->player2->colliderAttack->to_delete = true;}
 		App->ui->HealthBar_p1 -= App->player2->Damage;
 		App->input->inputs.Push(IN_DAMAGE);
 	
