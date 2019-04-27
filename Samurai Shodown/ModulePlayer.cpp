@@ -144,6 +144,7 @@ bool ModulePlayer::CleanUp() {
 	LOG("Unloading Player")
 		if (colliderPlayer != nullptr) {
 	colliderPlayer->to_delete = true;
+	colliderPlayer_2->to_delete = true;
 		}
 	position.x = 208;
 	position.y = 207;
@@ -173,6 +174,7 @@ if (state != current_state)
 	switch (state)
 	{
 	case ST_IDLE:
+		jumpSpeed = 6;
 		height = 0;
 		height2 = 0;
 		break;
@@ -345,6 +347,15 @@ if (state != current_state)
 				
 				if (current_animation->AnimationEnd() == true) { animstart = 1; App->input->inputs.Push(IN_DAMAGE_FINISH); }}
 			}
+			
+			 idle.Reset();
+			 crouch.Reset();
+			 forward.Reset();
+			 backward.Reset();
+			 jumpup.Reset();
+			 punch.Reset();
+			 kick.Reset();
+			 cyclone.Reset();
 		break;
 	case ST_PUNCH_STANDING:
 		Damage = 25;
@@ -773,13 +784,14 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	}
 	else { wall = false;
 	if (App->input->keyboard[SDL_SCANCODE_D]|| App->input->keyboard[SDL_SCANCODE_A] && colliderPlayer == c1 && c2->type == COLLIDER_ENEMY)  {
-		if (App->player2->position.x > 0 && App->player2->position.x < 580){
+		if (App->player2->position.x > 0 && App->player2->position.x < 575){
 			if (flip == SDL_FLIP_HORIZONTAL)
 			App->player2->position.x -= speed;
 		if (flip == SDL_FLIP_NONE)
 			App->player2->position.x += speed;
+		 pos = position.x;
 		}
-		else { speed = 0; }
+		else { speed = -1; }
 	}
 		
 	}

@@ -25,7 +25,7 @@ private:
 	int animstart=0;
 	bool shoot = true;
 	bool collider = true;
-
+	int pos;
 
 
 	
