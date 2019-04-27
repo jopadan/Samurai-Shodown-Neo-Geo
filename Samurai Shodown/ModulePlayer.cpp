@@ -172,6 +172,7 @@ if (state != current_state)
 		break;
 
 	case ST_WALK_FORWARD:
+		height2 = 0;
 		if (flip == SDL_FLIP_HORIZONTAL)defense = true;
 		if (wall && position.x > 100 ) {}
 		else if (position.x+60 > (-App->render->camera.x + 912) / 3) {}
@@ -189,6 +190,7 @@ if (state != current_state)
 		
 		break;
 	case ST_WALK_BACKWARD:
+		height2 = 0;
 		if (flip == SDL_FLIP_NONE)defense = true;
 		if (wall && position.x < 100) {}
 		else if (position.x < -(App->render->camera.x / 3)) {}
@@ -221,6 +223,7 @@ if (state != current_state)
 				animstart = 1;
 				position.y = initialPos;
 				jumpSpeed = 6;
+				
 			}
 		}
 		
@@ -773,20 +776,22 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	if (colliderPlayer == c1 && c2->type== COLLIDER_WALL)
 	{
 		wall = true;
+		if (flip == SDL_FLIP_HORIZONTAL)
+			position.x -= speed*2;
+		if (flip == SDL_FLIP_NONE)
+			position.x += speed*2;
 	}
-	else { wall = false;
+	else { wall = false; }
 	if (App->input->keyboard[SDL_SCANCODE_D]|| App->input->keyboard[SDL_SCANCODE_A] && colliderPlayer == c1 && c2->type == COLLIDER_ENEMY)  {
-		if (App->player2->position.x > 0 && App->player2->position.x < 575){
+		
 			if (flip == SDL_FLIP_HORIZONTAL)
 			App->player2->position.x -= speed;
 		if (flip == SDL_FLIP_NONE)
 			App->player2->position.x += speed;
-		 pos = position.x;
+		 
 		}
-		else { speed = -1; }
-	}
-		
-	}
+	
+	
 	if (colliderPlayer == c1 && c2->type == COLLIDER_ENEMY_SHOT && defense == false)
 	{
 		if (App->player2->colliderAttack != nullptr){

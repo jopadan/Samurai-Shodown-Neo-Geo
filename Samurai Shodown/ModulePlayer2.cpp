@@ -499,6 +499,7 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 
 		case ST_WALK_FORWARD:
 		{
+			height2 = 0;
 		if (flip == SDL_FLIP_NONE)	{if (SDL_GetTicks() - combotime < 120) {
 				if (combo1 == 1)combo1 = 2;
 				combotime = SDL_GetTicks();
@@ -518,6 +519,8 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 
 		case ST_WALK_BACKWARD:
 		{
+			height2 = 0;
+
 			if (flip == SDL_FLIP_HORIZONTAL) {
 				if (SDL_GetTicks() - combotime < 120) {
 					if (combo1 == 1)combo1 = 2;
@@ -679,16 +682,19 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 	if (colliderPlayer2 == c1 && c2->type == COLLIDER_WALL)
 	{
 		wall = true;
+		if (flip == SDL_FLIP_HORIZONTAL)
+			position.x -= speed * 2;
+		if (flip == SDL_FLIP_NONE)
+			position.x += speed * 2;
 	}
 	else { wall = false; }
 	if (App->input->keyboard[SDL_SCANCODE_J]|| App->input->keyboard[SDL_SCANCODE_L] && colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER) {
-		if (App->player->position.x > 0 && App->player2->position.x < 575){
+	
 		if (flip == SDL_FLIP_HORIZONTAL)
 			App->player->position.x -= speed;
 		if (flip == SDL_FLIP_NONE)
 			App->player->position.x += speed;
-		}
-		else { speed = -1; }
+
 	}
 	
 	
