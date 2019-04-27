@@ -12,6 +12,7 @@
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
 #include "ModuleEnding.h"
+#include "ModuleUI.h"
 
 
 
@@ -65,6 +66,7 @@ bool ModuleEnding::Start()
 	LOG("Loading end assets");
 	bool ret = true;
 
+
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
@@ -93,7 +95,7 @@ update_status ModuleEnding::Update()
 	App->render->Blit(graphics, 168, 0, &end, SDL_FLIP_NONE);
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
-		App->fade->FadeToBlack(App->end, (Module*)App->menu, 1);
+		App->fade->FadeToBlack(App->end, App->menu, 1);
 	}
 
 	return UPDATE_CONTINUE;

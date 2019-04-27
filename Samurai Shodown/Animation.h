@@ -26,11 +26,12 @@ public:
 
 	Animation()
 	{}
-	/*
-	Animation(const Animation& anim) : loop(anim.loop), speed(anim.), last_frame(anim.last_frame)
+	
+	Animation(const Animation& anim) : loop(anim.loop), last_frame(anim.last_frame)
 	{
 		SDL_memcpy(&frames, anim.frames, sizeof(frames));
-	}*/
+	}
+
 	void PushBack(const SDL_Rect& rect, double delay, int px, int py, int px2, int py2)
 	{	
 		pivotx[last_frame] = px;

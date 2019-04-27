@@ -2,7 +2,6 @@
 #include "ModuleWindow.h"
 #include "ModuleRender.h"
 #include "ModuleInput.h"
-#include "ModuleInputPlayer.h"
 #include "ModuleTextures.h"
 #include "ModuleSceneHaohmaru.h"
 #include "ModuleSceneNakoruru.h"
@@ -24,7 +23,6 @@ Application::Application()
 	modules[i++] = window = new ModuleWindow();
 	modules[i++] = render = new ModuleRender();
 	modules[i++] = input = new ModuleInput();
-	modules[i++] = input_player = new ModuleInputPlayer();
 	modules[i++] = textures = new ModuleTextures();
 	modules[i++] = fonts = new ModuleFonts();
 	modules[i++] = scene_nakoruru = new ModuleSceneNakoruru();
@@ -51,7 +49,6 @@ Application::~Application()
 bool Application::Init()
 {
 	bool ret = true;
-	input_player->Disable();
 	player->Disable();
 	player2->Disable();
 	scene_nakoruru->Disable();

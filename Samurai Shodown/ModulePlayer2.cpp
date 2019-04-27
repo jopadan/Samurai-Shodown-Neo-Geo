@@ -26,9 +26,9 @@ ModulePlayer2::ModulePlayer2()
 	idle.PushBack({ 164, 277, 72, 109 }, 0.15, 0, 0, 0, 0);
 	idle.PushBack({ 241, 279, 72, 107 }, 0.15, 0, 0, 0, 0);
 	
-	crounch.PushBack({ 755, 432, 81, 121 }, 0.05, 0, 10, 0, 10);
-	crounch.PushBack({ 854, 463, 99, 94 }, 0.05, -26, 13, 0, 13);
-	crounch.loop = false;
+	crouch.PushBack({ 755, 432, 81, 121 }, 0.15, 0, 10, 0, 10);
+	crouch.PushBack({ 854, 463, 99, 94 }, 0.1, -26, 13, 0, 13);
+	crouch.loop = false;
 
 	forward.PushBack({ 506, 150, 69, 112 }, 0.1, 0, 0, 0, 0);
 	forward.PushBack({ 580, 147, 59, 116 }, 0.25, 0, 0, 0, 0);
@@ -129,7 +129,6 @@ update_status ModulePlayer2::Update()
 	Animation* current_animation = &idle;
 
 	Animation* shadow_animation = &shadow;
-
 	SDL_Rect r2 = shadow_animation->GetCurrentFrame();
 	App->render->Blit(graphicsobj, position.x - 7, 201, &r2, SDL_FLIP_NONE);
 
@@ -137,18 +136,23 @@ update_status ModulePlayer2::Update()
 	player_states state = process_fsm(App->input->inputs2);
 	if (state != current_state)
 	{
+		if (state != ST_WALK_BACKWARD || state != ST_WALK_FORWARD) {
+			defense = false;
+		}
 		switch (state)
 		{
 		case ST_IDLE:
-
+			
 			break;
 
 		case ST_WALK_FORWARD:
+			if (flip == SDL_FLIP_HORIZONTAL)defense = true;
 			if (wall && position.x > 100) {}
 			else if (position.x + 60 > (-App->render->camera.x + 912) / 3) {}
 			else {
 				if (flip == SDL_FLIP_HORIZONTAL) {
 					current_animation = &backward;
+					
 				}
 				if (flip == SDL_FLIP_NONE) {
 					current_animation = &forward;
@@ -158,6 +162,7 @@ update_status ModulePlayer2::Update()
 
 			break;
 		case ST_WALK_BACKWARD:
+			if (flip == SDL_FLIP_NONE)defense = true;
 			if (wall && position.x < 100) {}
 			else if (position.x < -(App->render->camera.x / 3)) {}
 			else {
@@ -167,6 +172,7 @@ update_status ModulePlayer2::Update()
 				}
 				if (flip == SDL_FLIP_NONE) {
 					current_animation = &backward;
+					
 				}
 				position.x -= speed;
 
@@ -238,10 +244,10 @@ update_status ModulePlayer2::Update()
 		case ST_CROUCH:
 			if (animstart == 0)
 			{
-				current_animation = &crounch;
+				current_animation = &crouch;
 
 			}
-			LOG("CROUCHING ****\n");
+		
 			break;
 		case ST_PUNCH_CROUCH:
 			LOG("PUNCH CROUCHING **++\n");
@@ -269,6 +275,7 @@ update_status ModulePlayer2::Update()
 			}
 			break;
 		case ST_PUNCH_STANDING:
+			Damage = 25;
 			if (flip == SDL_FLIP_NONE) {
 				if (collider == true) {
 					colliderAttack = App->collision->AddCollider({ position.x, position.y - 70  , 70, 70 }, COLLIDER_ENEMY_SHOT, this);
@@ -313,6 +320,7 @@ update_status ModulePlayer2::Update()
 			LOG("KICK CROUCHING **--\n");
 			break;
 		case ST_KICK_STANDING:
+			Damage = 15;
 			if (flip == SDL_FLIP_NONE) {
 				if (collider == true) {
 					colliderAttack = App->collision->AddCollider({ position.x, position.y - 90, 40, 50 }, COLLIDER_ENEMY_SHOT, this);
@@ -356,6 +364,7 @@ update_status ModulePlayer2::Update()
 			LOG("KICK JUMP BACKWARD ^<<-\n");
 			break;
 		case ST_TORNADO:
+			Damage = 30;
 			if (shoot)
 			{
 				App->particles->AddParticle(App->particles->cyclone, position.x, position.y - 100, COLLIDER_ENEMY_SHOT, 450);
@@ -575,7 +584,7 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 			combo1 = 1;
 			switch (last_input)
 			{
-			case IN_CROUCH_UP_P2: state = ST_IDLE; break;
+			case IN_CROUCH_UP_P2: state = ST_IDLE; crouch.Reset(); break;
 			case IN_1_P2: state = ST_PUNCH_CROUCH; App->input->punch_timer2 = SDL_GetTicks(); break;
 			case IN_DAMAGE_P2: state = ST_DAMAGE; animstart = 0; break;
 
@@ -624,7 +633,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 			position.x -= App->player->speed/2;
 		
 	}
-	if (colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER_SHOT)
+	if (colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER_SHOT && defense == false)
 	{
 		if(App->player->colliderAttack!=nullptr)
 			App->player->colliderAttack->to_delete = true;

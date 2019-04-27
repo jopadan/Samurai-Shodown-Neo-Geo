@@ -6,7 +6,6 @@
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
 #include "ModuleInput.h"
-#include "ModuleInputPlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneHaohmaru.h"
 #include "ModuleVictoryHaohmaru.h"
@@ -55,7 +54,6 @@ bool ModuleSceneNakoruru::Start()
 	App->music->PlayMus(musload);
 	App->player->Enable();
 	App->player2->Enable();
-	App->input_player->Enable();
 	App->collision->Enable();
 	App->ui->Enable();
 
@@ -79,7 +77,6 @@ bool ModuleSceneNakoruru::CleanUp()
 	App->textures->Unload(graphics);
 	App->player->Disable();
 	App->player2->Disable();
-	App->input_player->Disable();
 	App->ui->Disable();
 
 	return true;

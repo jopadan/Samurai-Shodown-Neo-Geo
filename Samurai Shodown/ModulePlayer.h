@@ -19,7 +19,6 @@ private:
 	bool attAnim= false;
 	bool kickAnim = false;
 	bool cycloneAnim = false;
-	bool crouch = false;
 	bool tornadoAnim;
 	int initialPos;
 	float jumpSpeed = 6;
@@ -57,7 +56,7 @@ public:
 	Animation backward;
 	Animation jumpup;
 	Animation punch;
-	Animation crounch;
+	Animation crouch;
 	Animation kick;
 	Animation hit;
 	Animation shadow;
@@ -66,6 +65,7 @@ public:
 	iPoint position;
 	Uint32 Damage = 20;
 	bool deletecol = true;
+	bool defense = false;
 	Collider *colliderPlayer;
 	Collider *colliderAttack;
 	SDL_RendererFlip flip = SDL_FLIP_NONE;
