@@ -28,7 +28,12 @@ ModuleUI::ModuleUI() {
 	healthCont.y = 308;
 	healthCont.w = 130;
 	healthCont.h = 2;
-		
+	
+	begin.x	= 493;
+	begin.y = 9;
+	begin.w = 109;
+	begin.h = 49;
+
 	lowKo.PushBack({ 484, 394, 28, 21 }, 0.2, 0, 0, 0, 0);//178, 5
 	lowKo.PushBack({ 484, 417, 28, 21 }, 0.2, 0, 0, 0, 0);
 
@@ -82,6 +87,10 @@ update_status ModuleUI::Update() {
 	lowHealth.w = HealthBar_p1;
 	lowHealth2.w = Health_Bar_p2;
 
+	if (roundstart == true){ App->render->Blit(graphics, -App->render->camera.x / 3 + 97, -App->render->camera.y / 3 + 70, &begin, SDL_FLIP_NONE, 1); }
+	if (roundend == true) { App->render->Blit(graphics, -App->render->camera.x / 3 + 97, -App->render->camera.y / 3 + 70, &end.GetCurrentFrame(), SDL_FLIP_NONE, 1); }
+	if (matchend == true) { App->render->Blit(graphics, -App->render->camera.x / 3 + 97, -App->render->camera.y / 3 + 70, &lowKo.GetCurrentFrame(), SDL_FLIP_NONE, 1); }
+	
 	App->render->Blit(graphics, -App->render->camera.x / 3 + 4, -App->render->camera.y / 3 + 12, &healthCont1, SDL_FLIP_NONE, 1);
 	App->render->Blit(graphics, -App->render->camera.x / 3 + 166, -App->render->camera.y / 3 + 12, &healthCont2, SDL_FLIP_NONE, 1);
 	App->render->Blit(graphics, -App->render->camera.x / 3 + 138, -App->render->camera.y / 3 + 5, &ko, SDL_FLIP_NONE, 1);

@@ -82,7 +82,9 @@ bool ModuleSceneHaohmaru::Start()
 	bool ret = true;
 	App->player->deletecol = true;
 	App->player2->deletecol = true;
-	
+	App->ui->roundstart = true;
+	App->ui->matchend = false;
+	App->ui->roundend = false;
 	starttime = SDL_GetTicks();
 	rounds1 = App->ui->roundsp1;
 	rounds2 = App->ui->roundsp2;
@@ -137,6 +139,7 @@ update_status ModuleSceneHaohmaru::Update()
 	if(matchstart == false){
 	if (SDL_GetTicks() - starttime >= 4000) {
 		 matchstart = true;
+		 App->ui->roundstart = false;
 		 App->input->playerinput = true;
 		 timertime = SDL_GetTicks();
 	}
@@ -162,12 +165,14 @@ update_status ModuleSceneHaohmaru::Update()
 		if(rounds1 == App->ui->roundsp1)App->ui->roundsp1++;
 		if (App->ui->roundsp1 == 3) {
 			App->input->playerinput = false;
+			App->ui->matchend = true;
 			if (endingtimer ==0)endingtimer = SDL_GetTicks();
 			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->winhaoh, 2);
 		}
 
 		else { 
 			App->input->playerinput = false;
+			App->ui->roundend = true;
 			if (endingtimer == 0)endingtimer = SDL_GetTicks();
 			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->scene_haohmaru, 1);
 		}
@@ -176,12 +181,14 @@ update_status ModuleSceneHaohmaru::Update()
 		if (rounds2 == App->ui->roundsp2)App->ui->roundsp2++;
 		if (App->ui->roundsp2 == 3) {
 			App->input->playerinput = false;
+			App->ui->matchend = true;
 			if (endingtimer == 0)endingtimer = SDL_GetTicks();
 			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->end, 2);
 		}
 		
 		else { 
 			App->input->playerinput = false;
+			App->ui->roundend = true;
 			if (endingtimer == 0)endingtimer = SDL_GetTicks();
 			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->scene_haohmaru, 1);
 		}
