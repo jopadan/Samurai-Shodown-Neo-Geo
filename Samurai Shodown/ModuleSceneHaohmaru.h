@@ -23,7 +23,9 @@ public:
 	
 	SDL_Texture* graphics = nullptr;
 	Mix_Music* musload;
-	Mix_Chunk* chunkload;
+	Mix_Chunk* start;
+	Mix_Chunk* ippon;
+	Mix_Chunk* end;
 	SDL_Rect ground;
 	
 	char timer_text[10];

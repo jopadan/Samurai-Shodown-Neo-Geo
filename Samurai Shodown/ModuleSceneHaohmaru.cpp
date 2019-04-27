@@ -80,6 +80,7 @@ bool ModuleSceneHaohmaru::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
+
 	App->player->deletecol = true;
 	App->player2->deletecol = true;
 	App->ui->roundstart = true;
@@ -94,9 +95,14 @@ bool ModuleSceneHaohmaru::Start()
 	App->collision->Enable();
 
 	musload = App->music->LoadMus("Assets/Sound/Masculine Song -Sun- (Haohmaru).ogg");
+	start = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - Start.wav");
+	ippon = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - ippon.wav");
+	end = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - end.wav");
+
 	graphics = App->textures->Load("Assets/Image/haohmaru_stage.png");
 	font_timer = App->fonts->Load("Ui/UI_Numbers_1.png", "9876543210", 1);
 	App->music->PlayMus(musload);
+	App->music->PlayChunk(start);
 	App->player->Enable();
 	App->player2->Enable();
 	App->collision->Enable();
@@ -106,6 +112,8 @@ bool ModuleSceneHaohmaru::Start()
 	// COLLIDERS PARA LOS LIMITES DEL MAPA
 	colliderMap = App->collision->AddCollider({ -55, -150, 50, 500  }, COLLIDER_WALL);
 	colliderMap2 = App->collision->AddCollider({ 635, -150, 50, 500 }, COLLIDER_WALL);
+
+
 	return ret;
 }
 
@@ -122,6 +130,9 @@ bool ModuleSceneHaohmaru::CleanUp()
 	}
 	App->player->deletecol = true;
 	App->player2->deletecol = true;
+	App->music->UnloadChunk(start);
+	App->music->UnloadChunk(end);
+	App->music->UnloadChunk(ippon);
 	App->music->UnloadMus(musload);
 	App->textures->Unload(graphics);
 	App->player->Disable();
@@ -137,7 +148,7 @@ bool ModuleSceneHaohmaru::CleanUp()
 update_status ModuleSceneHaohmaru::Update()
 {
 	if(matchstart == false){
-	if (SDL_GetTicks() - starttime >= 4000) {
+	if (SDL_GetTicks() - starttime >= 4500) {
 		 matchstart = true;
 		 App->ui->roundstart = false;
 		 App->input->playerinput = true;
@@ -156,16 +167,26 @@ update_status ModuleSceneHaohmaru::Update()
 
 	App->render->Blit(graphics, 365 + splash3.pivotx[splash3.returnCurrentFrame()], 40 + splash3.pivoty[splash3.returnCurrentFrame()], &(splash3.GetCurrentFrame()), SDL_FLIP_NONE, 1); // splash
 	
-	//background
+
 	if (timer == 0) {
 		if (App->ui->Health_Bar_p2 < App->ui->HealthBar_p1)App->ui->Health_Bar_p2 = 0;
 		else App->ui->HealthBar_p1 = 0;
+	}	
+	
+	if (App->input->keyboard[SDL_SCANCODE_F2] == 1) {
+		App->ui->Health_Bar_p2=0;
+	}
+
+	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) {
+		App->ui->HealthBar_p1=0;
 	}
 	if (App->ui->Health_Bar_p2 <=0) {
 		if(rounds1 == App->ui->roundsp1)App->ui->roundsp1++;
 		if (App->ui->roundsp1 == 2) {
 			App->input->playerinput = false;
 			App->ui->matchend = true;
+			App->music->PlayChunk(end);
+
 			if (endingtimer ==0)endingtimer = SDL_GetTicks();
 			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->winhaoh, 2);
 		}
@@ -173,6 +194,8 @@ update_status ModuleSceneHaohmaru::Update()
 		else { 
 			App->input->playerinput = false;
 			App->ui->roundend = true;
+			App->music->PlayChunk(ippon);
+
 			if (endingtimer == 0)endingtimer = SDL_GetTicks();
 			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->scene_haohmaru, 1);
 		}
@@ -182,6 +205,8 @@ update_status ModuleSceneHaohmaru::Update()
 		if (App->ui->roundsp2 == 2) {
 			App->input->playerinput = false;
 			App->ui->matchend = true;
+			App->music->PlayChunk(end);
+
 			if (endingtimer == 0)endingtimer = SDL_GetTicks();
 			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->end, 2);
 		}
@@ -189,16 +214,13 @@ update_status ModuleSceneHaohmaru::Update()
 		else { 
 			App->input->playerinput = false;
 			App->ui->roundend = true;
+			App->music->PlayChunk(ippon);
+
 			if (endingtimer == 0)endingtimer = SDL_GetTicks();
 			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->scene_haohmaru, 1);
 		}
 	}
-	if (App->input->keyboard[SDL_SCANCODE_F2] == 1) {
-		App->ui->Health_Bar_p2=0;
-	}
-	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) {
-		App->ui->HealthBar_p1=0;
-	}
+
 
 
 	if (SDL_GetTicks() - timertime >= 1000) {
