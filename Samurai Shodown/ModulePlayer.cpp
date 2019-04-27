@@ -136,6 +136,7 @@ bool ModulePlayer::CleanUp() {
 	LOG("Unloading Player")
 		if (colliderPlayer != nullptr) {
 	colliderPlayer->to_delete = true;
+	colliderPlayer_2->to_delete = true;
 		}
 	position.x = 208;
 	position.y = 207;
@@ -165,6 +166,7 @@ if (state != current_state)
 	switch (state)
 	{
 	case ST_IDLE:
+		jumpSpeed = 6;
 		height = 0;
 		height2 = 0;
 		break;
@@ -337,6 +339,15 @@ if (state != current_state)
 				
 				if (current_animation->AnimationEnd() == true) { animstart = 1; App->input->inputs.Push(IN_DAMAGE_FINISH); }}
 			}
+			
+			 idle.Reset();
+			 crouch.Reset();
+			 forward.Reset();
+			 backward.Reset();
+			 jumpup.Reset();
+			 punch.Reset();
+			 kick.Reset();
+			 cyclone.Reset();
 		break;
 	case ST_PUNCH_STANDING:
 		Damage = 25;
