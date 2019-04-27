@@ -14,6 +14,21 @@ ModuleUI::ModuleUI() {
 	ko.w = 28;
 	ko.h = 21;
 
+	Ippon.x = 479;
+	Ippon.y = 62;
+	Ippon.w = 99;
+	Ippon.h = 38;
+
+	Victory.x = 494;
+	Victory.y = 104;
+	Victory.w = 118;
+	Victory.h = 34;
+
+	ko.x = 484;
+	ko.y = 394;
+	ko.w = 28;
+	ko.h = 21;
+
 	healthCont1.x = 273;
 	healthCont1.y = 421;
 	healthCont1.w = 134;
@@ -88,8 +103,8 @@ update_status ModuleUI::Update() {
 	lowHealth2.w = Health_Bar_p2;
 
 	if (roundstart == true){ App->render->Blit(graphics, -App->render->camera.x / 3 + 97, -App->render->camera.y / 3 + 70, &begin, SDL_FLIP_NONE, 1); }
-	if (roundend == true) { App->render->Blit(graphics, -App->render->camera.x / 3 + 97, -App->render->camera.y / 3 + 70, &end.GetCurrentFrame(), SDL_FLIP_NONE, 1); }
-	if (matchend == true) { App->render->Blit(graphics, -App->render->camera.x / 3 + 97, -App->render->camera.y / 3 + 70, &lowKo.GetCurrentFrame(), SDL_FLIP_NONE, 1); }
+	if (roundend == true) { App->render->Blit(graphics, -App->render->camera.x / 3 + 97, -App->render->camera.y / 3 + 70, &Victory, SDL_FLIP_NONE, 1); }
+	if (matchend == true) { App->render->Blit(graphics, -App->render->camera.x / 3 + 97, -App->render->camera.y / 3 + 70, &Ippon, SDL_FLIP_NONE, 1); }
 	
 	App->render->Blit(graphics, -App->render->camera.x / 3 + 4, -App->render->camera.y / 3 + 12, &healthCont1, SDL_FLIP_NONE, 1);
 	App->render->Blit(graphics, -App->render->camera.x / 3 + 166, -App->render->camera.y / 3 + 12, &healthCont2, SDL_FLIP_NONE, 1);

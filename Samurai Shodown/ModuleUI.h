@@ -32,6 +32,8 @@ public:
 	bool lowAnim = false;
 	SDL_Rect health;
 	SDL_Rect health2;
+	SDL_Rect Ippon;
+	SDL_Rect Victory;
 	SDL_Rect lowHealth;
 	SDL_Rect lowHealth2;
 	SDL_Rect healthCont;
