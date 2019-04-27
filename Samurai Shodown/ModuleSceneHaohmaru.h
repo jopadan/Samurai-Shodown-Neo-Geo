@@ -43,7 +43,7 @@ public:
 	uint rounds1;
 	uint rounds2;
 	bool matchstart=false;
-	
+	bool playfx = true;
 };
 
 #endif

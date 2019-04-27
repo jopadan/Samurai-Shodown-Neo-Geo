@@ -80,7 +80,7 @@ bool ModuleSceneHaohmaru::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
-
+	playfx = true;
 	App->player->deletecol = true;
 	App->player2->deletecol = true;
 	App->ui->roundstart = true;
@@ -175,17 +175,19 @@ update_status ModuleSceneHaohmaru::Update()
 	
 	if (App->input->keyboard[SDL_SCANCODE_F2] == 1) {
 		App->ui->Health_Bar_p2=0;
+		App->ui->roundsp1 = 2;
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) {
 		App->ui->HealthBar_p1=0;
+		App->ui->roundsp2 = 2;
 	}
 	if (App->ui->Health_Bar_p2 <=0) {
 		if(rounds1 == App->ui->roundsp1)App->ui->roundsp1++;
 		if (App->ui->roundsp1 == 2) {
 			App->input->playerinput = false;
 			App->ui->matchend = true;
-			App->music->PlayChunk(end);
+			if (playfx)App->music->PlayChunk(end); playfx = false;
 
 			if (endingtimer ==0)endingtimer = SDL_GetTicks();
 			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->winhaoh, 2);
@@ -194,7 +196,7 @@ update_status ModuleSceneHaohmaru::Update()
 		else { 
 			App->input->playerinput = false;
 			App->ui->roundend = true;
-			App->music->PlayChunk(ippon);
+			if (playfx)App->music->PlayChunk(ippon); playfx = false;
 
 			if (endingtimer == 0)endingtimer = SDL_GetTicks();
 			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->scene_haohmaru, 1);
@@ -205,7 +207,7 @@ update_status ModuleSceneHaohmaru::Update()
 		if (App->ui->roundsp2 == 2) {
 			App->input->playerinput = false;
 			App->ui->matchend = true;
-			App->music->PlayChunk(end);
+			if (playfx)App->music->PlayChunk(end); playfx = false;
 
 			if (endingtimer == 0)endingtimer = SDL_GetTicks();
 			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->end, 2);
@@ -214,7 +216,7 @@ update_status ModuleSceneHaohmaru::Update()
 		else { 
 			App->input->playerinput = false;
 			App->ui->roundend = true;
-			App->music->PlayChunk(ippon);
+			if (playfx)App->music->PlayChunk(ippon); playfx = false;
 
 			if (endingtimer == 0)endingtimer = SDL_GetTicks();
 			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->scene_haohmaru, 1);
