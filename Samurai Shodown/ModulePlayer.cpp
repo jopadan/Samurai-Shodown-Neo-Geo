@@ -30,6 +30,20 @@ ModulePlayer::ModulePlayer()
 	crouch.PushBack({ 840, 463, 99, 94}, 0.1, -26, 13, 0, 13);
 	crouch.loop = false;
 
+	crouchKick.PushBack({ 0, 636, 78, 80 }, 0.1, 0, 0, 0, 0);
+	crouchKick.PushBack({ 81, 643, 98, 73 }, 0.1, 0, 0, 0, 0);
+	crouchKick.PushBack({ 0, 636, 78, 80 }, 0.1, 0, 0, 0, 0);
+
+	crouchPunch.PushBack({ 0, 559, 83, 69 }, 0.3, 0, 0, 0, 0);//628
+	crouchPunch.PushBack({ 87, 560, 122, 68 }, 0.3, 0, 0, 0, 0);
+	crouchPunch.PushBack({ 217, 560, 122, 68 }, 0.3, 0, 0, 0, 0);
+	crouchPunch.PushBack({ 347, 558, 118, 70 }, 0.3, 0, 0, 0, 0);
+	crouchPunch.PushBack({ 475, 559, 125, 69 }, 0.3, 0, 0, 0, 0);
+	crouchPunch.PushBack({ 604, 560, 85, 68 }, 0.3, 0, 0, 0, 0);
+	crouchPunch.PushBack({ 693, 560, 81, 68 }, 0.3, 0, 0, 0, 0);
+	crouchPunch.PushBack({ 778, 559, 83, 69 }, 0.3, 0, 0, 0, 0);
+	crouchPunch.PushBack({ 867, 552, 71, 76 }, 0.3, 0, 0, 0, 0);
+
 	forward.PushBack({ 506, 150, 69, 112 }, 0.1,	0, 0, 0, 0);
 	forward.PushBack({ 580, 147, 59, 116 }, 0.25,	0, 0, 0, 0);
 	forward.PushBack({ 644, 145, 57, 118 }, 0.1,	0, 0, 0, 0);
@@ -258,15 +272,49 @@ if (state != current_state)
 		height = +20;
 		if (animstart == 0)
 		{
-		
 			current_animation = &crouch;
-		
 		}
 
 		
 		break;
 	case ST_PUNCH_CROUCH:
-		LOG("PUNCH CROUCHING **++\n");
+		Damage = 25;
+		if (flip == SDL_FLIP_NONE) {
+
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ position.x, position.y - 70 , 70, 70 }, COLLIDER_PLAYER_SHOT, this);
+				App->music->PlayChunk(sword);
+				collider = false;
+			}
+
+			if (colliderAttack != nullptr)
+				colliderAttack->SetPos(position.x + 60, position.y - 70);
+			if (animstart == 0)
+			{
+				current_animation = &crouchPunch;
+
+				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
+			}
+
+		}
+		else if (flip == SDL_FLIP_HORIZONTAL) {
+
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ position.x, position.y - 70, 50, 70 }, COLLIDER_PLAYER_SHOT, this);
+				App->music->PlayChunk(sword);
+				collider = false;
+			}
+
+			if (colliderAttack != nullptr)
+				colliderAttack->SetPos(position.x - 50, position.y - 70);
+			if (animstart == 0)
+			{
+				current_animation = &crouchPunch;
+
+				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
+			}
+
+		}
 		break;
 	case ST_DAMAGE:
 		
@@ -343,7 +391,44 @@ if (state != current_state)
 		LOG("PUNCH JUMP BACKWARD ^<<+\n");
 		break;
 	case ST_KICK_CROUCH:
-		LOG("KICK CROUCHING **--\n");
+		Damage = 15;
+		if (flip == SDL_FLIP_NONE) {
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ position.x, position.y - 90, 40, 50 }, COLLIDER_PLAYER_SHOT, this);
+				App->music->PlayChunk(kicks);
+				collider = false;
+			}
+
+			if (colliderAttack != nullptr)
+				colliderAttack->SetPos(position.x + 60, position.y - 90);
+
+			if (animstart == 0)
+			{
+				current_animation = &crouchKick;
+
+				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
+			}
+		}
+		else if (flip == SDL_FLIP_HORIZONTAL) {
+
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ position.x + 100, position.y - 90, 40, 50 }, COLLIDER_PLAYER_SHOT, this);
+				App->music->PlayChunk(kicks);
+				collider = false;
+
+			}
+
+			if (colliderAttack != nullptr)
+				colliderAttack->SetPos(position.x - 40, position.y - 90);
+			if (animstart == 0)
+			{
+				current_animation = &crouchKick;
+
+				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
+			}
+
+		}
+		break;
 		break;
 	case ST_KICK_STANDING:
 		Damage = 15;
