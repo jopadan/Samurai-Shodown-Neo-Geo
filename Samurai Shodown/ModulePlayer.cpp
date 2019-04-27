@@ -781,8 +781,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			App->player2->position.x -= speed;
 		if (flip == SDL_FLIP_NONE)
 			App->player2->position.x += speed;
+		 pos = position.x;
 		}
-		else { speed = 0;}
+		else { speed = -1; }
 	}
 		
 	}
