@@ -78,6 +78,7 @@ ModuleSceneHaohmaru::~ModuleSceneHaohmaru()
 // Load assets
 bool ModuleSceneHaohmaru::Start()
 {
+	endingtimer = 0;
 	LOG("Loading background assets");
 	bool ret = true;
 	playfx = true;
