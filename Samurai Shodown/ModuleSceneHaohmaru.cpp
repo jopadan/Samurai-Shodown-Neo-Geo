@@ -180,56 +180,39 @@ update_status ModuleSceneHaohmaru::Update()
 	
 	if (App->input->keyboard[SDL_SCANCODE_F2] == 1) {
 		App->ui->Health_Bar_p2=0;
-		App->ui->roundsp1 = 2;
+	
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) {
 		App->ui->HealthBar_p1=0;
-		App->ui->roundsp2 = 2;
+		
 	}
 	if (App->ui->Health_Bar_p2 <=0) {
 		App->input->inputs2.Push(IN_DEFEAT_P2);
 		App->input->inputs.Push(IN_WIN);
-		if(rounds1 == App->ui->roundsp1)App->ui->roundsp1++;
-		if (App->ui->roundsp1 == 2) {
+		
 			App->input->playerinput = false;
 			App->ui->matchend = true;
 			if (playfx)App->music->PlayChunk(end); playfx = false;
 
 			if (endingtimer ==0)endingtimer = SDL_GetTicks();  
 			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->winhaoh, 1);
-		}
 
-		else { 
-			App->input->playerinput = false;
-			App->ui->roundend = true;
-			if (playfx)App->music->PlayChunk(ippon); playfx = false;
-
-			if (endingtimer == 0)endingtimer = SDL_GetTicks();
-			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->scene_haohmaru, 1);
-		}
+	
 	}
 	if (App->ui->HealthBar_p1 <= 0) {
 		App->input->inputs2.Push(IN_WIN_P2);
 		App->input->inputs.Push(IN_DEFEAT);
-		if (rounds2 == App->ui->roundsp2)App->ui->roundsp2++;
-		if (App->ui->roundsp2 == 2) {
+		
 			App->input->playerinput = false;
 			App->ui->matchend = true;
 			if (playfx)App->music->PlayChunk(end); playfx = false;
 
 			if (endingtimer == 0)endingtimer = SDL_GetTicks();
 			if (SDL_GetTicks() - endingtimer >= 4000)App->fade->FadeToBlack(App->scene_haohmaru, App->end, 1);
-		}
 		
-		else { 
-			App->input->playerinput = false;
-			App->ui->roundend = true;
-			if (playfx)App->music->PlayChunk(ippon); playfx = false;
-
-			if (endingtimer == 0)endingtimer = SDL_GetTicks();
-			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->scene_haohmaru, 1);
-		}
+		
+		
 	}
 
 
