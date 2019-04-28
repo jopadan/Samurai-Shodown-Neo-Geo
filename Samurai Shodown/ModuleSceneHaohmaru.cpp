@@ -182,6 +182,7 @@ update_status ModuleSceneHaohmaru::Update()
 	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) {
 		App->ui->HealthBar_p1=0;
 		
+		
 	}
 	if (App->ui->Health_Bar_p2 <=0) {
 		App->input->inputs2.Push(IN_DEFEAT_P2);

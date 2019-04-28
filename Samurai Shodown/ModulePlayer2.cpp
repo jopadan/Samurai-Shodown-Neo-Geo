@@ -125,11 +125,11 @@ ModulePlayer2::ModulePlayer2()
 	intro.PushBack({ 777, 993, 84, 113 }, 0.1, 1, 1, 0, 0);
 	intro.PushBack({ 863, 993, 84, 113 }, 0.1, 0, 1, 0, 0);
     intro.PushBack({ 943, 1000, 84, 106 }, 0.15, -4, 2, 0, 0);
-	intro.PushBack({ 1030, 1000, 134, 113 }, 0.15, 0, 8, 0, 0);
+	intro.PushBack({ 1030, 1000, 134, 113 }, 0.15, 0, 8, -25, 10);
 	intro.PushBack({ 940, 44, 83, 113 }, 0.15, 4, 30, 4, 11);
 	intro.PushBack({ 943, 1000, 84, 106 }, 0.15, -4, 2, 0, 0);
-	intro.PushBack({ 7, 273, 75, 113 }, 0.15, 0, 0, -1, 0);
-	intro.loop = false;
+	intro.PushBack({ 7, 273, 75, 113 }, 0.01, 0, 0, -1, 0);
+	
 
 	shadow.PushBack({ 659, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
 	shadow.PushBack({ 733, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
