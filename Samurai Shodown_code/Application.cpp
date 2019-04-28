@@ -56,6 +56,8 @@ bool Application::Init()
 	ui->Disable();
 	end->Disable();
 	particles->Disable();
+	
+	
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();

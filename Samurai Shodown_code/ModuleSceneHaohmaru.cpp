@@ -78,7 +78,7 @@ bool ModuleSceneHaohmaru::Start()
 {
 	endingtimer = 0;
 	LOG("Loading background assets");
-	bool ret = true;
+    ret = true;
 	playfx = true;
 	App->player->deletecol = true;
 	App->player2->deletecol = true;
@@ -92,7 +92,7 @@ bool ModuleSceneHaohmaru::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 	
-	musload = App->music->LoadMus("Assets/Sound/Masculine Song -Sun- (Haohmaru).ogg");
+	//musload = App->music->LoadMus("Assets/Sound/Masculine Song -Sun- (Haohmaru).ogg");
 	start = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - Start.wav");
 	ippon = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - ippon.wav");
 	end = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - end.wav");
@@ -107,10 +107,10 @@ bool ModuleSceneHaohmaru::Start()
 	App->ui->Enable();
 	App->particles->Enable();
 
-
+	
 	// COLLIDERS PARA LOS LIMITES DEL MAPA
-	colliderMap = App->collision->AddCollider({ -55, -150, 50, 500  }, COLLIDER_WALL);
-	colliderMap2 = App->collision->AddCollider({ 640, -150, 50, 500 }, COLLIDER_WALL);
+//	colliderMap = App->collision->AddCollider({ -55, -150, 50, 500  }, COLLIDER_WALL);
+//	colliderMap2 = App->collision->AddCollider({ 640, -150, 50, 500 }, COLLIDER_WALL);
 
 
 	return ret;
@@ -129,20 +129,23 @@ bool ModuleSceneHaohmaru::CleanUp()
 	}
 	App->player->deletecol = true;
 	App->player2->deletecol = true;
-	App->music->UnloadChunk(start);
-	App->music->UnloadChunk(end);
-	App->music->UnloadChunk(ippon);
-	App->music->UnloadMus(musload);
-	App->textures->Unload(graphics);
-
-	App->player2->Disable();
-	App->fonts->UnLoad(font_timer);
-	App->player->Disable();
 	
-	App->collision->Disable();
+	
+	
+
+	
+	
 	App->ui->Disable();
 	App->particles->Disable();
-
+	App->collision->Disable();
+	App->player2->Disable();
+	App->player->Disable();
+	App->fonts->UnLoad(font_timer);
+	App->textures->Unload(graphics);
+	App->music->UnloadChunk(end);
+	App->music->UnloadChunk(ippon);
+	App->music->UnloadChunk(start);
+	App->music->UnloadMus(musload);
 
 	return true;
 }
@@ -208,7 +211,7 @@ update_status ModuleSceneHaohmaru::Update()
 			if (playfx)App->music->PlayChunk(end); playfx = false;
 
 			if (endingtimer == 0)endingtimer = SDL_GetTicks();
-			if (SDL_GetTicks() - endingtimer >= 4000)App->fade->FadeToBlack(App->scene_haohmaru, App->end, 5);
+			if (SDL_GetTicks() - endingtimer >= 4000)App->fade->FadeToBlack(App->scene_haohmaru, App->menu, 2);
 		
 		
 		
