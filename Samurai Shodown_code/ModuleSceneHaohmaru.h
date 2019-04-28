@@ -44,6 +44,7 @@ public:
 	uint rounds2;
 	bool matchstart=false;
 	bool playfx = true;
+	bool ret = true;
 };
 
 #endif
