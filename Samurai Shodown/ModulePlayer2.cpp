@@ -471,6 +471,7 @@ update_status ModulePlayer2::Update()
 				current_animation = &cyclone;
 				if (current_animation->AnimationEnd() == true) { animstart = 1; }
 			}
+			break;
 		case ST_WIN:
 			current_animation = &win;
 			break;

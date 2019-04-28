@@ -538,6 +538,7 @@ if (state != current_state)
 			current_animation = &cyclone;
 			if (current_animation->AnimationEnd() == true) { animstart = 1; }
 		}
+		break;
 	case ST_WIN:
 		current_animation = &win;
 		break;

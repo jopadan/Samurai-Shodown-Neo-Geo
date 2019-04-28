@@ -170,7 +170,11 @@ update_status ModuleSceneHaohmaru::Update()
 
 	if (timer == 0) {
 		if (App->ui->Health_Bar_p2 < App->ui->HealthBar_p1)App->ui->Health_Bar_p2 = 0;
-		else App->ui->HealthBar_p1 = 0;
+		if(App->ui->Health_Bar_p2 > App->ui->HealthBar_p1)App->ui->HealthBar_p1 = 0;
+		else {
+			if (endingtimer == 0)endingtimer = SDL_GetTicks();
+			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->scene_haohmaru, 1);
+		}
 	}	
 	
 	if (App->input->keyboard[SDL_SCANCODE_F2] == 1) {
@@ -191,8 +195,8 @@ update_status ModuleSceneHaohmaru::Update()
 			App->ui->matchend = true;
 			if (playfx)App->music->PlayChunk(end); playfx = false;
 
-			if (endingtimer ==0)endingtimer = SDL_GetTicks();
-			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->winhaoh, 2);
+			if (endingtimer ==0)endingtimer = SDL_GetTicks();  
+			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->winhaoh, 1);
 		}
 
 		else { 
