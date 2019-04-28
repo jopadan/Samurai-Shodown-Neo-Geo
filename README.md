@@ -60,9 +60,13 @@ The first player whose life gets to 0 or the one whose life is lower when the ti
 ## Changelog
 
 0.1: Added first level with manual camera movement, background music, and one character with basic movement animations and attack animations.
+
 0.2: Added different screens (menu, level 2 and victory screen) and system to navigate between them, with a fadeout in between them. Added fx and background music for every screen and improved the movement system, the input system and animations of the character.
+
 0.3: Added a second player with same movement system as the first player but without animations or attacks, a particles system and improved fx.
+
 0.4: Added a collision system (implementing stage limits and basic hitboxes for the characters and the attacks) and more funcionalities to both characters.
+
 0.45: Changed the second character's appearance to be the second version of the first character and added all funcionalities that the first player had to the second one. Added a flip system for the characters to always face each other and a basic automatic camera system. Added a functional UI (just healthbars and timer) with its font system and win/lose conditions. Taken out of the games path the second screen and improved hitboxes and combat.
 
 ## Project page and team members
