@@ -28,14 +28,15 @@ ModulePlayer2::ModulePlayer2()
 	idle.PushBack({ 241, 279, 72, 107 }, 0.15, 0, 0, 0, 0);
 	
 	crouch.PushBack({ 760, 432, 76, 110 }, 0.25, 0, 1, 0, 2);
-	crouch.PushBack({ 854, 460, 103, 84 }, 0.1, -28, 1, 0, 2);
+	crouch.PushBack({ 854, 460, 103, 84 }, 0.1, -26, 1, 0, 2);
 	crouch.loop = false;
+
 
 	forward.PushBack({ 506, 150, 69, 112 }, 0.1, 0, 0, 0, 0);
 	forward.PushBack({ 580, 147, 59, 116 }, 0.25, 0, 0, 0, 0);
 	forward.PushBack({ 644, 145, 57, 118 }, 0.1, 0, 0, 0, 0);
 	forward.PushBack({ 706, 147, 62, 116 }, 0.25, 0, 0, 0, 0);
-	forward.PushBack({ 773, 151, 70, 117 }, 0.1, 0, 2, 0, 2);;
+	forward.PushBack({ 773, 151, 70, 117 }, 0.1, 0, 2, 0, 2);
 
 	backward.PushBack({ 4, 155, 82, 111 }, 0.2, 0, 0, 0, 0);
 	backward.PushBack({ 88, 152, 75, 114 }, 0.2, 0, 0, 0, 0);
@@ -113,23 +114,23 @@ ModulePlayer2::ModulePlayer2()
 	win.loop = false;
 	//Hasta aqui
 
-	intro.PushBack({ 0, 1000, 84, 106 }, 0.05, 2, 1, 0, 1);
-	intro.PushBack({ 0 , 1000, 84, 106 }, 0.05, 2, 1, 0, 1);
-	intro.PushBack({ 165, 1000, 84, 106 }, 0.05, -4, 1, 3, 1);
-	intro.PushBack({ 251, 1001, 84, 106 }, 0.05, -2, 2, 3, 2);
-	intro.PushBack({ 340, 1000, 84, 106 }, 0.05, -1, 1, 2, 1);
-	intro.PushBack({ 429, 1000, 84, 106 }, 0.05, -3, 1, 3, 1);
-	intro.PushBack({ 521, 993, 84, 113 }, 0.05, -1, 1, 2, 1);
-	intro.PushBack({ 607, 993, 84, 113 }, 0.05, -3, 1, 3, 1);
-	/*intro.PushBack({ 693, 993, 79, 114 }, 0.05,-2, 2, 3, 2);
-	intro.PushBack({ 777, 993, 84, 113 }, 0.05, 1, 1, 3, 2);
-	intro.PushBack({ 863, 993, 84, 113 }, 0.05, 0, 1, 3, 1);
-	intro.PushBack({ 943, 1000, 84, 106 }, 0.05, -4, 2, 3, 2);
-	/*intro.PushBack({ 1030, 1000, 134, 113 }, 0.05, 0, 8, -25, 10);
-	intro.PushBack({ 940, 44, 83, 113 }, 0.05,4, 30, 4, 11);
-	intro.PushBack({ 943, 1000, 84, 106 }, 0.05, -4, 2, 0, 0);
-	intro.PushBack({ 7, 273, 75, 113 }, 0.05, 0, 0, -1, 0);*/
-
+	intro.PushBack({ 0, 1000, 84, 106 }, 0.1, 2, 1, 0, 0);
+	intro.PushBack({ 0 , 1000, 84, 106 }, 0.1, 2, 1, 0, 0);
+	intro.PushBack({ 165, 1000, 84, 106 }, 0.1, -4, 1, 0, 0);
+	intro.PushBack({ 251, 1001, 84, 106 }, 0.1, -2, 2, 0, 0);
+	intro.PushBack({ 340, 1000, 84, 106 }, 0.1, -1, 1, 0, 0);
+	intro.PushBack({ 429, 1000, 84, 106 }, 0.1, -3, 1, 0, 0);
+	intro.PushBack({ 521, 993, 84, 113 }, 0.1, -1, 1, 0, 0);
+	intro.PushBack({ 607, 993, 84, 113 }, 0.1, -3, 1, 0, 0);
+	intro.PushBack({ 693, 993, 79, 114 }, 0.1, -2, 2, 0, 0);
+	intro.PushBack({ 777, 993, 84, 113 }, 0.1, 1, 1, 0, 0);
+	intro.PushBack({ 863, 993, 84, 113 }, 0.1, 0, 1, 0, 0);
+    intro.PushBack({ 943, 1000, 84, 106 }, 0.15, -4, 2, 0, 0);
+	intro.PushBack({ 1030, 1000, 134, 113 }, 0.15, 0, 8, -25, 10);
+	intro.PushBack({ 940, 44, 83, 113 }, 0.15, 4, 30, 4, 11);
+	intro.PushBack({ 943, 1000, 84, 106 }, 0.15, -4, 2, 0, 0);
+	intro.PushBack({ 7, 273, 75, 113 }, 0.01, 0, 0, -1, 0);
+	
 
 	shadow.PushBack({ 659, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
 	shadow.PushBack({ 733, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
@@ -325,7 +326,7 @@ update_status ModulePlayer2::Update()
 			height = +20;
 			if (animstart == 0)
 			{
-				current_animation = &intro;
+				current_animation = &crouch;
 
 			}
 		

@@ -35,21 +35,21 @@ ModulePlayer::ModulePlayer()
 	crouchKick.PushBack({ 81, 643, 98, 73 }, 0.1, 0, 0, 0, 0);
 	crouchKick.PushBack({ 0, 636, 78, 80 }, 0.1, 0, 0, 0, 0);
 
-	crouchPunch.PushBack({ 0, 559, 83, 69 }, 0.3, 0, 0, 0, 0);//628
-	crouchPunch.PushBack({ 87, 560, 122, 68 }, 0.3, 0, 0, 0, 0);
-	crouchPunch.PushBack({ 217, 560, 122, 68 }, 0.3, 0, 0, 0, 0);
-	crouchPunch.PushBack({ 347, 558, 118, 70 }, 0.3, 0, 0, 0, 0);
-	crouchPunch.PushBack({ 475, 559, 125, 69 }, 0.3, 0, 0, 0, 0);
-	crouchPunch.PushBack({ 604, 560, 85, 68 }, 0.3, 0, 0, 0, 0);
-	crouchPunch.PushBack({ 693, 560, 81, 68 }, 0.3, 0, 0, 0, 0);
-	crouchPunch.PushBack({ 778, 559, 83, 69 }, 0.3, 0, 0, 0, 0);
-	crouchPunch.PushBack({ 867, 552, 71, 76 }, 0.3, 0, 0, 0, 0);
+	crouchPunch.PushBack({ 0, 559, 83, 69 }, 0.3, 0, 0, -5, 1);//628
+	crouchPunch.PushBack({ 87, 560, 122, 68 }, 0.3, 0, 0, -24, 4);
+	crouchPunch.PushBack({ 217, 560, 122, 68 }, 0.3, 0, 0, -24, 4);
+	crouchPunch.PushBack({ 347, 558, 118, 70 }, 0.3, 0, 0, -23, 4);
+	crouchPunch.PushBack({ 475, 559, 125, 69 }, 0.3, 0, 0, -25, 2);
+	crouchPunch.PushBack({ 604, 560, 85, 68 }, 0.3, 0, 0, -5, 2);
+	crouchPunch.PushBack({ 693, 560, 81, 68 }, 0.3, 0, 0, -5, 2);
+	crouchPunch.PushBack({ 778, 559, 83, 69 }, 0.3, 0, 0, -5, 2);
+	crouchPunch.PushBack({ 867, 552, 71, 76 }, 0.3, 0, 0, -2, 2);
 
-	forward.PushBack({ 506, 150, 69, 112 }, 0.1,	0, 0, 0, 0);
-	forward.PushBack({ 580, 147, 59, 116 }, 0.25,	0, 0, 0, 0);
-	forward.PushBack({ 644, 145, 57, 118 }, 0.1,	0, 0, 0, 0);
-	forward.PushBack({ 706, 147, 62, 116 }, 0.25,	0, 0, 0, 0);
-	forward.PushBack({ 773, 151, 70, 117 }, 0.1,	0, 0, 0, 0);
+	forward.PushBack({ 506, 150, 69, 112 }, 0.1, 0, 0, 0, 0);
+	forward.PushBack({ 580, 147, 59, 116 }, 0.25, 0, 0, 0, 0);
+	forward.PushBack({ 644, 145, 57, 118 }, 0.1, 0, 0, 0, 0);
+	forward.PushBack({ 706, 147, 62, 116 }, 0.25, 0, 0, 0, 0);
+	forward.PushBack({ 773, 151, 70, 117 }, 0.1, 0, 2, 0, 2);
 													
 	backward.PushBack({ 4, 155, 82, 111 },	0.2,	0, 0, 0, 0);
 	backward.PushBack({ 88, 152, 75, 114 },	0.2,	0, 0, 0, 0);
