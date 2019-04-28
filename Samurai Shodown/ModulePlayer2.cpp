@@ -90,13 +90,45 @@ ModulePlayer2::ModulePlayer2()
 	hit.PushBack({ 985, 446, 92, 107 }, 0.08, -20, 10, 0, 10);
 	//Animaciones a completar
 	block.PushBack({ 429, 295, 75, 91 }, 0.05, 0, 0, 0, 0);
-	defeat.PushBack({ 982, 446, 92, 107 }, 0.08, -20, 10, 0, 10);
+	
+	defeat.PushBack({ 1081, 436, 74, 108 }, 0.02, 0, 2, 0, 2);
+	defeat.PushBack({ 1164, 436, 74, 108 }, 0.025, 6, 2, -3, 2);
+	defeat.PushBack({ 1241, 436, 70, 108 }, 0.1, 9, 2, -3, 2);
+	defeat.PushBack({ 1312, 436, 70, 108 }, 0.1, 9, 2, -3, 2);
 	defeat.loop = false;
-	win.PushBack({ 2, 1000, 84, 106 }, 0.1, 0, 0, 0, 0);
+
+	defeat.loop = false;
+	win.PushBack({ 0, 1000, 84, 106 }, 0.1, 2, 1, 0, 0);
+	win.PushBack({ 0 , 1000, 84, 106 }, 0.1, 2, 1, 0, 0);
+	win.PushBack({ 165, 1000, 84, 106 }, 0.1, -4, 1, 0, 0);
+	win.PushBack({ 251, 1001, 84, 106 }, 0.1, -2, 2, 0, 0);
+	win.PushBack({ 340, 1000, 84, 106 }, 0.1, -1, 1, 0, 0);
+	win.PushBack({ 429, 1000, 84, 106 }, 0.1, -3, 1, 0, 0);
+	win.PushBack({ 521, 993, 84, 113 }, 0.1, -1, 1, 0, 0);
+	win.PushBack({ 607, 993, 84, 113 }, 0.1, -3, 1, 0, 0);
+	win.PushBack({ 693, 993, 79, 114 }, 0.1, -2, 2, 0, 0);
+	win.PushBack({ 777, 993, 84, 113 }, 0.1, 1, 1, 0, 0);
+	win.PushBack({ 863, 993, 84, 113 }, 0.1, 0, 1, 0, 0);
+	win.PushBack({ 0, 1000, 84, 106 }, 0.1, 2, 1, 0, 0);
 	win.loop = false;
 	//Hasta aqui
 
-	intro.PushBack({ 2, 1000, 84, 106 }, 0.1, 0, 0, 0, 0);
+	intro.PushBack({ 0, 1000, 84, 106 }, 0.1, 2, 1, 0, 0);
+	intro.PushBack({ 0 , 1000, 84, 106 }, 0.1, 2, 1, 0, 0);
+	intro.PushBack({ 165, 1000, 84, 106 }, 0.1, -4, 1, 0, 0);
+	intro.PushBack({ 251, 1001, 84, 106 }, 0.1, -2, 2, 0, 0);
+	intro.PushBack({ 340, 1000, 84, 106 }, 0.1, -1, 1, 0, 0);
+	intro.PushBack({ 429, 1000, 84, 106 }, 0.1, -3, 1, 0, 0);
+	intro.PushBack({ 521, 993, 84, 113 }, 0.1, -1, 1, 0, 0);
+	intro.PushBack({ 607, 993, 84, 113 }, 0.1, -3, 1, 0, 0);
+	intro.PushBack({ 693, 993, 79, 114 }, 0.1, -2, 2, 0, 0);
+	intro.PushBack({ 777, 993, 84, 113 }, 0.1, 1, 1, 0, 0);
+	intro.PushBack({ 863, 993, 84, 113 }, 0.1, 0, 1, 0, 0);
+    intro.PushBack({ 943, 1000, 84, 106 }, 0.15, -4, 2, 0, 0);
+	intro.PushBack({ 1030, 1000, 134, 113 }, 0.15, 0, 8, 0, 0);
+	intro.PushBack({ 940, 44, 83, 113 }, 0.15, 4, 30, 4, 11);
+	intro.PushBack({ 943, 1000, 84, 106 }, 0.15, -4, 2, 0, 0);
+	intro.PushBack({ 7, 273, 75, 113 }, 0.15, 0, 0, -1, 0);
 	intro.loop = false;
 
 	shadow.PushBack({ 659, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
@@ -115,6 +147,10 @@ bool ModulePlayer2::Start()
 	App->input->right2 = false;
 	App->input->down2 = false;
 	App->input->up2 = false;
+	defeat.Reset();
+	win.Reset();
+	intro.Reset();
+
 	position.x = 372;
 	position.y = 207;
 
@@ -164,7 +200,7 @@ bool ModulePlayer2::CleanUp() {
 update_status ModulePlayer2::Update()
 {
 	Animation* current_animation = &intro;
-	if (App->scene_haohmaru->matchstart == true) current_animation = &idle; intro.Reset();
+	if (App->scene_haohmaru->matchstart == true) current_animation = &idle;
 	
 	SDL_Rect r2 = shadow.GetCurrentFrame();
 	App->render->Blit(graphicsobj, position.x - 7, 201, &r2, SDL_FLIP_NONE);

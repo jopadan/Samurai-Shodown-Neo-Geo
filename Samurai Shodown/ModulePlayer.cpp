@@ -111,6 +111,17 @@ ModulePlayer::ModulePlayer()
 	defeat.loop = false;
 
 	win.PushBack({ 0, 1000, 84, 106 }, 0.1, 2, 1, 0, 0);
+	win.PushBack({ 0 , 1000, 84, 106 }, 0.1, 2, 1, 0, 0);
+	win.PushBack({ 165, 1000, 84, 106 }, 0.1, -4, 1, 0, 0);
+	win.PushBack({ 251, 1001, 84, 106 }, 0.1, -2, 2, 0, 0);
+	win.PushBack({ 340, 1000, 84, 106 }, 0.1, -1, 1, 0, 0);
+	win.PushBack({ 429, 1000, 84, 106 }, 0.1, -3, 1, 0, 0);
+	win.PushBack({ 521, 993, 84, 113 }, 0.1, -1, 1, 0, 0);
+	win.PushBack({ 607, 993, 84, 113 }, 0.1, -3, 1, 0, 0);
+	win.PushBack({ 693, 993, 79, 114 }, 0.1, -2, 2, 0, 0);
+	win.PushBack({ 777, 993, 84, 113 }, 0.1, 1, 1, 0, 0);
+	win.PushBack({ 863, 993, 84, 113 }, 0.1, 0, 1, 0, 0);
+	win.PushBack({ 0, 1000, 84, 106 }, 0.1, 2, 1, 0, 0);
 	win.loop = false;
 
 	//Hasta aqui
@@ -132,6 +143,7 @@ ModulePlayer::ModulePlayer()
 	intro.PushBack({ 1030, 1000, 134, 113 }, 0.15, 0, 8, 0, 0);
 	intro.PushBack({ 940, 44, 83, 113 }, 0.15, 4, 30, 4, 11);
 	intro.PushBack({ 943, 1000, 84, 106 }, 0.15, -4, 2, 0, 0);
+	intro.PushBack({ 7, 273, 75, 113 }, 0.15, 0, 0, -1, 0);
 	intro.loop = false;
 
 
@@ -202,7 +214,7 @@ bool ModulePlayer::CleanUp() {
 
 update_status ModulePlayer::Update()
 {
-Animation* current_animation = &idle;
+Animation* current_animation = &intro;
 if (App->scene_haohmaru->matchstart == true) current_animation = &idle; 
 
 SDL_Rect r2 = shadow.GetCurrentFrame();
