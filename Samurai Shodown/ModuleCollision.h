@@ -58,7 +58,7 @@ private:
 	Collider* colliders[MAX_COLLIDERS];
 	bool matrix[COLLIDER_MAX][COLLIDER_MAX];
 	bool debug = true;
-	bool draw = true;
+	bool draw = false;
 };
 
 #endif // __ModuleCollision_H__

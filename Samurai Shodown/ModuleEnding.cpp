@@ -70,9 +70,9 @@ bool ModuleEnding::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
-	
+	musload = App->music->LoadMus("Assets/Sound/Curtain Fall (Game Over).ogg");
 	graphics = App->textures->Load("Assets/Image/ending_spritesheet.png");
-	//App->music->PlayMus(musload);
+	App->music->PlayMus(musload);
 
 	return ret;
 }
@@ -80,7 +80,7 @@ bool ModuleEnding::Start()
 bool ModuleEnding::CleanUp()
 {
 	LOG("Unloading Menu scene");
-	//App->music->UnloadMus(musload);
+	App->music->UnloadMus(musload);
 	App->textures->Unload(graphics);
 
 	return true;

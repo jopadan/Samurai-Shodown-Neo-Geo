@@ -47,6 +47,7 @@ public:
 	Mix_Chunk* senpuu;
 	Mix_Chunk* sword;
 	Mix_Chunk* kicks;
+	Mix_Chunk* hitted;
 	Animation idle;
 	Animation forward;
 	Animation backward;
@@ -58,9 +59,14 @@ public:
 	Animation crouchPunch;
 	Animation crouchKick;
 	Animation hit;
+	Animation block;
+	Animation intro;
+	Animation win;
+	Animation defeat;
 	Uint32 speed = 2;
 	bool deletecol = true;
 	bool defense = false;
+	bool playsound = true;
 	int height = 0;
 	int height2 = 0;
 	Uint32 Damage = 20;

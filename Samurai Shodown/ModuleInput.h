@@ -9,41 +9,11 @@
 #define MAX_KEYS 300
 #define JUMP_TIME 800
 #define PUNCH_TIME 700
+#define CROUCH_PUNCH_TIME 500
 #define KICK_TIME  700
 #define TORNADO_TIME  1100
 #define START_TIME  3000
 
-#define LEFT_DOWN 0
-#define LEFT_UP 1
-#define RIGHT_DOWN 2
-#define RIGHT_UP 3
-#define LEFT_AND_RIGHT 4
-#define JUMP 5
-#define CROUCH_UP 6
-#define CROUCH_DOWN 7
-#define JUMP_AND_CROUCH 8
-#define ONE 9
-#define TWO 10
-#define THREE 11
-#define JUMP_FINISH 12
-#define PUNCH_FINISH 13
-#define JUMP_UP 14
-
-#define LEFT_DOWN2 15
-#define LEFT_UP2 16
-#define RIGHT_DOWN2 17
-#define RIGHT_UP2 18
-#define LEFT_AND_RIGHT2 19
-#define JUMP2 20
-#define CROUCH_UP2 21
-#define CROUCH_DOWN2 22
-#define JUMP_AND_CROUCH2 23
-#define ONE2 24
-#define TWO2 25
-#define THREE2 26
-#define JUMP_FINISH2 27
-#define PUNCH_FINISH2 28
-#define JUMP_UP2 29
 
 enum player_states
 {
@@ -67,6 +37,9 @@ enum player_states
 	ST_KICK_CROUCH,
 	ST_TORNADO,
 	ST_DAMAGE,
+	ST_BLOCK,
+	ST_WIN,
+	ST_DEFEAT
 
 };
 enum player_inputs
@@ -107,7 +80,20 @@ enum player_inputs
 	IN_DAMAGE_P2,
 	IN_DAMAGE_FINISH,
 	IN_DAMAGE_FINISH_P2,
-
+	IN_PUNCH_CROUCH_FINISH,
+	IN_PUNCH_CROUCH_FINISH_P2,
+	IN_BLOCK,
+	IN_BLOCK_FINISH,
+	IN_BLOCK_P2,
+	IN_BLOCK_FINISH_P2,
+	IN_WIN,
+	IN_DEFEAT,
+	IN_WIN_P2,
+	IN_DEFEAT_P2,
+	IN_WIN_FINISH,
+	IN_DEFEAT_FINISH,
+	IN_WIN_FINISH_P2,
+	IN_DEFEAT_FINISH_P2,
 
 };
 
@@ -146,10 +132,12 @@ public:
 	int key = -1;
 	Uint32 jump_timer = 0;
 	Uint32 punch_timer = 0;
+	Uint32 punch_c_timer = 0;
 	Uint32 kick_timer = 0;
 	Uint32 tornado_timer = 0;
 	Uint32 jump_timer2 = 0;
 	Uint32 punch_timer2 = 0;
+	Uint32 punch_c_timer2 = 0;
 	Uint32 kick_timer2 = 0;
 	Uint32 tornado_timer2 = 0;
 

@@ -183,6 +183,8 @@ update_status ModuleSceneHaohmaru::Update()
 		App->ui->roundsp2 = 2;
 	}
 	if (App->ui->Health_Bar_p2 <=0) {
+		App->input->inputs2.Push(IN_DEFEAT_P2);
+		App->input->inputs.Push(IN_WIN);
 		if(rounds1 == App->ui->roundsp1)App->ui->roundsp1++;
 		if (App->ui->roundsp1 == 2) {
 			App->input->playerinput = false;
@@ -203,6 +205,8 @@ update_status ModuleSceneHaohmaru::Update()
 		}
 	}
 	if (App->ui->HealthBar_p1 <= 0) {
+		App->input->inputs2.Push(IN_WIN_P2);
+		App->input->inputs.Push(IN_DEFEAT);
 		if (rounds2 == App->ui->roundsp2)App->ui->roundsp2++;
 		if (App->ui->roundsp2 == 2) {
 			App->input->playerinput = false;
@@ -210,7 +214,7 @@ update_status ModuleSceneHaohmaru::Update()
 			if (playfx)App->music->PlayChunk(end); playfx = false;
 
 			if (endingtimer == 0)endingtimer = SDL_GetTicks();
-			if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_haohmaru, App->end, 2);
+			if (SDL_GetTicks() - endingtimer >= 4000)App->fade->FadeToBlack(App->scene_haohmaru, App->end, 1);
 		}
 		
 		else { 

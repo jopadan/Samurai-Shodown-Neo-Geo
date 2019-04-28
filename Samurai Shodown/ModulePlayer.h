@@ -51,6 +51,7 @@ public:
 	Mix_Chunk* senpuu;
 	Mix_Chunk* sword;
 	Mix_Chunk* kicks;
+	Mix_Chunk* hitted;
 	Animation idle;
 	Animation forward;
 	Animation backward;
@@ -67,10 +68,14 @@ public:
 	Animation shadow;
 	Animation cyclone;
 	Animation tornado;
+	Animation block;
+	Animation win;
+	Animation defeat;
 	iPoint position;
 	Uint32 Damage = 20;
 	bool deletecol = true;
 	bool defense = false;
+	bool playsound = true;
 	int height = 0;
 	int height2 = 0;
 	Collider *colliderPlayer;
