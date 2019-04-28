@@ -1,6 +1,4 @@
-#include "Globals.h"
 #include "Application.h"
-#include "ModuleSceneNakoruru.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
@@ -12,11 +10,11 @@
 #include "ModuleMenu.h"
 #include "ModuleVictoryHaohmaru.h"
 #include "ModuleMenu.h"
-#include "SDL/include/SDL.h"
 #include "ModuleCollision.h"
 #include "ModuleFonts.h"
 #include "ModuleUI.h"
 #include "ModuleEnding.h"
+#include "ModuleParticles.h"
 
 #include<stdio.h>
 
@@ -93,8 +91,7 @@ bool ModuleSceneHaohmaru::Start()
 	timer = 99;
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
-	App->collision->Enable();
-
+	
 	musload = App->music->LoadMus("Assets/Sound/Masculine Song -Sun- (Haohmaru).ogg");
 	start = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - Start.wav");
 	ippon = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - ippon.wav");
@@ -108,6 +105,7 @@ bool ModuleSceneHaohmaru::Start()
 	App->player2->Enable();
 	App->collision->Enable();
 	App->ui->Enable();
+	App->particles->Enable();
 
 
 	// COLLIDERS PARA LOS LIMITES DEL MAPA
@@ -136,10 +134,14 @@ bool ModuleSceneHaohmaru::CleanUp()
 	App->music->UnloadChunk(ippon);
 	App->music->UnloadMus(musload);
 	App->textures->Unload(graphics);
-	App->player->Disable();
+
 	App->player2->Disable();
 	App->fonts->UnLoad(font_timer);
+	App->player->Disable();
+	
+	App->collision->Disable();
 	App->ui->Disable();
+	App->particles->Disable();
 
 
 	return true;

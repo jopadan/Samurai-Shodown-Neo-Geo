@@ -25,7 +25,6 @@ Application::Application()
 	modules[i++] = input = new ModuleInput();
 	modules[i++] = textures = new ModuleTextures();
 	modules[i++] = fonts = new ModuleFonts();
-	modules[i++] = scene_nakoruru = new ModuleSceneNakoruru();
 	modules[i++] = scene_haohmaru = new ModuleSceneHaohmaru();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = player2 = new ModulePlayer2();
@@ -51,12 +50,12 @@ bool Application::Init()
 	bool ret = true;
 	player->Disable();
 	player2->Disable();
-	scene_nakoruru->Disable();
 	scene_haohmaru->Disable();
 	winhaoh->Disable();
 	collision->Disable();
 	ui->Disable();
 	end->Disable();
+	particles->Disable();
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
