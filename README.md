@@ -12,9 +12,9 @@ F2: P1 wins game (victory screen).
 
 F3: P2 wins game (defeat screen).
 
-F4: p2 GOD mode.
+F4: P2 GOD mode.
 
-F5: p1 GOD mode.
+F5: P1 GOD mode.
 
 Spacebar: advance between stages(menu, victory, defeat).
 
@@ -23,37 +23,39 @@ Spacebar: advance between stages(menu, victory, defeat).
 
 WASD: move, jump and crouch.
 
-1: sword attack.
+1: Sword attack.
 
-2: kick.
+2: Kick.
 
-down(S)-> face direction(D or A) -> 1 : Special move.
+Down(S)-> Face direction(D or A) -> 1 : Special move.
 
-3: (special move shortcut).
+3: (Special move shortcut).
 
-down(S) -> 1 : crouch attack.
+Down(S) -> 1 : Crouch attack.
 
-back when hitted (opposite direction of opponent): block.
+Back when hitted (opposite direction of opponent): Block.
 
 ### P2 controls:
 
 IJKL: move, jump and crouch.
 
-7: sword attack.
+7: Sword attack.
 
-8: kick.
+8: Kick.
 
-down(K)-> face direction(J or L) -> 7 : Special move.
+Down(K)-> Face direction(J or L) -> 7 : Special move.
 
-9: (special move shortcut).
+9: (Special move shortcut).
 
-down(K) -> 7 : crouch attack.
+Down(K) -> 7 : Crouch attack.
 
-back when hitted (opposite direction of opponent): block.
+Back when hitted (opposite direction of opponent): Block.
 
 ## Objective
 
 The first player whose life gets to 0 or the one whose life is lower when the time ends loses the match.
+
+## Changelog
 
 ## Project page and team members
 https://github.com/Ap011y0n/Samurai-Shodown-Neo-Geo
@@ -63,5 +65,3 @@ https://github.com/Ap011y0n/Samurai-Shodown-Neo-Geo
 · Albert Garcia: https://github.com/Ap011y0n
 
 · Pol Juan: https://github.com/Sauko22
-
-
