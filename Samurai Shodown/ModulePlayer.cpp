@@ -26,8 +26,8 @@ ModulePlayer::ModulePlayer()
 	idle.PushBack({ 164, 277, 72, 109 },	0.15,	0, 0, 0, 0);
 	idle.PushBack({ 241, 279, 72, 107 },	0.15,	0, 0, 0, 0);
 
-	crouch.PushBack({ 750, 432, 81, 121 }, 0.25, 0, 10, 0, 10);
-	crouch.PushBack({ 840, 463, 99, 94}, 0.1, -26, 13, 0, 13);
+	crouch.PushBack({ 750, 432, 76, 112 }, 0.25, 0, 1, 0, 1);
+	crouch.PushBack({ 840, 463, 98, 87 }, 0.1, -26, 7, 0, 7);
 	crouch.loop = false;
 
 	crouchKick.PushBack({ 0, 636, 78, 80 }, 0.1, 0, 0, 0, 0);
@@ -103,6 +103,7 @@ ModulePlayer::ModulePlayer()
 	shadow.PushBack({ 659, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
 	shadow.PushBack({ 733, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
 
+	intro.PushBack({ 2, 1000, 84, 106 }, 0.1, 0, 0, 0, 0);
 }
 
 ModulePlayer::~ModulePlayer()

@@ -61,6 +61,7 @@ public:
 	Animation crouch;
 	Animation crouchPunch;
 	Animation crouchKick;
+	Animation intro;
 	Animation kick;
 	Animation hit;
 	Animation shadow;
