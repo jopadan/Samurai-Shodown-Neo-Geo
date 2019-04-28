@@ -94,6 +94,7 @@ enum player_inputs
 	IN_DEFEAT_FINISH,
 	IN_WIN_FINISH_P2,
 	IN_DEFEAT_FINISH_P2,
+	IN_IDLE
 
 };
 

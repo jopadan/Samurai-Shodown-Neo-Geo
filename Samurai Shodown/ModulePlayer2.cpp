@@ -111,7 +111,10 @@ bool ModulePlayer2::Start()
 {
 	LOG("Loading player2 textures");
 	bool ret = true;
-
+	App->input->left2 = false;
+	App->input->right2 = false;
+	App->input->down2 = false;
+	App->input->up2 = false;
 	position.x = 372;
 	position.y = 207;
 

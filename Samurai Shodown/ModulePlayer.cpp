@@ -146,7 +146,10 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-
+	App->input->left = false;
+	App->input->right = false;
+	App->input->down = false;
+	App->input->up = false;
 	defeat.Reset();
 	win.Reset();
 	intro.Reset();
@@ -199,7 +202,7 @@ bool ModulePlayer::CleanUp() {
 
 update_status ModulePlayer::Update()
 {
-Animation* current_animation = &intro;
+Animation* current_animation = &idle;
 if (App->scene_haohmaru->matchstart == true) current_animation = &idle; 
 
 SDL_Rect r2 = shadow.GetCurrentFrame();
