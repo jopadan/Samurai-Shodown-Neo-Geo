@@ -1,8 +1,8 @@
-# PMJ studios: Samurai Shodown
+﻿# PMJ studios: Samurai Shodown
 
 We are a small group, in the first year of a Bachelor's Degree in Video Game Design and Development. As a project we had the objective to create a tribute to the great Samurai Shodown, a classical arcade figthing game.
 
-Samurai Shodown, known as Samurai Spirits is a fighting game developed and published by SNK for their NeoGeo arcade system. It was released in 1993, in a time of great hits such Street Fighter II: The World Warrior, MOrtal Kombat, Art of Fighting, and many others. Samurai Shodown difered in it's fast paced combat, more focused on speed and timing than hard to chain combos, and in it's setting, which happens in the late 18th century. 
+Samurai Shodown, known as Samurai Spirits is a fighting game developed and published by SNK for their NeoGeo arcade system. It was released in 1993, in a time of great hits such Street Fighter II: The World Warrior, Mortal Kombat, Art of Fighting, and many others. Samurai Shodown difered in it's fast paced combat, more focused on speed and timing than hard to chain combos, and in it's setting, which happens in the late 18th century. 
 
 ## Controls
 ### Debug
@@ -19,7 +19,7 @@ F5: p1 GOD mode.
 Spacebar: advance between stages(menu, victory, defeat).
 
 ## Implemented movements: 
-### P1 CONTROLS:
+### P1 controls:
 
 WASD: move, jump and crouch.
 
@@ -35,7 +35,7 @@ down(S) -> 1 : crouch attack.
 
 back when hitted (opposite direction of opponent): block.
 
-### P2 CONTROLS:
+### P2 controls:
 
 IJKL: move, jump and crouch.
 
@@ -51,11 +51,11 @@ down(K) -> 7 : crouch attack.
 
 back when hitted (opposite direction of opponent): block.
 
-## OBJECTIVE
+## Objective
 
-The first player whose life gets to 0 loses the match.
+The first player whose life gets to 0 or the one whose life is lower when the time ends loses the match.
 
-## PROJECT PAGE AND TEAM
+## Project page and team members
 https://github.com/Ap011y0n/Samurai-Shodown-Neo-Geo
 
 · Pol Galan: https://github.com/pgalmor
