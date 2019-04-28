@@ -59,7 +59,7 @@ The first player whose life gets to 0 or the one whose life is lower when the ti
 
 ## Changelog
 
-0.1: Added first level with manual camera movement, background music, and one character with basic movement animations and attack animations.
+*0.1:* Added first level with manual camera movement, background music, and one character with basic movement animations and attack animations.
 
 0.2: Added different screens (menu, level 2 and victory screen) and system to navigate between them, with a fadeout in between them. Added fx and background music for every screen and improved the movement system, the input system and animations of the character.
 
