@@ -77,3 +77,12 @@ https://github.com/Ap011y0n/Samurai-Shodown-Neo-Geo
 · Albert Garcia: https://github.com/Ap011y0n
 
 · Pol Juan: https://github.com/Sauko22
+
+### Using the following SDL libraries:
+
+· **SDL:** https://www.libsdl.org/
+
+· **SDL_Image:** https://www.libsdl.org/projects/SDL_image/
+
+· **SDL_Mixer:** https://www.libsdl.org/projects/SDL_mixer/
+
