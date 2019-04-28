@@ -35,7 +35,7 @@ down(S) -> 1 : crouch attack.
 
 back when hitted (opposite direction of opponent): block.
 
-### P1 CONTROLS:
+### P2 CONTROLS:
 
 IJKL: move, jump and crouch.
 
