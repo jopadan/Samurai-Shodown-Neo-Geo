@@ -4,6 +4,15 @@ We are a small group, in the first year of a Bachelor's Degree in Video Game Des
 
 Samurai Shodown, known as Samurai Spirits is a fighting game developed and published by SNK for their NeoGeo arcade system. It was released in 1993, in a time of great hits such Street Fighter II: The World Warrior, Mortal Kombat, Art of Fighting, and many others. Samurai Shodown difered in it's fast paced combat, more focused on speed and timing than hard to chain combos, and in it's setting, which happens in the late 18th century. 
 
+## Project page and team members
+https://github.com/Ap011y0n/Samurai-Shodown-Neo-Geo
+
+· Pol Galan: https://github.com/pgalmor
+
+· Albert Garcia: https://github.com/Ap011y0n
+
+· Pol Juan: https://github.com/Sauko22
+
 ## Controls
 ### Debug
 F1: Display all colliders.
@@ -69,20 +78,7 @@ The first player whose life gets to 0 or the one whose life is lower when the ti
 
 **0.45:** Changed the second character's appearance to be the second version of the first character and added all funcionalities that the first player had to the second one. Added a flip system for the characters to always face each other and a basic automatic camera system. Added a functional UI (just healthbars and timer) with its font system and win/lose conditions. Taken out of the games path the second screen and improved hitboxes and combat.
 
-## Project page and team members
-https://github.com/Ap011y0n/Samurai-Shodown-Neo-Geo
-
-· Pol Galan: https://github.com/pgalmor
-
-· Albert Garcia: https://github.com/Ap011y0n
-
-· Pol Juan: https://github.com/Sauko22
-
-### Using the following SDL libraries:
-
-· **SDL:** https://www.libsdl.org/
-
-· **SDL_Image:** https://www.libsdl.org/projects/SDL_image/
-
-· **SDL_Mixer:** https://www.libsdl.org/projects/SDL_mixer/
-
+### Libraries used:
+SDL: https://www.libsdl.org/
+SDL_Mixer: https://www.libsdl.org/projects/SDL_mixer/
+SDL_Image: https://www.libsdl.org/projects/SDL_image/
