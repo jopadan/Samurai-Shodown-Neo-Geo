@@ -78,7 +78,7 @@ bool ModuleSceneHaohmaru::Start()
 {
 	endingtimer = 0;
 	LOG("Loading background assets");
-	bool ret = true;
+    ret = true;
 	playfx = true;
 	App->player->deletecol = true;
 	App->player2->deletecol = true;
@@ -129,20 +129,23 @@ bool ModuleSceneHaohmaru::CleanUp()
 	}
 	App->player->deletecol = true;
 	App->player2->deletecol = true;
-	App->music->UnloadChunk(start);
-	App->music->UnloadChunk(end);
-	App->music->UnloadChunk(ippon);
-	App->music->UnloadMus(musload);
-	App->textures->Unload(graphics);
-
-	App->player2->Disable();
-	App->fonts->UnLoad(font_timer);
-	App->player->Disable();
 	
-	App->collision->Disable();
+	
+	
+
+	
+	
 	App->ui->Disable();
 	App->particles->Disable();
-
+	App->collision->Disable();
+	App->player2->Disable();
+	App->player->Disable();
+	App->fonts->UnLoad(font_timer);
+	App->textures->Unload(graphics);
+	App->music->UnloadChunk(end);
+	App->music->UnloadChunk(ippon);
+	App->music->UnloadChunk(start);
+	App->music->UnloadMus(musload);
 
 	return true;
 }
