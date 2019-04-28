@@ -103,7 +103,11 @@ ModulePlayer::ModulePlayer()
 	//Animaciones a completar
 	block.PushBack({ 429, 295, 75, 91 }, 0.05, 0, 0, 0, 0);
 
-	defeat.PushBack({ 982, 446, 92, 107 }, 0.08, -20, 10, 0, 10);
+	
+	defeat.PushBack({ 1081, 436, 74, 108 }, 0.02, 0, 2, 0, 2);
+	defeat.PushBack({ 1164, 436, 74, 108 }, 0.025, 6, 2, -3, 2);
+	defeat.PushBack({ 1241, 436, 70, 108 }, 0.1, 9, 2, -3, 2);
+	defeat.PushBack({ 1312, 436, 70, 108 }, 0.1, 9, 2, -3, 2);
 	defeat.loop = false;
 
 	win.PushBack({ 0, 1000, 84, 106 }, 0.1, 2, 1, 0, 0);
@@ -322,7 +326,7 @@ if (state != current_state)
 		height = +20;
 		if (animstart == 0)
 		{
-			current_animation = &intro;
+			current_animation = &crouch;
 		}
 
 		
