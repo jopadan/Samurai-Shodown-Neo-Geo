@@ -106,15 +106,32 @@ ModulePlayer::ModulePlayer()
 	defeat.PushBack({ 982, 446, 92, 107 }, 0.08, -20, 10, 0, 10);
 	defeat.loop = false;
 
-	win.PushBack({ 2, 1000, 84, 106 }, 0.1, 0, 0, 0, 0);
+	win.PushBack({ 0, 1000, 84, 106 }, 0.1, 2, 1, 0, 0);
 	win.loop = false;
 
 	//Hasta aqui
 	shadow.PushBack({ 659, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
 	shadow.PushBack({ 733, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
 
-	intro.PushBack({ 2, 1000, 84, 106 }, 0.1, 0, 0, 0, 0);
+	intro.PushBack({ 0, 1000, 84, 106 }, 0.1, 2, 1, 0, 0);
+	intro.PushBack({ 0 , 1000, 84, 106 }, 0.1, 2, 1, 0, 0);
+	intro.PushBack({ 165, 1000, 84, 106 }, 0.1, -4, 1, 0, 0);
+	intro.PushBack({ 251, 1001, 84, 106 }, 0.1, -2, 2, 0, 0);
+	intro.PushBack({ 340, 1000, 84, 106 }, 0.1, -1, 1, 0, 0);
+	intro.PushBack({ 429, 1000, 84, 106 }, 0.1, -3, 1, 0, 0);
+	intro.PushBack({ 521, 993, 84, 113 }, 0.1, -1, 1, 0, 0);
+	intro.PushBack({ 607, 993, 84, 113 }, 0.1, -3, 1, 0, 0);
+	intro.PushBack({ 693, 993, 79, 114 }, 0.1, -2, 2, 0, 0);
+	intro.PushBack({ 777, 993, 84, 113 }, 0.1, 1, 1, 0, 0);
+	intro.PushBack({ 863, 993, 84, 113 }, 0.1, 0, 1, 0, 0);
+    intro.PushBack({ 943, 1000, 84, 106 }, 0.15, -4, 2, 0, 0);
+	intro.PushBack({ 1030, 1000, 134, 113 }, 0.15, 0, 8, 0, 0);
+	intro.PushBack({ 940, 44, 83, 113 }, 0.15, 4, 30, 4, 11);
+	intro.PushBack({ 943, 1000, 84, 106 }, 0.15, -4, 2, 0, 0);
 	intro.loop = false;
+
+
+	
 }
 
 ModulePlayer::~ModulePlayer()
@@ -305,7 +322,7 @@ if (state != current_state)
 		height = +20;
 		if (animstart == 0)
 		{
-			current_animation = &crouch;
+			current_animation = &intro;
 		}
 
 		
