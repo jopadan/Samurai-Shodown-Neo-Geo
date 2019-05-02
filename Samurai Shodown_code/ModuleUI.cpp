@@ -8,7 +8,16 @@
 ModuleUI::ModuleUI() {
 
 	current_animation = NULL;
+}
+ModuleUI::~ModuleUI()
+{}
+
+bool ModuleUI::Start() {
+	LOG("Loading UI textures");
 	
+	bool ret = true;
+	graphics = App->textures->Load("UI/Sprite_Sheet_UI_1.png");
+
 	ko.x = 484;
 	ko.y = 394;
 	ko.w = 28;
@@ -43,8 +52,8 @@ ModuleUI::ModuleUI() {
 	healthCont.y = 308;
 	healthCont.w = 130;
 	healthCont.h = 2;
-	
-	begin.x	= 493;
+
+	begin.x = 493;
 	begin.y = 9;
 	begin.w = 109;
 	begin.h = 49;
@@ -55,8 +64,6 @@ ModuleUI::ModuleUI() {
 	end.PushBack({ 484, 441, 28, 21 }, 0.2, 0, 0, 0, 0);
 	end.PushBack({ 484, 465, 28, 21 }, 0.2, 0, 0, 0, 0);
 
-	
-	
 	health.x = 273;//25, 9,,207, 9
 	health.y = 310;
 	health.w = HealthBar_p1;
@@ -76,16 +83,6 @@ ModuleUI::ModuleUI() {
 	lowHealth2.y = 326;
 	lowHealth2.w = Health_Bar_p2;
 	lowHealth2.h = 9;
-
-}
-ModuleUI::~ModuleUI()
-{}
-
-bool ModuleUI::Start() {
-	LOG("Loading UI textures");
-	
-	bool ret = true;
-	graphics = App->textures->Load("UI/Sprite_Sheet_UI_1.png");
 	return ret;
 }
 
@@ -93,6 +90,17 @@ bool ModuleUI::CleanUp() {
 
 	LOG("Unloading UI");
 	App->textures->Unload(graphics);
+	lowKo = Animation();
+	end = Animation();
+	ko = SDL_Rect();
+	healthCont1	 = SDL_Rect();
+	healthCont2	 = SDL_Rect();
+	healthCont	 = SDL_Rect();
+	begin		 = SDL_Rect();
+	health		 = SDL_Rect();
+	health2		 = SDL_Rect();
+	lowHealth	 = SDL_Rect();
+	lowHealth2	 = SDL_Rect();
 	return true;
 }
 

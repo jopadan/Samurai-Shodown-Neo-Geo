@@ -27,7 +27,7 @@ public:
 	SDL_Rect end;
 	SDL_Rect black;
 	Animation flower;
-	
+	Uint32 timer;
 
 
 };
