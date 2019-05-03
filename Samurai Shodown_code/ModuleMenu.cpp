@@ -87,7 +87,7 @@ update_status ModuleMenu::Update()
 		App->fade->FadeToBlack(App->menu, (Module*)App->scene_haohmaru, 2);
 	}
 	if (SDL_GetTicks() - timer >= 25000) {
-		App->fade->FadeToBlack(App->menu, App->end, 2);
+		//App->fade->FadeToBlack(App->menu, App->end, 2);
 	}
 	return UPDATE_CONTINUE;
 }

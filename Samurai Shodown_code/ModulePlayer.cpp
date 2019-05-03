@@ -50,7 +50,7 @@ bool ModulePlayer::Start()
 	position.y = 207;
 	initialPos = position.y;
 
-
+	/*
 	idle.PushBack({ 7, 273, 75, 113 }, 0.15, 0, 0, -1, 0);
 	idle.PushBack({ 86, 275, 73, 111 }, 0.15, 0, 0, 0, 0);
 	idle.PushBack({ 164, 277, 72, 109 }, 0.15, 0, 0, 0, 0);
@@ -174,7 +174,7 @@ bool ModulePlayer::Start()
 	intro.PushBack({ 943, 1000, 84, 106 }, 0.15, -4, 2, 0, 0);
 	intro.PushBack({ 7, 273, 75, 113 }, 0.15, 0, 0, -1, 0);
 	intro.loop = false;
-
+	*/
 	if (flip == SDL_FLIP_HORIZONTAL) {
 		colliderPlayer = App->collision->AddCollider({ position.x+60, position.y - 90, 47, 50 }, COLLIDER_PLAYER, this);
 	}

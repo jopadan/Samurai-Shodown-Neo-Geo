@@ -41,7 +41,7 @@ bool ModuleSceneHaohmaru::Start()
 	App->ui->roundstart = true;
 	App->ui->matchend = false;
 	App->ui->roundend = false;
-	starttime = SDL_GetTicks();
+	
 	rounds1 = App->ui->roundsp1;
 	rounds2 = App->ui->roundsp2;
 	timer = 99;
@@ -104,17 +104,25 @@ bool ModuleSceneHaohmaru::Start()
 	graphics = App->textures->Load("Assets/Image/haohmaru_stage.png");
 	font_timer = App->fonts->Load("Ui/UI_Numbers_1.png", "9876543210", 1);
 
-	App->player->Enable();
-	App->player2->Enable();
+	//App->player->Enable();
+	LOG("Player1 cargado");
+	//App->player2->Enable();
+	LOG("Player2 cargado");
 	App->ui->Enable();
-	App->music->PlayMus(musload);
-	App->music->PlayChunk(start);
+	LOG("ui cargado");
+	//App->music->PlayMus(musload);
+//	LOG("Player1 cargado");
+//	App->music->PlayChunk(start);
+//	LOG("Player1 cargado");
 
 
 	// COLLIDERS PARA LOS LIMITES DEL MAPA
 	colliderMap = App->collision->AddCollider({ -55, -150, 50, 500  }, COLLIDER_WALL);
+	LOG("collider1 cargado");
 	colliderMap2 = App->collision->AddCollider({ 640, -150, 50, 500 }, COLLIDER_WALL);
+	LOG("collider2 cargado");
 
+	starttime = SDL_GetTicks();
 
 	return ret;
 }
@@ -153,6 +161,7 @@ update_status ModuleSceneHaohmaru::Update()
 {
 	if(matchstart == false){
 	if (SDL_GetTicks() - starttime >= 4500) {
+		LOG("Update start");
 		 matchstart = true;
 		 App->ui->roundstart = false;
 		 timertime = SDL_GetTicks();
