@@ -27,7 +27,7 @@ bool ModulePlayer2::Start()
 {
 	LOG("Loading player2 textures");
 	bool ret = true;
-	
+	/*
 	App->input->left2 = false;
 	App->input->right2 = false;
 	App->input->down2 = false;
@@ -39,7 +39,7 @@ bool ModulePlayer2::Start()
 	position.x = 372;
 	position.y = 207;
 	initialPos = position.y;
-	/*
+
 	idle.PushBack({ 7, 273, 75, 113 }, 0.15, 0, 0, -2, 0);
 	idle.PushBack({ 86, 275, 73, 111 }, 0.15, 0, 0, -1, 0);
 	idle.PushBack({ 164, 277, 72, 109 }, 0.15, 0, 0, 0, 0);
@@ -152,7 +152,7 @@ bool ModulePlayer2::Start()
 
 	shadow.PushBack({ 659, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
 	shadow.PushBack({ 733, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
-	*/
+
 	position.x = 372;
 	position.y = 207;
 	deletecol = true;
@@ -175,7 +175,7 @@ bool ModulePlayer2::Start()
 	}
 	else {
 		colliderPlayer2_2 = App->collision->AddCollider({ position.x + 45, position.y - 90, 35, 40 }, COLLIDER_ENEMY, this);
-	}
+	}*/
 	return ret;
 }
 

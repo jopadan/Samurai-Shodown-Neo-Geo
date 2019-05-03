@@ -27,7 +27,7 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	App->input->left = false;
+	/*App->input->left = false;
 	App->input->right = false;
 	App->input->down = false;
 	App->input->up = false;
@@ -50,7 +50,7 @@ bool ModulePlayer::Start()
 	position.y = 207;
 	initialPos = position.y;
 
-	/*
+
 	idle.PushBack({ 7, 273, 75, 113 }, 0.15, 0, 0, -1, 0);
 	idle.PushBack({ 86, 275, 73, 111 }, 0.15, 0, 0, 0, 0);
 	idle.PushBack({ 164, 277, 72, 109 }, 0.15, 0, 0, 0, 0);

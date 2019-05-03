@@ -17,18 +17,8 @@
 
 
 ModuleEnding::ModuleEnding()
-{	
-}
-
-ModuleEnding::~ModuleEnding()
-{}
-
-// Load assets
-bool ModuleEnding::Start()
 {
-	LOG("Loading end assets");
-	timer = SDL_GetTicks();
-	bool ret = true;
+
 	end.x = 27;
 	end.y = 39;
 	end.w = 319;
@@ -57,19 +47,33 @@ bool ModuleEnding::Start()
 	flower.PushBack({ 1261, 338, 91, 232 }, 0.1, -400, 100, 0, 0);
 	flower.PushBack({ 1362, 338, 91, 232 }, 0.1, -420, 105, 0, 0);
 	flower.PushBack({ 1472, 338, 91, 232 }, 0.1, -440, 110, 0, 0);
+	
+
 
 	black.x = 29;
 	black.y = 340;
 	black.w = 319;
 	black.h = 230;
+	
+}
+
+ModuleEnding::~ModuleEnding()
+{}
+
+// Load assets
+bool ModuleEnding::Start()
+{
+	LOG("Loading end assets");
+	bool ret = true;
+
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
-//	musload = App->music->LoadMus("Assets/Sound/Curtain Fall (Game Over).ogg");
+	musload = App->music->LoadMus("Assets/Sound/Curtain Fall (Game Over).ogg");
 	graphics = App->textures->Load("Assets/Image/ending_spritesheet.png");
-//	App->music->PlayMus(musload);
-	
+	App->music->PlayMus(musload);
+
 	return ret;
 }
 
@@ -78,9 +82,7 @@ bool ModuleEnding::CleanUp()
 	LOG("Unloading Menu scene");
 	App->music->UnloadMus(musload);
 	App->textures->Unload(graphics);
-	flower = Animation();
-	end = SDL_Rect();
-	black = SDL_Rect();
+
 	return true;
 }
 
@@ -94,9 +96,6 @@ update_status ModuleEnding::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 		App->fade->FadeToBlack(App->end, App->menu, 1);
-	}
-	if (SDL_GetTicks() - timer >= 10000) {
-		App->fade->FadeToBlack(App->end, App->menu, 2);
 	}
 
 	return UPDATE_CONTINUE;
