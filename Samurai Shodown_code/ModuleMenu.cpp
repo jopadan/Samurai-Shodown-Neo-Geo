@@ -9,25 +9,12 @@
 #include "ModuleMenu.h"
 #include "SDL/include/SDL.h"
 #include "ModuleSceneHaohmaru.h"
-#include "ModuleEnding.h"
 #include "ModuleUI.h"
 
 
 
 ModuleMenu::ModuleMenu()
 {
-
-}
-
-ModuleMenu::~ModuleMenu()
-{}
-
-// Load assets
-bool ModuleMenu::Start()
-{
-	LOG("Loading menu assets");
-	timer = SDL_GetTicks();
-	bool ret = true;
 	menu.x = 0;
 	menu.y = 444;
 	menu.w = 303;
@@ -50,14 +37,23 @@ bool ModuleMenu::Start()
 	title.PushBack({ 698, 296, 303, 117 }, 0.2, 0, 0, 0, 0);
 	title.PushBack({ 1046, 296, 303, 117 }, 0.2, 0, 0, 0, 0);
 
-	start.PushBack({ 1395, 296, 120, 14 }, 0.04f, 0, 0, 0, 0);
+	start.PushBack({ 1395, 296, 120, 14 }, 0.04f,0,0, 0, 0);
 	start.PushBack({ 1395, 340, 120, 14 }, 0.025f, 0, 0, 0, 0);
+}
 
+ModuleMenu::~ModuleMenu()
+{}
+
+// Load assets
+bool ModuleMenu::Start()
+{
+	LOG("Loading menu assets");
+	bool ret = true;
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
-	//musload = App->music->LoadMus("Assets/Sound/Static and Dynamic (short).ogg");
+	musload = App->music->LoadMus("Assets/Sound/Static and Dynamic (short).ogg");
 	graphics = App->textures->Load("Assets/Image/Menu Spritesheet.png");
 	App->music->PlayMus(musload);
 	App->ui->roundsp1 = App->ui->roundsp2 = 0;
@@ -69,9 +65,7 @@ bool ModuleMenu::CleanUp()
 	LOG("Unloading Menu scene");
 	App->music->UnloadMus(musload);
 	App->textures->Unload(graphics);
-	title = Animation();
-	start = Animation();
-	menu = SDL_Rect();
+	
 	return true;
 }
 
@@ -86,8 +80,6 @@ update_status ModuleMenu::Update()
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 		App->fade->FadeToBlack(App->menu, (Module*)App->scene_haohmaru, 2);
 	}
-	if (SDL_GetTicks() - timer >= 25000) {
-		App->fade->FadeToBlack(App->menu, App->end, 2);
-	}
+
 	return UPDATE_CONTINUE;
 }

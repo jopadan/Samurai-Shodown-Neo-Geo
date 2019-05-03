@@ -12,19 +12,6 @@
 
 ModuleParticles::ModuleParticles()
 {
-
-	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
-		active[i] = nullptr;
-}
-
-ModuleParticles::~ModuleParticles()
-{}
-
-// Load assets
-bool ModuleParticles::Start()
-{
-	LOG("Loading particles");
-	graphics = App->textures->Load("Assets/Image/Particle Spritesheet.png");
 	cyclone.anim.PushBack({ 0, 71, 21, 18 }, 0.4, 0, 50, 0, 0);
 	cyclone.anim.PushBack({ 22, 71, 24, 19 }, 0.4, 0, 50, 0, 0);
 	cyclone.anim.PushBack({ 47, 52, 34, 39 }, 0.4, 0, 50, 0, 0);
@@ -51,7 +38,7 @@ bool ModuleParticles::Start()
 
 	cyclone.anim.loop = true;
 	cyclone.speed = { 4, 0 };
-	cyclone.life = -1;
+	cyclone.life = 2000;
 
 
 	tornado.anim.PushBack({ 0, 172, 60, 217 }, 0.4, 0, 50, 0, 0);
@@ -66,7 +53,27 @@ bool ModuleParticles::Start()
 	tornado.anim.loop = true;
 	tornado.speed = { 0, 0 };
 	tornado.life = 1000;
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+		active[i] = nullptr;
+}
+
+ModuleParticles::~ModuleParticles()
+{}
+
+// Load assets
+bool ModuleParticles::Start()
+{
+	LOG("Loading particles");
+	graphics = App->textures->Load("Assets/Image/Particle Spritesheet.png");
+
 	return true;
+
+
+	
+
+
+
+
 }
 
 // Unload assets
@@ -83,8 +90,6 @@ bool ModuleParticles::CleanUp()
 			active[i] = nullptr;
 		}
 	}
-	cyclone.anim = Animation();
-	tornado.anim = Animation();
 
 	return true;
 }

@@ -53,6 +53,7 @@ public:
 	Animation backward;
 	Animation jumpup;
 	Animation jumpPunch;
+	Animation jumpKick;
 	Animation punch;
 	Animation crouch;
 	Animation crouchPunch;
@@ -71,6 +72,7 @@ public:
 	Uint32 Damage = 20;
 	Animation kick;
 	Animation cyclone;
+	Animation tornado;
 	Animation shadow;
 	iPoint position;
 	Collider *colliderPlayer2; 

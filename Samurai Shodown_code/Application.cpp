@@ -52,8 +52,10 @@ bool Application::Init()
 	player2->Disable();
 	scene_haohmaru->Disable();
 	winhaoh->Disable();
+	collision->Disable();
 	ui->Disable();
 	end->Disable();
+	particles->Disable();
 	
 	
 

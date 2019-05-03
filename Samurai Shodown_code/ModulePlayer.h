@@ -58,6 +58,7 @@ public:
 	Animation backward;
 	Animation jumpup;
 	Animation jumpPunch;
+	Animation jumpKick;
 	Animation punch;
 	Animation crouch;
 	Animation crouchPunch;
@@ -67,6 +68,7 @@ public:
 	Animation hit;
 	Animation shadow;
 	Animation cyclone;
+	Animation tornado;
 	Animation block;
 	Animation win;
 	Animation defeat;

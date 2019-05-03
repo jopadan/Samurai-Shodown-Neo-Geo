@@ -23,10 +23,10 @@ public:
 
 	SDL_Texture* graphics = nullptr;
 	Mix_Music* musload;
+	Mix_Chunk* chunkload;
 	SDL_Rect menu;
     Animation title;
 	Animation start;
-	Uint32 timer;
 	
 
 };

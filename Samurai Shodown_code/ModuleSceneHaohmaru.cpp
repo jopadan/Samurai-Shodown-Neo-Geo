@@ -24,32 +24,6 @@ ModuleSceneHaohmaru::ModuleSceneHaohmaru()
 
 	// splash animation
 
-	
-}
-
-ModuleSceneHaohmaru::~ModuleSceneHaohmaru()
-{}
-
-// Load assets
-bool ModuleSceneHaohmaru::Start()
-{
-	
-	LOG("Loading background assets");
-    ret = true;
-	playfx = true;
-	App->input->playerinput = true;
-	App->ui->roundstart = true;
-	App->ui->matchend = false;
-	App->ui->roundend = false;
-	starttime = SDL_GetTicks();
-	rounds1 = App->ui->roundsp1;
-	rounds2 = App->ui->roundsp2;
-	timer = 99;
-	endingtimer = 0;
-	App->render->camera.x = 0;
-	App->render->camera.y = 0;
-
-
 	splash1.PushBack({ 0, 0, 0, 0 }, 0.01, 0, 0, 0, 0);
 	splash1.PushBack({ 0, 465, 50, 105 }, 0.2, 39, 0, 0, 0);
 	splash1.PushBack({ 261, 465, 95, 105 }, 0.2, 17, 0, 0, 0);
@@ -83,7 +57,7 @@ bool ModuleSceneHaohmaru::Start()
 	ground.w = 640;
 	ground.h = 416;
 
-	//sea animation
+	 //sea animation
 	sea.PushBack({ 0, 0, 640, 140 }, 0.08f, 0, 0, 0, 0);
 	sea.PushBack({ 704, 4, 640, 140 }, 0.08f, 0, 0, 0, 0);
 	sea.PushBack({ 1408, 4, 640, 140 }, 0.08f, 0, 0, 0, 0);
@@ -93,22 +67,45 @@ bool ModuleSceneHaohmaru::Start()
 	sea.PushBack({ 0, 312, 640, 140 }, 0.08f, 0, 0, 0, 0);
 	sea.PushBack({ 704, 311, 640, 140 }, 0.08f, 0, 0, 0, 0);
 	sea.PushBack({ 1408, 311, 640, 140 }, 0.08f, 0, 0, 0, 0);
-
-
 	
-	//musload = App->music->LoadMus("Assets/Sound/Masculine Song -Sun- (Haohmaru).ogg");
-	//start = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - Start.wav");
-	//ippon = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - ippon.wav");
-	//end = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - end.wav");
+}
+
+ModuleSceneHaohmaru::~ModuleSceneHaohmaru()
+{}
+
+// Load assets
+bool ModuleSceneHaohmaru::Start()
+{
+	endingtimer = 0;
+	LOG("Loading background assets");
+    ret = true;
+	playfx = true;
+	App->player->deletecol = true;
+	App->player2->deletecol = true;
+	App->ui->roundstart = true;
+	App->ui->matchend = false;
+	App->ui->roundend = false;
+	starttime = SDL_GetTicks();
+	rounds1 = App->ui->roundsp1;
+	rounds2 = App->ui->roundsp2;
+	timer = 99;
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
+	
+	musload = App->music->LoadMus("Assets/Sound/Masculine Song -Sun- (Haohmaru).ogg");
+	start = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - Start.wav");
+	ippon = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - ippon.wav");
+	end = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - end.wav");
 
 	graphics = App->textures->Load("Assets/Image/haohmaru_stage.png");
 	font_timer = App->fonts->Load("Ui/UI_Numbers_1.png", "9876543210", 1);
-
-	App->player->Enable();
-	App->player2->Enable();
-	App->ui->Enable();
 	App->music->PlayMus(musload);
 	App->music->PlayChunk(start);
+	App->player->Enable();
+	App->player2->Enable();
+	App->collision->Enable();
+	App->ui->Enable();
+	App->particles->Enable();
 
 
 	// COLLIDERS PARA LOS LIMITES DEL MAPA
@@ -130,8 +127,17 @@ bool ModuleSceneHaohmaru::CleanUp()
 	if (colliderMap2 != nullptr) {
 		colliderMap2->to_delete = true;
 	}
+	App->player->deletecol = true;
+	App->player2->deletecol = true;
+	
+	
+	
 
+	
+	
 	App->ui->Disable();
+	App->particles->Disable();
+	App->collision->Disable();
 	App->player2->Disable();
 	App->player->Disable();
 	App->fonts->UnLoad(font_timer);
@@ -140,11 +146,7 @@ bool ModuleSceneHaohmaru::CleanUp()
 	App->music->UnloadChunk(ippon);
 	App->music->UnloadChunk(start);
 	App->music->UnloadMus(musload);
-	splash1 = Animation();
-	splash2 = Animation();
-	splash3 = Animation();
-	sea = Animation();
-	ground = SDL_Rect();
+
 	return true;
 }
 
@@ -155,8 +157,10 @@ update_status ModuleSceneHaohmaru::Update()
 	if (SDL_GetTicks() - starttime >= 4500) {
 		 matchstart = true;
 		 App->ui->roundstart = false;
+		 App->input->playerinput = true;
 		 timertime = SDL_GetTicks();
-	}}
+	}
+	else{ timertime = SDL_GetTicks(); }}
 	// Draw everything --------------------------------------
 	
 	App->render->Blit(graphics, 0, -150, &ground, SDL_FLIP_NONE);
