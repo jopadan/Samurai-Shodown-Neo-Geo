@@ -27,7 +27,7 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	/*App->input->left = false;
+	App->input->left = false;
 	App->input->right = false;
 	App->input->down = false;
 	App->input->up = false;
@@ -174,7 +174,7 @@ bool ModulePlayer::Start()
 	intro.PushBack({ 943, 1000, 84, 106 }, 0.15, -4, 2, 0, 0);
 	intro.PushBack({ 7, 273, 75, 113 }, 0.15, 0, 0, -1, 0);
 	intro.loop = false;
-	*/
+	
 	if (flip == SDL_FLIP_HORIZONTAL) {
 		colliderPlayer = App->collision->AddCollider({ position.x+60, position.y - 90, 47, 50 }, COLLIDER_PLAYER, this);
 	}
@@ -230,7 +230,7 @@ bool ModulePlayer::CleanUp() {
 
 update_status ModulePlayer::Update()
 {
-Animation* current_animation = &intro;
+/*Animation* current_animation = &intro;
 if (App->scene_haohmaru->matchstart == true) current_animation = &idle; 
 
 SDL_Rect r2 = shadow.GetCurrentFrame();
@@ -635,12 +635,12 @@ else {
 
 	if (flip == SDL_FLIP_NONE){
 
-	App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y -r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r, flip);
+	App->render->Blit(graphics, position.x + current_animation->pivotx[current_animation->returnCurrentFrame()], position.y -r.h +  current_animation->pivoty[current_animation->returnCurrentFrame()], &r, flip);
    //App->render->Blit(graphicsobj, position.x , position.y -1 , &r, flip);
 	
 	}
 	if (flip == SDL_FLIP_HORIZONTAL) {
-		App->render->Blit(graphics, position.x -10 +/*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()]*2, position.y - r.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
+		App->render->Blit(graphics, position.x -10 +current_animation->pivotx2[current_animation->returnCurrentFrame()]*2, position.y - r.h +  current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
 	}
 	if (flip == SDL_FLIP_HORIZONTAL) {
 		if (colliderPlayer != nullptr)colliderPlayer->SetPos(position.x +9, position.y - 80 + height);
@@ -653,7 +653,7 @@ else {
 	}
 	else {
 		if (colliderPlayer_2 != nullptr)colliderPlayer_2->SetPos(position.x + 15, position.y - 50 - height2);
-	}
+	}*/
 	return UPDATE_CONTINUE;
 }
 

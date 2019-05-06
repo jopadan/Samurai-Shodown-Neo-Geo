@@ -104,9 +104,9 @@ bool ModuleSceneHaohmaru::Start()
 	graphics = App->textures->Load("Assets/Image/haohmaru_stage.png");
 	font_timer = App->fonts->Load("Ui/UI_Numbers_1.png", "9876543210", 1);
 
-	//App->player->Enable();
+	App->player->Enable();
 	LOG("Player1 cargado");
-	//App->player2->Enable();
+	App->player2->Enable();
 	LOG("Player2 cargado");
 	App->ui->Enable();
 	LOG("ui cargado");

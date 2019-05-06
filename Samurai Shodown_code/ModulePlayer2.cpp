@@ -27,7 +27,7 @@ bool ModulePlayer2::Start()
 {
 	LOG("Loading player2 textures");
 	bool ret = true;
-	/*
+	
 	App->input->left2 = false;
 	App->input->right2 = false;
 	App->input->down2 = false;
@@ -175,7 +175,7 @@ bool ModulePlayer2::Start()
 	}
 	else {
 		colliderPlayer2_2 = App->collision->AddCollider({ position.x + 45, position.y - 90, 35, 40 }, COLLIDER_ENEMY, this);
-	}*/
+	}
 	return ret;
 }
 
@@ -219,7 +219,7 @@ bool ModulePlayer2::CleanUp() {
 
 update_status ModulePlayer2::Update()
 {
-	Animation* current_animation = &intro;
+	/*Animation* current_animation = &intro;
 	if (App->scene_haohmaru->matchstart == true) current_animation = &idle;
 	
 	SDL_Rect r2 = shadow.GetCurrentFrame();
@@ -579,10 +579,10 @@ update_status ModulePlayer2::Update()
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
 	if (flip == SDL_FLIP_NONE) {
-		App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y - r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r, flip);
+		App->render->Blit(graphics, position.x + current_animation->pivotx[current_animation->returnCurrentFrame()], position.y - r.h +  current_animation->pivoty[current_animation->returnCurrentFrame()], &r, flip);
 	}
 	if (flip == SDL_FLIP_HORIZONTAL) {
-		App->render->Blit(graphics, position.x -10+/*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()] * 2, position.y - r.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
+		App->render->Blit(graphics, position.x -10+ current_animation->pivotx2[current_animation->returnCurrentFrame()] * 2, position.y - r.h +  current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
 	}
 	if (flip == SDL_FLIP_HORIZONTAL) {
 		if (colliderPlayer2 != nullptr)colliderPlayer2->SetPos(position.x + 9, position.y - 80 + height);
@@ -596,7 +596,7 @@ update_status ModulePlayer2::Update()
 	}
 	else {
 		if (colliderPlayer2_2 != nullptr)colliderPlayer2_2->SetPos(position.x + 15, position.y - 50 - height2);
-	}
+	}*/
 	return UPDATE_CONTINUE;
 }
 
