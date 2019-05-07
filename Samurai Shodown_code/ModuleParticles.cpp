@@ -12,46 +12,34 @@
 
 ModuleParticles::ModuleParticles()
 {
-	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
-		active[i] = nullptr;
-}
-
-ModuleParticles::~ModuleParticles()
-{}
-
-// Load assets
-bool ModuleParticles::Start()
-{
-	LOG("Loading particles");
-	graphics = App->textures->Load("Assets/Image/Particle Spritesheet.png");
-	cyclone.anim.PushBack({ 0, 71, 21, 18 },   0.4,  0, 50, 0, 0);
-	cyclone.anim.PushBack({ 22, 71, 24, 19 },  0.4,  0, 50, 0, 0);
-	cyclone.anim.PushBack({ 47, 52, 34, 39 },  0.4,  0, 50, 0, 0);
-	cyclone.anim.PushBack({ 85, 57, 42, 34 },  0.4,  0, 50, 0, 0);
-	cyclone.anim.PushBack({ 129, 39, 31, 52 }, 0.4,  0, 50, 0, 0);
-	cyclone.anim.PushBack({ 162, 40, 44, 51 }, 0.4,  0, 50, 0, 0);
-	cyclone.anim.PushBack({ 205, 0, 77, 90 },  0.3,-10, 10, 0, 0);
-	cyclone.anim.PushBack({ 286, 0, 77, 90 },  0.3,  0, 10, 0, 0);
-	cyclone.anim.PushBack({ 364, 0, 83, 90 },  0.3,  0, 10, 0, 0);
-	cyclone.anim.PushBack({ 450, 0, 83, 90 },  0.3,  0, 10, 0, 0);
-	cyclone.anim.PushBack({ 536, 0, 86, 90 },  0.3,  0, 10, 0, 0);
-	cyclone.anim.PushBack({ 622, 0, 86, 90 },  0.3,  0, 10, 0, 0);
-	cyclone.anim.PushBack({ 706, 0, 85, 90 },  0.3,  0, 10, 0, 0);
-	cyclone.anim.PushBack({ 794, 0, 85, 90 },  0.3,  0, 10, 0, 0);
-	cyclone.anim.PushBack({ 880, 0, 88, 90 },  0.3,  0, 10, 0, 0);
-	cyclone.anim.PushBack({ 968, 0, 85, 90 },  0.3,  0, 10, 0, 0);
-	cyclone.anim.PushBack({ 1056, 0, 78, 90 }, 0.3,  0, 10, 0, 0);
-	cyclone.anim.PushBack({ 1137, 0, 78, 90 }, 0.3,  0, 10, 0, 0);
-	cyclone.anim.PushBack({ 1219, 0, 74, 90 }, 0.3,  0, 10, 0, 0);
-	cyclone.anim.PushBack({ 1295, 0, 74, 90 }, 0.3,  0, 10, 0, 0);
-	cyclone.anim.PushBack({ 1370, 0, 52, 90 }, 0.3,  0, 10, 0, 0);
-	cyclone.anim.PushBack({ 1427, 0, 52, 90 }, 0.3,  0, 10, 0, 0);
-	cyclone.anim.PushBack({ 1481, 0, 42, 90 }, 0.3,  0, 10, 0, 0);
+	cyclone.anim.PushBack({ 0, 71, 21, 18 }, 0.4, 0, 50, 0, 0);
+	cyclone.anim.PushBack({ 22, 71, 24, 19 }, 0.4, 0, 50, 0, 0);
+	cyclone.anim.PushBack({ 47, 52, 34, 39 }, 0.4, 0, 50, 0, 0);
+	cyclone.anim.PushBack({ 85, 57, 42, 34 }, 0.4, 0, 50, 0, 0);
+	cyclone.anim.PushBack({ 129, 39, 31, 52 }, 0.4, 0, 50, 0, 0);
+	cyclone.anim.PushBack({ 162, 40, 44, 51 }, 0.4, 0, 50, 0, 0);
+	cyclone.anim.PushBack({ 205, 0, 77, 90 }, 0.3, -10, 10, 0, 0);
+	cyclone.anim.PushBack({ 286, 0, 77, 90 }, 0.3, 0, 10, 0, 0);
+	cyclone.anim.PushBack({ 364, 0, 83, 90 }, 0.3, 0, 10, 0, 0);
+	cyclone.anim.PushBack({ 450, 0, 83, 90 }, 0.3, 0, 10, 0, 0);
+	cyclone.anim.PushBack({ 536, 0, 86, 90 }, 0.3, 0, 10, 0, 0);
+	cyclone.anim.PushBack({ 622, 0, 86, 90 }, 0.3, 0, 10, 0, 0);
+	cyclone.anim.PushBack({ 706, 0, 85, 90 }, 0.3, 0, 10, 0, 0);
+	cyclone.anim.PushBack({ 794, 0, 85, 90 }, 0.3, 0, 10, 0, 0);
+	cyclone.anim.PushBack({ 880, 0, 88, 90 }, 0.3, 0, 10, 0, 0);
+	cyclone.anim.PushBack({ 968, 0, 85, 90 }, 0.3, 0, 10, 0, 0);
+	cyclone.anim.PushBack({ 1056, 0, 78, 90 }, 0.3, 0, 10, 0, 0);
+	cyclone.anim.PushBack({ 1137, 0, 78, 90 }, 0.3, 0, 10, 0, 0);
+	cyclone.anim.PushBack({ 1219, 0, 74, 90 }, 0.3, 0, 10, 0, 0);
+	cyclone.anim.PushBack({ 1295, 0, 74, 90 }, 0.3, 0, 10, 0, 0);
+	cyclone.anim.PushBack({ 1370, 0, 52, 90 }, 0.3, 0, 10, 0, 0);
+	cyclone.anim.PushBack({ 1427, 0, 52, 90 }, 0.3, 0, 10, 0, 0);
+	cyclone.anim.PushBack({ 1481, 0, 42, 90 }, 0.3, 0, 10, 0, 0);
 
 	cyclone.anim.loop = true;
 	cyclone.speed = { 4, 0 };
 	cyclone.life = 2000;
-	
+
 
 	tornado.anim.PushBack({ 0, 172, 60, 217 }, 0.4, 0, 50, 0, 0);
 	tornado.anim.PushBack({ 85, 172, 60, 217 }, 0.4, 0, 50, 0, 0);
@@ -65,6 +53,19 @@ bool ModuleParticles::Start()
 	tornado.anim.loop = true;
 	tornado.speed = { 0, 0 };
 	tornado.life = 1000;
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+		active[i] = nullptr;
+}
+
+ModuleParticles::~ModuleParticles()
+{}
+
+// Load assets
+bool ModuleParticles::Start()
+{
+	LOG("Loading particles");
+	graphics = App->textures->Load("Assets/Image/Particle Spritesheet.png");
+
 	return true;
 
 
