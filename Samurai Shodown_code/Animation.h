@@ -33,13 +33,12 @@ public:
 	}
 
 	void PushBack(const SDL_Rect& rect, double delay, int px, int py, int px2, int py2)
-	{
-		frames[last_frame] = rect;
+	{	
 		pivotx[last_frame] = px;
 		pivoty[last_frame] = py;
 		pivotx2[last_frame] = px2;
-		pivoty2[last_frame++] = py2;
-		
+		pivoty2[last_frame] = py2;
+		frames[last_frame++] = rect;
 		speed[speeddelay++]= delay;
 
 	}
