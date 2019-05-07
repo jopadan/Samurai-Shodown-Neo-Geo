@@ -230,7 +230,7 @@ bool ModulePlayer::CleanUp() {
 
 update_status ModulePlayer::Update()
 {
-/*Animation* current_animation = &intro;
+Animation* current_animation = &intro;
 if (App->scene_haohmaru->matchstart == true) current_animation = &idle; 
 
 SDL_Rect r2 = shadow.GetCurrentFrame();
@@ -653,7 +653,7 @@ else {
 	}
 	else {
 		if (colliderPlayer_2 != nullptr)colliderPlayer_2->SetPos(position.x + 15, position.y - 50 - height2);
-	}*/
+	}
 	return UPDATE_CONTINUE;
 }
 
