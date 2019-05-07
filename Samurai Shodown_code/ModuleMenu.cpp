@@ -9,6 +9,7 @@
 #include "ModuleMenu.h"
 #include "SDL/include/SDL.h"
 #include "ModuleSceneHaohmaru.h"
+#include "ModulePlayer.h"
 #include "ModuleUI.h"
 
 
@@ -52,7 +53,7 @@ bool ModuleMenu::Start()
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
-
+	timertime = SDL_GetTicks();
 	musload = App->music->LoadMus("Assets/Sound/Static and Dynamic (short).ogg");
 	graphics = App->textures->Load("Assets/Image/Menu Spritesheet.png");
 	App->music->PlayMus(musload);
@@ -65,13 +66,24 @@ bool ModuleMenu::CleanUp()
 	LOG("Unloading Menu scene");
 	App->music->UnloadMus(musload);
 	App->textures->Unload(graphics);
-	
+	App->player->Disable();
 	return true;
 }
 
 // Update: draw background
 update_status ModuleMenu::Update()
 {
+
+	if (SDL_GetTicks() - timertime >= 30000) {
+		
+		App->player->Disable();	
+	}
+	if (SDL_GetTicks() - timertime >= 35000) {
+
+		App->player->Enable();
+		timertime = SDL_GetTicks();
+	}
+
 
 	App->render->Blit(graphics, 168, 0, &menu, SDL_FLIP_NONE);
 	App->render->Blit(graphics, 168, 52, &(title.GetCurrentFrame()), SDL_FLIP_NONE, 1);

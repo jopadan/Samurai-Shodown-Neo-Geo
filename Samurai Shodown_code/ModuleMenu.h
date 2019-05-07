@@ -27,7 +27,8 @@ public:
 	SDL_Rect menu;
     Animation title;
 	Animation start;
-	
+	uint timertime;
+	uint timer;
 
 };
 
