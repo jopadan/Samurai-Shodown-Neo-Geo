@@ -16,45 +16,16 @@ ModulePlayer::ModulePlayer()
 {
 	graphics = NULL;
 	current_animation = NULL;
-	
-}
 
-ModulePlayer::~ModulePlayer()
-{}
-
-
-bool ModulePlayer::Start()
-{
-	LOG("Loading player textures");
-	bool ret = true;
-	App->input->left = false;
-	App->input->right = false;
-	App->input->down = false;
-	App->input->up = false;
-	defeat.Reset();
-	win.Reset();
-	intro.Reset();
-	deletecol = true;
 	position.x = 208;
-	position.y = 207;
-	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet.png");
-	graphicsobj = App->textures->Load("Assets/Image/objectes.png");
-	//senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
-	//sword = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - A- 01.wav");
-	//kicks = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - KICK (MISS) - 01.wav");
-	//hitted = App->music->LoadChunk("Assets/Sound/Haohmaru/Samurai Shodown - Haohmaru - Hitted 8.wav");
-	App->ui->HealthBar_p1 = 128;
 	
-	position.x = 208;
-
 	position.y = 207;
 	initialPos = position.y;
 
-
-	idle.PushBack({ 7, 273, 75, 113 }, 0.15, 0, 0, -1, 0);
-	idle.PushBack({ 86, 275, 73, 111 }, 0.15, 0, 0, 0, 0);
-	idle.PushBack({ 164, 277, 72, 109 }, 0.15, 0, 0, 0, 0);
-	idle.PushBack({ 241, 279, 72, 107 }, 0.15, 0, 0, 0, 0);
+	idle.PushBack({ 7, 273, 75, 113 },		0.15,	0, 0, -1, 0);
+	idle.PushBack({ 86, 275, 73, 111 },		0.15,	0, 0, 0, 0);
+	idle.PushBack({ 164, 277, 72, 109 },	0.15,	0, 0, 0, 0);
+	idle.PushBack({ 241, 279, 72, 107 },	0.15,	0, 0, 0, 0);
 
 	crouch.PushBack({ 750, 432, 76, 112 }, 0.25, 0, 1, 0, 1);
 	crouch.PushBack({ 840, 463, 98, 87 }, 0.1, -26, 7, 0, 7);
@@ -79,19 +50,19 @@ bool ModulePlayer::Start()
 	forward.PushBack({ 644, 145, 57, 118 }, 0.1, 0, 0, 0, 0);
 	forward.PushBack({ 706, 147, 62, 116 }, 0.25, 0, 0, 0, 0);
 	forward.PushBack({ 773, 151, 70, 117 }, 0.1, 0, 2, 0, 2);
-
-	backward.PushBack({ 4, 155, 82, 111 }, 0.2, 0, 0, 0, 0);
-	backward.PushBack({ 88, 152, 75, 114 }, 0.2, 0, 0, 0, 0);
-	backward.PushBack({ 165, 147, 69, 118 }, 0.2, 0, 0, 0, 0);
-	backward.PushBack({ 236, 145, 66, 120 }, 0.2, 0, 0, 0, 0);
-	backward.PushBack({ 304, 147, 70, 118 }, 0.2, 0, 0, 0, 0);
-	backward.PushBack({ 376, 151, 75, 114 }, 0.2, 0, 0, 0, 0);
-
-	jumpup.PushBack({ 363, 274, 60, 112 }, 0.11, 0, 0, 0, 0);
-	jumpup.PushBack({ 429, 295, 75, 91 }, 0.11, 0, 0, 0, 0);
-	jumpup.PushBack({ 510, 303, 76, 83 }, 0.09, 0, 0, 0, 0);
-	jumpup.PushBack({ 429, 295, 75, 91 }, 0.11, 0, 0, 0, 0);
-	jumpup.PushBack({ 363, 274, 60, 112 }, 0.11, 0, 0, 0, 0);
+													
+	backward.PushBack({ 4, 155, 82, 111 },	0.2,	0, 0, 0, 0);
+	backward.PushBack({ 88, 152, 75, 114 },	0.2,	0, 0, 0, 0);
+	backward.PushBack({ 165, 147, 69, 118 },0.2,	0, 0, 0, 0);
+	backward.PushBack({ 236, 145, 66, 120 },0.2,	0, 0, 0, 0);
+	backward.PushBack({ 304, 147, 70, 118 },0.2,	0, 0, 0, 0);
+	backward.PushBack({ 376, 151, 75, 114 },0.2,	0, 0, 0, 0);
+												
+	jumpup.PushBack({ 363, 274, 60, 112 },	0.11,	0, 0, 0, 0);
+	jumpup.PushBack({ 429, 295, 75, 91 },	0.11,	0, 0, 0, 0);
+	jumpup.PushBack({ 510, 303, 76, 83 },	0.09,	0, 0, 0, 0);
+	jumpup.PushBack({ 429, 295, 75, 91 },	0.11,	0, 0, 0, 0);
+	jumpup.PushBack({ 363, 274, 60, 112 },	0.11,	0, 0, 0, 0);
 
 	jumpPunch.PushBack({ 197, 648, 90, 89 }, 0.1, 0, 0, 0, 0);//737
 	jumpPunch.PushBack({ 290, 650, 60, 87 }, 0.1, 0, 0, 0, 0);
@@ -101,7 +72,7 @@ bool ModulePlayer::Start()
 	jumpPunch.PushBack({ 713, 637, 85, 100 }, 0.1, 0, 0, 0, 0);
 	jumpPunch.PushBack({ 801, 648, 90, 89 }, 0.1, 0, 0, 0, 0);
 	jumpPunch.PushBack({ 197, 650, 60, 87 }, 0.1, 0, 0, 0, 0);
-
+	
 	punch.PushBack({ 3, 0, 69, 127 }, 0.3, 0, 0, 0, 0);
 	punch.PushBack({ 74, 30, 79, 97 }, 0.1, -10, 0, 0, 0);
 	punch.PushBack({ 158, 33, 132, 94 }, 0.6, 0, 0, -20, 0);
@@ -112,27 +83,27 @@ bool ModulePlayer::Start()
 	punch.PushBack({ 818, 44, 120, 94 }, 0.6, 0, 11, -16, 11);
 	punch.PushBack({ 940, 44, 83, 94 }, 0.2, 0, 11, 4, 11);
 	punch.PushBack({ 1025, 42, 131, 85 }, 0.1, 0, 0, -20, 0);
-
+											
 	kick.PushBack({ 647, 274, 58, 112 }, 0.2, 0, 0, 4, 0);
 	kick.PushBack({ 710, 276, 53, 110 }, 0.1, 0, 0, 2, 0);
 	kick.PushBack({ 768, 288, 94, 98 }, 0.1, 0, 0, -14, 0);
 	kick.PushBack({ 867, 287, 97, 99 }, 0.1, 0, 0, -14, 0);
 	kick.PushBack({ 969, 286, 82, 100 }, 0.2, 0, 0, -4, 0);
-
-	cyclone.PushBack({ 8, 452, 90, 88 }, 0.1, 0, 0, 0, 0);
-	cyclone.PushBack({ 105, 451, 70, 89 }, 0.2, 0, 0, 0, 0);
-	cyclone.PushBack({ 181, 457, 73, 83 }, 0.2, 0, 0, 0, 0);
-	cyclone.PushBack({ 261, 449, 58, 91 }, 0.2, 0, 0, 0, 0);
-	cyclone.PushBack({ 326, 442, 94, 98 }, 0.2, 0, 0, 0, 0);
-	cyclone.PushBack({ 427, 387, 62, 153 }, 0.2, 0, 0, 0, 0);
-	cyclone.PushBack({ 496, 442, 97, 98 }, 0.2, -20, 0, 0, 0);
-	cyclone.PushBack({ 600, 450, 97, 90 }, 0.08, -20, 0, 0, 0);
+			
+	cyclone.PushBack({ 8, 452, 90, 88 },	0.1,	0, 0, 0, 0);
+	cyclone.PushBack({ 105, 451, 70, 89 },	0.2,	0, 0, 0, 0);
+	cyclone.PushBack({ 181, 457, 73, 83 },	0.2,	0, 0, 0, 0);
+	cyclone.PushBack({ 261, 449, 58, 91 },	0.2,	0, 0, 0, 0);
+	cyclone.PushBack({ 326, 442, 94, 98 },	0.2,	0, 0, 0, 0);
+	cyclone.PushBack({ 427, 387, 62, 153 }, 0.2,	0, 0, 0, 0);
+	cyclone.PushBack({ 496, 442, 97, 98 },	0.2,  -20, 0, 0, 0);
+	cyclone.PushBack({ 600, 450, 97, 90 },	0.08, -20, 0, 0, 0);
 
 	hit.PushBack({ 982, 446, 92, 107 }, 0.08, -20, 10, 0, 10);
 	//Animaciones a completar
 	block.PushBack({ 429, 295, 75, 91 }, 0.05, 0, 0, 0, 0);
 
-
+	
 	defeat.PushBack({ 1081, 436, 74, 108 }, 0.02, 0, 2, 0, 2);
 	defeat.PushBack({ 1164, 436, 74, 108 }, 0.025, 6, 2, -3, 2);
 	defeat.PushBack({ 1241, 436, 70, 108 }, 0.1, 9, 2, -3, 2);
@@ -168,13 +139,44 @@ bool ModulePlayer::Start()
 	intro.PushBack({ 693, 993, 79, 114 }, 0.1, -2, 2, 0, 0);
 	intro.PushBack({ 777, 993, 84, 113 }, 0.1, 1, 1, 0, 0);
 	intro.PushBack({ 863, 993, 84, 113 }, 0.1, 0, 1, 0, 0);
-	intro.PushBack({ 943, 1000, 84, 106 }, 0.15, -4, 2, 0, 0);
+    intro.PushBack({ 943, 1000, 84, 106 }, 0.15, -4, 2, 0, 0);
 	intro.PushBack({ 1030, 1000, 134, 113 }, 0.15, 0, 8, -25, 10);
 	intro.PushBack({ 940, 44, 83, 113 }, 0.15, 4, 30, 4, 11);
 	intro.PushBack({ 943, 1000, 84, 106 }, 0.15, -4, 2, 0, 0);
 	intro.PushBack({ 7, 273, 75, 113 }, 0.15, 0, 0, -1, 0);
 	intro.loop = false;
+
+
 	
+}
+
+ModulePlayer::~ModulePlayer()
+{}
+
+
+bool ModulePlayer::Start()
+{
+	LOG("Loading player textures");
+	bool ret = true;
+	App->input->left = false;
+	App->input->right = false;
+	App->input->down = false;
+	App->input->up = false;
+	defeat.Reset();
+	win.Reset();
+	intro.Reset();
+
+	position.x = 208;
+	position.y = 207;
+	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet.png");
+	graphicsobj = App->textures->Load("Assets/Image/objectes.png");
+	senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
+	sword = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - A- 01.wav");
+	kicks = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - KICK (MISS) - 01.wav");
+	hitted = App->music->LoadChunk("Assets/Sound/Haohmaru/Samurai Shodown - Haohmaru - Hitted 8.wav");
+	App->ui->HealthBar_p1 = 128;
+	
+
 	if (flip == SDL_FLIP_HORIZONTAL) {
 		colliderPlayer = App->collision->AddCollider({ position.x+60, position.y - 90, 47, 50 }, COLLIDER_PLAYER, this);
 	}
@@ -207,24 +209,6 @@ bool ModulePlayer::CleanUp() {
 	App->music->UnloadChunk(sword);
 	App->music->UnloadChunk(kicks);
 	App->music->UnloadChunk(hitted);
-	idle = Animation();
-	forward = Animation();
-	backward = Animation();
-	jumpup = Animation();
-	jumpPunch = Animation();
-	punch = Animation();
-	crouch = Animation();
-	crouchPunch = Animation();
-	crouchKick = Animation();
-	intro = Animation();
-	kick = Animation();
-	hit = Animation();
-	shadow = Animation();
-	cyclone = Animation();
-	block = Animation();
-	win = Animation();
-	defeat = Animation();
-
 	return true;
 }
 
@@ -635,12 +619,12 @@ else {
 
 	if (flip == SDL_FLIP_NONE){
 
-	App->render->Blit(graphics, position.x + current_animation->pivotx[current_animation->returnCurrentFrame()], position.y -r.h +  current_animation->pivoty[current_animation->returnCurrentFrame()], &r, flip);
+	App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y -r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r, flip);
    //App->render->Blit(graphicsobj, position.x , position.y -1 , &r, flip);
 	
 	}
 	if (flip == SDL_FLIP_HORIZONTAL) {
-		App->render->Blit(graphics, position.x -10 +current_animation->pivotx2[current_animation->returnCurrentFrame()]*2, position.y - r.h +  current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
+		App->render->Blit(graphics, position.x -10 +/*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()]*2, position.y - r.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
 	}
 	if (flip == SDL_FLIP_HORIZONTAL) {
 		if (colliderPlayer != nullptr)colliderPlayer->SetPos(position.x +9, position.y - 80 + height);
@@ -934,12 +918,10 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	
 	if (colliderPlayer == c1 && c2->type == COLLIDER_ENEMY_SHOT && defense == false)
 	{
-		
+		if (App->player2->colliderAttack != nullptr){
+			App->player2->colliderAttack->to_delete = true;}
 		App->ui->HealthBar_p1 -= App->player2->Damage;
 		App->input->inputs.Push(IN_DAMAGE);
-		if (App->player2->colliderAttack != nullptr) {
-			App->player2->colliderAttack->to_delete = true;
-		}
 	
 		
 	}
