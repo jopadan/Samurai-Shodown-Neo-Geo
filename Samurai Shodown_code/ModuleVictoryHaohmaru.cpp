@@ -30,7 +30,7 @@ bool ModuleVictoryHaohmaru::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
-	musload = App->music->LoadMus("Assets/Sound/Conclusion (Winning Demo).ogg");
+	//musload = App->music->LoadMus("Assets/Sound/Conclusion (Winning Demo).ogg");
 	graphics = App->textures->Load("Assets/Image/menu_victory.png");
 	App->music->PlayMus(musload);
 
