@@ -74,13 +74,11 @@ bool ModuleMenu::CleanUp()
 update_status ModuleMenu::Update()
 {
 
-	if (SDL_GetTicks() - timertime >= 30000) {
+	if (SDL_GetTicks() - timertime >= 60000) {
 		
-		App->player->Disable();	
+		App->player->process_fsm(App->input->inputs);
 	}
-	if (SDL_GetTicks() - timertime >= 35000) {
-
-		App->player->Enable();
+	if (SDL_GetTicks() - timertime >= 65000) {
 		timertime = SDL_GetTicks();
 	}
 

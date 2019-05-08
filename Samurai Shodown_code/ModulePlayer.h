@@ -84,6 +84,8 @@ public:
 	Collider *colliderAttack;
 	Uint32 time = 0;
 	SDL_RendererFlip flip = SDL_FLIP_NONE;
+	
+	player_inputs last_input;
 	bool wall = false;
 };
 
