@@ -92,10 +92,10 @@ bool ModuleSceneHaohmaru::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 	
-	musload = App->music->LoadMus("Assets/Sound/Masculine Song -Sun- (Haohmaru).ogg");
-	start = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - Start.wav");
-	ippon = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - ippon.wav");
-	end = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - end.wav");
+	//musload = App->music->LoadMus("Assets/Sound/Masculine Song -Sun- (Haohmaru).ogg");
+	//start = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - Start.wav");
+	//ippon = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - ippon.wav");
+	//end = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - end.wav");
 
 	graphics = App->textures->Load("Assets/Image/haohmaru_stage.png");
 	font_timer = App->fonts->Load("Ui/UI_Numbers_1.png", "9876543210", 1);

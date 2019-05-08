@@ -70,7 +70,7 @@ bool ModuleEnding::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
-	musload = App->music->LoadMus("Assets/Sound/Curtain Fall (Game Over).ogg");
+	//musload = App->music->LoadMus("Assets/Sound/Curtain Fall (Game Over).ogg");
 	graphics = App->textures->Load("Assets/Image/ending_spritesheet.png");
 	App->music->PlayMus(musload);
 

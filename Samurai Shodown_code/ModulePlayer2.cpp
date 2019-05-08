@@ -157,10 +157,10 @@ bool ModulePlayer2::Start()
 
 	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet p2.png");
 	graphicsobj = App->textures->Load("Assets/Image/objectes.png");
-	senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
-	sword = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - A- 01.wav");
-	kicks = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - KICK (MISS) - 01.wav");
-	hitted = App->music->LoadChunk("Assets/Sound/Haohmaru/Samurai Shodown - Haohmaru - Hitted 8.wav"); 
+	//senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
+	//sword = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - A- 01.wav");
+	//kicks = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - KICK (MISS) - 01.wav");
+	//hitted = App->music->LoadChunk("Assets/Sound/Haohmaru/Samurai Shodown - Haohmaru - Hitted 8.wav"); 
 	App->ui->Health_Bar_p2 = 128;
 
 	if (flip == SDL_FLIP_HORIZONTAL) {
