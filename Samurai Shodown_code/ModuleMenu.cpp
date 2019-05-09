@@ -10,6 +10,7 @@
 #include "SDL/include/SDL.h"
 #include "ModuleSceneHaohmaru.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleUI.h"
 
 
@@ -66,7 +67,7 @@ bool ModuleMenu::CleanUp()
 	LOG("Unloading Menu scene");
 	App->music->UnloadMus(musload);
 	App->textures->Unload(graphics);
-	App->player->Disable();
+	
 	return true;
 }
 
@@ -74,12 +75,12 @@ bool ModuleMenu::CleanUp()
 update_status ModuleMenu::Update()
 {
 
-	if (SDL_GetTicks() - timertime >= 60000) {
+	if (SDL_GetTicks() - timertime >= 30000) {
 		
 		App->player->process_fsm(App->input->inputs);
+		App->player2->process_fsm(App->input->inputs2);
 	}
-
-	if (SDL_GetTicks() - timertime >= 65000) {
+	if (SDL_GetTicks() - timertime >= 35000) {
 
 		timertime = SDL_GetTicks();
 	}

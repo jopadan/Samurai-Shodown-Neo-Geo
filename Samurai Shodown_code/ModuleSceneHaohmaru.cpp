@@ -102,7 +102,7 @@ bool ModuleSceneHaohmaru::Start()
 	App->music->PlayMus(musload);
 	App->music->PlayChunk(start);
 	App->player->Enable();
-	//App->player2->Enable();
+	App->player2->Enable();
 	App->collision->Enable();
 	App->ui->Enable();
 	App->particles->Enable();

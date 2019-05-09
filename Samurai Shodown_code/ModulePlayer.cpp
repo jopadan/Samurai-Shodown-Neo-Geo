@@ -644,7 +644,7 @@ else {
 
 player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 	static player_states state = ST_IDLE;
-	
+	player_inputs last_input;
 
 	while (inputs.Pop(last_input))
 	{
