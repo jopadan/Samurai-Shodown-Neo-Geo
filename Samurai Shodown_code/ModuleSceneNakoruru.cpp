@@ -1,6 +1,4 @@
-#include "Globals.h"
 #include "Application.h"
-#include "ModuleSceneNakoruru.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
@@ -8,11 +6,19 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneHaohmaru.h"
+#include "ModuleSceneNakoruru.h"
+#include "ModuleMusic.h"
+#include "ModuleMenu.h"
 #include "ModuleVictoryHaohmaru.h"
-#include "ModuleUI.h"
-
-#include "SDL/include/SDL.h"
+#include "ModuleMenu.h"
 #include "ModuleCollision.h"
+#include "ModuleFonts.h"
+#include "ModuleUI.h"
+#include "ModuleEnding.h"
+#include "ModuleParticles.h"
+#include "ModuleCollision.h"
+
+#include<stdio.h>
 
 ModuleSceneNakoruru::ModuleSceneNakoruru()
 {
@@ -41,21 +47,29 @@ ModuleSceneNakoruru::~ModuleSceneNakoruru()
 // Load assets
 bool ModuleSceneNakoruru::Start()
 {
-	App->render->camera.x = 0;
-	App->render->camera.y = 0;
 	bool ret = true;
-
+	endingtimer = 0;
 	LOG("Loading background assets");
-	
-
-	musload = App->music->LoadMus("Assets/Sound/Banquet of Nature (Nakoruru).ogg");
+	//musload = App->music->LoadMus("Assets/Sound/Banquet of Nature (Nakoruru).ogg");
 	graphics = App->textures->Load("Assets/Image/Nakoruru Map Spritesheet.png");
+	font_timer = App->fonts->Load("Ui/UI_Numbers_1.png", "9876543210", 1);
+	App->player->deletecol = true;
+	App->player2->deletecol = true;
+	App->ui->roundstart = true;
+	App->ui->matchend = false;
+	App->ui->roundend = false;
+
+	starttime = SDL_GetTicks();
+	rounds1 = App->ui->roundsp1;
+	rounds2 = App->ui->roundsp2;
+	timer = 99;
 
 	App->music->PlayMus(musload);
 	App->player->Enable();
 	App->player2->Enable();
 	App->collision->Enable();
 	App->ui->Enable();
+	App->particles->Enable();
 
 	colliderMap = App->collision->AddCollider({ 0, -150, 50, 500 }, COLLIDER_WALL);
 	colliderMap2 = App->collision->AddCollider({ 590, -150, 50, 500 }, COLLIDER_WALL);
@@ -73,17 +87,30 @@ bool ModuleSceneNakoruru::CleanUp()
 	if (colliderMap2 != nullptr) {
 		colliderMap2->to_delete = true;
 	}
-	App->music->UnloadMus(musload);
-	App->textures->Unload(graphics);
-	App->player->Disable();
-	App->player2->Disable();
 	App->ui->Disable();
+	App->particles->Disable();
+	App->collision->Disable();
+	App->player2->Disable();
+	App->player->Disable();
+	App->fonts->UnLoad(font_timer);
+	App->textures->Unload(graphics);
+	App->music->UnloadMus(musload);
 
 	return true;
 }
 // Update: draw background
 update_status ModuleSceneNakoruru::Update()
 {
+	if (matchstart == false) {
+		if (SDL_GetTicks() - starttime >= 4500) {
+			matchstart = true;
+			App->ui->roundstart = false;
+			App->input->playerinput = true;
+			timertime = SDL_GetTicks();
+		}
+		else { timertime = SDL_GetTicks(); }
+	}
+
 	// Draw everything --------------------------------------
 	
 	App->render->Blit(graphics, 0, -150, &ground, SDL_FLIP_NONE);
@@ -95,6 +122,52 @@ update_status ModuleSceneNakoruru::Update()
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 		App->fade->FadeToBlack(App->scene_nakoruru,(Module*)App->winhaoh, 2);
 	}
+	if (timer == 0) {
+		if (App->ui->Health_Bar_p2 < App->ui->HealthBar_p1)App->ui->Health_Bar_p2 = 0;
+		if (App->ui->Health_Bar_p2 > App->ui->HealthBar_p1)App->ui->HealthBar_p1 = 0;
+	}
 
+	if (App->input->keyboard[SDL_SCANCODE_F2] == 1) {
+		App->ui->Health_Bar_p2 = 0;
+
+	}
+
+	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) {
+		App->ui->HealthBar_p1 = 0;
+
+
+	}
+	if (App->ui->Health_Bar_p2 <= 0) {
+		App->input->inputs2.Push(IN_DEFEAT_P2);
+		App->input->inputs.Push(IN_WIN);
+
+		App->input->playerinput = false;
+		App->ui->matchend = true;
+		//if (playfx)App->music->PlayChunk(end); playfx = false;
+
+		if (endingtimer == 0)endingtimer = SDL_GetTicks();
+		if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_nakoruru, App->winhaoh, 5);
+
+
+	}
+	if (App->ui->HealthBar_p1 <= 0) {
+		App->input->inputs2.Push(IN_WIN_P2);
+		App->input->inputs.Push(IN_DEFEAT);
+
+		App->input->playerinput = false;
+		App->ui->matchend = true;
+		//if (playfx)App->music->PlayChunk(end); playfx = false;
+
+		if (endingtimer == 0)endingtimer = SDL_GetTicks();
+		if (SDL_GetTicks() - endingtimer >= 4000)App->fade->FadeToBlack(App->scene_nakoruru, App->end, 5);
+
+	}
+	if (SDL_GetTicks() - timertime >= 1000) {
+		timertime = SDL_GetTicks();
+		timer--;
+	}
+	sprintf_s(timer_text, 10, "%d", timer);
+
+	App->fonts->BlitText(SCREEN_WIDTH / 2 - 15 - App->render->camera.x / 3, 33 - App->render->camera.y / 3, font_timer, timer_text);
 	return UPDATE_CONTINUE;
 }

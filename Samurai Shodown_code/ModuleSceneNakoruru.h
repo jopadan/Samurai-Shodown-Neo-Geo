@@ -30,6 +30,18 @@ public:
 	Collider *colliderMap;
 	Collider *colliderMap2;
 
+	char timer_text[10];
+	int font_timer = -1;
+	uint timer;
+	uint endingtimer = 0;
+	int starttime;
+	int timertime;
+	uint rounds1;
+	uint rounds2;
+	bool matchstart = false;
+	bool playfx = true;
+	bool ret = true;
+
 };
 #endif
 

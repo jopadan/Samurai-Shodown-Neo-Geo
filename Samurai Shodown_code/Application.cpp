@@ -26,6 +26,7 @@ Application::Application()
 	modules[i++] = textures = new ModuleTextures();
 	modules[i++] = fonts = new ModuleFonts();
 	modules[i++] = scene_haohmaru = new ModuleSceneHaohmaru();
+	modules[i++] = scene_nakoruru = new ModuleSceneNakoruru();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = player2 = new ModulePlayer2();
 	modules[i++] = menu = new ModuleMenu();
@@ -51,6 +52,7 @@ bool Application::Init()
 	player->Disable();
 	player2->Disable();
 	scene_haohmaru->Disable();
+	scene_nakoruru->Disable();
 	winhaoh->Disable();
 	collision->Disable();
 	ui->Disable();
