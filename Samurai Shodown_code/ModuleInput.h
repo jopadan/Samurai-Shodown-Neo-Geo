@@ -5,6 +5,7 @@
 #include "Globals.h"
 #include "p2Qeue.h"
 #include "SDL\include\SDL_scancode.h"
+#include "SDL/include/SDL_gamecontroller.h"
 
 #define MAX_KEYS 300
 #define JUMP_TIME 800
@@ -13,6 +14,8 @@
 #define KICK_TIME  700
 #define TORNADO_TIME  1100
 #define START_TIME  3000
+//Analog joystick dead zone
+#define JOYSTICK_DEAD_ZONE  8000;
 
 
 enum player_states
@@ -141,6 +144,8 @@ public:
 	Uint32 punch_c_timer2 = 0;
 	Uint32 kick_timer2 = 0;
 	Uint32 tornado_timer2 = 0;
+	//Game Controller 1 handler
+	SDL_Joystick* gGameController = NULL;
 
 
 	bool left = false;

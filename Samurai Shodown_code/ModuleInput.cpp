@@ -3,6 +3,8 @@
 #include "ModuleInput.h"
 #include "p2Qeue.h"
 #include "SDL/include/SDL.h"
+#include "SDL/include/SDL_gamecontroller.h"
+
 
 ModuleInput::ModuleInput() : Module()
 {
