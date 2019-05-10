@@ -259,7 +259,7 @@ if (state != current_state)
 		height2 = 0;
 		if (flip == SDL_FLIP_HORIZONTAL)defense = true;
 		if (wall && position.x > 100 ) {}
-		else if (position.x+60 > (-App->render->camera.x + 912) / 3) {}
+		else if (position.x+60 > (-App->render->camera.x + 912)) {}
 		else {
 			if (flip == SDL_FLIP_HORIZONTAL) {
 				current_animation = &backward;
@@ -277,7 +277,7 @@ if (state != current_state)
 		height2 = 0;
 		if (flip == SDL_FLIP_NONE)defense = true;
 		if (wall && position.x < 100) {}
-		else if (position.x < -(App->render->camera.x / 3)) {}
+		else if (position.x < -(App->render->camera.x)) {}
 		else {
 			
 			if (flip == SDL_FLIP_HORIZONTAL) {
@@ -320,7 +320,7 @@ if (state != current_state)
 			current_animation = &jumpup;
 			position.y -= jumpSpeed;
 			if (wall && position.x > 100) {}
-			else if (position.x + 60 > (-App->render->camera.x + 912) / 3) {}
+			else if (position.x + 60 > (-App->render->camera.x + 912)) {}
 			else {
 				position.x += 3;
 			}
@@ -342,7 +342,7 @@ if (state != current_state)
 			current_animation = &jumpup;
 			position.y -= jumpSpeed;
 			if (wall && position.x < 100) {}
-			else if (position.x < -(App->render->camera.x / 3)) {}
+			else if (position.x < -(App->render->camera.x)) {}
 			else {
 				if (position.x) position.x -= 3;
 			}

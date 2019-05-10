@@ -31,7 +31,8 @@ bool ModuleRender::Init()
 	}
 
 	renderer = SDL_CreateRenderer(App->window->window, -1, flags);
-
+	SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+	
 	if (renderer == NULL)
 	{
 		LOG("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -39,6 +40,8 @@ bool ModuleRender::Init()
 	}
 	camera.x += App->player->position.x - 30;
 	return ret;
+
+	
 }
 
 // Called every draw update
@@ -63,9 +66,9 @@ update_status ModuleRender::Update()
 		camera.x += -(App->player->position.x/3);
 	}
 	*/
-	if((-(((App->player->position.x + App->player2->position.x + 60) / 2 - SCREEN_WIDTH / 2) * 3)) < 0 && (-(((App->player->position.x + App->player2->position.x + 60) / 2 - SCREEN_WIDTH / 2) * 3)) > -1000)
+	if((-(((App->player->position.x + App->player2->position.x + 60) / 2 - SCREEN_WIDTH / 2) )) < 0 && (-(((App->player->position.x + App->player2->position.x + 60) / 2 - SCREEN_WIDTH / 2) )) > -1000)
 	if ((camera.x - 912) / -2 != (App->player->position.x + App->player2->position.x) / 2){
-		camera.x = -(((App->player->position.x + App->player2->position.x+60) / 2 - SCREEN_WIDTH/2 )* 3);
+		camera.x = -(((App->player->position.x + App->player2->position.x+60) / 2 - SCREEN_WIDTH/2 ));
 }
 /*
 	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT)
@@ -155,4 +158,5 @@ bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uin
 
 	return ret;
 }
+
 
