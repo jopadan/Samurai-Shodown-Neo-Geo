@@ -165,7 +165,8 @@ ModulePlayer::ModulePlayer()
 	intro.PushBack({ 7, 273, 75, 113 }, 0.15, 0, 0, -1, 0);
 	intro.loop = false;*/
 
-
+shadow.PushBack({ 659, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
+shadow.PushBack({ 733, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
 	
 }
 
