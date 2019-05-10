@@ -224,7 +224,7 @@ update_status ModulePlayer2::Update()
 		case ST_WALK_FORWARD:
 			if (flip == SDL_FLIP_HORIZONTAL)defense = true;
 			if (wall && position.x > 100) {}
-			else if (position.x + 60 > (-App->render->camera.x + 912) / 3) {}
+			else if (position.x + 60 > (-App->render->camera.x + 912)) {}
 			else {
 				if (flip == SDL_FLIP_HORIZONTAL) {
 					current_animation = &backward;
@@ -240,7 +240,7 @@ update_status ModulePlayer2::Update()
 		case ST_WALK_BACKWARD:
 			if (flip == SDL_FLIP_NONE)defense = true;
 			if (wall && position.x < 100) {}
-			else if (position.x < -(App->render->camera.x / 3)) {}
+			else if (position.x < -(App->render->camera.x)) {}
 			else {
 
 				if (flip == SDL_FLIP_HORIZONTAL) {
@@ -284,7 +284,7 @@ update_status ModulePlayer2::Update()
 				current_animation = &jumpup;
 				position.y -= jumpSpeed;
 				if (wall && position.x > 100) {}
-				else if (position.x + 60 > (-App->render->camera.x + 912) / 3) {}
+				else if (position.x + 60 > (-App->render->camera.x + 912)) {}
 				else {
 					position.x += 3;
 				}
@@ -306,7 +306,7 @@ update_status ModulePlayer2::Update()
 				current_animation = &jumpup;
 				position.y -= jumpSpeed;
 				if (wall && position.x < 100) {}
-				else if (position.x < -(App->render->camera.x / 3)) {}
+				else if (position.x < -(App->render->camera.x)) {}
 				else {
 					position.x -= 3;
 				}

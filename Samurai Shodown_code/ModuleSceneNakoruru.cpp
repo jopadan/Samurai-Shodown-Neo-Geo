@@ -168,6 +168,6 @@ update_status ModuleSceneNakoruru::Update()
 	}
 	sprintf_s(timer_text, 10, "%d", timer);
 
-	App->fonts->BlitText(SCREEN_WIDTH / 2 - 15 - App->render->camera.x / 3, 33 - App->render->camera.y / 3, font_timer, timer_text);
+	App->fonts->BlitText(SCREEN_WIDTH / 2 - 15 - App->render->camera.x, 33 - App->render->camera.y, font_timer, timer_text);
 	return UPDATE_CONTINUE;
 }
