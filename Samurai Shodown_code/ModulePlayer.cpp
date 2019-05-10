@@ -22,12 +22,31 @@ ModulePlayer::ModulePlayer()
 	position.y = 207;
 	initialPos = position.y;
 
-	idle.PushBack({ 7, 273, 75, 113 },		0.15,	0, 0, -1, 0);
-	idle.PushBack({ 86, 275, 73, 111 },		0.15,	0, 0, 0, 0);
-	idle.PushBack({ 164, 277, 72, 109 },	0.15,	0, 0, 0, 0);
-	idle.PushBack({ 241, 279, 72, 107 },	0.15,	0, 0, 0, 0);
+	idle.PushBack({ 13, 1614, 65, 87 },		0.10,	0, 0, -1, 0);
+	idle.PushBack({ 82, 1614, 65, 87 },		0.10,	1, 0, 0, 0);
+	idle.PushBack({ 149, 1614, 65, 91 },	0.10,	0, 4, 0, 0);
+	idle.PushBack({ 214, 1612, 66, 91 },	0.10,	0, 2, 0, 0);
+	idle.PushBack({ 282, 1612, 67, 92 }, 0.10, 0, 1, 0, 0);
+	idle.PushBack({ 349, 1612, 66, 91 }, 0.10, 0, 2, 0, 0);
 
-	crouch.PushBack({ 750, 432, 76, 112 }, 0.25, 0, 1, 0, 1);
+	backward.PushBack({ 1176, 458, 47, 95 }, 0.1, 0, 2, 0, 0);
+	backward.PushBack({ 1228, 458, 48, 94 }, 0.1, 0, 2, 0, 0);
+	backward.PushBack({ 1280, 463, 53, 86}, 0.1, 0, 2, 0, 0);
+	backward.PushBack({ 1339, 467, 56, 91 }, 0.1, -2, 6, 0, 0);
+	backward.PushBack({ 1394, 467, 46, 74 }, 0.1, -2, -4, 0, 2);
+	backward.PushBack({ 1450, 463, 49, 89 }, 0.1, -2, 6, 0, 0);
+	backward.PushBack({ 1498, 461, 48, 91 }, 0.1, 0, 2, 0, 0);
+
+	forward.PushBack({ 325, 557, 55, 84 }, 0.1, 0, 0, 0, 0);
+	forward.PushBack({ 76, 552, 45, 86}, 0.25, 0, 0, 0, 0);
+	forward.PushBack({ 122, 551, 49, 90 }, 0.1, 0, 0, 0, 0);
+	forward.PushBack({ 175, 548, 47, 91 }, 0.25, 0, 0, 0, 0);
+	forward.PushBack({ 222, 550, 47, 90 }, 0.1, 0, 2, 0, 2);
+	forward.PushBack({ 271, 557, 54, 85 }, 0.1, 0, 2, 0, 2);
+
+
+
+	/*crouch.PushBack({ 750, 432, 76, 112 }, 0.25, 0, 1, 0, 1);
 	crouch.PushBack({ 840, 463, 98, 87 }, 0.1, -26, 7, 0, 7);
 	crouch.loop = false;
 
@@ -144,7 +163,7 @@ ModulePlayer::ModulePlayer()
 	intro.PushBack({ 940, 44, 83, 113 }, 0.15, 4, 30, 4, 11);
 	intro.PushBack({ 943, 1000, 84, 106 }, 0.15, -4, 2, 0, 0);
 	intro.PushBack({ 7, 273, 75, 113 }, 0.15, 0, 0, -1, 0);
-	intro.loop = false;
+	intro.loop = false;*/
 
 
 	
@@ -168,7 +187,7 @@ bool ModulePlayer::Start()
 
 	position.x = 208;
 	position.y = 207;
-	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet.png");
+	graphics = App->textures->Load("Assets/Image/Nakoruru spritesheet.png");
 	graphicsobj = App->textures->Load("Assets/Image/objectes.png");
 	//senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
 	//sword = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - A- 01.wav");
@@ -214,7 +233,7 @@ bool ModulePlayer::CleanUp() {
 
 update_status ModulePlayer::Update()
 {
-Animation* current_animation = &intro;
+	Animation* current_animation = &idle;  //&intro;
 if (App->scene_haohmaru->matchstart == true) current_animation = &idle; 
 
 SDL_Rect r2 = shadow.GetCurrentFrame();
