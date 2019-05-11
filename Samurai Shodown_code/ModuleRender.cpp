@@ -66,9 +66,10 @@ update_status ModuleRender::Update()
 		camera.x += -(App->player->position.x/3);
 	}
 	*/
-	if((-(((App->player->position.x + App->player2->position.x + 60) / 2 - SCREEN_WIDTH / 2) )) < 0 && (-(((App->player->position.x + App->player2->position.x + 60) / 2 - SCREEN_WIDTH / 2) )) > -1000)
+	if((-(((App->player->position.x + App->player2->position.x + 60) / 2 - SCREEN_WIDTH / 2) )) < 0 && (-(((App->player->position.x + App->player2->position.x + 60) / 2 - SCREEN_WIDTH / 2) )) > -333)
 	if ((camera.x - 912) / -2 != (App->player->position.x + App->player2->position.x) / 2){
 		camera.x = -(((App->player->position.x + App->player2->position.x+60) / 2 - SCREEN_WIDTH/2 ));
+		LOG("Camera.x %d", camera.x);
 }
 /*
 	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT)

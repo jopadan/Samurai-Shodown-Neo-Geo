@@ -10,6 +10,8 @@
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
 #include "ModuleSceneHaohmaru.h"
+#include "ModuleSceneNakoruru.h"
+
 #include "ModuleUI.h"
 
 
@@ -201,13 +203,21 @@ bool ModulePlayer2::CleanUp() {
 update_status ModulePlayer2::Update()
 {
 	Animation* current_animation = &intro;
-	if (App->scene_haohmaru->matchstart == true) current_animation = &idle;
+	if (App->scene_nakoruru->matchstart == true) current_animation = &idle;
 	
 	SDL_Rect r2 = shadow.GetCurrentFrame();
 	App->render->Blit(graphicsobj, position.x - 7, 201, &r2, SDL_FLIP_NONE);
 
 	player_states current_state = ST_UNKNOWN;
 	player_states state = process_fsm(App->input->inputs2);
+	if (wall == true) {
+		if (flip == SDL_FLIP_HORIZONTAL)
+			position.x -= speed;
+		if (flip == SDL_FLIP_NONE)
+			position.x += speed;
+		wall = false;
+	}
+
 	if (state != current_state)
 	{
 		if (state != ST_WALK_BACKWARD || state != ST_WALK_FORWARD) {
@@ -836,30 +846,29 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 	if (colliderPlayer2 == c1 && c2->type == COLLIDER_WALL)
 	{
 		wall = true;
-		if (flip == SDL_FLIP_HORIZONTAL)
-			position.x -= speed * 2;
-		if (flip == SDL_FLIP_NONE)
-			position.x += speed * 2;
 	}
-	else { wall = false; }
-	if (App->input->keyboard[SDL_SCANCODE_J]|| App->input->keyboard[SDL_SCANCODE_L] && colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER) {
-	
-		if (flip == SDL_FLIP_HORIZONTAL)
-			App->player->position.x -= speed;
-		if (flip == SDL_FLIP_NONE)
+
+	if (App->input->keyboard[SDL_SCANCODE_L] && colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER) {
+		if (flip == SDL_FLIP_NONE && position.x < 490) {
+
 			App->player->position.x += speed;
+		}
+	}
+		if (App->input->keyboard[SDL_SCANCODE_J] && colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER) {
+		if (flip == SDL_FLIP_HORIZONTAL && position.x > 88){
+			App->player->position.x -= speed;
+		}
 
 	}
-	
-	
-	if (colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER_SHOT && defense == false)
-	{
-		if(App->player->colliderAttack!=nullptr)
-			App->player->colliderAttack->to_delete = true;
-		App->ui->Health_Bar_p2 -= App->player->Damage;
-		App->input->inputs2.Push(IN_DAMAGE_P2);
+		if (colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER_SHOT && defense == false)
+		{
+			if (App->player->colliderAttack != nullptr)
+				App->player->colliderAttack->to_delete = true;
+			App->ui->Health_Bar_p2 -= App->player->Damage;
+			App->input->inputs2.Push(IN_DAMAGE_P2);
+		}
+		if (colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER_SHOT && defense == true) App->input->inputs2.Push(IN_BLOCK_P2); if (App->player->colliderAttack != nullptr)App->player->colliderAttack->to_delete = true;
+
+
 	}
-	if (colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER_SHOT && defense == true) App->input->inputs2.Push(IN_BLOCK_P2); if (App->player->colliderAttack != nullptr)App->player->colliderAttack->to_delete = true;
 
-
-}
