@@ -12,7 +12,7 @@ ModuleMusic::ModuleMusic() :Module()
 	for (uint i = 0; i < MAX_MUSIC; ++i)
 		musics[i] = nullptr;
 
-	for (uint i = 0; i < MAX_MUSIC; ++i)
+	for (uint i = 0; i < MAX_EFFECTS; ++i)
 		chunks[i] = nullptr;
 }
 
@@ -25,6 +25,7 @@ bool ModuleMusic::Init()
 	bool ret = true;
 	int flags = MIX_INIT_OGG;
 	int init = Mix_Init(flags);
+	SDL_Init(SDL_INIT_AUDIO);
 
 	if ((init & flags) != flags)
 	{
@@ -42,17 +43,25 @@ bool ModuleMusic::CleanUp()
 	LOG("Freeing music library");
 	
 	uint i = 0;
+	uint x = 0;
 	for (i = 0; i < MAX_MUSIC; ++i)
 		if (musics[i] != nullptr){
+			LOG("Musica = %d, n%d",musics[i], i);
 			Mix_FreeMusic(musics[i]);
+			musics[i] = nullptr;
+
 
 	}
-	for (i = 0; i < MAX_MUSIC; ++i)
-		if (chunks[i] != nullptr){
-			Mix_FreeChunk(chunks[i]);
+
+	for (x = 0; x < MAX_EFFECTS; ++x)
+		if (chunks[x] != nullptr){
+			LOG("Chunks = %d, n%d", chunks[x], x);
+			Mix_FreeChunk(chunks[x]);
+			chunks[x] = nullptr;
 			
 	}
-	Mix_CloseAudio();
+
+	//Mix_CloseAudio();
 	Mix_Quit();
 	return true;
 }
@@ -69,6 +78,7 @@ Mix_Music* const ModuleMusic::LoadMus(const char* path) {
 			if (!musics[i]) {
 				LOG("Cannot load music");
 			}
+			else{ LOG("Music loaded %d", musics[i]); }
 			room = true;
 			break;
 		}
@@ -81,7 +91,7 @@ Mix_Music* const ModuleMusic::LoadMus(const char* path) {
 Mix_Chunk* const ModuleMusic :: LoadChunk(const char* path) {
 	int i = 0;
 	bool room = false;
-	for (i = 0; i < MAX_MUSIC; ++i)
+	for (i = 0; i < MAX_EFFECTS; ++i)
 	{
 		if (chunks[i] == nullptr)
 		{
@@ -89,6 +99,7 @@ Mix_Chunk* const ModuleMusic :: LoadChunk(const char* path) {
 			if (!chunks[i]) {
 				LOG("Cannot load chunk");
 			}
+			else { LOG("Chunk loaded %d", chunks[i]); }
 			
 			room = true;
 			break;
@@ -105,14 +116,15 @@ void  ModuleMusic::PlayChunk(Mix_Chunk * chunk) {
 		Mix_PlayChannel(-1, chunk, 0);
 		chunk = nullptr;
 	}
+	
 }
 
 void  ModuleMusic::PlayMus(Mix_Music * music) {
-
 	if (music != nullptr) {
 		Mix_FadeInMusic(music, -1, 1000);
 		music = nullptr;
 	}
+	else { LOG("music = nullptr"); }
 
 }
 
@@ -121,7 +133,7 @@ bool  ModuleMusic::UnloadChunk(Mix_Chunk * chunk)
 	bool ret = false;
 	int i = 0;
 
-	if (chunk != nullptr)
+	/*if (chunk != nullptr)
 	{
 		for (i = 0; i < MAX_MUSIC; ++i)
 		{
@@ -133,7 +145,8 @@ bool  ModuleMusic::UnloadChunk(Mix_Chunk * chunk)
 			}
 		}
 		Mix_FadeOutChannel(-1, 1000);
-	}
+	}*/
+	Mix_FadeOutChannel(-1, 1000);
 	return ret;
 }
 
@@ -141,7 +154,7 @@ bool  ModuleMusic::UnloadChunk(Mix_Chunk * chunk)
 	{
 		bool ret = false;
 		int i = 0;
-
+		/*
 		if (music != nullptr)
 		{
 			for (i = 0; i < MAX_MUSIC; ++i)
@@ -154,7 +167,8 @@ bool  ModuleMusic::UnloadChunk(Mix_Chunk * chunk)
 				}
 			}
 			Mix_FadeOutMusic(1000);
-		}
+		}*/
+		Mix_FadeOutMusic(1000);
 
 	return ret;
 }

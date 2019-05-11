@@ -50,7 +50,7 @@ bool ModuleSceneNakoruru::Start()
 	bool ret = true;
 	endingtimer = 0;
 	LOG("Loading background assets");
-	//musload = App->music->LoadMus("Assets/Sound/Banquet of Nature (Nakoruru).ogg");
+	musload = App->music->LoadMus("Assets/Sound/Banquet of Nature (Nakoruru).ogg");
 	graphics = App->textures->Load("Assets/Image/Nakoruru Map Spritesheet.png");
 	font_timer = App->fonts->Load("Ui/UI_Numbers_1.png", "9876543210", 1);
 	App->player->deletecol = true;
@@ -63,6 +63,7 @@ bool ModuleSceneNakoruru::Start()
 	rounds1 = App->ui->roundsp1;
 	rounds2 = App->ui->roundsp2;
 	timer = 99;
+
 
 	App->music->PlayMus(musload);
 	App->player->Enable();
@@ -80,6 +81,7 @@ bool ModuleSceneNakoruru::Start()
 
 bool ModuleSceneNakoruru::CleanUp()
 {
+	matchstart = false;
 	LOG("Unloading nakoruru scene");
 	if (colliderMap != nullptr) {
 		colliderMap->to_delete = true;
@@ -95,6 +97,7 @@ bool ModuleSceneNakoruru::CleanUp()
 	App->fonts->UnLoad(font_timer);
 	App->textures->Unload(graphics);
 	App->music->UnloadMus(musload);
+	App->music->Disable();
 
 	return true;
 }

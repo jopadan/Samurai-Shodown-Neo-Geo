@@ -55,10 +55,12 @@ bool ModuleMenu::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 	timertime = SDL_GetTicks();
-	//musload = App->music->LoadMus("Assets/Sound/Static and Dynamic (short).ogg");
+	musload = App->music->LoadMus("Assets/Sound/Static and Dynamic (short).ogg");
 	graphics = App->textures->Load("Assets/Image/Menu Spritesheet.png");
+	App->music->Enable();
 	App->music->PlayMus(musload);
 	App->ui->roundsp1 = App->ui->roundsp2 = 0;
+	
 	return ret;
 }
 
@@ -67,7 +69,7 @@ bool ModuleMenu::CleanUp()
 	LOG("Unloading Menu scene");
 	App->music->UnloadMus(musload);
 	App->textures->Unload(graphics);
-	
+	App->music->Disable();
 	return true;
 }
 

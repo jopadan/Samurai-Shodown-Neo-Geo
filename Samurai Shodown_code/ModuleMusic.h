@@ -5,7 +5,9 @@
 #include "Globals.h"
 #include "SDL_Mixer/Include/SDL_mixer.h"
 
-#define MAX_MUSIC 50
+#define MAX_MUSIC 10
+#define MAX_EFFECTS 50
+
 
 
 class ModuleMusic : public Module
@@ -24,8 +26,8 @@ public:
 	bool UnloadMus(Mix_Music * music);
 	
 public:
-	Mix_Music* musics[MAX_MUSIC];
-	Mix_Chunk* chunks[MAX_MUSIC];
+	Mix_Music *musics[MAX_MUSIC];
+	Mix_Chunk *chunks[MAX_EFFECTS];
 };
 
 #endif //
