@@ -51,6 +51,15 @@ ModulePlayer2::ModulePlayer2()
 	crouch.PushBack({ 16, 992, 51, 63 }, 0.1, 3, 7, 3, 7);
 	crouch.loop = false;
 
+
+	jumpup.PushBack({ 496, 1604, 60, 105 }, 0.11, 0, 0, 0, 0);
+	jumpup.PushBack({ 556, 1606, 53, 103 }, 0.11, 0, 0, 0, 0);
+	jumpup.PushBack({ 610, 1618, 50, 79 }, 0.11, 0, 0, 0, 0);
+	jumpup.PushBack({ 660, 1623, 47, 71 }, 0.11, 0, 0, 0, 0);
+	jumpup.PushBack({ 711, 1616, 44, 61 }, 0.11, 0, 0, 0, 0);
+	//jumpup.PushBack({ 756, 1612, 65, 105 }, 0.11, 0, 0, 0, 0);
+
+
 	shadow.PushBack({ 659, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
 	shadow.PushBack({ 733, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
 }

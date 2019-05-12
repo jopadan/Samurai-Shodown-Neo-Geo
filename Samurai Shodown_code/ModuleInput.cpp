@@ -10,6 +10,8 @@ ModuleInput::ModuleInput() : Module()
 {
 	for (uint i = 0; i < MAX_KEYS; ++i)
 		keyboard[i] = KEY_IDLE;
+	
+
 }
 
 // Destructor
@@ -221,14 +223,14 @@ bool ModuleInput::external_input()
 						//Below of dead zone
 						if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
 						{
-							down = true;
-							up = false;
+							down = false;
+							up = true;
 						}
 						//Above of dead zone
 						else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
 						{
-							up = true;
-							down = false;
+							up = false;
+							down = true;
 						}
 						else
 						{
@@ -389,7 +391,7 @@ update_status ModuleInput::PreUpdate()
 {
 
 	const Uint8* keys = SDL_GetKeyboardState(NULL);
-
+	
 	// Para el input que no sean estados
 	for (int i = 0; i < MAX_KEYS; ++i)
 	{

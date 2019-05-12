@@ -14,7 +14,7 @@
 #define KICK_TIME  700
 #define TORNADO_TIME  1100
 #define START_TIME  3000
-
+#define MAX_BUTTONS 300
 
 
 enum player_states
