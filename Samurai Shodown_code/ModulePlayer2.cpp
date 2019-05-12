@@ -24,114 +24,28 @@ ModulePlayer2::ModulePlayer2()
 	position.y = 207;
 	initialPos = position.y;
 
-	idle.PushBack({ 7, 273, 75, 113 }, 0.15, 0, 0, -2, 0);
-	idle.PushBack({ 86, 275, 73, 111 }, 0.15, 0, 0, -1, 0);
-	idle.PushBack({ 164, 277, 72, 109 }, 0.15, 0, 0, 0, 0);
-	idle.PushBack({ 241, 279, 72, 107 }, 0.15, 0, 0, 0, 0);
+	idle.PushBack({ 13, 1614, 65, 87 }, 0.1, 0, 0, 0, 0);
+	idle.PushBack({ 82, 1614, 65, 87 }, 0.1, 1, 0, 0, 0);
+	idle.PushBack({ 149, 1614, 65, 91 }, 0.1, 0, 4, 0, 4);
+	idle.PushBack({ 214, 1612, 66, 91 }, 0.1, 0, 2, 0, 2);
+	idle.PushBack({ 282, 1612, 67, 92 }, 0.1, 0, 1, -1, 1);
+	idle.PushBack({ 349, 1612, 66, 91 }, 0.1, 0, 2, 0, 2);
+
+	forward.PushBack({ 1176, 458, 47, 95 }, 0.1, 0, 2, 0, 0);
+	forward.PushBack({ 1228, 458, 48, 94 }, 0.1, 0, 2, 0, 0);
+	forward.PushBack({ 1280, 463, 53, 86 }, 0.1, 0, 2, 0, 0);
+	forward.PushBack({ 1339, 467, 56, 91 }, 0.1, -2, 6, 0, 5);
+	forward.PushBack({ 1394, 467, 46, 74 }, 0.1, -2, -4, 0, -2);
+	forward.PushBack({ 1450, 463, 49, 89 }, 0.1, -2, 6, 0, 0);
+	forward.PushBack({ 1498, 461, 48, 91 }, 0.1, 0, 2, 0, 0);
+
+	backward.PushBack({ 325, 557, 55, 84 }, 0.1, 0, 0, 0, -1);
+	backward.PushBack({ 76, 552, 45, 86 }, 0.25, 0, 0, 0, -1);
+	backward.PushBack({ 122, 551, 49, 90 }, 0.1, 0, 0, 0, -1);
+	backward.PushBack({ 175, 548, 47, 91 }, 0.25, 0, 0, 0, -1);
+	backward.PushBack({ 222, 550, 47, 90 }, 0.1, 0, 2, 0, 1);
+	backward.PushBack({ 271, 557, 54, 85 }, 0.1, 0, 2, 0, 1);
 	
-	crouch.PushBack({ 760, 432, 76, 110 }, 0.25, 0, 1, 0, 2);
-	crouch.PushBack({ 854, 460, 103, 84 }, 0.1, -28, 1, 0, 2);
-	crouch.loop = false;
-
-	forward.PushBack({ 506, 150, 69, 112 }, 0.1, 0, 0, 0, 0);
-	forward.PushBack({ 580, 147, 59, 116 }, 0.25, 0, 0, 0, 0);
-	forward.PushBack({ 644, 145, 57, 118 }, 0.1, 0, 0, 0, 0);
-	forward.PushBack({ 706, 147, 62, 116 }, 0.25, 0, 0, 0, 0);
-	forward.PushBack({ 773, 151, 70, 117 }, 0.1, 0, 2, 0, 2);;
-
-	backward.PushBack({ 4, 155, 82, 111 }, 0.2, 0, 0, 0, 0);
-	backward.PushBack({ 88, 152, 75, 114 }, 0.2, 0, 0, 0, 0);
-	backward.PushBack({ 165, 147, 69, 118 }, 0.2, 0, 0, 0, 0);
-	backward.PushBack({ 236, 145, 66, 120 }, 0.2, 0, 0, 0, 0);
-	backward.PushBack({ 304, 147, 70, 118 }, 0.2, 0, 0, 0, 0);
-	backward.PushBack({ 376, 151, 75, 114 }, 0.2, 0, 0, 0, 0);
-
-	jumpup.PushBack({ 363, 274, 60, 112 }, 0.11, 0, 0, 0, 0);
-	jumpup.PushBack({ 429, 295, 75, 91 }, 0.11, 0, 0, 0, 0);
-	jumpup.PushBack({ 510, 303, 76, 83 }, 0.09, 0, 0, 0, 0);
-	jumpup.PushBack({ 429, 295, 75, 91 }, 0.11, 0, 0, 0, 0);
-	jumpup.PushBack({ 363, 274, 60, 112 }, 0.11, 0, 0, 0, 0);
-
-	crouchPunch.PushBack({ 0, 559, 83, 69 }, 0.3, 0, 0, -5, 1);//628
-	crouchPunch.PushBack({ 87, 560, 122, 68 }, 0.3, 0, 0, -24, 4);
-	crouchPunch.PushBack({ 217, 560, 122, 68 }, 0.3, 0, 0, -24, 4);
-	crouchPunch.PushBack({ 347, 558, 118, 70 }, 0.3, 0, 0, -23, 4);
-	crouchPunch.PushBack({ 475, 559, 125, 69 }, 0.3, 0, 0, -25, 2);
-	crouchPunch.PushBack({ 604, 560, 85, 68 }, 0.3, 0, 0, -5, 2);
-	crouchPunch.PushBack({ 693, 560, 81, 68 }, 0.3, 0, 0, -5, 2);
-	crouchPunch.PushBack({ 778, 559, 83, 69 }, 0.3, 0, 0, -5, 2);
-	crouchPunch.PushBack({ 867, 552, 71, 76 }, 0.3, 0, 0, -2, 2);
-
-	punch.PushBack({ 3, 0, 69, 127 }, 0.1, 0, 0, -1, 0);
-	punch.PushBack({ 74, 30, 79, 97 }, 0.3, -10, 0, -2, 0);
-	punch.PushBack({ 158, 33, 132, 94 }, 0.6, 0, 0, -32, 0); //
-	punch.PushBack({ 290, 33, 132, 94 }, 0.6, 0, 0, -32, 0);
-	punch.PushBack({ 423, 42, 131, 85 }, 0.6, 0, 0, -32, 0);
-	punch.PushBack({ 556, 44, 130, 94 }, 0.6, 0, 11, -32, 11);
-	punch.PushBack({ 688, 44, 128, 94 }, 0.6, 0, 11, -32, 11);
-	punch.PushBack({ 818, 44, 120, 94 }, 0.6, 0, 11, -26, 11);
-	//punch.PushBack({ 940, 44, 83, 94 }, 0.3, 0, 11, -18, 11);
-	punch.PushBack({ 1025, 42, 131, 85 }, 0.1, 0, 0, -27, 0); 
-
-	kick.PushBack({ 647, 274, 58, 112 }, 0.2, 0, 0, 4, 0);
-	kick.PushBack({ 710, 276, 53, 110 }, 0.1, 0, 0, 2, 0);
-	kick.PushBack({ 768, 288, 94, 98 }, 0.1, 0, 0, -14, 0);
-	kick.PushBack({ 867, 287, 97, 99 }, 0.1, 0, 0, -14, 0);
-	kick.PushBack({ 969, 286, 82, 100 }, 0.2, 0, 0, -4, 0);
-
-	cyclone.PushBack({ 8, 452, 90, 88 }, 0.1, 0, 0, 0, 0);
-	cyclone.PushBack({ 105, 451, 70, 89 }, 0.2, 0, 0, 0, 0);
-	cyclone.PushBack({ 181, 457, 73, 83 }, 0.2, 0, 0, 0, 0);
-	cyclone.PushBack({ 261, 449, 58, 91 }, 0.2, 0, 0, 0, 0);
-	cyclone.PushBack({ 326, 442, 94, 98 }, 0.2, 0, 0, 0, 0);
-	cyclone.PushBack({ 427, 387, 62, 153 }, 0.2, 0, 0, 0, 0);
-	cyclone.PushBack({ 496, 442, 97, 98 }, 0.2, -20, 0, 0, 0);
-	cyclone.PushBack({ 600, 450, 97, 90 }, 0.08, -20, 0, 0, 0);
-
-	
-	hit.PushBack({ 985, 446, 92, 107 }, 0.08, -20, 10, 0, 10);
-	//Animaciones a completar
-	block.PushBack({ 429, 295, 75, 91 }, 0.05, 0, 0, 0, 0);
-	
-	defeat.PushBack({ 1081, 436, 74, 108 }, 0.02, 0, 2, 0, 2);
-	defeat.PushBack({ 1164, 436, 74, 108 }, 0.025, 6, 2, -3, 2);
-	defeat.PushBack({ 1241, 436, 70, 108 }, 0.1, 9, 2, -3, 2);
-	defeat.PushBack({ 1312, 436, 70, 108 }, 0.1, 9, 2, -3, 2);
-	defeat.loop = false;
-
-	defeat.loop = false;
-	win.PushBack({ 0, 1000, 84, 106 }, 0.1, 2, 1, 0, 1);
-	win.PushBack({ 0 , 1000, 84, 106 }, 0.1, 2, 1, 0, 1);
-	win.PushBack({ 165, 1000, 84, 106 }, 0.1, -4, 1, 3, 1);
-	win.PushBack({ 251, 1001, 84, 106 }, 0.1, -2, 2, 3, 2);
-	win.PushBack({ 340, 1000, 84, 106 }, 0.1, -1, 1, 2, 1);
-	win.PushBack({ 429, 1000, 84, 106 }, 0.1, -3, 1, 3, 1);
-	win.PushBack({ 521, 993, 84, 113 }, 0.1, -1, 1, 2, 1);
-	win.PushBack({ 607, 993, 84, 113 }, 0.1, -3, 1, 3, 1);
-	win.PushBack({ 693, 993, 79, 114 }, 0.1, -2, 2, 5, 2);
-	win.PushBack({ 777, 993, 84, 113 }, 0.1, 1, 1, 1, 1);
-	win.PushBack({ 863, 993, 84, 113 }, 0.1, 0, 1, 1, 1);
-	win.PushBack({ 0, 1000, 84, 106 }, 0.1, 2, 1, 0, 1);
-	win.loop = false;
-	//Hasta aqui
-
-	intro.PushBack({ 0, 1000, 84, 106 }, 0.1, 2, 1, 0, 1);
-	intro.PushBack({ 0 , 1000, 84, 106 }, 0.1, 2, 1, 0, 1);
-	intro.PushBack({ 165, 1000, 84, 106 }, 0.1, -4, 1, 3, 1);
-	intro.PushBack({ 251, 1001, 84, 106 }, 0.1, -2, 2, 3, 2);
-	intro.PushBack({ 340, 1000, 84, 106 }, 0.1, -1, 1, 2, 1);
-	intro.PushBack({ 429, 1000, 84, 106 }, 0.1, -3, 1, 3, 1);
-	intro.PushBack({ 521, 993, 84, 113 }, 0.1, -1, 1, 2, 1);
-	intro.PushBack({ 607, 993, 84, 113 }, 0.1, -3, 1, 3, 1);
-	intro.PushBack({ 693, 993, 79, 114 }, 0.1,-2, 2, 5, 2);
-	intro.PushBack({ 777, 993, 84, 113 }, 0.1, 1, 1, 1, 1);
-	intro.PushBack({ 863, 993, 84, 113 }, 0.1, 0, 1, 1, 1);
-	intro.PushBack({ 943, 1000, 84, 106 }, 0.15, -4, 2, 5, 2);
-	intro.PushBack({ 1030, 1000, 134, 113 }, 0.15, 0, 8, -25, 10);
-	intro.PushBack({ 940, 44, 83, 113 }, 0.15,4, 30, 4, 31);
-	intro.PushBack({ 943, 1000, 84, 106 }, 0.15, -4, 2, 5, 2);
-	intro.PushBack({ 7, 273, 75, 113 }, 0.15, 0, 0, -2, -1);
-	intro.loop = false;
 
 
 	shadow.PushBack({ 659, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
@@ -157,7 +71,7 @@ bool ModulePlayer2::Start()
 	position.x = 372;
 	position.y = 207;
 
-	graphics = App->textures->Load("Assets/Image/Haohmaru Spritesheet p2.png");
+	graphics = App->textures->Load("Assets/Image/Nakoruru spritesheet p2.png");
 	graphicsobj = App->textures->Load("Assets/Image/objectes.png");
 	//senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
 	//sword = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - A- 01.wav");
@@ -202,7 +116,7 @@ bool ModulePlayer2::CleanUp() {
 
 update_status ModulePlayer2::Update()
 {
-	Animation* current_animation = &intro;
+	Animation* current_animation = &idle;
 	if (App->scene_nakoruru->matchstart == true) current_animation = &idle;
 	
 	SDL_Rect r2 = shadow.GetCurrentFrame();
@@ -234,7 +148,7 @@ update_status ModulePlayer2::Update()
 		case ST_WALK_FORWARD:
 			if (flip == SDL_FLIP_HORIZONTAL)defense = true;
 			if (wall && position.x > 100) {}
-			else if (position.x + 60 > (-App->render->camera.x + 912)) {}
+			else if (position.x + 10 > (-App->render->camera.x + 912)) {}
 			else {
 				if (flip == SDL_FLIP_HORIZONTAL) {
 					current_animation = &backward;

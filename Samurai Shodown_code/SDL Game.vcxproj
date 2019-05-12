@@ -83,7 +83,6 @@
     <ClInclude Include="ModuleMusic.h" />
     <ClInclude Include="ModuleParticles.h" />
     <ClInclude Include="ModulePlayer2.h" />
-    <ClInclude Include="ModulePlayer3.h" />
     <ClInclude Include="ModuleSceneNakoruru.h" />
     <ClInclude Include="ModuleUI.h" />
     <ClInclude Include="ModuleVictoryHaohmaru.h" />
@@ -108,7 +107,6 @@
     <ClCompile Include="ModuleMusic.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="ModulePlayer2.cpp" />
-    <ClCompile Include="ModulePlayer3.cpp" />
     <ClCompile Include="ModuleSceneNakoruru.cpp" />
     <ClCompile Include="ModuleUI.cpp" />
     <ClCompile Include="ModuleVictoryHaohmaru.cpp" />

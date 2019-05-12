@@ -86,9 +86,6 @@
     <ClInclude Include="ModuleSceneNakoruru.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModulePlayer3.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -149,9 +146,6 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleSceneNakoruru.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModulePlayer3.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>

@@ -23,28 +23,28 @@ ModulePlayer::ModulePlayer()
 	position.y = 207;
 	initialPos = position.y;
 
-	idle.PushBack({ 13, 1614, 65, 87 },		0.10,	0, 0, -1, 0);
-	idle.PushBack({ 82, 1614, 65, 87 },		0.10,	1, 0, 0, 0);
-	idle.PushBack({ 149, 1614, 65, 91 },	0.10,	0, 4, 0, 0);
-	idle.PushBack({ 214, 1612, 66, 91 },	0.10,	0, 2, 0, 0);
-	idle.PushBack({ 282, 1612, 67, 92 }, 0.10, 0, 1, 0, 0);
-	idle.PushBack({ 349, 1612, 66, 91 }, 0.10, 0, 2, 0, 0);
 
-	backward.PushBack({ 1176, 458, 47, 95 }, 0.1, 0, 2, 0, 0);
-	backward.PushBack({ 1228, 458, 48, 94 }, 0.1, 0, 2, 0, 0);
-	backward.PushBack({ 1280, 463, 53, 86}, 0.1, 0, 2, 0, 0);
-	backward.PushBack({ 1339, 467, 56, 91 }, 0.1, -2, 6, 0, 0);
-	backward.PushBack({ 1394, 467, 46, 74 }, 0.1, -2, -4, 0, 2);
-	backward.PushBack({ 1450, 463, 49, 89 }, 0.1, -2, 6, 0, 0);
-	backward.PushBack({ 1498, 461, 48, 91 }, 0.1, 0, 2, 0, 0);
+	idle.PushBack({ 13, 1614, 65, 87 }, 0.1, 0, 0, 0, 0);
+	idle.PushBack({ 82, 1614, 65, 87 }, 0.1, 1, 0, 0, 0);
+	idle.PushBack({ 149, 1614, 65, 91 }, 0.1, 0, 4, 0, 4);
+	idle.PushBack({ 214, 1612, 66, 91 }, 0.1, 0, 2, 0, 2);
+	idle.PushBack({ 282, 1612, 67, 92 }, 0.1, 0, 1, -1, 1);
+	idle.PushBack({ 349, 1612, 66, 91 }, 0.1, 0, 2, 0, 2);
 
-	forward.PushBack({ 325, 557, 55, 84 }, 0.1, 0, 0, 0, 0);
-	forward.PushBack({ 76, 552, 45, 86}, 0.25, 0, 0, 0, 0);
-	forward.PushBack({ 122, 551, 49, 90 }, 0.1, 0, 0, 0, 0);
-	forward.PushBack({ 175, 548, 47, 91 }, 0.25, 0, 0, 0, 0);
-	forward.PushBack({ 222, 550, 47, 90 }, 0.1, 0, 2, 0, 2);
-	forward.PushBack({ 271, 557, 54, 85 }, 0.1, 0, 2, 0, 2);
+	forward.PushBack({ 1176, 458, 47, 95 }, 0.1, 0, 2, 0, 0);
+	forward.PushBack({ 1228, 458, 48, 94 }, 0.1, 0, 2, 0, 0);
+	forward.PushBack({ 1280, 463, 53, 86 }, 0.1, 0, 2, 0, 0);
+	forward.PushBack({ 1339, 467, 56, 91 }, 0.1, -2, 6, 0, 5);
+	forward.PushBack({ 1394, 467, 46, 74 }, 0.1, -2, -4, 0, -2);
+	forward.PushBack({ 1450, 463, 49, 89 }, 0.1, -2, 6, 0, 0);
+	forward.PushBack({ 1498, 461, 48, 91 }, 0.1, 0, 2, 0, 0);
 
+	backward.PushBack({ 325, 557, 55, 84 }, 0.1, 0, 0, 0, -1);
+	backward.PushBack({ 76, 552, 45, 86 }, 0.25, 0, 0, 0, -1);
+	backward.PushBack({ 122, 551, 49, 90 }, 0.1, 0, 0, 0, -1);
+	backward.PushBack({ 175, 548, 47, 91 }, 0.25, 0, 0, 0, -1);
+	backward.PushBack({ 222, 550, 47, 90 }, 0.1, 0, 2, 0, 1);
+	backward.PushBack({ 271, 557, 54, 85 }, 0.1, 0, 2, 0, 1);
 
 
 	/*crouch.PushBack({ 750, 432, 76, 112 }, 0.25, 0, 1, 0, 1);
