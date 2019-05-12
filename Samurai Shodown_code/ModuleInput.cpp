@@ -28,7 +28,19 @@ bool ModuleInput::Init()
 		LOG("SDL_EVENTS could not initialize! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
-
+	if (SDL_NumJoysticks() < 1)
+	{
+		LOG("Warning: No joysticks connected!\n");
+	}
+	else
+	{
+		//Load joystick
+		gGameController = SDL_JoystickOpen(0);
+		if (gGameController == NULL)
+		{
+			LOG("Warning: Unable to open game controller! SDL Error: %s\n", SDL_GetError());
+		}
+	}
 	return ret;
 }
 
@@ -91,11 +103,11 @@ bool ModuleInput::external_input()
 				break;
 			case SDLK_2:
 				if (playerinput == true)
-				App->input->inputs.Push(IN_2);
+					App->input->inputs.Push(IN_2);
 				break;
 			case SDLK_3:
 				if (playerinput == true)
-				App->input->inputs.Push(IN_3);
+					App->input->inputs.Push(IN_3);
 				break;
 			case SDLK_w:
 				if (playerinput == true)
@@ -143,60 +155,104 @@ bool ModuleInput::external_input()
 				break;
 			}
 		}
+		if (event.type == SDL_JOYAXISMOTION) {
+			if (event.jaxis.which == 0) { //En el gamepad 0
+				if (event.jaxis.axis == 0)
+				{
+					//Left of dead zone
+					if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
+					{
+						left = true;
+						right = false;
+					}
+					//Right of dead zone
+					else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
+					{
+						right = true;
+						left = false;
+					}
+					else
+					{
+						left = false;
+						right = false;
+					}
+				}
+				else if (event.jaxis.axis == 1)
+				{
+					//Below of dead zone
+					if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
+					{
+						down = true;
+						up = false;
+					}
+					//Above of dead zone
+					else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
+					{
+						up = true;
+						down = false;
+					}
+					else
+					{
+						down = false;
+						up = false;
+					}
+				}
+			}
 
-		
-	}
-	if (left && right)
-		App->input->inputs.Push(IN_LEFT_AND_RIGHT);
-	{
-		if (left)
-			App->input->inputs.Push(IN_LEFT_DOWN);
-		if (right)
-			App->input->inputs.Push(IN_RIGHT_DOWN);
-	}
 
-	if (!left)
-		App->input->inputs.Push(IN_LEFT_UP);
-	if (!right)
-		App->input->inputs.Push(IN_RIGHT_UP);
-	if (!down)
-		App->input->inputs.Push(IN_CROUCH_UP);
+		}
+		if (left && right)
+			App->input->inputs.Push(IN_LEFT_AND_RIGHT);
+		{
+			if (left)
+				App->input->inputs.Push(IN_LEFT_DOWN);
+			if (right)
+				App->input->inputs.Push(IN_RIGHT_DOWN);
+		}
 
-
-	if (up && down)
-		App->input->inputs.Push(IN_JUMP_AND_CROUCH);
-	else
-	{
-		if (down)
-			App->input->inputs.Push(IN_CROUCH_DOWN);
-		if (up)
-			App->input->inputs.Push(IN_JUMP);
-	}
-	if (left2 && right2)
-		App->input->inputs2.Push(IN_LEFT_AND_RIGHT_P2);
-	{
-		if (left2)
-			App->input->inputs2.Push(IN_LEFT_DOWN_P2);
-		if (right2)
-			App->input->inputs2.Push(IN_RIGHT_DOWN_P2);
-	}
-
-	if (!left2)
-		App->input->inputs2.Push(IN_LEFT_UP_P2);
-	if (!right2)
-		App->input->inputs2.Push(IN_RIGHT_UP_P2);
-	if (!down2)
-		App->input->inputs2.Push(IN_CROUCH_UP_P2);
+		if (!left)
+			App->input->inputs.Push(IN_LEFT_UP);
+		if (!right)
+			App->input->inputs.Push(IN_RIGHT_UP);
+		if (!down)
+			App->input->inputs.Push(IN_CROUCH_UP);
 
 
-	if (up2 && down2)
-		App->input->inputs2.Push(IN_JUMP_AND_CROUCH_P2);
-	else
-	{
-		if (down2)
-			App->input->inputs2.Push(IN_CROUCH_DOWN_P2);
-		if (up2)
-			App->input->inputs2.Push(IN_JUMP_P2);
+		if (up && down)
+			App->input->inputs.Push(IN_JUMP_AND_CROUCH);
+		else
+		{
+			if (down)
+				App->input->inputs.Push(IN_CROUCH_DOWN);
+			if (up)
+				App->input->inputs.Push(IN_JUMP);
+		}
+		if (left2 && right2)
+			App->input->inputs2.Push(IN_LEFT_AND_RIGHT_P2);
+		{
+			if (left2)
+				App->input->inputs2.Push(IN_LEFT_DOWN_P2);
+			if (right2)
+				App->input->inputs2.Push(IN_RIGHT_DOWN_P2);
+		}
+
+		if (!left2)
+			App->input->inputs2.Push(IN_LEFT_UP_P2);
+		if (!right2)
+			App->input->inputs2.Push(IN_RIGHT_UP_P2);
+		if (!down2)
+			App->input->inputs2.Push(IN_CROUCH_UP_P2);
+
+
+		if (up2 && down2)
+			App->input->inputs2.Push(IN_JUMP_AND_CROUCH_P2);
+		else
+		{
+			if (down2)
+				App->input->inputs2.Push(IN_CROUCH_DOWN_P2);
+			if (up2)
+				App->input->inputs2.Push(IN_JUMP_P2);
+		}
 	}
 	return true;
 }
@@ -334,6 +390,8 @@ update_status ModuleInput::PostUpdate() {
 // Called before quitting
 bool ModuleInput::CleanUp()
 {
+	SDL_JoystickClose(gGameController);
+	gGameController = NULL;
 	LOG("Quitting SDL input event subsystem");
 	SDL_QuitSubSystem(SDL_INIT_EVENTS);
 	return true;

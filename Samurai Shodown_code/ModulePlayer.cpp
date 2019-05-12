@@ -933,13 +933,13 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 		LOG("%d", App->player2->position.x);
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_D] && colliderPlayer == c1 && c2->type == COLLIDER_ENEMY) {
+	if (App->input->right == true && colliderPlayer == c1 && c2->type == COLLIDER_ENEMY) {
 		if (flip == SDL_FLIP_NONE && position.x < 490) {
 
 			App->player2->position.x += speed;
 		}
 	}
-	if (App->input->keyboard[SDL_SCANCODE_A] && colliderPlayer == c1 && c2->type == COLLIDER_ENEMY) {
+	if (App->input->left == true && colliderPlayer == c1 && c2->type == COLLIDER_ENEMY) {
 		if (flip == SDL_FLIP_HORIZONTAL && position.x > 88) {
 			App->player2->position.x -= speed;
 		}
