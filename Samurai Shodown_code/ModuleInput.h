@@ -157,6 +157,7 @@ public:
 	bool down2 = false;
 	bool up2 = false;
 	bool playerinput = false;
+	bool controller = false;
 
 };
 

@@ -110,7 +110,7 @@ bool ModuleInput::external_input()
 				if (playerinput == true)
 					App->input->inputs.Push(IN_3);
 				break;
-			case SDLK_w:
+			/*case SDLK_w:
 				if (playerinput == true)
 					up = true;
 				break;
@@ -125,7 +125,7 @@ bool ModuleInput::external_input()
 			case SDLK_d:
 				if (playerinput == true)
 					right = true;
-				break;
+				break;*/
 			case SDLK_7:
 				if (playerinput == true)
 					App->input->inputs2.Push(IN_1_P2);
@@ -156,52 +156,84 @@ bool ModuleInput::external_input()
 				break;
 			}
 		}
-		if (event.type == SDL_JOYAXISMOTION) {
-			if (event.jaxis.which == 0) { //En el gamepad 0
-				if (event.jaxis.axis == 0)
-				{
-					//Left of dead zone
-					if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
-					{
-						left = true;
-						right = false;
-					}
-					//Right of dead zone
-					else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
-					{
-						right = true;
-						left = false;
-					}
-					else
-					{
-						left = false;
-						right = false;
-					}
-				}
-				else if (event.jaxis.axis == 1)
-				{
-					//Below of dead zone
-					if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
-					{
-						down = true;
-						up = false;
-					}
-					//Above of dead zone
-					else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
-					{
+		if (event.type == SDL_JOYDEVICEADDED) {
+			LOG("Game controller connected");
+			controller = true;
+		}
+		if (event.type == SDL_JOYDEVICEREMOVED) {
+			LOG("Game controller disconnected");
+			controller = false;
+		}
+		if (controller == false) {
+			if (event.type == SDL_KEYDOWN && event.key.repeat == 0)
+			{
+				switch (event.key.keysym.sym) {
+				case SDLK_w:
+					if (playerinput == true)
 						up = true;
-						down = false;
-					}
-					else
+					break;
+				case SDLK_s:
+					if (playerinput == true)
+						down = true;
+					break;
+				case SDLK_a:
+					if (playerinput == true)
+						left = true;
+					break;
+				case SDLK_d:
+					if (playerinput == true)
+						right = true;
+					break;
+				}
+			}
+		}
+		if (controller == true) {
+			if (event.type == SDL_JOYAXISMOTION) {
+				if (event.jaxis.which == 0) { //En el gamepad 0
+					if (event.jaxis.axis == 0)
 					{
-						down = false;
-						up = false;
+						//Left of dead zone
+						if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
+						{
+							left = true;
+							right = false;
+						}
+						//Right of dead zone
+						else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
+						{
+							right = true;
+							left = false;
+						}
+						else
+						{
+							left = false;
+							right = false;
+						}
+					}
+					else if (event.jaxis.axis == 1)
+					{
+						//Below of dead zone
+						if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
+						{
+							down = true;
+							up = false;
+						}
+						//Above of dead zone
+						else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
+						{
+							up = true;
+							down = false;
+						}
+						else
+						{
+							down = false;
+							up = false;
+						}
 					}
 				}
 			}
-
-
 		}
+		
 		if (left && right)
 			App->input->inputs.Push(IN_LEFT_AND_RIGHT);
 		{
