@@ -37,9 +37,11 @@ bool ModuleInput::Init()
 	{
 		//Load joystick
 		gGameController = SDL_JoystickOpen(0);
+		controller = true;
 		if (gGameController == NULL)
 		{
 			LOG("Warning: Unable to open game controller! SDL Error: %s\n", SDL_GetError());
+			controller = false;
 		}
 	}
 	return ret;
