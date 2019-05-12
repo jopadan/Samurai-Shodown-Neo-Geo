@@ -159,12 +159,16 @@ bool ModuleInput::external_input()
 			}
 		}
 		if (event.type == SDL_JOYDEVICEADDED) {
-			LOG("Game controller connected");
-			controller = true;
+			if (event.jaxis.which == 0) {
+				LOG("Game controller connected");
+				controller = true;
+			}
 		}
 		if (event.type == SDL_JOYDEVICEREMOVED) {
-			LOG("Game controller disconnected");
-			controller = false;
+			if (event.jaxis.which == 0) {
+				LOG("Game controller disconnected");
+				controller = false;
+			}
 		}
 		if (controller == false) {
 			if (event.type == SDL_KEYDOWN && event.key.repeat == 0)
