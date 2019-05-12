@@ -46,6 +46,9 @@ ModulePlayer::ModulePlayer()
 	backward.PushBack({ 222, 550, 47, 90 }, 0.1, 0, 2, 0, 1);
 	backward.PushBack({ 271, 557, 54, 85 }, 0.1, 0, 2, 0, 1);
 
+	crouch.PushBack({ 581, 628, 46, 80 }, 0.25, 3, 1, 3, 1);
+	crouch.PushBack({ 16, 992, 51, 63 }, 0.1, 3, 7, 3, 7);
+	crouch.loop = false;
 
 	/*crouch.PushBack({ 750, 432, 76, 112 }, 0.25, 0, 1, 0, 1);
 	crouch.PushBack({ 840, 463, 98, 87 }, 0.1, -26, 7, 0, 7);
