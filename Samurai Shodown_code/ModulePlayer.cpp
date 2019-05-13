@@ -702,16 +702,18 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		{
 		case ST_IDLE:
 		{
-			if (SDL_GetTicks() - combotime < 200) {
-				if (combo1 == 2)combo1 = 3;
-			}
+			
 			switch (last_input)
 			{
 			case IN_RIGHT_DOWN: state = ST_WALK_FORWARD; break;
 			case IN_LEFT_DOWN: state = ST_WALK_BACKWARD; break;
 			case IN_JUMP: state = ST_JUMP_NEUTRAL;  App->input->jump_timer = SDL_GetTicks();  break;
 			case IN_CROUCH_DOWN: state = ST_CROUCH; break;
-			case IN_1: if (combo1 == 3) { state = ST_TORNADO;  App->input->tornado_timer = SDL_GetTicks(); combo1 = 0; break; }
+			case IN_1:
+			if (SDL_GetTicks() - combotime < 200) {
+				if (combo1 == 2)combo1 = 3;
+			} 
+			if (combo1 == 3) { state = ST_TORNADO;  App->input->tornado_timer = SDL_GetTicks(); combo1 = 0; break; }
 					   else {
 				state = ST_PUNCH_STANDING;  App->input->punch_timer = SDL_GetTicks();  break;
 			}
@@ -731,6 +733,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 					if (combo1 == 1)combo1 = 2;
 					combotime = SDL_GetTicks();
 				}
+				else { combo1 = 0; }
 			}
 	
 			switch (last_input)
