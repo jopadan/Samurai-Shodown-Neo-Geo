@@ -146,6 +146,7 @@ public:
 	Uint32 tornado_timer2 = 0;
 	//Game Controller 1 handler
 	SDL_GameController* gGameController = NULL;
+	SDL_GameController* gGameController2 = NULL;
 
 	SDL_Joystick *joy;
 
