@@ -128,7 +128,7 @@ public:
 	void internal_input(p2Qeue<player_inputs>& inputs, p2Qeue<player_inputs>& inputs2);
 
 public:
-
+	int h = 1;
 	KEY_STATE keyboard[MAX_KEYS];
 	Uint8 gamepad[MAX_BUTTONS];
 	p2Qeue<player_inputs> inputs;
@@ -151,7 +151,7 @@ public:
 	SDL_Joystick *joy;
 
 	const int JOYSTICK_DEAD_ZONE = 12000;
-
+	int o=-1;
 	bool left = false;
 	bool right = false;
 	bool down = false;

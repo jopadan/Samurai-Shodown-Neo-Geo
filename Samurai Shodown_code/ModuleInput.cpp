@@ -33,12 +33,7 @@ bool ModuleInput::Init()
 		LOG("SDL_EVENTS could not initialize! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
-	//for (int i = 0; i < SDL_NumJoysticks(); ++i) {
-		
-			gGameController = SDL_GameControllerOpen(0);
-			gGameController2 = SDL_GameControllerOpen(1);
-			LOG("Controller added");
-		
+	
 	return ret;
 }
 
@@ -155,13 +150,20 @@ bool ModuleInput::external_input()
 		}
 		if (event.type == SDL_CONTROLLERDEVICEADDED) {
 			LOG("Mando conectado :D");
+			o++;
+			LOG("%d", o);
+			gGameController = SDL_GameControllerOpen(0);
+			//gGameController2 = SDL_GameControllerOpen(1);
+			
+		
 		}
 		if (event.type == SDL_CONTROLLERDEVICEREMOVED) {
-		
+			LOG("Mando desconectado D:");
+			gGameController = nullptr;
 		}
 		
 			if (event.type == SDL_CONTROLLERAXISMOTION) {
-				if (event.jaxis.which == 1) { //En el gamepad 0
+				if (event.jaxis.which == o) { //En el gamepad 0
 					if (event.jaxis.axis == 0)
 					{
 						//Left of dead zone
@@ -203,7 +205,7 @@ bool ModuleInput::external_input()
 						}
 					}
 				}
-				if (event.jaxis.which == 0) { //En el gamepad 0
+				if (event.jaxis.which == o+1) { //En el gamepad 0
 					if (event.jaxis.axis == 0)
 					{
 						//Left of dead zone
