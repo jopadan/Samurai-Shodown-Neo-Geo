@@ -114,7 +114,7 @@ bool ModuleInput::external_input()
 				if (playerinput == true)
 					App->input->inputs.Push(IN_3);
 				break;
-			/*case SDLK_w:
+			case SDLK_w:
 				if (playerinput == true)
 					up = true;
 				break;
@@ -129,7 +129,7 @@ bool ModuleInput::external_input()
 			case SDLK_d:
 				if (playerinput == true)
 					right = true;
-				break;*/
+				break;
 			case SDLK_7:
 				if (playerinput == true)
 					App->input->inputs2.Push(IN_1_P2);
@@ -172,30 +172,7 @@ bool ModuleInput::external_input()
 				controller = false;
 			}
 		}
-		if (controller == false) {
-			if (event.type == SDL_KEYDOWN && event.key.repeat == 0)
-			{
-				switch (event.key.keysym.sym) {
-				case SDLK_w:
-					if (playerinput == true)
-						up = true;
-					break;
-				case SDLK_s:
-					if (playerinput == true)
-						down = true;
-					break;
-				case SDLK_a:
-					if (playerinput == true)
-						left = true;
-					break;
-				case SDLK_d:
-					if (playerinput == true)
-						right = true;
-					break;
-				}
-			}
-		}
-		if (controller == true) {
+		
 			if (event.type == SDL_JOYAXISMOTION) {
 				if (event.jaxis.which == 0) { //En el gamepad 0
 					if (event.jaxis.axis == 0)
@@ -240,7 +217,7 @@ bool ModuleInput::external_input()
 					}
 				}
 			}
-		}
+		
 		
 		if (left && right)
 			App->input->inputs.Push(IN_LEFT_AND_RIGHT);
