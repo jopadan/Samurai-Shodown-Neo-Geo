@@ -149,7 +149,7 @@ public:
 
 	SDL_Joystick *joy;
 
-	const int JOYSTICK_DEAD_ZONE = 8000;
+	const int JOYSTICK_DEAD_ZONE = 12000;
 
 	bool left = false;
 	bool right = false;
