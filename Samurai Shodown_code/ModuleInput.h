@@ -14,7 +14,7 @@
 #define KICK_TIME  700
 #define TORNADO_TIME  1100
 #define START_TIME  3000
-#define MAX_BUTTONS 300
+#define MAX_BUTTONS 15
 
 
 enum player_states
@@ -130,6 +130,7 @@ public:
 public:
 
 	KEY_STATE keyboard[MAX_KEYS];
+	Uint8 gamepad[MAX_BUTTONS];
 	p2Qeue<player_inputs> inputs;
 	p2Qeue<player_inputs> inputs2;
 	int key = -1;

@@ -11,7 +11,8 @@ ModuleInput::ModuleInput() : Module()
 	for (uint i = 0; i < MAX_KEYS; ++i)
 		keyboard[i] = KEY_IDLE;
 	
-
+	for (uint i = 0; i < MAX_BUTTONS; ++i)
+		gamepad[i] = KEY_IDLE;
 }
 
 // Destructor

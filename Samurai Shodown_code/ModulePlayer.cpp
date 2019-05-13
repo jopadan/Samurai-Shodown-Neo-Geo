@@ -55,6 +55,14 @@ ModulePlayer::ModulePlayer()
 	jumpup.PushBack({ 610, 1618, 50, 79 }, 0.11, 0, 0, 0, 0);
 	jumpup.PushBack({ 660, 1623, 47, 71 }, 0.11, 0, 0, 0, 0);
 	jumpup.PushBack({ 711, 1616, 44, 61 }, 0.11, 0, 0, 0, 0);
+
+	punch.PushBack({ 11, 713, 103, 91 }, 0.2, 0, 2, -19, 2);
+	punch.PushBack({ 117, 713, 89, 92 }, 0.2, 19, 0, -22, 0);
+	punch.PushBack({ 204, 711, 97, 94 }, 0.2, 13, 0, -20, 0);
+	punch.PushBack({ 303, 708, 93, 95 }, 0.2, 8, 0, -17, 0);
+	punch.PushBack({ 395, 708, 101, 92 }, 0.1, -33, 0, 0, 0);
+
+
 	//jumpup.PushBack({ 756, 1612, 65, 105 }, 0.11, 0, 0, 0, 0);
 	
 
