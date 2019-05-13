@@ -160,8 +160,8 @@ bool ModuleInput::external_input()
 		
 		}
 		
-			if (event.type == SDL_JOYAXISMOTION) {
-				if (event.jaxis.which == 0) { //En el gamepad 0
+			if (event.type == SDL_CONTROLLERAXISMOTION) {
+				if (event.jaxis.which == 1) { //En el gamepad 0
 					if (event.jaxis.axis == 0)
 					{
 						//Left of dead zone
@@ -203,7 +203,7 @@ bool ModuleInput::external_input()
 						}
 					}
 				}
-				if (event.jaxis.which == 1) { //En el gamepad 0
+				if (event.jaxis.which == 0) { //En el gamepad 0
 					if (event.jaxis.axis == 0)
 					{
 						//Left of dead zone
