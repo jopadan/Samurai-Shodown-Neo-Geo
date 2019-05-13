@@ -145,7 +145,9 @@ public:
 	Uint32 kick_timer2 = 0;
 	Uint32 tornado_timer2 = 0;
 	//Game Controller 1 handler
-	SDL_Joystick* gGameController = NULL;
+	SDL_GameController* gGameController = NULL;
+
+	SDL_Joystick *joy;
 
 	const int JOYSTICK_DEAD_ZONE = 8000;
 

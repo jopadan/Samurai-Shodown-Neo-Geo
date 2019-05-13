@@ -26,27 +26,18 @@ bool ModuleInput::Init()
 	bool ret = true;
 	SDL_Init(0);
 	SDL_InitSubSystem(SDL_INIT_JOYSTICK);
+	SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER);
 
 	if(SDL_InitSubSystem(SDL_INIT_EVENTS) < 0)
 	{
 		LOG("SDL_EVENTS could not initialize! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
-	if (SDL_NumJoysticks() < 1)
-	{
-		LOG("Warning: No joysticks connected!\n");
-	}
-	else
-	{
-		//Load joystick
-		gGameController = SDL_JoystickOpen(0);
-		controller = true;
-		if (gGameController == NULL)
-		{
-			LOG("Warning: Unable to open game controller! SDL Error: %s\n", SDL_GetError());
-			controller = false;
-		}
-	}
+	//for (int i = 0; i < SDL_NumJoysticks(); ++i) {
+		
+			gGameController = SDL_GameControllerOpen(0);
+			LOG("Controller added");
+		
 	return ret;
 }
 
@@ -161,17 +152,11 @@ bool ModuleInput::external_input()
 				break;
 			}
 		}
-		if (event.type == SDL_JOYDEVICEADDED) {
-			if (event.jaxis.which == 0) {
-				LOG("Game controller connected");
-				controller = true;
-			}
+		if (event.type == SDL_CONTROLLERDEVICEADDED) {
+			LOG("Mando conectado :D");
 		}
-		if (event.type == SDL_JOYDEVICEREMOVED) {
-			if (event.jaxis.which == 0) {
-				LOG("Game controller disconnected");
-				controller = false;
-			}
+		if (event.type == SDL_CONTROLLERDEVICEREMOVED) {
+		
 		}
 		
 			if (event.type == SDL_JOYAXISMOTION) {
@@ -409,7 +394,7 @@ update_status ModuleInput::PostUpdate() {
 // Called before quitting
 bool ModuleInput::CleanUp()
 {
-	SDL_JoystickClose(gGameController);
+	SDL_JoystickClose(joy);
 	gGameController = NULL;
 	LOG("Quitting SDL input event subsystem");
 	SDL_QuitSubSystem(SDL_INIT_EVENTS);
