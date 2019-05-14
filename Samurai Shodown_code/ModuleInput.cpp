@@ -169,19 +169,25 @@ bool ModuleInput::external_input()
 						//Left of dead zone
 						if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
 						{
-							left = true;
-							right = false;
+							if (playerinput == true) {
+								left = true;
+								right = false;
+							}
 						}
 						//Right of dead zone
 						else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
 						{
-							right = true;
-							left = false;
+							if (playerinput == true){
+								right = true;
+								left = false;
+							}
 						}
 						else
 						{
-							left = false;
-							right = false;
+							if (playerinput == true) {
+								left = false;
+								right = false;
+							}
 						}
 					}
 					else if (event.jaxis.axis == 1)
@@ -189,19 +195,25 @@ bool ModuleInput::external_input()
 						//Below of dead zone
 						if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
 						{
-							down = false;
-							up = true;
+							if (playerinput == true) {
+								down = false;
+								up = true;
+							}
 						}
 						//Above of dead zone
 						else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
 						{
-							up = false;
-							down = true;
+							if (playerinput == true) {
+								up = false;
+								down = true;
+							}
 						}
 						else
 						{
-							down = false;
-							up = false;
+							if (playerinput == true) {
+								down = false;
+								up = false;
+							}
 						}
 					}
 				}
@@ -211,19 +223,25 @@ bool ModuleInput::external_input()
 						//Left of dead zone
 						if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
 						{
-							left2 = true;
-							right2 = false;
+							if (playerinput == true) {
+								left2 = true;
+								right2 = false;
+							}
 						}
 						//Right of dead zone
 						else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
 						{
-							right2 = true;
-							left2 = false;
+							if (playerinput == true) {
+								right2 = true;
+								left2 = false;
+							}
 						}
 						else
 						{
-							left2 = false;
-							right2 = false;
+							if (playerinput == true) {
+								left2 = false;
+								right2 = false;
+							}
 						}
 					}
 					else if (event.jaxis.axis == 1)
@@ -231,25 +249,56 @@ bool ModuleInput::external_input()
 						//Below of dead zone
 						if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
 						{
-							down2 = false;
-							up2 = true;
+							if (playerinput == true) {
+								down2 = false;
+								up2 = true;
+							}
 						}
 						//Above of dead zone
 						else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
 						{
-							up2 = false;
-							down2 = true;
+							if (playerinput == true) {
+								up2 = false;
+								down2 = true;
+							}
 						}
 						else
 						{
-							down2 = false;
-							up2 = false;
+							if (playerinput == true) {
+								down2 = false;
+								up2 = false;
+							}
 						}
 					}
 				}
 			}
 		
-		
+		if (SDL_GameControllerGetButton(gGameController, SDL_CONTROLLER_BUTTON_X) == 1) {
+			if (playerinput == true)
+				App->input->inputs.Push(IN_1);
+		}
+		if (SDL_GameControllerGetButton(gGameController, SDL_CONTROLLER_BUTTON_Y) == 1) {
+			if (playerinput == true)
+				App->input->inputs.Push(IN_2);
+		}
+		if (SDL_GameControllerGetButton(gGameController, SDL_CONTROLLER_BUTTON_LEFTSTICK) == 1) {
+			if (playerinput == true)
+				App->input->inputs.Push(IN_3);
+		}
+		if (SDL_GameControllerGetButton(gGameController2, SDL_CONTROLLER_BUTTON_X) == 1) {
+			if (playerinput == true)
+				App->input->inputs.Push(IN_1_P2);
+		}
+		if (SDL_GameControllerGetButton(gGameController2, SDL_CONTROLLER_BUTTON_Y) == 1) {
+			if (playerinput == true)
+				App->input->inputs.Push(IN_2_P2);
+		}
+		if (SDL_GameControllerGetButton(gGameController2, SDL_CONTROLLER_BUTTON_LEFTSTICK) == 1) {
+			if (playerinput == true)
+				App->input->inputs.Push(IN_3_P2);
+		}
+
+
 		if (left && right)
 			App->input->inputs.Push(IN_LEFT_AND_RIGHT);
 		{

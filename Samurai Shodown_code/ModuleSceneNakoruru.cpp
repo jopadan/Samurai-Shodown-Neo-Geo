@@ -122,20 +122,20 @@ update_status ModuleSceneNakoruru::Update()
 	
 	//background
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
+	/*if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1 || SDL_GameControllerGetButton(App->input->gGameController, SDL_CONTROLLER_BUTTON_START) == 1) {
 		App->fade->FadeToBlack(App->scene_nakoruru,(Module*)App->winhaoh, 2);
-	}
+	}*/
 	if (timer == 0) {
 		if (App->ui->Health_Bar_p2 < App->ui->HealthBar_p1)App->ui->Health_Bar_p2 = 0;
 		if (App->ui->Health_Bar_p2 > App->ui->HealthBar_p1)App->ui->HealthBar_p1 = 0;
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_F2] == 1) {
+	if (App->input->keyboard[SDL_SCANCODE_F2] == 1 /*|| SDL_GameControllerGetButton(App->input->gGameController, SDL_CONTROLLER_BUTTON_DPAD_LEFT) == 1*/) {
 		App->ui->Health_Bar_p2 = 0;
 
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) {
+	if (App->input->keyboard[SDL_SCANCODE_F3] == 1 /*|| SDL_GameControllerGetButton(App->input->gGameController, SDL_CONTROLLER_BUTTON_DPAD_RIGHT) == 1*/) {
 		App->ui->HealthBar_p1 = 0;
 
 
