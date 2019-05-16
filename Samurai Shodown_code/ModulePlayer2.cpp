@@ -65,7 +65,11 @@ ModulePlayer2::ModulePlayer2()
 	punch.PushBack({ 303, 708, 93, 95 }, 0.2, 8, 0, -17, 0);
 	punch.PushBack({ 395, 708, 101, 92 }, 0.1, -33, 0, 0, 0);
 
-
+	kick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
+	kick.PushBack({ 70, 1060, 53, 100 }, 0.1, 0, 0, 8, 0);
+	kick.PushBack({ 121, 1061, 95, 98 }, 0.1, 0, 0, -14, 0);
+	kick.PushBack({ 70, 1060, 53, 100 }, 0.1, 0, 0, 8, 0);
+	kick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
 
 	shadow.PushBack({ 659, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
 	shadow.PushBack({ 733, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
