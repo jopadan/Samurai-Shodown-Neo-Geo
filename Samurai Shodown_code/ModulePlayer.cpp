@@ -712,8 +712,10 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_1:
 			if (SDL_GetTicks() - combotime < 200) {
 				if (combo1 == 2)combo1 = 3;
+				if (combo2 == 2)combo2 = 3;
 			} 
-			if (combo1 == 3) { state = ST_TORNADO;  App->input->tornado_timer = SDL_GetTicks(); combo1 = 0; break; }
+			if (combo1 == 3) { state = ST_TORNADO; App->input->tornado_timer = SDL_GetTicks(); combo1 = 0; break; }
+			if (combo2 == 3) { state = ST_TORNADO; App->input->tornado_timer = SDL_GetTicks(); combo2 = 0; break; }
 					   else {
 				state = ST_PUNCH_STANDING;  App->input->punch_timer = SDL_GetTicks();  break;
 			}
@@ -734,6 +736,13 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 					combotime = SDL_GetTicks();
 				}
 				else { combo1 = 0; }
+			}
+			if (flip == SDL_FLIP_HORIZONTAL) {
+				if (SDL_GetTicks() - combotime < 120) {
+					if (combo2 == 1)combo2 = 2;
+					combotime = SDL_GetTicks();
+				}
+				else { combo2 = 0; }
 			}
 	
 			switch (last_input)
@@ -758,6 +767,12 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			if (flip == SDL_FLIP_HORIZONTAL) {
 				if (SDL_GetTicks() - combotime < 120) {
 					if (combo1 == 1)combo1 = 2;
+					combotime = SDL_GetTicks();
+				}
+			}
+			if (flip == SDL_FLIP_NONE) {
+				if (SDL_GetTicks() - combotime < 120) {
+					if (combo2 == 1)combo2 = 2;
 					combotime = SDL_GetTicks();
 				}
 			}
@@ -892,6 +907,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		{
 			combotime = SDL_GetTicks();
 			combo1 = 1;
+			combo2 = 1;
 			switch (last_input)
 			{
 			case IN_CROUCH_UP: state = ST_IDLE; crouch.Reset();  break;
