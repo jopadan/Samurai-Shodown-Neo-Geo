@@ -12,6 +12,18 @@
     <Filter Include="Containers">
       <UniqueIdentifier>{78a7f487-1d77-4fdc-9f51-f067eccd6239}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Players">
+      <UniqueIdentifier>{d72464f3-ab28-417c-9ccf-60918ff38bbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Scenes">
+      <UniqueIdentifier>{5d9075d3-4b49-4587-a020-d86686b444b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Assets">
+      <UniqueIdentifier>{7c8f5b07-5c9e-4c7c-a345-97296f731b7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Gameplay">
+      <UniqueIdentifier>{0b31a7bb-221c-4048-b0f6-9a9366bbe4a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MemLeaks.h">
@@ -38,53 +50,59 @@
     <ClInclude Include="Module.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleCollision.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleFadeToBlack.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleInput.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleMenu.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleMusic.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleParticles.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModulePlayer.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModulePlayer2.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="ModuleRender.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleSceneHaohmaru.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleTextures.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleVictoryHaohmaru.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleFonts.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="ModuleUI.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleEnding.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleSceneNakoruru.h">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneHaohmaru.h">
+      <Filter>Modules\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleCollision.h">
+      <Filter>Modules\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleEnding.h">
+      <Filter>Modules\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleFadeToBlack.h">
+      <Filter>Modules\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleFonts.h">
+      <Filter>Modules\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleInput.h">
+      <Filter>Modules\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleMenu.h">
+      <Filter>Modules\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleMusic.h">
+      <Filter>Modules\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePlayer2.h">
+      <Filter>Modules\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePlayer.h">
+      <Filter>Modules\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleVictoryHaohmaru.h">
+      <Filter>Modules\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePetP1.h">
+      <Filter>Modules\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePetP2.h">
+      <Filter>Modules\Players</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -97,40 +115,13 @@
     <ClCompile Include="Globals.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleCollision.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleFadeToBlack.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleInput.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleMenu.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleMusic.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleParticles.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModulePlayer.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModulePlayer2.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleRender.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleSceneHaohmaru.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleTextures.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleVictoryHaohmaru.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleWindow.cpp">
@@ -139,14 +130,44 @@
     <ClCompile Include="ModuleUI.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleEnding.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleFonts.cpp">
-      <Filter>Modules</Filter>
+    <ClCompile Include="ModuleSceneHaohmaru.cpp">
+      <Filter>Modules\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="ModuleSceneNakoruru.cpp">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleCollision.cpp">
+      <Filter>Modules\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleEnding.cpp">
+      <Filter>Modules\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFadeToBlack.cpp">
+      <Filter>Modules\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleInput.cpp">
+      <Filter>Modules\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFonts.cpp">
+      <Filter>Modules\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleMenu.cpp">
+      <Filter>Modules\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleMusic.cpp">
+      <Filter>Modules\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePlayer2.cpp">
+      <Filter>Modules\Players</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePlayer.cpp">
+      <Filter>Modules\Players</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleVictoryHaohmaru.cpp">
+      <Filter>Modules\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePetP1.cpp">
+      <Filter>Modules\Players</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
