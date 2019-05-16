@@ -12,6 +12,7 @@
 #define PUNCH_TIME 700
 #define CROUCH_PUNCH_TIME 500
 #define HAWK_CARRY_TIME 7000
+#define ANNUM_TIME 2000
 #define KICK_TIME  700
 #define TORNADO_TIME  1100
 #define START_TIME  3000
@@ -39,6 +40,8 @@ enum player_states
 	ST_KICK_BACKWARD_JUMP,
 	ST_KICK_CROUCH,
 	ST_TORNADO,
+	ST_ANNU_MUTSUBE,
+	ST_LEYLA_MUTSUBE,
 	ST_DAMAGE,
 	ST_BLOCK,
 	ST_WIN,
@@ -101,6 +104,10 @@ enum player_inputs
 	IN_IDLE,
 	IN_HAWK_CARRY_FINISH,
 	IN_HAWK_CARRY_FINISH_P2,
+	IN_ANNU_MUTSUBE_FINISH,
+	IN_LEYLA_MUTSUBE_FINISH,
+	IN_ANNU_MUTSUBE_FINISH_P2,
+	IN_LEYLA_MUTSUBE_FINISH_P2,
 
 
 };
@@ -144,6 +151,8 @@ public:
 	Uint32 punch_c_timer = 0;
 	Uint32 kick_timer = 0;
 	Uint32 tornado_timer = 0;
+	Uint32 AnnuM_timer = 0;
+	Uint32 LeylaM_timer = 0;
 	Uint32 hawk_carry_timer = 0;
 	Uint32 jump_timer2 = 0;
 	Uint32 punch_timer2 = 0;
@@ -151,6 +160,8 @@ public:
 	Uint32 kick_timer2 = 0;
 	Uint32 tornado_timer2 = 0;
 	Uint32 hawk_carry_timer2 = 0;
+	Uint32 AnnuM_timer2 = 0;
+	Uint32 LeylaM_timer2 = 0;
 	//Game Controller 1 handler
 	SDL_GameController* gGameController = NULL;
 	SDL_GameController* gGameController2 = NULL;

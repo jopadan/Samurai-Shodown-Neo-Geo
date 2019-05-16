@@ -48,6 +48,7 @@ public:
 	Uint32 combo2 = 0;
 	Uint32 HawkCarryCombo = 0;
 	Uint32 combotime;
+	Uint32 combotimeAnnu;
 	SDL_Texture* graphics = nullptr;
 	SDL_Texture* graphicsobj = nullptr;
 	Animation* current_animation = nullptr;
@@ -75,6 +76,7 @@ public:
 	Animation win;
 	Animation defeat;
 	Animation hawk_carry;
+	Animation Annu;
 	iPoint position;
 	Uint32 Damage = 20;
 	bool deletecol = true;
@@ -82,8 +84,11 @@ public:
 	bool playsound = true;
 	bool OnHawk = false;
 	bool jumptoHawk = true;
+	float mutsubespeed = 10;
+	float acc = 0.01;
 	int height = 0;
 	int height2 = 0;
+	bool dontflip = false;
 	Collider *colliderPlayer;
 	Collider *colliderPlayer_2;
 	Collider *colliderAttack;

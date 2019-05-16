@@ -429,6 +429,14 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs, p2Qeue<player_in
 			hawk_carry_timer = 0;
 		}
 	}
+	if (AnnuM_timer > 0)
+	{
+		if (SDL_GetTicks() - AnnuM_timer > ANNUM_TIME)
+		{
+			inputs.Push(IN_ANNU_MUTSUBE_FINISH);
+			AnnuM_timer = 0;
+		}
+	}
 
 	
 	if (jump_timer2 > 0)
@@ -478,6 +486,14 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs, p2Qeue<player_in
 		{
 			inputs.Push(IN_HAWK_CARRY_FINISH_P2);
 			hawk_carry_timer2 = 0;
+		}
+	}
+	if (AnnuM_timer2 > 0)
+	{
+		if (SDL_GetTicks() - AnnuM_timer2 > ANNUM_TIME)
+		{
+			inputs.Push(IN_ANNU_MUTSUBE_FINISH_P2);
+			AnnuM_timer2 = 0;
 		}
 	}
 	
