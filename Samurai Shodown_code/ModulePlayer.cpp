@@ -670,7 +670,7 @@ else {
 	if (flip == SDL_FLIP_NONE){
 
 	App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y -r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r, flip);
-   //App->render->Blit(graphicsobj, position.x , position.y -1 , &r, flip);
+  
 	
 	}
 	if (flip == SDL_FLIP_HORIZONTAL) {
@@ -953,7 +953,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	if (colliderPlayer == c1 && c2->type== COLLIDER_WALL)
 	{
 		wall = true;
-		LOG("%d", App->player2->position.x);
 	}
 
 	if (App->input->right == true && colliderPlayer == c1 && c2->type == COLLIDER_ENEMY) {

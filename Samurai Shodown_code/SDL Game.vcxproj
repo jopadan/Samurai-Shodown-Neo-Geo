@@ -82,6 +82,8 @@
     <ClInclude Include="ModuleMenu.h" />
     <ClInclude Include="ModuleMusic.h" />
     <ClInclude Include="ModuleParticles.h" />
+    <ClInclude Include="ModulePetP1.h" />
+    <ClInclude Include="ModulePetP2.h" />
     <ClInclude Include="ModulePlayer2.h" />
     <ClInclude Include="ModuleSceneNakoruru.h" />
     <ClInclude Include="ModuleUI.h" />
@@ -106,6 +108,7 @@
     <ClCompile Include="ModuleMenu.cpp" />
     <ClCompile Include="ModuleMusic.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
+    <ClCompile Include="ModulePetP1.cpp" />
     <ClCompile Include="ModulePlayer2.cpp" />
     <ClCompile Include="ModuleSceneNakoruru.cpp" />
     <ClCompile Include="ModuleUI.cpp" />
