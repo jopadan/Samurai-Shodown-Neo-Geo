@@ -31,6 +31,7 @@ bool ModulePetp1::Start() {
 update_status ModulePetp1::Update() {
 	speedx = 0;
 	speedy = 0;
+	if (App->player->OnHawk == false){
 	if (App->player->flip == SDL_FLIP_NONE){
 		if (position.x < App->player->position.x - 10){
 			speedx = 1;
@@ -53,6 +54,7 @@ update_status ModulePetp1::Update() {
 			}
 		}
 	}
+	
 
 	if (App->player->flip == SDL_FLIP_HORIZONTAL) {
 		if (position.x < App->player->position.x + 15) {
@@ -84,7 +86,16 @@ update_status ModulePetp1::Update() {
 	if (position.y > App->player->position.y - 90) {
 		speedy = -4;
 	}
-
+}
+	if (App->player->OnHawk == true) {
+		flip = App->player->flip;
+		speedx = 0; speedy = 0;
+		if (App->input->right == true) { speedx = +3; }
+		if (App->input->left == true) { speedx = -3; }
+		if (App->input->up == true) { speedy = -3; }
+		if (App->input->down == true) { speedy = +3; }
+	
+	}
 	position.x += speedx;
 	position.y += speedy;
 	SDL_Rect r = current_animation->GetCurrentFrame();
