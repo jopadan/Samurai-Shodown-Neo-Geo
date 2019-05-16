@@ -94,7 +94,7 @@ update_status ModuleEnding::Update()
 	App->render->Blit(graphics, 350, -10, &(flower.GetCurrentFrame()), SDL_FLIP_NONE, 1);
 	App->render->Blit(graphics, 168, 0, &end, SDL_FLIP_NONE);
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1 || SDL_GameControllerGetButton(App->input->gGameController, SDL_CONTROLLER_BUTTON_START) == 1) {
 		App->fade->FadeToBlack(App->end, App->menu, 1);
 	}
 

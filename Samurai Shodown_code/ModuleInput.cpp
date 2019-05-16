@@ -155,11 +155,34 @@ bool ModuleInput::external_input()
 			gGameController = SDL_GameControllerOpen(0);
 			//gGameController2 = SDL_GameControllerOpen(1);
 			
-		
+			/*for (int i = 0; i < SDL_NumJoysticks() && o < 2; ++i) {
+				if (SDL_IsGameController(i) && o < 0) {
+					o++;
+					gGameController = SDL_GameControllerOpen(o);
+					if (gGameController) {
+						LOG("Mando 1 conectado :D");
+						break;
+					}
+					else {
+						LOG("Could not open gamecontroller %i: %s\n", i, SDL_GetError());
+					}
+				}
+				if (SDL_IsGameController(i) && o >= 0) {
+					o++;
+					gGameController2 = SDL_GameControllerOpen(o);
+					if (gGameController2) {
+						LOG("Mando 2 conectado :D");
+						break;
+					}
+					else {
+						LOG("Could not open gamecontroller2 %i: %s\n", i, SDL_GetError());
+					}
+				}
+			}*/
 		}
 		if (event.type == SDL_CONTROLLERDEVICEREMOVED) {
 			LOG("Mando desconectado D:");
-			gGameController = nullptr;
+			SDL_GameControllerClose(gGameController);
 		}
 		
 			if (event.type == SDL_CONTROLLERAXISMOTION) {
@@ -169,19 +192,25 @@ bool ModuleInput::external_input()
 						//Left of dead zone
 						if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
 						{
-							left = true;
-							right = false;
+							if (playerinput == true) {
+								left = true;
+								right = false;
+							}
 						}
 						//Right of dead zone
 						else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
 						{
-							right = true;
-							left = false;
+							if (playerinput == true){
+								right = true;
+								left = false;
+							}
 						}
 						else
 						{
-							left = false;
-							right = false;
+							if (playerinput == true) {
+								left = false;
+								right = false;
+							}
 						}
 					}
 					else if (event.jaxis.axis == 1)
@@ -189,19 +218,25 @@ bool ModuleInput::external_input()
 						//Below of dead zone
 						if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
 						{
-							down = false;
-							up = true;
+							if (playerinput == true) {
+								down = false;
+								up = true;
+							}
 						}
 						//Above of dead zone
 						else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
 						{
-							up = false;
-							down = true;
+							if (playerinput == true) {
+								up = false;
+								down = true;
+							}
 						}
 						else
 						{
-							down = false;
-							up = false;
+							if (playerinput == true) {
+								down = false;
+								up = false;
+							}
 						}
 					}
 				}
@@ -211,19 +246,25 @@ bool ModuleInput::external_input()
 						//Left of dead zone
 						if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
 						{
-							left2 = true;
-							right2 = false;
+							if (playerinput == true) {
+								left2 = true;
+								right2 = false;
+							}
 						}
 						//Right of dead zone
 						else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
 						{
-							right2 = true;
-							left2 = false;
+							if (playerinput == true) {
+								right2 = true;
+								left2 = false;
+							}
 						}
 						else
 						{
-							left2 = false;
-							right2 = false;
+							if (playerinput == true) {
+								left2 = false;
+								right2 = false;
+							}
 						}
 					}
 					else if (event.jaxis.axis == 1)
@@ -231,25 +272,56 @@ bool ModuleInput::external_input()
 						//Below of dead zone
 						if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
 						{
-							down2 = false;
-							up2 = true;
+							if (playerinput == true) {
+								down2 = false;
+								up2 = true;
+							}
 						}
 						//Above of dead zone
 						else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
 						{
-							up2 = false;
-							down2 = true;
+							if (playerinput == true) {
+								up2 = false;
+								down2 = true;
+							}
 						}
 						else
 						{
-							down2 = false;
-							up2 = false;
+							if (playerinput == true) {
+								down2 = false;
+								up2 = false;
+							}
 						}
 					}
 				}
 			}
 		
-		
+		if (SDL_GameControllerGetButton(gGameController, SDL_CONTROLLER_BUTTON_X) == 1) {
+			if (playerinput == true)
+				App->input->inputs.Push(IN_1);
+		}
+		if (SDL_GameControllerGetButton(gGameController, SDL_CONTROLLER_BUTTON_Y) == 1) {
+			if (playerinput == true)
+				App->input->inputs.Push(IN_2);
+		}
+		if (SDL_GameControllerGetButton(gGameController, SDL_CONTROLLER_BUTTON_LEFTSTICK) == 1) {
+			if (playerinput == true)
+				App->input->inputs.Push(IN_3);
+		}
+		if (SDL_GameControllerGetButton(gGameController2, SDL_CONTROLLER_BUTTON_X) == 1) {
+			if (playerinput == true)
+				App->input->inputs.Push(IN_1_P2);
+		}
+		if (SDL_GameControllerGetButton(gGameController2, SDL_CONTROLLER_BUTTON_Y) == 1) {
+			if (playerinput == true)
+				App->input->inputs.Push(IN_2_P2);
+		}
+		if (SDL_GameControllerGetButton(gGameController2, SDL_CONTROLLER_BUTTON_LEFTSTICK) == 1) {
+			if (playerinput == true)
+				App->input->inputs.Push(IN_3_P2);
+		}
+
+
 		if (left && right)
 			App->input->inputs.Push(IN_LEFT_AND_RIGHT);
 		{
@@ -349,6 +421,23 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs, p2Qeue<player_in
 			tornado_timer = 0;
 		}
 	}
+	if (hawk_carry_timer > 0)
+	{
+		if (SDL_GetTicks() - hawk_carry_timer > HAWK_CARRY_TIME)
+		{
+			inputs.Push(IN_HAWK_CARRY_FINISH);
+			hawk_carry_timer = 0;
+		}
+	}
+	if (AnnuM_timer > 0)
+	{
+		if (SDL_GetTicks() - AnnuM_timer > ANNUM_TIME)
+		{
+			inputs.Push(IN_ANNU_MUTSUBE_FINISH);
+			AnnuM_timer = 0;
+		}
+	}
+
 	
 	if (jump_timer2 > 0)
 	{
@@ -389,6 +478,22 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs, p2Qeue<player_in
 		{
 			inputs2.Push(IN_PUNCH_CROUCH_FINISH_P2);
 			punch_c_timer2 = 0;
+		}
+	}
+	if (hawk_carry_timer2 > 0)
+	{
+		if (SDL_GetTicks() - hawk_carry_timer2 > HAWK_CARRY_TIME)
+		{
+			inputs.Push(IN_HAWK_CARRY_FINISH_P2);
+			hawk_carry_timer2 = 0;
+		}
+	}
+	if (AnnuM_timer2 > 0)
+	{
+		if (SDL_GetTicks() - AnnuM_timer2 > ANNUM_TIME)
+		{
+			inputs.Push(IN_ANNU_MUTSUBE_FINISH_P2);
+			AnnuM_timer2 = 0;
 		}
 	}
 	

@@ -7,6 +7,8 @@
 #include "ModuleSceneNakoruru.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
+#include "ModulePetP1.h"
+#include "ModulePetP2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleMenu.h"
 #include "ModuleEnding.h"
@@ -29,6 +31,8 @@ Application::Application()
 	modules[i++] = scene_nakoruru = new ModuleSceneNakoruru();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = player2 = new ModulePlayer2();
+	modules[i++] = pet = new ModulePetp1();
+	modules[i++] = pet2 = new ModulePetp2();
 	modules[i++] = menu = new ModuleMenu();
 	modules[i++] = end = new ModuleEnding();
 	modules[i++] = winhaoh = new ModuleVictoryHaohmaru();
