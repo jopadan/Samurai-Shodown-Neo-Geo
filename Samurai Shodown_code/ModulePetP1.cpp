@@ -10,8 +10,25 @@
 ModulePetp1::ModulePetp1() {
 	graphics = NULL;
 	current_animation = NULL;
-	idle.PushBack({ 987, 1788, 44, 72 }, 0.1, 0, 0, 0, 0);
+	idle.PushBack({ 987, 1788, 44, 72 }, 0.15, 0, 0, 0, 0);
+	idle.PushBack({ 1034, 1792, 46, 66 }, 0.15, 0, 0, 0, 0);
+	idle.PushBack({ 1084, 1797, 48, 64 }, 0.15, 0, 0, 0, 0);
+	idle.PushBack({ 1132, 1800, 47, 58 }, 0.2, 0, 0, 0, 0);
+	idle.PushBack({ 1181, 1824, 58, 35 }, 0.2, 0, 0, 0, 0);
+	idle.PushBack({ 1239, 1817, 54, 48 }, 0.15, 0, 0, 0, 0);
+	idle.PushBack({ 1292, 1812, 48, 52 }, 0.15, 0, 0, 0, 0);
+	idle.PushBack({ 1342, 1803, 43, 62 }, 0.15, 0, 0, 0, 0);
+
+
+
+
+
 	move.PushBack({ 418, 1539, 52, 58 }, 0.1, 0, 0, 0, 0);
+	move.PushBack({ 474, 1548, 70, 52 }, 0.2, 0, 0, 0, 0);
+	move.PushBack({ 544, 1553, 71, 35 }, 0.2, 0, 0, 0, 0);
+	move.PushBack({ 614, 1546, 54, 53 }, 0.2, 0, 0, 0, 0);
+	move.PushBack({ 666, 1539, 57, 43 }, 0.2, 0, 0, 0, 0);
+	move.PushBack({ 720, 1538, 45, 75 }, 0.1, 0, 0, 0, 0);
 }
 ModulePetp1::~ModulePetp1() {
 

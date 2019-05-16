@@ -25,18 +25,18 @@ ModulePlayer::ModulePlayer()
 	initialPos = position.y;
 
 
-	idle.PushBack({ 13, 1614, 65, 87 }, 0.1, 0, 0, 0, 0);
-	idle.PushBack({ 82, 1614, 65, 87 }, 0.1, 1, 0, 0, 0);
-	idle.PushBack({ 149, 1614, 65, 91 }, 0.1, 0, 4, 0, 4);
-	idle.PushBack({ 214, 1612, 66, 91 }, 0.1, 0, 2, 0, 2);
-	idle.PushBack({ 282, 1612, 67, 92 }, 0.1, 0, 1, -1, 1);
-	idle.PushBack({ 349, 1612, 66, 91 }, 0.1, 0, 2, 0, 2);
+	idle.PushBack({ 13, 1614, 65, 87 }, 0.15, 0, 0, 0, 0);
+	idle.PushBack({ 82, 1614, 65, 87 }, 0.15, 1, 0, 0, 0);
+	idle.PushBack({ 149, 1614, 65, 91 }, 0.15, 0, 4, 0, 4);
+	idle.PushBack({ 214, 1612, 66, 91 }, 0.15, 0, 2, 0, 2);
+	idle.PushBack({ 282, 1612, 67, 92 }, 0.15, 0, 1, -1, 1);
+	idle.PushBack({ 349, 1612, 66, 91 }, 0.15, 0, 2, 0, 2);
 
 	forward.PushBack({ 1176, 458, 47, 95 }, 0.1, 0, 2, 0, 0);
 	forward.PushBack({ 1228, 458, 48, 94 }, 0.1, 0, 2, 0, 0);
-	forward.PushBack({ 1280, 463, 53, 86 }, 0.1, 0, 2, 0, 0);
-	forward.PushBack({ 1339, 467, 56, 91 }, 0.1, -2, 6, 0, 5);
-	forward.PushBack({ 1394, 467, 46, 74 }, 0.1, -2, -4, 0, -2);
+	forward.PushBack({ 1280, 463, 53, 86 }, 0.2, 0, 2, 0, 0);
+	forward.PushBack({ 1339, 467, 56, 91 }, 0.2, -2, 6, 0, 5);
+	forward.PushBack({ 1394, 467, 46, 74 }, 0.2, -2, -4, 0, -2);
 	forward.PushBack({ 1450, 463, 49, 89 }, 0.1, -2, 6, 0, 0);
 	forward.PushBack({ 1498, 461, 48, 91 }, 0.1, 0, 2, 0, 0);
 
@@ -77,11 +77,12 @@ ModulePlayer::ModulePlayer()
 	kick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
 
 
-	crouchPunch.PushBack({ 0, 559, 83, 69 }, 0.3, 0, 0, -5, 1);
-	crouchPunch.PushBack({ 87, 560, 122, 68 }, 0.3, 0, 0, -24, 4);
-	crouchPunch.PushBack({ 217, 560, 122, 68 }, 0.3, 0, 0, -24, 4);
-	crouchPunch.PushBack({ 347, 558, 118, 70 }, 0.3, 0, 0, -23, 4);
-	crouchPunch.PushBack({ 475, 559, 125, 69 }, 0.3, 0, 0, -25, 2);
+	crouchPunch.PushBack({ 10, 1460, 53, 61 }, 0.2, 0, 4, 3, 4);
+	crouchPunch.PushBack({ 62, 1462, 85, 65 }, 0.2, 0, 6, -8, 10);
+	crouchPunch.PushBack({ 148, 1463, 86, 62 }, 0.2, 1, 6, -9, 8);
+	crouchPunch.PushBack({ 235, 1466, 82, 60 }, 0.2, 4, 4, -10, 6);
+	crouchPunch.PushBack({ 317, 1465, 66, 60 }, 0.2, 4, 4, -2, 7);
+
 
 	//jumpup.PushBack({ 756, 1612, 65, 105 }, 0.11, 0, 0, 0, 0);
 	
