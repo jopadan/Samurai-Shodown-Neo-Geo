@@ -735,6 +735,13 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 				}
 				else { combo1 = 0; }
 			}
+			if (flip == SDL_FLIP_HORIZONTAL) {
+				if (SDL_GetTicks() - combotime < 120) {
+					if (combo2 == 1)combo2 = 2;
+					combotime = SDL_GetTicks();
+				}
+				else { combo2 = 0; }
+			}
 	
 			switch (last_input)
 			{
@@ -758,6 +765,12 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			if (flip == SDL_FLIP_HORIZONTAL) {
 				if (SDL_GetTicks() - combotime < 120) {
 					if (combo1 == 1)combo1 = 2;
+					combotime = SDL_GetTicks();
+				}
+			}
+			if (flip == SDL_FLIP_NONE) {
+				if (SDL_GetTicks() - combotime < 120) {
+					if (combo2 == 1)combo2 = 2;
 					combotime = SDL_GetTicks();
 				}
 			}
@@ -892,6 +905,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		{
 			combotime = SDL_GetTicks();
 			combo1 = 1;
+			combo2 = 1;
 			switch (last_input)
 			{
 			case IN_CROUCH_UP: state = ST_IDLE; crouch.Reset();  break;

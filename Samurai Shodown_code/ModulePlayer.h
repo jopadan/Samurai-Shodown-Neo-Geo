@@ -45,6 +45,7 @@ public:
 
 	Uint32 speed = 2;
 	Uint32 combo1 = 0;
+	Uint32 combo2 = 0;
 	Uint32 combotime;
 	SDL_Texture* graphics = nullptr;
 	SDL_Texture* graphicsobj = nullptr;
