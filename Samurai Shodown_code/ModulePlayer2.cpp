@@ -77,6 +77,10 @@ ModulePlayer2::ModulePlayer2()
 	crouchPunch.PushBack({ 235, 1466, 82, 60 }, 0.2, 4, 4, -10, 6);
 	crouchPunch.PushBack({ 317, 1465, 66, 60 }, 0.2, 4, 4, -2, 7);
 
+	hit.PushBack({ 1805, 51, 69, 98 }, 0.2, 0, 5, 0, 5);
+	hit.PushBack({ 1876, 53, 73, 95 }, 0.08, 0, 5, 0, 5);
+
+
 
 	shadow.PushBack({ 659, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
 	shadow.PushBack({ 733, 70, 70, 14 }, 1.8, 0, 0, 0, 0);

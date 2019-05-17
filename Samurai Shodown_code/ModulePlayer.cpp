@@ -57,9 +57,13 @@ ModulePlayer::ModulePlayer()
 	jumpup.PushBack({ 660, 1623, 47, 71 }, 0.11, 0, 0, 0, 0);
 	jumpup.PushBack({ 711, 1616, 44, 61 }, 0.11, 0, 0, 0, 0);
 
-	hawk_carry.PushBack({ 496, 1604, 60, 105 }, 0.11, 0, 0, 0, 0);
-	hawk_carry.PushBack({ 556, 1606, 53, 103 }, 0.11, 0, 0, 0, 0);
-	hawk_carry.PushBack({ 610, 1618, 50, 79 }, 0.11, 0, 0, 0, 0);
+	hawk_carry.PushBack({ 64, 1547, 46, 56 }, 0.11, 0, 0, 0, 0);
+	hawk_carry.PushBack({ 112, 1541, 43, 67 }, 0.11, 0, 0, 0, 0);
+	hawk_carry.PushBack({ 159, 1547, 42, 60 }, 0.11, 0, 0, 0, 0);
+	hawk_carry.PushBack({ 204, 1546, 42, 60 }, 0.11, 0, 0, 0, 0);
+	/*hawk_carry.PushBack({ 247, 1544, 41, 60 }, 0.11, 0, 0, 0, 0);
+	hawk_carry.PushBack({ 292, 1544, 47, 62 }, 0.11, 0, 0, 0, 0);
+	hawk_carry.PushBack({ 337, 1535, 51, 77 }, 0.11, 0, 0, 0, 0);*/
 	
 
 	punch.PushBack({ 11, 713, 103, 91 }, 0.2, 0, 2, -19, 2);
@@ -683,7 +687,7 @@ if (state != current_state)
 		}
 		if (animstart == 0)
 		{
-			current_animation = &jumpup;
+			current_animation = &hawk_carry;
 			if (current_animation->AnimationEnd() == true) {
 				animstart = 1;
 			
