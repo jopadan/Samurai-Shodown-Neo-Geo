@@ -462,6 +462,7 @@ if (state != current_state)
 		}
 		break;
 	case ST_DAMAGE:
+		App->render->StartCameraShake(300, 5);
 		if (playsound)App->music->PlayChunk(hitted);
 		playsound = false;
 			if (animstart == 0)

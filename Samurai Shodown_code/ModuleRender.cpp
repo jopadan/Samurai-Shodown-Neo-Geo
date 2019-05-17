@@ -6,12 +6,16 @@
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
 #include "SDL/include/SDL.h"
+#include <time.h>
+
 
 ModuleRender::ModuleRender() : Module()
 {
 	camera.x = camera.y = 0;
 	camera.w = SCREEN_WIDTH;
 	camera.h = SCREEN_HEIGHT;
+	srand(time(NULL));
+
 }
 
 // Destructor
@@ -81,6 +85,8 @@ update_status ModuleRender::Update()
 	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_REPEAT)
 		camera.x -= speed;
 */
+	if (shaking)
+		UpdateCameraShake();
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -109,8 +115,8 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, S
 {
 	bool ret = true;
 	SDL_Rect rect;
-	rect.x = (int)(camera.x * speed) + x * SCREEN_SIZE;
-	rect.y = (int)(camera.y * speed) + y * SCREEN_SIZE;
+	rect.x = (int)((camera.x + camera_offset.x) * speed) + x * SCREEN_SIZE;
+	rect.y = (int)((camera.y + camera_offset.y) * speed) + y * SCREEN_SIZE;
 
 	if (section != NULL)
 	{
@@ -145,8 +151,8 @@ bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uin
 	SDL_Rect rec(rect);
 	if (use_camera)
 	{
-		rec.x = (int)(camera.x + rect.x * SCREEN_SIZE);
-		rec.y = (int)(camera.y + rect.y * SCREEN_SIZE);
+		rec.x = (int)((camera.x + camera_offset.x) + rect.x * SCREEN_SIZE);
+		rec.y = (int)((camera.y + camera_offset.y) + rect.y * SCREEN_SIZE);
 		rec.w *= SCREEN_SIZE;
 		rec.h *= SCREEN_SIZE;
 	}
@@ -160,4 +166,31 @@ bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uin
 	return ret;
 }
 
+void ModuleRender::StartCameraShake(int duration, float magnitude)
+{
+	//TODO 1: Store the data and start the shake
+	shake_magnitude = magnitude;
+	shake_duration = duration;
+	shaking = true;
+	shake_timer = SDL_GetTicks();
+}
+
+void ModuleRender::UpdateCameraShake()
+{
+	//TODO 2: Update the shake timer, stop shaking if we reach the full duration
+	//		  Generate a random value and set the camera offset
+	if (SDL_GetTicks() - shake_timer < shake_duration) {
+		LOG("Colacao shake");
+
+		camera_offset.x = -(int)shake_magnitude + rand() % (int)shake_magnitude;
+		camera_offset.y = -(int)shake_magnitude + rand() % (int)shake_magnitude;
+
+	}
+	else {
+		camera_offset.x = 0;
+		camera_offset.y = 0;
+		shaking = false;
+	}
+
+}
 

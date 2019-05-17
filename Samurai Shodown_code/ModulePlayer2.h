@@ -52,6 +52,8 @@ public:
 	Animation forward;
 	Animation backward;
 	Animation jumpup;
+	Animation hawk_carry;
+	Animation Annu;
 	Animation jumpPunch;
 	Animation jumpKick;
 	Animation punch;
