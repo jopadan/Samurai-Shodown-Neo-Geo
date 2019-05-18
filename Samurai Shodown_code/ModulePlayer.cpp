@@ -72,6 +72,18 @@ ModulePlayer::ModulePlayer()
 	punch.PushBack({ 303, 708, 93, 95 }, 0.2, 8, 0, -17, 0);
 	punch.PushBack({ 395, 708, 101, 92 }, 0.1, -33, 0, 0, 0);
 
+	mediumpunch.PushBack({ 11, 713, 103, 91 }, 0.2, 0, 2, -19, 2);
+	mediumpunch.PushBack({ 117, 713, 89, 92 }, 0.2, 19, 0, -22, 0);
+	mediumpunch.PushBack({ 204, 711, 97, 94 }, 0.05, 13, 0, -20, 0);
+	mediumpunch.PushBack({ 303, 708, 93, 95 }, 0.2, 8, 0, -17, 0);
+	mediumpunch.PushBack({ 395, 708, 101, 92 }, 0.1, -33, 0, 0, 0);
+
+	heavypunch.PushBack({ 987, 162, 142, 51 }, 0.2, 13, 0, -20, 0);
+	heavypunch.PushBack({ 987, 162, 142, 51 }, 0.2, 13, 0, -20, 0);
+	heavypunch.PushBack({ 987, 162, 142, 51 }, 0.2, 13, 0, -20, 0);
+	heavypunch.PushBack({ 987, 162, 142, 51 }, 0.2, 13, 0, -20, 0);
+	heavypunch.PushBack({ 987, 162, 142, 51 }, 0.2, 13, 0, -20, 0);
+
 	Annu.PushBack({ 987, 162, 142, 51 }, 0.2, 13, 0, -20, 0);
 
 	kick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
@@ -79,6 +91,13 @@ ModulePlayer::ModulePlayer()
 	kick.PushBack({ 121, 1061, 95, 98 }, 0.1, 0, 0, -14, 0);
 	kick.PushBack({ 70, 1060, 53, 100 }, 0.1, 0, 0, 8, 0);
 	kick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
+
+	mediumkick.PushBack({ 14, 1061, 56, 98 }, 0.01, 0, 0, 4, 0);
+	
+
+
+	heavykick.PushBack({ 121, 1061, 95, 98 }, 0.01, 0, 0, -14, 0);
+	
 
 
 	crouchPunch.PushBack({ 10, 1460, 53, 61 }, 0.2, 0, 4, 3, 4);
@@ -90,128 +109,7 @@ ModulePlayer::ModulePlayer()
 	hit.PushBack({ 1805, 51, 69, 98 }, 0.2, 0, 5, 0, 5);
 	hit.PushBack({ 1876, 53, 73, 95 }, 0.08, 0, 5, 0, 5);
 
-	//jumpup.PushBack({ 756, 1612, 65, 105 }, 0.11, 0, 0, 0, 0);
-	
 
-
-	/*crouch.PushBack({ 750, 432, 76, 112 }, 0.25, 0, 1, 0, 1);
-	crouch.PushBack({ 840, 463, 98, 87 }, 0.1, -26, 7, 0, 7);
-	crouch.loop = false;
-
-	crouchKick.PushBack({ 0, 636, 78, 80 }, 0.1, 0, 0, 0, 0);
-	crouchKick.PushBack({ 81, 643, 98, 73 }, 0.1, 0, 0, 0, 0);
-	crouchKick.PushBack({ 0, 636, 78, 80 }, 0.1, 0, 0, 0, 0);
-
-	crouchPunch.PushBack({ 0, 559, 83, 69 }, 0.3, 0, 0, -5, 1);//628
-	crouchPunch.PushBack({ 87, 560, 122, 68 }, 0.3, 0, 0, -24, 4);
-	crouchPunch.PushBack({ 217, 560, 122, 68 }, 0.3, 0, 0, -24, 4);
-	crouchPunch.PushBack({ 347, 558, 118, 70 }, 0.3, 0, 0, -23, 4);
-	crouchPunch.PushBack({ 475, 559, 125, 69 }, 0.3, 0, 0, -25, 2);
-	crouchPunch.PushBack({ 604, 560, 85, 68 }, 0.3, 0, 0, -5, 2);
-	crouchPunch.PushBack({ 693, 560, 81, 68 }, 0.3, 0, 0, -5, 2);
-	crouchPunch.PushBack({ 778, 559, 83, 69 }, 0.3, 0, 0, -5, 2);
-	crouchPunch.PushBack({ 867, 552, 71, 76 }, 0.3, 0, 0, -2, 2);
-
-	forward.PushBack({ 506, 150, 69, 112 }, 0.1, 0, 0, 0, 0);
-	forward.PushBack({ 580, 147, 59, 116 }, 0.25, 0, 0, 0, 0);
-	forward.PushBack({ 644, 145, 57, 118 }, 0.1, 0, 0, 0, 0);
-	forward.PushBack({ 706, 147, 62, 116 }, 0.25, 0, 0, 0, 0);
-	forward.PushBack({ 773, 151, 70, 117 }, 0.1, 0, 2, 0, 2);
-													
-	backward.PushBack({ 4, 155, 82, 111 },	0.2,	0, 0, 0, 0);
-	backward.PushBack({ 88, 152, 75, 114 },	0.2,	0, 0, 0, 0);
-	backward.PushBack({ 165, 147, 69, 118 },0.2,	0, 0, 0, 0);
-	backward.PushBack({ 236, 145, 66, 120 },0.2,	0, 0, 0, 0);
-	backward.PushBack({ 304, 147, 70, 118 },0.2,	0, 0, 0, 0);
-	backward.PushBack({ 376, 151, 75, 114 },0.2,	0, 0, 0, 0);
-												
-	jumpup.PushBack({ 363, 274, 60, 112 },	0.11,	0, 0, 0, 0);
-	jumpup.PushBack({ 429, 295, 75, 91 },	0.11,	0, 0, 0, 0);
-	jumpup.PushBack({ 510, 303, 76, 83 },	0.09,	0, 0, 0, 0);
-	jumpup.PushBack({ 429, 295, 75, 91 },	0.11,	0, 0, 0, 0);
-	jumpup.PushBack({ 363, 274, 60, 112 },	0.11,	0, 0, 0, 0);
-
-	jumpPunch.PushBack({ 197, 648, 90, 89 }, 0.1, 0, 0, 0, 0);//737
-	jumpPunch.PushBack({ 290, 650, 60, 87 }, 0.1, 0, 0, 0, 0);
-	jumpPunch.PushBack({ 353, 644, 96, 93 }, 0.1, 0, 0, 0, 0);
-	jumpPunch.PushBack({ 455, 637, 121, 100 }, 0.1, 0, 0, 0, 0);
-	jumpPunch.PushBack({ 586, 637, 124, 100 }, 0.1, 0, 0, 0, 0);
-	jumpPunch.PushBack({ 713, 637, 85, 100 }, 0.1, 0, 0, 0, 0);
-	jumpPunch.PushBack({ 801, 648, 90, 89 }, 0.1, 0, 0, 0, 0);
-	jumpPunch.PushBack({ 197, 650, 60, 87 }, 0.1, 0, 0, 0, 0);
-	
-	punch.PushBack({ 3, 0, 69, 127 }, 0.3, 0, 0, 0, 0);
-	punch.PushBack({ 74, 30, 79, 97 }, 0.1, -10, 0, 0, 0);
-	punch.PushBack({ 158, 33, 132, 94 }, 0.6, 0, 0, -20, 0);
-	punch.PushBack({ 290, 33, 132, 94 }, 0.6, 0, 0, -20, 0);
-	punch.PushBack({ 423, 42, 131, 85 }, 0.6, 0, 0, -20, 0);
-	punch.PushBack({ 556, 44, 130, 94 }, 0.6, 0, 11, -20, 11);
-	punch.PushBack({ 688, 44, 128, 94 }, 0.6, 0, 11, -20, 11);
-	punch.PushBack({ 818, 44, 120, 94 }, 0.6, 0, 11, -16, 11);
-	punch.PushBack({ 940, 44, 83, 94 }, 0.2, 0, 11, 4, 11);
-	punch.PushBack({ 1025, 42, 131, 85 }, 0.1, 0, 0, -20, 0);
-											
-	kick.PushBack({ 647, 274, 58, 112 }, 0.2, 0, 0, 4, 0);
-	kick.PushBack({ 710, 276, 53, 110 }, 0.1, 0, 0, 2, 0);
-	kick.PushBack({ 768, 288, 94, 98 }, 0.1, 0, 0, -14, 0);
-	kick.PushBack({ 867, 287, 97, 99 }, 0.1, 0, 0, -14, 0);
-	kick.PushBack({ 969, 286, 82, 100 }, 0.2, 0, 0, -4, 0);
-			
-	cyclone.PushBack({ 8, 452, 90, 88 },	0.1,	0, 0, 0, 0);
-	cyclone.PushBack({ 105, 451, 70, 89 },	0.2,	0, 0, 0, 0);
-	cyclone.PushBack({ 181, 457, 73, 83 },	0.2,	0, 0, 0, 0);
-	cyclone.PushBack({ 261, 449, 58, 91 },	0.2,	0, 0, 0, 0);
-	cyclone.PushBack({ 326, 442, 94, 98 },	0.2,	0, 0, 0, 0);
-	cyclone.PushBack({ 427, 387, 62, 153 }, 0.2,	0, 0, 0, 0);
-	cyclone.PushBack({ 496, 442, 97, 98 },	0.2,  -20, 0, 0, 0);
-	cyclone.PushBack({ 600, 450, 97, 90 },	0.08, -20, 0, 0, 0);
-
-	hit.PushBack({ 982, 446, 92, 107 }, 0.08, -20, 10, 0, 10);
-	//Animaciones a completar
-	block.PushBack({ 429, 295, 75, 91 }, 0.05, 0, 0, 0, 0);
-
-	
-	defeat.PushBack({ 1081, 436, 74, 108 }, 0.02, 0, 2, 0, 2);
-	defeat.PushBack({ 1164, 436, 74, 108 }, 0.025, 6, 2, -3, 2);
-	defeat.PushBack({ 1241, 436, 70, 108 }, 0.1, 9, 2, -3, 2);
-	defeat.PushBack({ 1312, 436, 70, 108 }, 0.1, 9, 2, -3, 2);
-	defeat.loop = false;
-
-	win.PushBack({ 0, 1000, 84, 106 }, 0.1, 2, 1, 0, 0);
-	win.PushBack({ 0 , 1000, 84, 106 }, 0.1, 2, 1, 0, 0);
-	win.PushBack({ 165, 1000, 84, 106 }, 0.1, -4, 1, 0, 0);
-	win.PushBack({ 251, 1001, 84, 106 }, 0.1, -2, 2, 0, 0);
-	win.PushBack({ 340, 1000, 84, 106 }, 0.1, -1, 1, 0, 0);
-	win.PushBack({ 429, 1000, 84, 106 }, 0.1, -3, 1, 0, 0);
-	win.PushBack({ 521, 993, 84, 113 }, 0.1, -1, 1, 0, 0);
-	win.PushBack({ 607, 993, 84, 113 }, 0.1, -3, 1, 0, 0);
-	win.PushBack({ 693, 993, 79, 114 }, 0.1, -2, 2, 0, 0);
-	win.PushBack({ 777, 993, 84, 113 }, 0.1, 1, 1, 0, 0);
-	win.PushBack({ 863, 993, 84, 113 }, 0.1, 0, 1, 0, 0);
-	win.PushBack({ 0, 1000, 84, 106 }, 0.1, 2, 1, 0, 0);
-	win.loop = false;
-
-	//Hasta aqui
-	shadow.PushBack({ 659, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
-	shadow.PushBack({ 733, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
-
-	intro.PushBack({ 0, 1000, 84, 106 }, 0.1, 2, 1, 0, 0);
-	intro.PushBack({ 0 , 1000, 84, 106 }, 0.1, 2, 1, 0, 0);
-	intro.PushBack({ 165, 1000, 84, 106 }, 0.1, -4, 1, 0, 0);
-	intro.PushBack({ 251, 1001, 84, 106 }, 0.1, -2, 2, 0, 0);
-	intro.PushBack({ 340, 1000, 84, 106 }, 0.1, -1, 1, 0, 0);
-	intro.PushBack({ 429, 1000, 84, 106 }, 0.1, -3, 1, 0, 0);
-	intro.PushBack({ 521, 993, 84, 113 }, 0.1, -1, 1, 0, 0);
-	intro.PushBack({ 607, 993, 84, 113 }, 0.1, -3, 1, 0, 0);
-	intro.PushBack({ 693, 993, 79, 114 }, 0.1, -2, 2, 0, 0);
-	intro.PushBack({ 777, 993, 84, 113 }, 0.1, 1, 1, 0, 0);
-	intro.PushBack({ 863, 993, 84, 113 }, 0.1, 0, 1, 0, 0);
-    intro.PushBack({ 943, 1000, 84, 106 }, 0.15, -4, 2, 0, 0);
-	intro.PushBack({ 1030, 1000, 134, 113 }, 0.15, 0, 8, -25, 10);
-	intro.PushBack({ 940, 44, 83, 113 }, 0.15, 4, 30, 4, 11);
-	intro.PushBack({ 943, 1000, 84, 106 }, 0.15, -4, 2, 0, 0);
-	intro.PushBack({ 7, 273, 75, 113 }, 0.15, 0, 0, -1, 0);
-	intro.loop = false;*/
 
 shadow.PushBack({ 659, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
 shadow.PushBack({ 733, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
@@ -543,7 +441,92 @@ if (state != current_state)
 			
 		}
 		break;
-	
+	case ST_MEDIUM_PUNCH_STANDING:
+		Damage = 25;
+		if (flip == SDL_FLIP_NONE) {
+
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_PLAYER_SHOT, this);
+				App->music->PlayChunk(sword);
+				collider = false;
+				time = SDL_GetTicks();
+			}
+			if (SDL_GetTicks() - time > 150) {
+				if (colliderAttack != nullptr)
+					colliderAttack->SetPos(position.x + 30, position.y - 70);
+			}
+			if (animstart == 0)
+			{
+				current_animation = &mediumpunch;
+
+				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
+			}
+
+		}
+		else if (flip == SDL_FLIP_HORIZONTAL) {
+
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ 6000,6000, 100, 30 }, COLLIDER_PLAYER_SHOT, this);
+				App->music->PlayChunk(sword);
+				collider = false;
+				time = SDL_GetTicks();
+			}
+			if (SDL_GetTicks() - time > 150) {
+				if (colliderAttack != nullptr)
+					colliderAttack->SetPos(position.x - 75, position.y - 70);
+			}
+			if (animstart == 0)
+			{
+				current_animation = &mediumpunch;
+
+				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
+			}
+
+		}
+		break;
+
+	case ST_HEAVY_PUNCH_STANDING:
+		Damage = 25;
+		if (flip == SDL_FLIP_NONE) {
+
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_PLAYER_SHOT, this);
+				App->music->PlayChunk(sword);
+				collider = false;
+				time = SDL_GetTicks();
+			}
+			if (SDL_GetTicks() - time > 150) {
+				if (colliderAttack != nullptr)
+					colliderAttack->SetPos(position.x + 30, position.y - 70);
+			}
+			if (animstart == 0)
+			{
+				current_animation = &heavypunch;
+
+				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
+			}
+
+		}
+		else if (flip == SDL_FLIP_HORIZONTAL) {
+
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ 6000,6000, 100, 30 }, COLLIDER_PLAYER_SHOT, this);
+				App->music->PlayChunk(sword);
+				collider = false;
+				time = SDL_GetTicks();
+			}
+			if (SDL_GetTicks() - time > 150) {
+				if (colliderAttack != nullptr)
+					colliderAttack->SetPos(position.x - 75, position.y - 70);
+			}
+			if (animstart == 0)
+			{
+				current_animation = &heavypunch;
+				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
+			}
+
+		}
+		break;
 	case ST_PUNCH_NEUTRAL_JUMP:
 		LOG("PUNCH NEUTRAL JUMP ++++\n");
 	case ST_PUNCH_FORWARD_JUMP:
@@ -630,6 +613,87 @@ if (state != current_state)
 				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
 			}
 		
+		}
+		break;
+
+	case ST_MEDIUM_KICK_STANDING:
+		Damage = 15;
+		if (flip == SDL_FLIP_NONE) {
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ 3000, 3000, 40, 30 }, COLLIDER_PLAYER_SHOT, this);
+				App->music->PlayChunk(kicks);
+				collider = false;
+				time = SDL_GetTicks();
+			}
+			if (SDL_GetTicks() - time > 100) {
+				if (colliderAttack != nullptr)
+					colliderAttack->SetPos(position.x + 60, position.y - 80);
+			}
+			if (animstart == 0)
+			{
+				current_animation = &mediumkick;
+
+				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
+			}
+		}
+		else if (flip == SDL_FLIP_HORIZONTAL) {
+
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ 3000, 3000, 40, 30 }, COLLIDER_PLAYER_SHOT, this);
+				App->music->PlayChunk(kicks);
+				collider = false;
+
+			}
+
+			if (colliderAttack != nullptr)
+				colliderAttack->SetPos(position.x - 40, position.y - 80);
+			if (animstart == 0)
+			{
+				current_animation = &mediumkick;
+
+				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
+			}
+
+		}
+		break;
+	case ST_HEAVY_KICK_STANDING:
+		Damage = 15;
+		if (flip == SDL_FLIP_NONE) {
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ 3000, 3000, 40, 30 }, COLLIDER_PLAYER_SHOT, this);
+				App->music->PlayChunk(kicks);
+				collider = false;
+				time = SDL_GetTicks();
+			}
+			if (SDL_GetTicks() - time > 100) {
+				if (colliderAttack != nullptr)
+					colliderAttack->SetPos(position.x + 60, position.y - 80);
+			}
+			if (animstart == 0)
+			{
+				current_animation = &heavykick;
+
+				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
+			}
+		}
+		else if (flip == SDL_FLIP_HORIZONTAL) {
+
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ 3000, 3000, 40, 30 }, COLLIDER_PLAYER_SHOT, this);
+				App->music->PlayChunk(kicks);
+				collider = false;
+
+			}
+
+			if (colliderAttack != nullptr)
+				colliderAttack->SetPos(position.x - 40, position.y - 80);
+			if (animstart == 0)
+			{
+				current_animation = &heavykick;
+
+				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
+			}
+
 		}
 		break;
 	case ST_KICK_NEUTRAL_JUMP:
@@ -801,7 +865,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 				else {
 					state = ST_PUNCH_STANDING;  App->input->punch_timer = SDL_GetTicks();  break;
 				}
-			case IN_2:
+			case IN_3:
 				if (SDL_GetTicks() - combotime < 120) {
 					if (HawkCarryCombo == 2)HawkCarryCombo = 3;
 				}
@@ -809,7 +873,8 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 				else {
 					state = ST_KICK_STANDING;  App->input->kick_timer = SDL_GetTicks();  break;
 				}
-			case IN_3: state = ST_TORNADO;  App->input->tornado_timer = SDL_GetTicks();  break;
+			case IN_2: state = ST_MEDIUM_PUNCH_STANDING;  App->input->med_punch_timer = SDL_GetTicks();  break;
+			case IN_4: state = ST_MEDIUM_KICK_STANDING;  App->input->med_kick_timer = SDL_GetTicks();  break;
 			case IN_DAMAGE: state = ST_DAMAGE;  break;
 			case IN_WIN: state = ST_WIN; break;
 			case IN_DEFEAT: state = ST_DEFEAT; break;
@@ -855,7 +920,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 				else {
 					state = ST_PUNCH_STANDING;  App->input->punch_timer = SDL_GetTicks();  break;
 				}
-			case IN_2:
+			case IN_3:
 				if (SDL_GetTicks() - combotime < 120) {
 					if (HawkCarryCombo == 2)HawkCarryCombo = 3;
 				}
@@ -863,7 +928,8 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 				else {
 					state = ST_KICK_STANDING;  App->input->kick_timer = SDL_GetTicks();  break;
 				}
-			case IN_3: state = ST_TORNADO;  App->input->tornado_timer = SDL_GetTicks();  break;
+			case IN_2: state = ST_MEDIUM_PUNCH_STANDING;  App->input->med_punch_timer = SDL_GetTicks();  break;
+			case IN_4: state = ST_MEDIUM_KICK_STANDING;  App->input->med_kick_timer = SDL_GetTicks();  break;
 			case IN_DAMAGE: state = ST_DAMAGE;  break;
 			case IN_WIN: state = ST_WIN; break;
 			case IN_DEFEAT: state = ST_DEFEAT; break;
@@ -911,7 +977,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 				else {
 					state = ST_PUNCH_STANDING;  App->input->punch_timer = SDL_GetTicks();  break;
 				}
-			case IN_2:
+			case IN_3:
 				if (SDL_GetTicks() - combotime < 120) {
 					if (HawkCarryCombo == 2)HawkCarryCombo = 3;
 				}
@@ -919,7 +985,8 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 				else {
 					state = ST_KICK_STANDING;  App->input->kick_timer = SDL_GetTicks();  break;
 				}
-			case IN_3: state = ST_TORNADO;  App->input->tornado_timer = SDL_GetTicks();  break;
+			case IN_2: state = ST_MEDIUM_PUNCH_STANDING;  App->input->med_punch_timer = SDL_GetTicks();  break;
+			case IN_4: state = ST_MEDIUM_KICK_STANDING;  App->input->med_kick_timer = SDL_GetTicks();  break;
 			case IN_DAMAGE: state = ST_DAMAGE;  break;
 			case IN_WIN: state = ST_WIN; break;
 			case IN_DEFEAT: state = ST_DEFEAT; break;
@@ -1008,7 +1075,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		{
 			switch (last_input)
 			{
-
+			case IN_2: state = ST_HEAVY_PUNCH_STANDING; App->input->heavy_punch_timer = SDL_GetTicks(); collider = true; break;
 			case IN_PUNCH_FINISH: state = ST_IDLE; animstart = 0; collider = true; break;
 			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
 			case IN_WIN: state = ST_WIN; break;
@@ -1016,11 +1083,38 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			}
 		}
 		break;
+
+		case ST_MEDIUM_PUNCH_STANDING:
+		{
+			switch (last_input)
+			{
+			case IN_1: state = ST_HEAVY_PUNCH_STANDING; App->input->heavy_punch_timer = SDL_GetTicks(); collider = true; break;
+			case IN_PUNCH_FINISH: state = ST_IDLE; animstart = 0; collider = true; break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
+			case IN_WIN: state = ST_WIN; break;
+			case IN_DEFEAT: state = ST_DEFEAT; break;
+			}
+		}
+		break;
+		case ST_HEAVY_PUNCH_STANDING:
+		{
+			switch (last_input)
+			{
+			
+			case IN_PUNCH_FINISH: state = ST_IDLE; animstart = 0; collider = true; break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
+			case IN_WIN: state = ST_WIN; break;
+			case IN_DEFEAT: state = ST_DEFEAT; break;
+			}
+		}
+		break;
+
 		case ST_KICK_STANDING:
 		{
 
 			switch (last_input)
 			{
+			case IN_4: state = ST_HEAVY_KICK_STANDING; App->input->heavy_kick_timer = SDL_GetTicks(); collider = true; break;
 			case IN_KICK_FINISH: state = ST_IDLE; animstart = 0; collider = true; break;
 			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
 			case IN_WIN: state = ST_WIN; break;
@@ -1028,6 +1122,31 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			}
 		}
 		break;
+		case ST_MEDIUM_KICK_STANDING: {
+
+			switch (last_input)
+			{
+			case IN_3: state = ST_HEAVY_KICK_STANDING; App->input->heavy_kick_timer = SDL_GetTicks(); collider = true; break;
+			case IN_KICK_FINISH: state = ST_IDLE; animstart = 0; collider = true; break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
+			case IN_WIN: state = ST_WIN; break;
+			case IN_DEFEAT: state = ST_DEFEAT; break;
+			}
+		}
+		break;
+		case ST_HEAVY_KICK_STANDING:
+		{
+			switch (last_input)
+			{
+
+			case IN_KICK_FINISH: state = ST_IDLE; animstart = 0; collider = true; break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
+			case IN_WIN: state = ST_WIN; break;
+			case IN_DEFEAT: state = ST_DEFEAT; break;
+			}
+		}
+		break;
+
 		case ST_TORNADO:
 			switch (last_input)
 			{

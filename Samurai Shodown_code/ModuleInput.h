@@ -10,10 +10,14 @@
 #define MAX_KEYS 300
 #define JUMP_TIME 800
 #define PUNCH_TIME 700
+#define MED_PUNCH_TIME 700
+#define HEAVY_PUNCH_TIME 700
 #define CROUCH_PUNCH_TIME 500
 #define HAWK_CARRY_TIME 7000
 #define ANNUM_TIME 2000
 #define KICK_TIME  700
+#define MED_KICK_TIME  700
+#define HEAVY_KICK_TIME  700
 #define TORNADO_TIME  1100
 #define START_TIME  3000
 #define MAX_BUTTONS 15
@@ -30,11 +34,15 @@ enum player_states
 	ST_JUMP_BACKWARD,
 	ST_CROUCH,
 	ST_PUNCH_STANDING,
+	ST_MEDIUM_PUNCH_STANDING,
+	ST_HEAVY_PUNCH_STANDING,
 	ST_PUNCH_NEUTRAL_JUMP,
 	ST_PUNCH_FORWARD_JUMP,
 	ST_PUNCH_BACKWARD_JUMP,
 	ST_PUNCH_CROUCH,
 	ST_KICK_STANDING,
+	ST_MEDIUM_KICK_STANDING,
+	ST_HEAVY_KICK_STANDING,
 	ST_KICK_NEUTRAL_JUMP,
 	ST_KICK_FORWARD_JUMP,
 	ST_KICK_BACKWARD_JUMP,
@@ -63,6 +71,7 @@ enum player_inputs
 	IN_1,
 	IN_2,
 	IN_3,
+	IN_4,
 	IN_JUMP_FINISH,
 	IN_PUNCH_FINISH,
 	IN_KICK_FINISH,
@@ -79,6 +88,7 @@ enum player_inputs
 	IN_1_P2,
 	IN_2_P2,
 	IN_3_P2,
+	IN_0,
 	IN_JUMP_FINISH_P2,
 	IN_PUNCH_FINISH_P2,
 	IN_KICK_FINISH_P2,
@@ -148,16 +158,24 @@ public:
 	int key = -1;
 	Uint32 jump_timer = 0;
 	Uint32 punch_timer = 0;
+	Uint32 med_punch_timer = 0;
+	Uint32 heavy_punch_timer = 0;
 	Uint32 punch_c_timer = 0;
 	Uint32 kick_timer = 0;
+	Uint32 med_kick_timer = 0;
+	Uint32 heavy_kick_timer = 0;
 	Uint32 tornado_timer = 0;
 	Uint32 AnnuM_timer = 0;
 	Uint32 LeylaM_timer = 0;
 	Uint32 hawk_carry_timer = 0;
 	Uint32 jump_timer2 = 0;
 	Uint32 punch_timer2 = 0;
+	Uint32 med_punch_timer2 = 0;
+	Uint32 heavy_punch_timer2 = 0;
 	Uint32 punch_c_timer2 = 0;
 	Uint32 kick_timer2 = 0;
+	Uint32 med_kick_timer2 = 0;
+	Uint32 heavy_kick_timer2 = 0;
 	Uint32 tornado_timer2 = 0;
 	Uint32 hawk_carry_timer2 = 0;
 	Uint32 AnnuM_timer2 = 0;

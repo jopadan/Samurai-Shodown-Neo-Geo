@@ -63,11 +63,15 @@ public:
 	Animation jumpPunch;
 	Animation jumpKick;
 	Animation punch;
+	Animation mediumpunch;
+	Animation heavypunch;
 	Animation crouch;
 	Animation crouchPunch;
 	Animation crouchKick;
 	Animation intro;
 	Animation kick;
+	Animation mediumkick;
+	Animation heavykick;
 	Animation hit;
 	Animation shadow;
 	Animation cyclone;

@@ -102,6 +102,10 @@ bool ModuleInput::external_input()
 				if (playerinput == true)
 					App->input->inputs.Push(IN_3);
 				break;
+			case SDLK_4:
+				if (playerinput == true)
+					App->input->inputs.Push(IN_4);
+				break;
 			case SDLK_w:
 				if (playerinput == true)
 					up = true;
@@ -129,6 +133,10 @@ bool ModuleInput::external_input()
 			case SDLK_9:
 				if (playerinput == true)
 					App->input->inputs2.Push(IN_3_P2);
+				break;
+			case SDLK_0:
+				if (playerinput == true)
+					App->input->inputs2.Push(IN_0);
 				break;
 			case SDLK_i:
 				if (playerinput == true)
@@ -397,6 +405,22 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs, p2Qeue<player_in
 			punch_timer = 0;
 		}
 	}
+	if (med_punch_timer > 0)
+	{
+		if (SDL_GetTicks() - med_punch_timer > MED_PUNCH_TIME)
+		{
+			inputs.Push(IN_PUNCH_FINISH);
+			med_punch_timer = 0;
+		}
+	}
+	if (heavy_punch_timer > 0)
+	{
+		if (SDL_GetTicks() - heavy_punch_timer > HEAVY_PUNCH_TIME)
+		{
+			inputs.Push(IN_PUNCH_FINISH);
+			heavy_punch_timer = 0;
+		}
+	}
 	if (punch_c_timer > 0)
 	{
 		if (SDL_GetTicks() - punch_c_timer > CROUCH_PUNCH_TIME)
@@ -405,12 +429,30 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs, p2Qeue<player_in
 			punch_c_timer = 0;
 		}
 	}
+
 	if (kick_timer > 0)
 	{
 		if (SDL_GetTicks() - kick_timer > KICK_TIME)
 		{
 			inputs.Push(IN_KICK_FINISH);
 			kick_timer = 0;
+		}
+	}
+
+	if (med_kick_timer > 0)
+	{
+		if (SDL_GetTicks() - med_kick_timer > MED_KICK_TIME)
+		{
+			inputs.Push(IN_KICK_FINISH);
+			med_kick_timer = 0;
+		}
+	}
+	if (heavy_kick_timer > 0)
+	{
+		if (SDL_GetTicks() - heavy_kick_timer > HEAVY_KICK_TIME)
+		{
+			inputs.Push(IN_KICK_FINISH);
+			heavy_kick_timer = 0;
 		}
 	}
 	if (tornado_timer > 0)
@@ -464,6 +506,23 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs, p2Qeue<player_in
 			kick_timer2 = 0;
 		}
 	}
+
+	if (med_kick_timer2 > 0)
+	{
+		if (SDL_GetTicks() - med_kick_timer2 > MED_KICK_TIME)
+		{
+			inputs2.Push(IN_KICK_FINISH);
+			med_kick_timer2 = 0;
+		}
+	}
+	if (heavy_kick_timer2 > 0)
+	{
+		if (SDL_GetTicks() - heavy_kick_timer2 > HEAVY_KICK_TIME)
+		{
+			inputs2.Push(IN_KICK_FINISH);
+			heavy_kick_timer2 = 0;
+		}
+	}
 	if (tornado_timer2 > 0)
 	{
 		if (SDL_GetTicks() - tornado_timer2 > TORNADO_TIME)
@@ -484,7 +543,7 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs, p2Qeue<player_in
 	{
 		if (SDL_GetTicks() - hawk_carry_timer2 > HAWK_CARRY_TIME)
 		{
-			inputs.Push(IN_HAWK_CARRY_FINISH_P2);
+			inputs2.Push(IN_HAWK_CARRY_FINISH_P2);
 			hawk_carry_timer2 = 0;
 		}
 	}
@@ -492,8 +551,24 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs, p2Qeue<player_in
 	{
 		if (SDL_GetTicks() - AnnuM_timer2 > ANNUM_TIME)
 		{
-			inputs.Push(IN_ANNU_MUTSUBE_FINISH_P2);
+			inputs2.Push(IN_ANNU_MUTSUBE_FINISH_P2);
 			AnnuM_timer2 = 0;
+		}
+	}
+	if (med_punch_timer2 > 0)
+	{
+		if (SDL_GetTicks() - med_punch_timer2 > MED_PUNCH_TIME)
+		{
+			inputs2.Push(IN_PUNCH_FINISH_P2);
+			med_punch_timer2 = 0;
+		}
+	}
+	if (heavy_punch_timer2 > 0)
+	{
+		if (SDL_GetTicks() - heavy_punch_timer2 > HEAVY_PUNCH_TIME)
+		{
+			inputs2.Push(IN_PUNCH_FINISH_P2);
+			heavy_punch_timer2 = 0;
 		}
 	}
 	
