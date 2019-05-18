@@ -88,6 +88,7 @@ public:
 	bool playsound = true;
 	bool OnHawk = false;
 	bool jumptoHawk = true;
+	bool jumpattack = false;
 	float mutsubespeed = 10;
 	float acc = 0.01;
 	int height = 0;

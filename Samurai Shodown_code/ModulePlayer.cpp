@@ -72,18 +72,21 @@ ModulePlayer::ModulePlayer()
 	punch.PushBack({ 303, 708, 93, 95 }, 0.2, 8, 0, -17, 0);
 	punch.PushBack({ 395, 708, 101, 92 }, 0.1, -33, 0, 0, 0);
 
+	//TO DO
 	mediumpunch.PushBack({ 11, 713, 103, 91 }, 0.2, 0, 2, -19, 2);
 	mediumpunch.PushBack({ 117, 713, 89, 92 }, 0.2, 19, 0, -22, 0);
 	mediumpunch.PushBack({ 204, 711, 97, 94 }, 0.05, 13, 0, -20, 0);
 	mediumpunch.PushBack({ 303, 708, 93, 95 }, 0.2, 8, 0, -17, 0);
 	mediumpunch.PushBack({ 395, 708, 101, 92 }, 0.1, -33, 0, 0, 0);
 
+	//TO DO
 	heavypunch.PushBack({ 987, 162, 142, 51 }, 0.2, 13, 0, -20, 0);
 	heavypunch.PushBack({ 987, 162, 142, 51 }, 0.2, 13, 0, -20, 0);
 	heavypunch.PushBack({ 987, 162, 142, 51 }, 0.2, 13, 0, -20, 0);
 	heavypunch.PushBack({ 987, 162, 142, 51 }, 0.2, 13, 0, -20, 0);
 	heavypunch.PushBack({ 987, 162, 142, 51 }, 0.2, 13, 0, -20, 0);
 
+	//TO DO
 	Annu.PushBack({ 987, 162, 142, 51 }, 0.2, 13, 0, -20, 0);
 
 	kick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
@@ -92,13 +95,17 @@ ModulePlayer::ModulePlayer()
 	kick.PushBack({ 70, 1060, 53, 100 }, 0.1, 0, 0, 8, 0);
 	kick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
 
+	//TO DO
 	mediumkick.PushBack({ 14, 1061, 56, 98 }, 0.01, 0, 0, 4, 0);
 	
 
-
+	//TO DO
 	heavykick.PushBack({ 121, 1061, 95, 98 }, 0.01, 0, 0, -14, 0);
 	
-
+	//TO DO
+	jumpPunch.PushBack({ 121, 1061, 95, 98 }, 0.1, 0, 0, -14, 0);
+	jumpPunch.PushBack({ 121, 1061, 95, 98 }, 0.1, 0, 0, -14, 0);
+	jumpPunch.PushBack({ 121, 1061, 95, 98 }, 0.1, 0, 0, -14, 0);
 
 	crouchPunch.PushBack({ 10, 1460, 53, 61 }, 0.2, 0, 4, 3, 4);
 	crouchPunch.PushBack({ 62, 1462, 85, 65 }, 0.2, 0, 6, -8, 10);
@@ -274,7 +281,21 @@ if (state != current_state)
 		height2 = 15;
 		if (animstart == 0)
 		{
-			current_animation = &jumpup;
+			if (jumpattack == false)current_animation = &jumpup;
+			else {
+				current_animation = &jumpPunch;
+				if (collider == true) {
+					colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_PLAYER_SHOT, this);
+					App->music->PlayChunk(sword);
+					collider = false;
+					time = SDL_GetTicks();
+				}
+				if (SDL_GetTicks() - time > 150) {
+					if (colliderAttack != nullptr)
+						colliderAttack->SetPos(position.x + 30, position.y - 70);
+				}
+				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; collider = true; }
+			}
 			position.y -= jumpSpeed;
 			if (wall && position.x > 100) {}
 			else if (position.x + 60 > (-App->render->camera.x + 912)) {}
@@ -296,7 +317,21 @@ if (state != current_state)
 		height2 = 15;
 		if (animstart == 0)
 		{
-			current_animation = &jumpup;
+			if (jumpattack == false)current_animation = &jumpup;
+			else {
+				current_animation = &jumpPunch;
+				if (collider == true) {
+					colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_PLAYER_SHOT, this);
+					App->music->PlayChunk(sword);
+					collider = false;
+					time = SDL_GetTicks();
+				}
+				if (SDL_GetTicks() - time > 150) {
+					if (colliderAttack != nullptr)
+						colliderAttack->SetPos(position.x + 30, position.y - 70);
+				}
+				if (current_animation->AnimationEnd() == true) { animstart = 1; collider = true; colliderAttack->to_delete = true; }
+			}
 			position.y -= jumpSpeed;
 			if (wall && position.x < 100) {}
 			else if (position.x < -(App->render->camera.x)) {}
@@ -1013,11 +1048,12 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		{
 			switch (last_input)
 			{
-			case IN_JUMP_FINISH: state = ST_IDLE; animstart = 0; break;
-			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0; break;
-				//	case IN_1: state = ST_PUNCH_FORWARD_JUMP;  App->input->punch_timer = SDL_GetTicks(); break;
-			case IN_WIN: state = ST_WIN; break;
-			case IN_DEFEAT: state = ST_DEFEAT; break;
+			case IN_1: jumpattack = true; break;
+			case IN_JUMP_FINISH: state = ST_IDLE; animstart = 0; jumpattack = false; break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0; jumpattack = false; break;
+				//	case IN_1: state = ST_PUNCH_BACKWARD_JUMP;  App->input->punch_timer = SDL_GetTicks(); break;
+			case IN_WIN: state = ST_WIN; jumpattack = false; break;
+			case IN_DEFEAT: state = ST_DEFEAT; jumpattack = false; break;
 			}
 		}
 		break;
@@ -1026,11 +1062,12 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		{
 			switch (last_input)
 			{
-			case IN_JUMP_FINISH: state = ST_IDLE; animstart = 0; break;
-			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
+			case IN_1: jumpattack = true; break;
+			case IN_JUMP_FINISH: state = ST_IDLE; animstart = 0; jumpattack = false; break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0; jumpattack = false; break;
 				//	case IN_1: state = ST_PUNCH_BACKWARD_JUMP;  App->input->punch_timer = SDL_GetTicks(); break;
-			case IN_WIN: state = ST_WIN; break;
-			case IN_DEFEAT: state = ST_DEFEAT; break;
+			case IN_WIN: state = ST_WIN; jumpattack = false; break;
+			case IN_DEFEAT: state = ST_DEFEAT; jumpattack = false; break;
 			}
 		}
 		break;

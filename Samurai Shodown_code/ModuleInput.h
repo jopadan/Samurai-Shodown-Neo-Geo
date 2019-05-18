@@ -8,7 +8,7 @@
 #include "SDL/include/SDL_gamecontroller.h"
 
 #define MAX_KEYS 300
-#define JUMP_TIME 800
+#define JUMP_TIME 900
 #define PUNCH_TIME 700
 #define MED_PUNCH_TIME 700
 #define HEAVY_PUNCH_TIME 700
