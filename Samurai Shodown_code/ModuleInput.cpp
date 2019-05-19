@@ -312,9 +312,13 @@ bool ModuleInput::external_input()
 			if (playerinput == true)
 				App->input->inputs.Push(IN_2);
 		}
-		if (SDL_GameControllerGetButton(gGameController, SDL_CONTROLLER_BUTTON_LEFTSTICK) == 1) {
+		if (SDL_GameControllerGetButton(gGameController, SDL_CONTROLLER_BUTTON_A) == 1) {
 			if (playerinput == true)
 				App->input->inputs.Push(IN_3);
+		}
+		if (SDL_GameControllerGetButton(gGameController, SDL_CONTROLLER_BUTTON_B) == 1) {
+			if (playerinput == true)
+				App->input->inputs.Push(IN_4);
 		}
 		if (SDL_GameControllerGetButton(gGameController2, SDL_CONTROLLER_BUTTON_X) == 1) {
 			if (playerinput == true)
@@ -324,9 +328,13 @@ bool ModuleInput::external_input()
 			if (playerinput == true)
 				App->input->inputs.Push(IN_2_P2);
 		}
-		if (SDL_GameControllerGetButton(gGameController2, SDL_CONTROLLER_BUTTON_LEFTSTICK) == 1) {
+		if (SDL_GameControllerGetButton(gGameController2, SDL_CONTROLLER_BUTTON_A) == 1) {
 			if (playerinput == true)
 				App->input->inputs.Push(IN_3_P2);
+		}
+		if (SDL_GameControllerGetButton(gGameController2, SDL_CONTROLLER_BUTTON_B) == 1) {
+			if (playerinput == true)
+				App->input->inputs.Push(IN_0);
 		}
 
 
