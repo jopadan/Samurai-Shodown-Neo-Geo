@@ -86,6 +86,7 @@
     <ClInclude Include="ModulePetP2.h" />
     <ClInclude Include="ModulePlayer2.h" />
     <ClInclude Include="ModuleSceneNakoruru.h" />
+    <ClInclude Include="ModuleSlowdown.h" />
     <ClInclude Include="ModuleUI.h" />
     <ClInclude Include="ModuleVictoryHaohmaru.h" />
     <ClInclude Include="ModuleSceneHaohmaru.h" />
@@ -111,6 +112,7 @@
     <ClCompile Include="ModulePetP1.cpp" />
     <ClCompile Include="ModulePlayer2.cpp" />
     <ClCompile Include="ModuleSceneNakoruru.cpp" />
+    <ClCompile Include="ModuleSlowdown.cpp" />
     <ClCompile Include="ModuleUI.cpp" />
     <ClCompile Include="ModuleVictoryHaohmaru.cpp" />
     <ClCompile Include="ModuleSceneHaohmaru.cpp" />

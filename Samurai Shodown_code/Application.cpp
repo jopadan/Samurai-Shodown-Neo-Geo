@@ -18,6 +18,7 @@
 #include "ModuleCollision.h"
 #include "ModuleFonts.h"
 #include "ModuleUI.h";
+#include "ModuleSlowdown.h"
 
 Application::Application()
 {
@@ -41,6 +42,7 @@ Application::Application()
 	modules[i++] = ui = new ModuleUI();
 	modules[i++] = music = new ModuleMusic();
 	modules[i++] = fade = new ModuleFadeToBlack();
+	modules[i++] = slowdown = new ModuleSlowdown();
 	
 }	
 

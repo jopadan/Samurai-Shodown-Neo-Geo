@@ -180,7 +180,6 @@ void ModuleRender::UpdateCameraShake()
 	//TODO 2: Update the shake timer, stop shaking if we reach the full duration
 	//		  Generate a random value and set the camera offset
 	if (SDL_GetTicks() - shake_timer < shake_duration) {
-		LOG("Colacao shake");
 
 		camera_offset.x = -(int)shake_magnitude + rand() % (int)shake_magnitude;
 		camera_offset.y = -(int)shake_magnitude + rand() % (int)shake_magnitude;

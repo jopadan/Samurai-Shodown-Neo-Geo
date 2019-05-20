@@ -12,6 +12,7 @@
 #include "ModuleSceneHaohmaru.h"
 #include "ModuleSceneNakoruru.h"
 #include "SDL/include/SDL_timer.h"
+#include "ModuleSlowdown.h"
 #include "ModuleUI.h"
 
 ModulePlayer::ModulePlayer()
@@ -436,7 +437,6 @@ if (state != current_state)
 		}
 		break;
 	case ST_DAMAGE:
-		App->render->StartCameraShake(300, 5);
 		if (playsound)App->music->PlayChunk(hitted);
 		playsound = false;
 			if (animstart == 0)
@@ -1321,6 +1321,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 		if (App->player2->colliderAttack != nullptr){
 			App->player2->colliderAttack->to_delete = true;}
 		App->ui->HealthBar_p1 -= App->player2->Damage;
+		App->slowdown->StartSlowdown(600, 40);
+		App->render->StartCameraShake(300, 3);
 		App->input->inputs.Push(IN_DAMAGE);
 	
 		

@@ -11,7 +11,7 @@
 #include "ModuleCollision.h"
 #include "ModuleSceneHaohmaru.h"
 #include "ModuleSceneNakoruru.h"
-
+#include "ModuleSlowdown.h"
 #include "ModuleUI.h"
 
 
@@ -457,7 +457,7 @@ update_status ModulePlayer2::Update()
 			}
 			break;
 		case ST_DAMAGE:
-			App->render->StartCameraShake(300, 5);
+			
 			if (playsound)App->music->PlayChunk(hitted);
 			playsound = false;
 			if (animstart == 0)
@@ -945,6 +945,8 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 			if (App->player->colliderAttack != nullptr)
 				App->player->colliderAttack->to_delete = true;
 			App->ui->Health_Bar_p2 -= App->player->Damage;
+			App->slowdown->StartSlowdown(600, 40);
+			App->render->StartCameraShake(300, 3);
 			App->input->inputs2.Push(IN_DAMAGE_P2);
 		}
 		if (colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER_SHOT && defense == true) App->input->inputs2.Push(IN_BLOCK_P2); if (App->player->colliderAttack != nullptr)App->player->colliderAttack->to_delete = true;

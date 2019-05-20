@@ -104,6 +104,9 @@
     <ClInclude Include="ModulePetP2.h">
       <Filter>Modules\Players</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleSlowdown.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -168,6 +171,9 @@
     </ClCompile>
     <ClCompile Include="ModulePetP1.cpp">
       <Filter>Modules\Players</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSlowdown.cpp">
+      <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
