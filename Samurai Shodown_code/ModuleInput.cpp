@@ -161,7 +161,8 @@ bool ModuleInput::external_input()
 			o++;
 			LOG("%d", o);
 			gGameController = SDL_GameControllerOpen(0);
-			//gGameController2 = SDL_GameControllerOpen(1);
+
+			gGameController2 = SDL_GameControllerOpen(1);
 			
 			/*for (int i = 0; i < SDL_NumJoysticks() && o < 2; ++i) {
 				if (SDL_IsGameController(i) && o < 0) {
@@ -248,7 +249,7 @@ bool ModuleInput::external_input()
 						}
 					}
 				}
-				if (event.jaxis.which == o+1) { //En el gamepad 0
+				if (event.jaxis.which == o-1) { //En el gamepad 0
 					if (event.jaxis.axis == 0)
 					{
 						//Left of dead zone

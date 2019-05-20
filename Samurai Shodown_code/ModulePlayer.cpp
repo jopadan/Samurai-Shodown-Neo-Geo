@@ -106,6 +106,7 @@ ModulePlayer::ModulePlayer()
 	kick.PushBack({ 121, 1061, 95, 98 }, 0.1, 0, 0, -14, 0);
 	kick.PushBack({ 70, 1060, 53, 100 }, 0.1, 0, 0, 8, 0);
 	kick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
+	
 
 	//TO DO
 	mediumkick.PushBack({ 14, 1061, 56, 98 }, 0.01, 0, 0, 4, 0);
@@ -118,6 +119,9 @@ ModulePlayer::ModulePlayer()
 	jumpPunch.PushBack({ 121, 1061, 95, 98 }, 0.1, 0, 0, -14, 0);
 	jumpPunch.PushBack({ 121, 1061, 95, 98 }, 0.1, 0, 0, -14, 0);
 	jumpPunch.PushBack({ 121, 1061, 95, 98 }, 0.1, 0, 0, -14, 0);
+
+	//To DO
+	jumpPunchHeavy.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
 
 	crouchPunch.PushBack({ 10, 1460, 53, 61 }, 0.2, 0, 4, 3, 4);
 	crouchPunch.PushBack({ 62, 1462, 85, 65 }, 0.2, 0, 6, -8, 10);
@@ -274,10 +278,7 @@ if (state != current_state)
 		
 		if (animstart == 0 || 2)
 		{
-			position.y -= jumpSpeed;
-
-			if (jumpattack == false)current_animation = &jumpup;
-			else {
+			if (jumpattack == true) {
 				if (animstart == 0) {
 					current_animation = &jumpPunch;
 					if (collider == true) {
@@ -294,7 +295,28 @@ if (state != current_state)
 
 				}
 			}
+			if (jumpattackheavy == true) {
+				LOG("Heavy");
+				if (animstart == 0) {
+					current_animation = &jumpPunchHeavy;
+					if (collider == true) {
+						colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_PLAYER_SHOT, this);
+						App->music->PlayChunk(sword);
+						collider = false;
+						time = SDL_GetTicks();
+					}
+					if (SDL_GetTicks() - time > 150) {
+						if (colliderAttack != nullptr)
+							colliderAttack->SetPos(position.x + 30, position.y - 70);
+					}
+					if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
 
+				}
+			}
+			else {
+				current_animation = &jumpup;
+			}
+			position.y -= jumpSpeed;
 			if (position.y < 120) {
 				jumpSpeed -= 0.5;
 				if (jumpSpeed < 0) jumpSpeed = -6;
@@ -314,8 +336,7 @@ if (state != current_state)
 		dontflip = true;
 		if (animstart == 0 || 2)
 		{
-			if (jumpattack == false)current_animation = &jumpup;
-			else {
+			if (jumpattack == true) {
 				if (animstart == 0) {
 					current_animation = &jumpPunch;
 					if (collider == true) {
@@ -331,6 +352,26 @@ if (state != current_state)
 					if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
 
 				}
+			}
+			 if (jumpattackheavy == true) {
+				if (animstart == 0) {
+					current_animation = &jumpPunchHeavy;
+					if (collider == true) {
+						colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_PLAYER_SHOT, this);
+						App->music->PlayChunk(sword);
+						collider = false;
+						time = SDL_GetTicks();
+					}
+					if (SDL_GetTicks() - time > 150) {
+						if (colliderAttack != nullptr)
+							colliderAttack->SetPos(position.x + 30, position.y - 70);
+					}
+					if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
+
+				}
+			}
+			else{
+				current_animation = &jumpup;
 			}
 			position.y -= jumpSpeed;
 			if (wall && position.x > 100) {}
@@ -355,8 +396,7 @@ if (state != current_state)
 		dontflip = true;
 		if (animstart == 0 || 2)
 		{
-			if (jumpattack == false)current_animation = &jumpup;
-			else {
+			if (jumpattack == true) {
 				if (animstart == 0) {
 					current_animation = &jumpPunch;
 					if (collider == true) {
@@ -372,6 +412,26 @@ if (state != current_state)
 					if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
 
 				}
+			}
+			if (jumpattackheavy == true) {
+				if (animstart == 0) {
+					current_animation = &jumpPunchHeavy;
+					if (collider == true) {
+						colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_PLAYER_SHOT, this);
+						App->music->PlayChunk(sword);
+						collider = false;
+						time = SDL_GetTicks();
+					}
+					if (SDL_GetTicks() - time > 150) {
+						if (colliderAttack != nullptr)
+							colliderAttack->SetPos(position.x + 30, position.y - 70);
+					}
+					if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
+
+				}
+			}
+			else {
+				current_animation = &jumpup;
 			}
 			position.y -= jumpSpeed;
 			if (wall && position.x > 100) {}
@@ -781,19 +841,18 @@ if (state != current_state)
 	case ST_KICK_BACKWARD_JUMP:
 		LOG("KICK JUMP BACKWARD ^<<-\n");
 		break;
-	case ST_TORNADO:
-		Damage = 30;
-		if (shoot)
-		{
-		App->particles->AddParticle(App->particles->cyclone, position.x, position.y - 100, COLLIDER_PLAYER_SHOT, 450);
-		App->music->PlayChunk(senpuu);
+	case ST_LEYLA_MUTSUBE:
+		current_animation = &Annu;
+		dontflip = true;
+		if (flip == 0) {
+			position.x += mutsubespeed;
+			mutsubespeed -= 0.01;
 		}
-		shoot = false;
-		if (animstart == 0)
-		{
-			current_animation = &cyclone;
-			if (current_animation->AnimationEnd() == true) { animstart = 1; }
+		if (flip == 1) {
+			position.x -= mutsubespeed;
+			mutsubespeed -= 0.01;
 		}
+		position.y -= 0.1;
 		break;
 
 	case ST_HAWKCARRY:
@@ -937,10 +996,11 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 				if (SDL_GetTicks() - combotime < 120) {
 					if (combo1 == 2)combo1 = 3;
 				}
-				if (combo1 == 3) { state = ST_TORNADO; App->input->tornado_timer = SDL_GetTicks(); combo1 = 0; break; }
+				if (combo1 == 3) { state = ST_LEYLA_MUTSUBE; mutsubespeed = 5; App->input->AnnuM_timer = SDL_GetTicks(); combo1 = 0; break; }
 				else {
 					state = ST_PUNCH_STANDING;  App->input->punch_timer = SDL_GetTicks();  break;
 				}
+
 			case IN_3:
 				if (SDL_GetTicks() - combotime < 120) {
 					if (HawkCarryCombo == 2)HawkCarryCombo = 3;
@@ -949,8 +1009,22 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 				else {
 					state = ST_KICK_STANDING;  App->input->kick_timer = SDL_GetTicks();  break;
 				}
-			case IN_2: state = ST_MEDIUM_PUNCH_STANDING;  App->input->med_punch_timer = SDL_GetTicks();  break;
-			case IN_4: state = ST_MEDIUM_KICK_STANDING;  App->input->med_kick_timer = SDL_GetTicks();  break;
+
+			case IN_2:if (SDL_GetTicks() - combotime < 120) {
+				if (combo1 == 2)combo1 = 3;
+			}
+					  if (combo1 == 3) { state = ST_LEYLA_MUTSUBE; mutsubespeed = 5; App->input->AnnuM_timer = SDL_GetTicks(); combo1 = 0; break; }
+					  else {
+						  state = ST_MEDIUM_PUNCH_STANDING;  App->input->med_punch_timer = SDL_GetTicks();  break;
+					  }
+
+			case IN_4: if (SDL_GetTicks() - combotime < 120) {
+				if (HawkCarryCombo == 2)HawkCarryCombo = 3;
+			}
+					   if (HawkCarryCombo == 3) { state = ST_HAWKCARRY; App->input->hawk_carry_timer = SDL_GetTicks(); HawkCarryCombo = 0; break; }
+					   else {
+						   state = ST_MEDIUM_KICK_STANDING;  App->input->med_kick_timer = SDL_GetTicks();  break;
+					   }
 			case IN_DAMAGE: state = ST_DAMAGE;  break;
 			case IN_WIN: state = ST_WIN; break;
 			case IN_DEFEAT: state = ST_DEFEAT; break;
@@ -992,10 +1066,11 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 				if (SDL_GetTicks() - combotime < 120) {
 					if (combo1 == 2)combo1 = 3;
 				}
-				if (combo1 == 3) { state = ST_TORNADO; App->input->tornado_timer = SDL_GetTicks(); combo1 = 0; break; }
+				if (combo1 == 3) { state = ST_LEYLA_MUTSUBE; mutsubespeed = 5; App->input->AnnuM_timer = SDL_GetTicks(); combo1 = 0; break; }
 				else {
 					state = ST_PUNCH_STANDING;  App->input->punch_timer = SDL_GetTicks();  break;
 				}
+
 			case IN_3:
 				if (SDL_GetTicks() - combotime < 120) {
 					if (HawkCarryCombo == 2)HawkCarryCombo = 3;
@@ -1004,8 +1079,22 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 				else {
 					state = ST_KICK_STANDING;  App->input->kick_timer = SDL_GetTicks();  break;
 				}
-			case IN_2: state = ST_MEDIUM_PUNCH_STANDING;  App->input->med_punch_timer = SDL_GetTicks();  break;
-			case IN_4: state = ST_MEDIUM_KICK_STANDING;  App->input->med_kick_timer = SDL_GetTicks();  break;
+
+			case IN_2:if (SDL_GetTicks() - combotime < 120) {
+				if (combo1 == 2)combo1 = 3;
+			}
+					  if (combo1 == 3) { state = ST_LEYLA_MUTSUBE; mutsubespeed = 5; App->input->AnnuM_timer = SDL_GetTicks(); combo1 = 0; break; }
+					  else {
+						  state = ST_MEDIUM_PUNCH_STANDING;  App->input->med_punch_timer = SDL_GetTicks();  break;
+					  }
+
+			case IN_4: if (SDL_GetTicks() - combotime < 120) {
+				if (HawkCarryCombo == 2)HawkCarryCombo = 3;
+			}
+					   if (HawkCarryCombo == 3) { state = ST_HAWKCARRY; App->input->hawk_carry_timer = SDL_GetTicks(); HawkCarryCombo = 0; break; }
+					   else {
+						   state = ST_MEDIUM_KICK_STANDING;  App->input->med_kick_timer = SDL_GetTicks();  break;
+					   }
 			case IN_DAMAGE: state = ST_DAMAGE;  break;
 			case IN_WIN: state = ST_WIN; break;
 			case IN_DEFEAT: state = ST_DEFEAT; break;
@@ -1049,10 +1138,11 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 				if (SDL_GetTicks() - combotime < 120) {
 					if (combo1 == 2)combo1 = 3;
 				}
-				if (combo1 == 3) { state = ST_TORNADO; App->input->tornado_timer = SDL_GetTicks(); combo1 = 0; break; }
+				if (combo1 == 3) { state = ST_LEYLA_MUTSUBE; mutsubespeed = 5; App->input->AnnuM_timer = SDL_GetTicks(); combo1 = 0; break; }
 				else {
 					state = ST_PUNCH_STANDING;  App->input->punch_timer = SDL_GetTicks();  break;
 				}
+
 			case IN_3:
 				if (SDL_GetTicks() - combotime < 120) {
 					if (HawkCarryCombo == 2)HawkCarryCombo = 3;
@@ -1061,8 +1151,22 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 				else {
 					state = ST_KICK_STANDING;  App->input->kick_timer = SDL_GetTicks();  break;
 				}
-			case IN_2: state = ST_MEDIUM_PUNCH_STANDING;  App->input->med_punch_timer = SDL_GetTicks();  break;
-			case IN_4: state = ST_MEDIUM_KICK_STANDING;  App->input->med_kick_timer = SDL_GetTicks();  break;
+
+			case IN_2:if (SDL_GetTicks() - combotime < 120) {
+				if (combo1 == 2)combo1 = 3;
+			}
+					  if (combo1 == 3) { state = ST_LEYLA_MUTSUBE; mutsubespeed = 5; App->input->AnnuM_timer = SDL_GetTicks(); combo1 = 0; break; }
+					  else {
+						  state = ST_MEDIUM_PUNCH_STANDING;  App->input->med_punch_timer = SDL_GetTicks();  break;
+					  }
+
+			case IN_4: if (SDL_GetTicks() - combotime < 120) {
+				if (HawkCarryCombo == 2)HawkCarryCombo = 3;
+			}
+					   if (HawkCarryCombo == 3) { state = ST_HAWKCARRY; App->input->hawk_carry_timer = SDL_GetTicks(); HawkCarryCombo = 0; break; }
+					   else {
+						   state = ST_MEDIUM_KICK_STANDING;  App->input->med_kick_timer = SDL_GetTicks();  break;
+			}
 			case IN_DAMAGE: state = ST_DAMAGE;  break;
 			case IN_WIN: state = ST_WIN; break;
 			case IN_DEFEAT: state = ST_DEFEAT; break;
@@ -1074,14 +1178,15 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		{
 			switch (last_input)
 			{
-			case IN_JUMP_FINISH: state = ST_IDLE; animstart = 0; jumpattack = false; collider = false; jumpup.Reset(); break;
-			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0; jumpattack = false; break;
+			case IN_JUMP_FINISH: state = ST_IDLE; animstart = 0; jumpattack = false; jumpattackheavy = false; collider = false; jumpup.Reset(); break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0; jumpattack = false; jumpattackheavy = false; break;
 			case IN_LEFT_DOWN: if (initialPos - position.y < 50) state = ST_JUMP_BACKWARD;  jumptimer = SDL_GetTicks(); App->input->jump_timer = SDL_GetTicks(); jumpattack = false;   break;
 			case IN_RIGHT_DOWN: if (initialPos - position.y < 50) state = ST_JUMP_FORWARD; jumptimer = SDL_GetTicks();  App->input->jump_timer = SDL_GetTicks(); jumpattack = false;  break;
 				//	case IN_1: state = ST_PUNCH_NEUTRAL_JUMP;  App->input->punch_timer = SDL_GetTicks(); break;
-			case IN_WIN: state = ST_WIN; jumpattack = false;  break;
-			case IN_DEFEAT: state = ST_DEFEAT; jumpattack = false; break;
-			case IN_1: if (SDL_GetTicks() - jumptimer > 300) { jumpattack = true; } break;
+			case IN_WIN: state = ST_WIN; jumpattack = false; jumpattackheavy = false;  break;
+			case IN_DEFEAT: state = ST_DEFEAT; jumpattack = false; jumpattackheavy = false; break;
+			case IN_1: if (SDL_GetTicks() - jumptimer > 300) { if (jumpattackheavy == false) { jumpattack = true; } } break;
+			case IN_2: if (SDL_GetTicks() - jumptimer > 300) {  { jumpattackheavy = true; } } break;
 			}
 		}
 		break;
@@ -1091,12 +1196,13 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			
 			switch (last_input)
 			{
-			case IN_1: if (SDL_GetTicks() - jumptimer > 300) { jumpattack = true; } break;
-			case IN_JUMP_FINISH: state = ST_IDLE; animstart = 0; jumpattack = false; collider = false; jumpup.Reset(); break;
-			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0; jumpattack = false; break;
+			case IN_1: if (SDL_GetTicks() - jumptimer > 300) { if (jumpattackheavy == false) { jumpattack = true; } } break;
+			case IN_2: if (SDL_GetTicks() - jumptimer > 300) { { jumpattackheavy = true; } } break;
+			case IN_JUMP_FINISH: state = ST_IDLE; animstart = 0; jumpattack = false; jumpattackheavy = false; collider = false; jumpup.Reset(); break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0; jumpattack = false; jumpattackheavy = false; break;
 				//	case IN_1: state = ST_PUNCH_BACKWARD_JUMP;  App->input->punch_timer = SDL_GetTicks(); break;
-			case IN_WIN: state = ST_WIN; jumpattack = false; break;
-			case IN_DEFEAT: state = ST_DEFEAT; jumpattack = false; break;
+			case IN_WIN: state = ST_WIN; jumpattack = false; jumpattackheavy = false; break;
+			case IN_DEFEAT: state = ST_DEFEAT; jumpattack = false; jumpattackheavy = false; break;
 			}
 		}
 		break;
@@ -1107,11 +1213,11 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			switch (last_input)
 			{
 			case IN_1: if (SDL_GetTicks() - jumptimer > 300) { jumpattack = true; }	break;
-			case IN_JUMP_FINISH: state = ST_IDLE; animstart = 0; jumpattack = false; collider = false; jumpup.Reset(); break;
-			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0; jumpattack = false; break;
+			case IN_JUMP_FINISH: state = ST_IDLE; animstart = 0; jumpattack = false; jumpattackheavy = false; collider = false; jumpup.Reset(); break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0; jumpattack = false; jumpattackheavy = false; break;
 				//	case IN_1: state = ST_PUNCH_BACKWARD_JUMP;  App->input->punch_timer = SDL_GetTicks(); break;
-			case IN_WIN: state = ST_WIN; jumpattack = false; break;
-			case IN_DEFEAT: state = ST_DEFEAT; jumpattack = false; break;
+			case IN_WIN: state = ST_WIN; jumpattack = false; jumpattackheavy = false; break;
+			case IN_DEFEAT: state = ST_DEFEAT; jumpattack = false; jumpattackheavy = false; break;
 			}
 		}
 		break;
@@ -1194,10 +1300,10 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		}
 		break;
 
-		case ST_TORNADO:
+		case ST_LEYLA_MUTSUBE:
 			switch (last_input)
 			{
-			case IN_TORNADO_FINISH: state = ST_IDLE; animstart = 0; shoot = true; break;
+			case IN_ANNU_MUTSUBE_FINISH: state = ST_IDLE; dontflip = false; break;
 			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
 			}
 			break;
@@ -1243,6 +1349,13 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 				else {
 					state = ST_PUNCH_CROUCH; App->input->punch_c_timer = SDL_GetTicks(); combo2 = 0; animstart = 0; break;
 				}break;
+			case IN_2:
+				if (SDL_GetTicks() - combotimeAnnu < 120) {
+					if (combo2 == 2)combo2 = 3;
+				}
+
+				if (combo2 == 3) { mutsubespeed = 5; state = ST_ANNU_MUTSUBE; App->input->AnnuM_timer = SDL_GetTicks(); combo2 = 0; break; }
+				break;
 			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
 			case IN_WIN: state = ST_WIN; break;
 			case IN_DEFEAT: state = ST_DEFEAT; break;

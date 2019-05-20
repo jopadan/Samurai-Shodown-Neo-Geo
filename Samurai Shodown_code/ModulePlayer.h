@@ -62,6 +62,7 @@ public:
 	Animation backward;
 	Animation jumpup;
 	Animation jumpPunch;
+	Animation jumpPunchHeavy;
 	Animation jumpKick;
 	Animation punch;
 	Animation mediumpunch;
@@ -90,6 +91,7 @@ public:
 	bool OnHawk = false;
 	bool jumptoHawk = true;
 	bool jumpattack = false;
+	bool jumpattackheavy = false;
 	float mutsubespeed = 10;
 	float acc = 0.01;
 	int height = 0;
