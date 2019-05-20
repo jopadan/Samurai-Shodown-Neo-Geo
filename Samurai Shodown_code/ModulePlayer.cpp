@@ -112,17 +112,48 @@ ModulePlayer::ModulePlayer()
 	mediumkick.PushBack({ 14, 1061, 56, 98 }, 0.01, 0, 0, 4, 0);
 	
 
+
 	//TO DO
 	heavykick.PushBack({ 121, 1061, 95, 98 }, 0.01, 0, 0, -14, 0);
 	
 	//TO DO
-	jumpPunch.PushBack({ 121, 1061, 95, 98 }, 0.1, 0, 0, -14, 0);
-	jumpPunch.PushBack({ 121, 1061, 95, 98 }, 0.1, 0, 0, -14, 0);
-	jumpPunch.PushBack({ 121, 1061, 95, 98 }, 0.1, 0, 0, -14, 0);
+	jumpPunch.PushBack({ 11, 713, 103, 91 }, 0.4, 0, 2, -19, 2);
+	jumpPunch.PushBack({ 117, 713, 89, 92 }, 0.4, 19, 0, -22, 0);
+	jumpPunch.PushBack({ 204, 711, 97, 94 }, 0.4, 13, 0, -20, 0);
+	jumpPunch.PushBack({ 303, 708, 93, 95 }, 0.4, 8, 0, -17, 0);
+	jumpPunch.PushBack({ 395, 708, 101, 92 }, 0.3, -33, 0, 0, 0);
+
 
 	//To DO
-	jumpPunchHeavy.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
 
+	jumpPunchHeavy.PushBack({ 807, 694, 57, 92 }, 0.4, 13, 0, -20, 0);
+	jumpPunchHeavy.PushBack({ 864, 691, 54, 95 }, 0.4, 13, 0, -20, 0);
+	jumpPunchHeavy.PushBack({ 917, 693, 62, 93 }, 0.4, 13, 0, -20, 0);
+	jumpPunchHeavy.PushBack({ 978, 693, 76, 94 }, 0.4, -3, 4, -20, 0);
+	jumpPunchHeavy.PushBack({ 1054, 672, 79, 110 }, 0.4, 6, 2, -20, 0);
+	jumpPunchHeavy.PushBack({ 1133, 673, 88, 111 }, 0.4, 16, 2, -20, 0);
+	jumpPunchHeavy.PushBack({ 1221, 680, 89, 106 }, 0.4, 23, 0, -20, 0);
+	jumpPunchHeavy.PushBack({ 1307, 649, 84, 138 }, 0.4, 21, -1, -20, 0);
+	jumpPunchHeavy.PushBack({ 1391, 646, 93, 136 }, 0.2, 10, 0, -20, 0);
+	jumpPunchHeavy.PushBack({ 1484, 643, 64, 133 }, 0.2, 12, 0, -20, 0);
+
+	//TO DO
+	jumpKick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
+	jumpKick.PushBack({ 70, 1060, 53, 100 }, 0.1, 0, 0, 8, 0);
+	jumpKick.PushBack({ 121, 1061, 95, 98 }, 0.1, 0, 0, -14, 0);
+	jumpKick.PushBack({ 70, 1060, 53, 100 }, 0.1, 0, 0, 8, 0);
+	jumpKick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
+
+
+	//TO DO
+	jumpKickHeavy.PushBack({ 14, 1061, 56, 98 }, 0.01, 0, 0, 4, 0);
+	jumpKickHeavy.PushBack({ 14, 1061, 56, 98 }, 0.01, 0, 0, 4, 0);
+	jumpKickHeavy.PushBack({ 14, 1061, 56, 98 }, 0.01, 0, 0, 4, 0);
+	jumpKickHeavy.PushBack({ 14, 1061, 56, 98 }, 0.01, 0, 0, 4, 0);
+	jumpKickHeavy.PushBack({ 14, 1061, 56, 98 }, 0.01, 0, 0, 4, 0);
+	jumpKickHeavy.PushBack({ 14, 1061, 56, 98 }, 0.01, 0, 0, 4, 0);
+
+	
 	crouchPunch.PushBack({ 10, 1460, 53, 61 }, 0.2, 0, 4, 3, 4);
 	crouchPunch.PushBack({ 62, 1462, 85, 65 }, 0.2, 0, 6, -8, 10);
 	crouchPunch.PushBack({ 148, 1463, 86, 62 }, 0.2, 1, 6, -9, 8);
@@ -278,7 +309,11 @@ if (state != current_state)
 		
 		if (animstart == 0 || 2)
 		{
-			if (jumpattack == true) {
+			switch (jumpanim) {
+			case 0:
+				current_animation = &jumpup;
+				break;
+			case 1:
 				if (animstart == 0) {
 					current_animation = &jumpPunch;
 					if (collider == true) {
@@ -294,9 +329,8 @@ if (state != current_state)
 					if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
 
 				}
-			}
-			if (jumpattackheavy == true) {
-				LOG("Heavy");
+				break;
+			case 2:
 				if (animstart == 0) {
 					current_animation = &jumpPunchHeavy;
 					if (collider == true) {
@@ -312,10 +346,43 @@ if (state != current_state)
 					if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
 
 				}
+				break;
+			case 3:
+				if (animstart == 0) {
+					current_animation = &jumpKick;
+					if (collider == true) {
+						colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_PLAYER_SHOT, this);
+						App->music->PlayChunk(sword);
+						collider = false;
+						time = SDL_GetTicks();
+					}
+					if (SDL_GetTicks() - time > 150) {
+						if (colliderAttack != nullptr)
+							colliderAttack->SetPos(position.x + 30, position.y - 70);
+					}
+					if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
+
+				}
+				break;
+			case 4:
+				if (animstart == 0) {
+					current_animation = &jumpKickHeavy;
+					if (collider == true) {
+						colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_PLAYER_SHOT, this);
+						App->music->PlayChunk(sword);
+						collider = false;
+						time = SDL_GetTicks();
+					}
+					if (SDL_GetTicks() - time > 150) {
+						if (colliderAttack != nullptr)
+							colliderAttack->SetPos(position.x + 30, position.y - 70);
+					}
+					if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
+
+				}
+				break;
 			}
-			else {
-				current_animation = &jumpup;
-			}
+
 			position.y -= jumpSpeed;
 			if (position.y < 120) {
 				jumpSpeed -= 0.5;
@@ -325,6 +392,9 @@ if (state != current_state)
 				animstart = 1;
 				position.y = initialPos;
 				jumpPunch.Reset();
+				jumpPunchHeavy.Reset();
+				jumpKick.Reset();
+				jumpKickHeavy.Reset();
 
 			}
 		}
@@ -336,7 +406,11 @@ if (state != current_state)
 		dontflip = true;
 		if (animstart == 0 || 2)
 		{
-			if (jumpattack == true) {
+			switch (jumpanim) {
+			case 0:
+				current_animation = &jumpup;
+				break;
+			case 1:
 				if (animstart == 0) {
 					current_animation = &jumpPunch;
 					if (collider == true) {
@@ -352,8 +426,8 @@ if (state != current_state)
 					if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
 
 				}
-			}
-			 if (jumpattackheavy == true) {
+				break;
+			case 2:
 				if (animstart == 0) {
 					current_animation = &jumpPunchHeavy;
 					if (collider == true) {
@@ -369,9 +443,41 @@ if (state != current_state)
 					if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
 
 				}
-			}
-			else{
-				current_animation = &jumpup;
+				break;
+			case 3:
+				if (animstart == 0) {
+					current_animation = &jumpKick;
+					if (collider == true) {
+						colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_PLAYER_SHOT, this);
+						App->music->PlayChunk(sword);
+						collider = false;
+						time = SDL_GetTicks();
+					}
+					if (SDL_GetTicks() - time > 150) {
+						if (colliderAttack != nullptr)
+							colliderAttack->SetPos(position.x + 30, position.y - 70);
+					}
+					if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
+
+				}
+				break;
+			case 4:
+				if (animstart == 0) {
+					current_animation = &jumpKickHeavy;
+					if (collider == true) {
+						colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_PLAYER_SHOT, this);
+						App->music->PlayChunk(sword);
+						collider = false;
+						time = SDL_GetTicks();
+					}
+					if (SDL_GetTicks() - time > 150) {
+						if (colliderAttack != nullptr)
+							colliderAttack->SetPos(position.x + 30, position.y - 70);
+					}
+					if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
+
+				}
+				break;
 			}
 			position.y -= jumpSpeed;
 			if (wall && position.x > 100) {}
@@ -387,6 +493,9 @@ if (state != current_state)
 				animstart = 1;
 				position.y = initialPos;
 				jumpPunch.Reset();
+				jumpPunchHeavy.Reset();
+				jumpKick.Reset();
+				jumpKickHeavy.Reset();
 				dontflip = false;
 			}
 		}
@@ -396,7 +505,11 @@ if (state != current_state)
 		dontflip = true;
 		if (animstart == 0 || 2)
 		{
-			if (jumpattack == true) {
+			switch (jumpanim) {
+			case 0:
+				current_animation = &jumpup;
+				break;
+			case 1:
 				if (animstart == 0) {
 					current_animation = &jumpPunch;
 					if (collider == true) {
@@ -412,8 +525,8 @@ if (state != current_state)
 					if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
 
 				}
-			}
-			if (jumpattackheavy == true) {
+				break;
+			case 2:
 				if (animstart == 0) {
 					current_animation = &jumpPunchHeavy;
 					if (collider == true) {
@@ -429,9 +542,41 @@ if (state != current_state)
 					if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
 
 				}
-			}
-			else {
-				current_animation = &jumpup;
+				break;
+			case 3:
+				if (animstart == 0) {
+					current_animation = &jumpKick;
+					if (collider == true) {
+						colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_PLAYER_SHOT, this);
+						App->music->PlayChunk(sword);
+						collider = false;
+						time = SDL_GetTicks();
+					}
+					if (SDL_GetTicks() - time > 150) {
+						if (colliderAttack != nullptr)
+							colliderAttack->SetPos(position.x + 30, position.y - 70);
+					}
+					if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
+
+				}
+				break;
+			case 4:
+				if (animstart == 0) {
+					current_animation = &jumpKickHeavy;
+					if (collider == true) {
+						colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_PLAYER_SHOT, this);
+						App->music->PlayChunk(sword);
+						collider = false;
+						time = SDL_GetTicks();
+					}
+					if (SDL_GetTicks() - time > 150) {
+						if (colliderAttack != nullptr)
+							colliderAttack->SetPos(position.x + 30, position.y - 70);
+					}
+					if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
+
+				}
+				break;
 			}
 			position.y -= jumpSpeed;
 			if (wall && position.x > 100) {}
@@ -447,10 +592,14 @@ if (state != current_state)
 				animstart = 1;
 				position.y = initialPos;
 				jumpPunch.Reset();
+				jumpPunchHeavy.Reset();
+				jumpKick.Reset();
+				jumpKickHeavy.Reset();
 				dontflip = false;
 			}
 		}
 		break;
+
 	case ST_CROUCH:
 		height = +20;
 		if (animstart == 0)
@@ -1178,15 +1327,17 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		{
 			switch (last_input)
 			{
-			case IN_JUMP_FINISH: state = ST_IDLE; animstart = 0; jumpattack = false; jumpattackheavy = false; collider = false; jumpup.Reset(); break;
-			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0; jumpattack = false; jumpattackheavy = false; break;
-			case IN_LEFT_DOWN: if (initialPos - position.y < 50) state = ST_JUMP_BACKWARD;  jumptimer = SDL_GetTicks(); App->input->jump_timer = SDL_GetTicks(); jumpattack = false;   break;
-			case IN_RIGHT_DOWN: if (initialPos - position.y < 50) state = ST_JUMP_FORWARD; jumptimer = SDL_GetTicks();  App->input->jump_timer = SDL_GetTicks(); jumpattack = false;  break;
+			case IN_JUMP_FINISH: state = ST_IDLE; animstart = 0; jumpanim = 0; collider = false; jumpup.Reset(); break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0; jumpanim = 0; break;
+			case IN_LEFT_DOWN: if (initialPos - position.y < 50) state = ST_JUMP_BACKWARD;  jumptimer = SDL_GetTicks(); App->input->jump_timer = SDL_GetTicks();   break;
+			case IN_RIGHT_DOWN: if (initialPos - position.y < 50) state = ST_JUMP_FORWARD; jumptimer = SDL_GetTicks();  App->input->jump_timer = SDL_GetTicks();  break;
 				//	case IN_1: state = ST_PUNCH_NEUTRAL_JUMP;  App->input->punch_timer = SDL_GetTicks(); break;
-			case IN_WIN: state = ST_WIN; jumpattack = false; jumpattackheavy = false;  break;
-			case IN_DEFEAT: state = ST_DEFEAT; jumpattack = false; jumpattackheavy = false; break;
-			case IN_1: if (SDL_GetTicks() - jumptimer > 300) { if (jumpattackheavy == false) { jumpattack = true; } } break;
-			case IN_2: if (SDL_GetTicks() - jumptimer > 300) {  { jumpattackheavy = true; } } break;
+			case IN_WIN: state = ST_WIN; jumpanim = 0;  break;
+			case IN_DEFEAT: state = ST_DEFEAT; jumpanim = 0; break;
+			case IN_1: if (SDL_GetTicks() - jumptimer > 300) { if (jumpanim == 0)jumpanim = 1; } break;
+			case IN_2: if (SDL_GetTicks() - jumptimer > 300) { if (jumpanim == 0)jumpanim = 2; } break;
+			case IN_3: if (SDL_GetTicks() - jumptimer > 300) { if (jumpanim == 0)jumpanim = 3; }break;
+			case IN_4: if (SDL_GetTicks() - jumptimer > 300) { if (jumpanim == 0)jumpanim = 4; } break;
 			}
 		}
 		break;
@@ -1196,13 +1347,14 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			
 			switch (last_input)
 			{
-			case IN_1: if (SDL_GetTicks() - jumptimer > 300) { if (jumpattackheavy == false) { jumpattack = true; } } break;
-			case IN_2: if (SDL_GetTicks() - jumptimer > 300) { { jumpattackheavy = true; } } break;
-			case IN_JUMP_FINISH: state = ST_IDLE; animstart = 0; jumpattack = false; jumpattackheavy = false; collider = false; jumpup.Reset(); break;
-			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0; jumpattack = false; jumpattackheavy = false; break;
-				//	case IN_1: state = ST_PUNCH_BACKWARD_JUMP;  App->input->punch_timer = SDL_GetTicks(); break;
-			case IN_WIN: state = ST_WIN; jumpattack = false; jumpattackheavy = false; break;
-			case IN_DEFEAT: state = ST_DEFEAT; jumpattack = false; jumpattackheavy = false; break;
+			case IN_1: if (SDL_GetTicks() - jumptimer > 300) { if (jumpanim == 0)jumpanim = 1; }break;
+			case IN_2: if (SDL_GetTicks() - jumptimer > 300) { if (jumpanim == 0)jumpanim = 2; } break;
+			case IN_3: if (SDL_GetTicks() - jumptimer > 300) { if (jumpanim == 0)jumpanim = 3; }break;
+			case IN_4: if (SDL_GetTicks() - jumptimer > 300) { if (jumpanim == 0)jumpanim = 4; } break;
+			case IN_JUMP_FINISH: state = ST_IDLE; animstart = 0; jumpanim = 0; collider = false; jumpup.Reset(); break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0; jumpanim = 0; break;
+			case IN_WIN: state = ST_WIN; jumpanim = 0; break;
+			case IN_DEFEAT: state = ST_DEFEAT; jumpanim = 0; break;
 			}
 		}
 		break;
@@ -1212,12 +1364,15 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			
 			switch (last_input)
 			{
-			case IN_1: if (SDL_GetTicks() - jumptimer > 300) { jumpattack = true; }	break;
-			case IN_JUMP_FINISH: state = ST_IDLE; animstart = 0; jumpattack = false; jumpattackheavy = false; collider = false; jumpup.Reset(); break;
-			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0; jumpattack = false; jumpattackheavy = false; break;
+			case IN_1: if (SDL_GetTicks() - jumptimer > 300) { if (jumpanim == 0)jumpanim = 1; }break;
+			case IN_2: if (SDL_GetTicks() - jumptimer > 300) { if (jumpanim == 0)jumpanim = 2; } break;
+			case IN_3: if (SDL_GetTicks() - jumptimer > 300) { if (jumpanim == 0)jumpanim = 3; }break;
+			case IN_4: if (SDL_GetTicks() - jumptimer > 300) { if (jumpanim == 0)jumpanim = 4; } break;
+			case IN_JUMP_FINISH: state = ST_IDLE; animstart = 0; jumpanim = 0; collider = false; jumpup.Reset(); break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0; jumpanim = 0; break;
 				//	case IN_1: state = ST_PUNCH_BACKWARD_JUMP;  App->input->punch_timer = SDL_GetTicks(); break;
-			case IN_WIN: state = ST_WIN; jumpattack = false; jumpattackheavy = false; break;
-			case IN_DEFEAT: state = ST_DEFEAT; jumpattack = false; jumpattackheavy = false; break;
+			case IN_WIN: state = ST_WIN; jumpanim = 0; break;
+			case IN_DEFEAT: state = ST_DEFEAT; jumpanim = 0; break;
 			}
 		}
 		break;

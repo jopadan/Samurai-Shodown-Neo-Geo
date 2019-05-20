@@ -64,6 +64,7 @@ public:
 	Animation jumpPunch;
 	Animation jumpPunchHeavy;
 	Animation jumpKick;
+	Animation jumpKickHeavy;
 	Animation punch;
 	Animation mediumpunch;
 	Animation heavypunch;
@@ -97,6 +98,7 @@ public:
 	int height = 0;
 	int height2 = 0;
 	bool dontflip = false;
+	int jumpanim = 0;
 	Collider *colliderPlayer;
 	Collider *colliderPlayer_2;
 	Collider *colliderAttack;
