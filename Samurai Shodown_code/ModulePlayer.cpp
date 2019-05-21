@@ -65,10 +65,10 @@ ModulePlayer::ModulePlayer()
 	hawk_carry.PushBack({ 112, 1541, 43, 67 }, 0.11, 0, 0, 0, 0);
 	hawk_carry.PushBack({ 159, 1547, 42, 60 }, 0.11, 0, 0, 0, 0);
 	hawk_carry.PushBack({ 204, 1546, 42, 60 }, 0.11, 0, 0, 0, 0);
-	/*hawk_carry.PushBack({ 247, 1544, 41, 60 }, 0.11, 0, 0, 0, 0);
-	hawk_carry.PushBack({ 292, 1544, 47, 62 }, 0.11, 0, 0, 0, 0);
-	hawk_carry.PushBack({ 337, 1535, 51, 77 }, 0.11, 0, 0, 0, 0);*/
-	
+	hawk_carry.PushBack({ 247, 1544, 41, 60 }, 0.11, 0, 0, 0, 0);
+	//hawk_carry.PushBack({ 292, 1544, 47, 62 }, 0.11, 0, 0, 0, 0);
+	//hawk_carry.PushBack({ 337, 1535, 51, 77 }, 0.11, 0, 0, 0, 0);
+	hawk_carry.loop = false;
 
 	punch.PushBack({ 11, 713, 103, 91 }, 0.4, 0, 2, -19, 2);
 	punch.PushBack({ 117, 713, 89, 92 }, 0.4, 19, 0, -22, 0);
@@ -84,6 +84,7 @@ ModulePlayer::ModulePlayer()
 	mediumpunch.PushBack({ 1221, 1022, 105, 107 }, 0.2, 6, 0, -20, 0);
 	mediumpunch.PushBack({ 1325, 1020, 103, 111 }, 0.2, 5, 6, -18, 6);
 	mediumpunch.PushBack({ 1424, 1017, 84, 106}, 0.2,   1, -1, -8, -1);
+
 	//TO DO
 	heavypunch.PushBack({ 807, 694, 57, 92 }, 0.4, 13, 0, -20, 0);
 	heavypunch.PushBack({ 864, 691, 54, 95 }, 0.4, 13, 0, -20, 0);
@@ -1038,7 +1039,7 @@ if (state != current_state)
 		{
 			current_animation = &hawk_carry;
 			if (current_animation->AnimationEnd() == true) {
-				animstart = 1;
+				
 			
 			}
 		}
@@ -1056,7 +1057,24 @@ if (state != current_state)
 			mutsubespeed -= 0.03;
 		}
 			break;
-
+	case ST_YATORO_POKU:
+		LOG("Yatoro");
+		if(position.y<initialPos){ position.y+=10; }
+		else {
+			position.y = initialPos;
+		}
+		break;
+	case ST_KAMUI_MUTSUBE:
+		LOG("Kamui");
+		if (position.y<initialPos) { 
+			position.y += 10;
+			if (flip == SDL_FLIP_NONE)position.x+=5;
+			if (flip == SDL_FLIP_HORIZONTAL)position.x -= 5;
+		}
+		else {
+			position.y = initialPos;
+		}
+		break;
 	case ST_WIN:
 		current_animation = &win;
 		break;
@@ -1187,9 +1205,13 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			if (flip == SDL_FLIP_NONE) {
 				if (SDL_GetTicks() - combotime < 120) {
 					if (combo1 == 1)combo1 = 2;
-					combotime = SDL_GetTicks();
+					
 				}
-				else { combo1 = 0; }
+				else { combo1 = 0;
+				
+				}
+				combo3 = 1;
+				combotimeAmube = SDL_GetTicks();
 			}
 			if (flip == SDL_FLIP_HORIZONTAL) {
 				combotimeAnnu = SDL_GetTicks();
@@ -1201,6 +1223,10 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 					combotime = SDL_GetTicks();
 				}
 				else { HawkCarryCombo = 0; }
+				if (SDL_GetTicks() - combotimeAmube < 120) {
+					if (combo3 == 2)combo3 = 3;
+					combotimeAmube = SDL_GetTicks();
+				}
 			}
 
 
@@ -1259,12 +1285,19 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 					if (combo1 == 1)combo1 = 2;
 					combotime = SDL_GetTicks();
 				}
+				combo3 = 1;
+				combotimeAmube = SDL_GetTicks();
 			}
 			else { combo1 = 0; }
 
 			if (flip == SDL_FLIP_NONE) {
 				combotimeAnnu = SDL_GetTicks();
 				combo2 = 1;
+
+				if (SDL_GetTicks() - combotimeAmube < 120) {
+					if (combo3 == 2)combo3 = 3;
+					combotimeAmube = SDL_GetTicks();
+				}
 
 				if (SDL_GetTicks() - combotime < 120) {
 					if (HawkCarryCombo == 1)HawkCarryCombo = 2;
@@ -1377,8 +1410,6 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		}
 		break;
 
-		
-
 		case ST_PUNCH_STANDING:
 		{
 			switch (last_input)
@@ -1469,8 +1500,15 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
 			case IN_WIN: state = ST_WIN; break;
 			case IN_DEFEAT: state = ST_DEFEAT; break;
-			}
-			break;
+			case IN_1: 
+			case IN_2:
+			case IN_3:
+			case IN_4:
+				if (hawkleft || hawkright) state = ST_YATORO_POKU; App->input->Yatoro_timer = SDL_GetTicks();break;
+				if (hawkdown) state = ST_KAMUI_MUTSUBE; App->input->Kamui_timer = SDL_GetTicks(); break;
+
+		}
+		break;
 
 		case ST_ANNU_MUTSUBE:
 			switch (last_input)
@@ -1479,6 +1517,22 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
 			}
 			break;
+
+		case ST_YATORO_POKU:
+			switch (last_input)
+			{
+			case IN_YATORO_POKU_FINISH: state = ST_IDLE; dontflip = false; break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
+			}
+			break;
+		case ST_KAMUI_MUTSUBE:
+			switch (last_input)
+			{
+			case IN_KAMUI_MUTSUBE_FINISH: state = ST_IDLE; dontflip = false; break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
+			}
+			break;
+
 		case ST_CROUCH:
 		{
 			combo1 = 1;
@@ -1489,6 +1543,10 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			if (SDL_GetTicks() - combotimeAnnu < 120) {
 				if (combo2 == 1)combo2 = 2;
 				combotimeAnnu = SDL_GetTicks();
+			}
+			if (SDL_GetTicks() - combotimeAmube < 120) {
+				if (combo3 == 1)combo3 = 2;
+				combotimeAmube = SDL_GetTicks();
 			}
 			//else (combotimeAnnu = 0);
 
@@ -1503,7 +1561,8 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 				if (combo2 == 3) { mutsubespeed = 5; state = ST_ANNU_MUTSUBE; App->input->AnnuM_timer = SDL_GetTicks(); combo2 = 0; break; }
 				else {
 					state = ST_PUNCH_CROUCH; App->input->punch_c_timer = SDL_GetTicks(); combo2 = 0; animstart = 0; break;
-				}break;
+				}
+				break;
 			case IN_2:
 				if (SDL_GetTicks() - combotimeAnnu < 120) {
 					if (combo2 == 2)combo2 = 3;

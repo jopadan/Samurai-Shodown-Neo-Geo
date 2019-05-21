@@ -15,6 +15,9 @@
 #define CROUCH_PUNCH_TIME 500
 #define HAWK_CARRY_TIME 7000
 #define ANNUM_TIME 1500
+#define AMUBEYATORO_TIME 700
+#define YATORO_TIME 700
+#define KAMUI_TIME 700
 #define KICK_TIME  700
 #define MED_KICK_TIME  700
 #define HEAVY_KICK_TIME  700
@@ -53,7 +56,10 @@ enum player_states
 	ST_BLOCK,
 	ST_WIN,
 	ST_DEFEAT,
-	ST_HAWKCARRY
+	ST_HAWKCARRY,
+	ST_YATORO_POKU,
+	ST_KAMUI_MUTSUBE,
+	ST_AMUBE_YATORO,
 
 };
 enum player_inputs
@@ -117,6 +123,9 @@ enum player_inputs
 	IN_LEYLA_MUTSUBE_FINISH,
 	IN_ANNU_MUTSUBE_FINISH_P2,
 	IN_LEYLA_MUTSUBE_FINISH_P2,
+	IN_YATORO_POKU_FINISH,
+	IN_KAMUI_MUTSUBE_FINISH,
+	IN_AMUBE_YATORO_FINISH,
 
 
 };
@@ -164,9 +173,12 @@ public:
 	Uint32 med_kick_timer = 0;
 	Uint32 heavy_kick_timer = 0;
 	Uint32 tornado_timer = 0;
+	Uint32 Kamui_timer = 0;
+	Uint32 Yatoro_timer = 0;
 	Uint32 AnnuM_timer = 0;
 	Uint32 LeylaM_timer = 0;
 	Uint32 hawk_carry_timer = 0;
+	Uint32 Amube_Yatoro_timer = 0;
 	Uint32 jump_timer2 = 0;
 	Uint32 punch_timer2 = 0;
 	Uint32 med_punch_timer2 = 0;
@@ -179,6 +191,9 @@ public:
 	Uint32 hawk_carry_timer2 = 0;
 	Uint32 AnnuM_timer2 = 0;
 	Uint32 LeylaM_timer2 = 0;
+	Uint32 Yatoro_timer2 = 0;
+	Uint32 Kamui_timer2 = 0;
+	Uint32 AmubeYatoro_timer2 = 0;
 	//Game Controller 1 handler
 	SDL_GameController* gGameController = NULL;
 	SDL_GameController* gGameController2 = NULL;

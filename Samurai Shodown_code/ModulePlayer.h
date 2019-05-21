@@ -28,6 +28,7 @@ private:
 	int pos;
 
 
+
 	
 public:
 	ModulePlayer();
@@ -46,10 +47,12 @@ public:
 	Uint32 speed = 2;
 	Uint32 combo1 = 0;
 	Uint32 combo2 = 0;
+	Uint32 combo3 = 0;
 	Uint32 jumptimer = 0;
 	Uint32 HawkCarryCombo = 0;
 	Uint32 combotime;
 	Uint32 combotimeAnnu;
+	Uint32 combotimeAmube;
 	SDL_Texture* graphics = nullptr;
 	SDL_Texture* graphicsobj = nullptr;
 	Animation* current_animation = nullptr;
@@ -93,6 +96,10 @@ public:
 	bool jumptoHawk = true;
 	bool jumpattack = false;
 	bool jumpattackheavy = false;
+	bool hawkleft = false;
+	bool hawkright = false;
+	bool hawkdown = false;
+	bool hawkup = false;
 	float mutsubespeed = 10;
 	float acc = 0.01;
 	int height = 0;

@@ -107,10 +107,34 @@ update_status ModulePetp1::Update() {
 	if (App->player->OnHawk == true) {
 		flip = App->player->flip;
 		speedx = 0; speedy = 0;
-		if (App->input->right == true) { speedx = +3; }
-		if (App->input->left == true) { speedx = -3; }
-		if (App->input->up == true) { speedy = -3; }
-		if (App->input->down == true) { speedy = +3; }
+		if (App->input->right == true) { speedx = +3; 
+		
+		App->player->hawkleft = false;
+		App->player->hawkright = true;
+		}
+		else if (App->input->left == true) { speedx = -3; 
+		
+		App->player->hawkleft = true;
+		App->player->hawkright = false;
+		}
+		else if (App->input->up == true) { speedy = -3;
+		
+		App->player->hawkup = true;
+		App->player->hawkdown = false;
+
+		}
+		else if (App->input->down == true) { speedy = +3;
+		
+		App->player->hawkup = false;
+		App->player->hawkdown = true;
+
+		}
+		else {
+			App->player->hawkleft = false;
+			App->player->hawkright = false;
+			App->player->hawkup = false;
+			App->player->hawkdown = false;
+		}
 	
 	}
 	position.x += speedx;

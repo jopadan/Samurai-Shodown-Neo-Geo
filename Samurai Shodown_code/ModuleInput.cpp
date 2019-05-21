@@ -488,8 +488,31 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs, p2Qeue<player_in
 			AnnuM_timer = 0;
 		}
 	}
+	if (Yatoro_timer > 0)
+	{
+		if (SDL_GetTicks() - Yatoro_timer > YATORO_TIME)
+		{
+			inputs.Push(IN_YATORO_POKU_FINISH);
+			Yatoro_timer = 0;
+		}
+	}
+	if (Kamui_timer > 0)
+	{
+		if (SDL_GetTicks() - Kamui_timer > KAMUI_TIME)
+		{
+			inputs.Push(IN_KAMUI_MUTSUBE_FINISH);
+			Kamui_timer = 0;
+		}
+	}
+	if (Amube_Yatoro_timer > 0)
+	{
+		if (SDL_GetTicks() - Amube_Yatoro_timer > AMUBEYATORO_TIME)
+		{
+			inputs.Push(IN_AMUBE_YATORO_FINISH);
+			Amube_Yatoro_timer = 0;
+		}
+	}
 
-	
 	if (jump_timer2 > 0)
 	{
 		if (SDL_GetTicks() - jump_timer2 > JUMP_TIME)
@@ -578,6 +601,30 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs, p2Qeue<player_in
 		{
 			inputs2.Push(IN_PUNCH_FINISH_P2);
 			heavy_punch_timer2 = 0;
+		}
+	}
+	if (Yatoro_timer2 > 0)
+	{
+		if (SDL_GetTicks() - Yatoro_timer2 > YATORO_TIME)
+		{
+			inputs2.Push(IN_YATORO_POKU_FINISH);
+			Yatoro_timer2 = 0;
+		}
+	}
+	if (Kamui_timer2 > 0)
+	{
+		if (SDL_GetTicks() - Kamui_timer2 > KAMUI_TIME)
+		{
+			inputs2.Push(IN_KAMUI_MUTSUBE_FINISH);
+			Kamui_timer2 = 0;
+		}
+	}
+	if (Amube_Yatoro_timer > 0)
+	{
+		if (SDL_GetTicks() - Amube_Yatoro_timer > AMUBEYATORO_TIME)
+		{
+			inputs.Push(IN_AMUBE_YATORO_FINISH);
+			Amube_Yatoro_timer = 0;
 		}
 	}
 	
