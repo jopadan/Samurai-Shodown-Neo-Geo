@@ -61,11 +61,11 @@ ModulePlayer::ModulePlayer()
 	jumpup.PushBack({ 496, 1604, 60, 105 }, 0.11, 0, 0, 0, 0);
 	jumpup.loop = false;
 
-	hawk_carry.PushBack({ 64, 1547, 46, 56 }, 0.11, 0, 0, 0, 0);
-	hawk_carry.PushBack({ 112, 1541, 43, 67 }, 0.11, 0, 0, 0, 0);
-	hawk_carry.PushBack({ 159, 1547, 42, 60 }, 0.11, 0, 0, 0, 0);
-	hawk_carry.PushBack({ 204, 1546, 42, 60 }, 0.11, 0, 0, 0, 0);
-	hawk_carry.PushBack({ 247, 1544, 41, 60 }, 0.11, 0, 0, 0, 0);
+	hawk_carry.PushBack({ 64, 1547, 46, 56 }, 0.11, 0, 0, 7, 0);
+	hawk_carry.PushBack({ 112, 1541, 43, 67 }, 0.11, 0, 0,7, 0);
+	hawk_carry.PushBack({ 159, 1547, 42, 60 }, 0.11, 0, 0, 7, 0);
+	hawk_carry.PushBack({ 204, 1546, 42, 60 }, 0.11, 0, 0, 7, 0);
+	hawk_carry.PushBack({ 247, 1544, 41, 60 }, 0.11, 0, 0, 7, 0);
 	//hawk_carry.PushBack({ 292, 1544, 47, 62 }, 0.11, 0, 0, 0, 0);
 	//hawk_carry.PushBack({ 337, 1535, 51, 77 }, 0.11, 0, 0, 0, 0);
 	hawk_carry.loop = false;
@@ -76,26 +76,26 @@ ModulePlayer::ModulePlayer()
 	punch.PushBack({ 303, 708, 93, 95 }, 0.4, 8, 0, -17, 0);
 	punch.PushBack({ 395, 708, 101, 92 }, 0.3, -33, 0, 0, 0);
 
-	//TO DO
-	mediumpunch.PushBack({ 851, 1030, 90, 98 }, 0.2, -21, -1, 0, -1);
-	mediumpunch.PushBack({ 941, 1012, 74, 118 }, 0.2,  -2, -1, 0, -1);
-	mediumpunch.PushBack({ 1020, 1011, 98, 120 }, 0.2, 11, 0, -19, 0);
-	mediumpunch.PushBack({ 1119, 1018, 102, 112 }, 0.2, 10, 0, -20, 0);
-	mediumpunch.PushBack({ 1221, 1022, 105, 107 }, 0.2, 6, 0, -20, 0);
-	mediumpunch.PushBack({ 1325, 1020, 103, 111 }, 0.2, 5, 6, -18, 6);
-	mediumpunch.PushBack({ 1424, 1017, 84, 106}, 0.2,   1, -1, -8, -1);
+	
+	mediumpunch.PushBack({ 851, 1030, 90, 98 }, 0.4, -21, -1, 0, -1);
+	mediumpunch.PushBack({ 941, 1012, 74, 118 }, 0.4,  -2, -1, 0, -1);
+	mediumpunch.PushBack({ 1020, 1011, 98, 120 }, 0.4, 11, 0, -19, 0);
+	mediumpunch.PushBack({ 1119, 1018, 102, 112 }, 0.4, 10, 0, -20, 0);
+	mediumpunch.PushBack({ 1221, 1022, 105, 107 }, 0.4, 6, 0, -20, 0);
+	mediumpunch.PushBack({ 1325, 1020, 103, 111 }, 0.4, 5, 6, -18, 6);
+	mediumpunch.PushBack({ 1424, 1017, 84, 106}, 0.4,   1, -1, -8, -1);
 
 	//TO DO
-	heavypunch.PushBack({ 807, 694, 57, 92 }, 0.4, 13, 0, -20, 0);
-	heavypunch.PushBack({ 864, 691, 54, 95 }, 0.4, 13, 0, -20, 0);
-	heavypunch.PushBack({ 917, 693, 62, 93 }, 0.4, 13, 0, -20, 0);
-	heavypunch.PushBack({ 978, 693, 76, 94 }, 0.4, -3, 4, -20, 0);
-	heavypunch.PushBack({ 1054, 672, 79, 110 }, 0.4, 6, 2, -20, 0);
-	heavypunch.PushBack({ 1133, 673, 88, 111 }, 0.4, 16, 2, -20, 0);
-	heavypunch.PushBack({ 1221, 680, 89, 106 }, 0.4, 23, 0, -20, 0);
-	heavypunch.PushBack({ 1307, 649, 84, 138 }, 0.4, 21, -1, -20, 0);
-	heavypunch.PushBack({ 1391, 646, 93, 136 }, 0.2, 10, 0, -20, 0);
-	heavypunch.PushBack({ 1484, 643, 64, 133 }, 0.2, 12, 0, -20, 0);
+	heavypunch.PushBack({ 807, 694, 57, 92 }, 0.04, 13, 0, 8, 0);
+	heavypunch.PushBack({ 864, 691, 54, 95 }, 0.04, 13, 0, 8, 0);
+	heavypunch.PushBack({ 917, 693, 62, 93 }, 0.04, 13, 0, 8, 0);
+	heavypunch.PushBack({ 978, 693, 76, 94 }, 0.04, -3, 4, 0, 4);
+	heavypunch.PushBack({ 1054, 672, 79, 110 }, 0.04, 6, 2, -4, 2);
+	heavypunch.PushBack({ 1133, 673, 88, 111 }, 0.04, 16, 2, -11, 2);
+	heavypunch.PushBack({ 1221, 680, 89, 106 }, 0.04, 23, 0, -14, 0);
+	//heavypunch.PushBack({ 1307, 649, 84, 138 }, 0.04, 21, -1, 0, -1);
+	//heavypunch.PushBack({ 1391, 646, 93, 136 }, 0.02, 10, 0, 0, 0);
+	//heavypunch.PushBack({ 1484, 643, 64, 133 }, 0.02, 12, 0, 0, 0);
 
 	//TO DO
 	Annu.PushBack({ 15, 638, 78, 62 }, 0.02, 13, 0, -20, 0);
