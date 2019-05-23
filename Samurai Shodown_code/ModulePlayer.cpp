@@ -61,11 +61,11 @@ ModulePlayer::ModulePlayer()
 	jumpup.PushBack({ 496, 1604, 60, 105 }, 0.11, 0, 0, 0, 0);
 	jumpup.loop = false;
 
-	hawk_carry.PushBack({ 64, 1547, 46, 56 }, 0.11, 0, 0, 7, 0);
-	hawk_carry.PushBack({ 112, 1541, 43, 67 }, 0.11, 0, 0,7, 0);
-	hawk_carry.PushBack({ 159, 1547, 42, 60 }, 0.11, 0, 0, 7, 0);
-	hawk_carry.PushBack({ 204, 1546, 42, 60 }, 0.11, 0, 0, 7, 0);
-	hawk_carry.PushBack({ 247, 1544, 41, 60 }, 0.11, 0, 0, 7, 0);
+	hawk_carry.PushBack({ 64, 1547, 46, 56 }, 0.11, 0, -3, 9, -3);
+	hawk_carry.PushBack({ 112, 1541, 43, 67 }, 0.11, 0, -3,9, -3);
+	hawk_carry.PushBack({ 159, 1547, 42, 60 }, 0.11, 0, -3, 9, -3);
+	hawk_carry.PushBack({ 204, 1546, 42, 60 }, 0.11, 0, -3, 9, -3);
+	hawk_carry.PushBack({ 247, 1544, 41, 60 }, 0.11, 0, -3, 9, -3);
 	//hawk_carry.PushBack({ 292, 1544, 47, 62 }, 0.11, 0, 0, 0, 0);
 	//hawk_carry.PushBack({ 337, 1535, 51, 77 }, 0.11, 0, 0, 0, 0);
 	hawk_carry.loop = false;
@@ -85,23 +85,24 @@ ModulePlayer::ModulePlayer()
 	mediumpunch.PushBack({ 1325, 1020, 103, 111 }, 0.4, 5, 6, -18, 6);
 	mediumpunch.PushBack({ 1424, 1017, 84, 106}, 0.4,   1, -1, -8, -1);
 
-	//TO DO
-	heavypunch.PushBack({ 807, 694, 57, 92 }, 0.04, 13, 0, 8, 0);
-	heavypunch.PushBack({ 864, 691, 54, 95 }, 0.04, 13, 0, 8, 0);
-	heavypunch.PushBack({ 917, 693, 62, 93 }, 0.04, 13, 0, 8, 0);
-	heavypunch.PushBack({ 978, 693, 76, 94 }, 0.04, -3, 4, 0, 4);
-	heavypunch.PushBack({ 1054, 672, 79, 110 }, 0.04, 6, 2, -4, 2);
-	heavypunch.PushBack({ 1133, 673, 88, 111 }, 0.04, 16, 2, -11, 2);
-	heavypunch.PushBack({ 1221, 680, 89, 106 }, 0.04, 23, 0, -14, 0);
-	//heavypunch.PushBack({ 1307, 649, 84, 138 }, 0.04, 21, -1, 0, -1);
-	//heavypunch.PushBack({ 1391, 646, 93, 136 }, 0.02, 10, 0, 0, 0);
-	//heavypunch.PushBack({ 1484, 643, 64, 133 }, 0.02, 12, 0, 0, 0);
+	
+	heavypunch.PushBack({ 807, 694, 57, 92 }, 0.4, 13, 0, 8, 0);
+	heavypunch.PushBack({ 864, 691, 54, 95 }, 0.4, 13, 0, 8, 0);
+	heavypunch.PushBack({ 917, 693, 62, 93 }, 0.4, 13, 0, 8, 0);
+	heavypunch.PushBack({ 978, 693, 76, 94 }, 0.4, -3, 4, 0, 4);
+	heavypunch.PushBack({ 1054, 672, 79, 110 }, 0.4, 6, 2, -4, 2);
+	heavypunch.PushBack({ 1133, 673, 88, 111 }, 0.4, 16, 2, -11, 2);
+	heavypunch.PushBack({ 1221, 680, 89, 106 }, 0.4, 23, 0, -14, 0);
+	heavypunch.PushBack({ 1307, 649, 84, 138 }, 0.4, 21, -1, -10, -1);
+	heavypunch.PushBack({ 1391, 646, 93, 136 }, 0.2, 10, 0, -10, 0);
+	heavypunch.PushBack({ 1484, 643, 64, 133 }, 0.2, 12, 0, -4, 0);
 
 	//TO DO
-	Annu.PushBack({ 15, 638, 78, 62 }, 0.02, 13, 0, -20, 0);
-	Annu.PushBack({ 987, 162, 142, 51 }, 0.02, 13, 0, -20, 0);
-	Annu.PushBack({ 240, 650, 142, 51 }, 0.2, 13, 0, -20, 0);
-
+	Annu.PushBack({ 15, 638, 78, 62 }, 0.2, 0, 0, -20, 0);
+	Annu.PushBack({ 987, 162, 142, 51 }, 0.2, 0, 0, -20, 0);
+	
+	Annu.PushBack({ 240, 650, 142, 51 }, 0.2, 0, 0, -20, 0);
+	
 	kick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
 	kick.PushBack({ 70, 1060, 53, 100 }, 0.1, 0, 0, 8, 0);
 	kick.PushBack({ 121, 1061, 95, 98 }, 0.1, 0, 0, -14, 0);
@@ -117,12 +118,12 @@ ModulePlayer::ModulePlayer()
 	//TO DO
 	heavykick.PushBack({ 121, 1061, 95, 98 }, 0.01, 0, 0, -14, 0);
 	
-	//TO DO
-	jumpPunch.PushBack({ 11, 713, 103, 91 }, 0.4, 0, 2, -19, 2);
-	jumpPunch.PushBack({ 117, 713, 89, 92 }, 0.4, 19, 0, -22, 0);
-	jumpPunch.PushBack({ 204, 711, 97, 94 }, 0.4, 13, 0, -20, 0);
-	jumpPunch.PushBack({ 303, 708, 93, 95 }, 0.4, 8, 0, -17, 0);
-	jumpPunch.PushBack({ 395, 708, 101, 92 }, 0.3, -33, 0, 0, 0);
+	
+	jumpPunch.PushBack({ 1383, 1292, 79, 67 }, 0.4, 0, 2, -13, 2);
+	jumpPunch.PushBack({ 1294, 1293, 94, 77 }, 0.4, 8, 4, -15, 2);
+	jumpPunch.PushBack({ 1197, 1290, 96, 68 }, 0.4, 8, 4, -15, 2);
+	jumpPunch.PushBack({ 1127, 1288, 71, 71}, 0.4, 8, 2, -10, 2);
+	
 
 
 	//To DO
@@ -139,11 +140,10 @@ ModulePlayer::ModulePlayer()
 	jumpPunchHeavy.PushBack({ 1484, 643, 64, 133 }, 0.2, 12, 0, -20, 0);
 
 	//TO DO
-	jumpKick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
-	jumpKick.PushBack({ 70, 1060, 53, 100 }, 0.1, 0, 0, 8, 0);
-	jumpKick.PushBack({ 121, 1061, 95, 98 }, 0.1, 0, 0, -14, 0);
-	jumpKick.PushBack({ 70, 1060, 53, 100 }, 0.1, 0, 0, 8, 0);
-	jumpKick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
+	jumpKick.PushBack({ 462, 1811, 59, 81 }, 0.2, 0, 0, 4, 0);
+	jumpKick.PushBack({ 520, 1814, 102, 79 }, 0.1, 0, 0, 8, 0);
+	jumpKick.PushBack({ 462, 1811, 59, 81 }, 0.2, 0, 0, 4, 0);
+	
 
 
 	//TO DO
