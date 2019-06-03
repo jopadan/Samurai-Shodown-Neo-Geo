@@ -179,9 +179,17 @@ ModulePlayer::ModulePlayer()
 
 
 	
-	crouchKick.PushBack({ 118, 1375, 46, 63 }, 0.2, 0, 0, 0, 0);
-	crouchKick.PushBack({ 164, 1378, 80, 60 }, 0.2, 0, 0, 0, 0);
+	crouchKick.PushBack({ 118, 1375, 46, 63 }, 0.02, 0, 0, 0, 0);
+	crouchKick.PushBack({ 164, 1378, 80, 60 }, 0.02, 0, 0, -12, 0);
 
+
+	crouchHeavyKick.PushBack({ 271, 813, 51, 60 }, 0.2, 0, 0, 0, 0);
+	crouchHeavyKick.PushBack({ 322, 813, 42, 57 }, 0.2, 0, 0, 0, 0);
+	crouchHeavyKick.PushBack({ 367, 811, 65, 60 }, 0.18, 0, 0, 0, 0);
+	crouchHeavyKick.PushBack({ 432, 807, 99, 64 }, 0.17, -2, 0, -12, 0);
+	crouchHeavyKick.PushBack({ 367, 811, 65, 60 }, 0.18, 0, 0, 0, 0);
+	crouchHeavyKick.PushBack({ 322, 813, 42, 57 }, 0.2, 0, 0, 0, 0);
+	crouchHeavyKick.PushBack({ 271, 813, 51, 60 }, 0.2, 0, 0, 0, 0);
 
 	block.PushBack({ 21, 805, 72, 89 }, 0.2, 0, 0, 0, 0);
 	block.PushBack({ 93, 804, 75, 89 }, 0.3, 0, 0, 0, 0);
@@ -633,7 +641,7 @@ if (state != current_state)
 		height = +20;
 		if (animstart == 0)
 		{
-			current_animation = &intro;
+			current_animation = &crouchHeavyKick;
 		}
 
 		
