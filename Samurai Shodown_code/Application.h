@@ -41,13 +41,13 @@ public:
 	ModuleSceneHaohmaru* scene_haohmaru;
 	ModuleSceneNakoruru* scene_nakoruru;
 	ModuleCollision* collision;
-	ModulePlayer* player;
-	ModulePlayer2* player2;
 	ModuleFadeToBlack* fade;
 	ModuleMusic* music;
 	ModuleMenu* menu;
 	ModulePetp1* pet;
 	ModulePetp2* pet2;
+	ModulePlayer* player;
+	ModulePlayer2* player2;
 	ModuleEnding* end;
 	ModuleVictoryHaohmaru* winhaoh;
 	ModuleParticles* particles;
