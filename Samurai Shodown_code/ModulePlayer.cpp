@@ -256,24 +256,27 @@ bool ModulePlayer::CleanUp() {
 
 update_status ModulePlayer::Update()
 {
+	
+
+
 	//LOG("%d", combo2);
 	OnHawk = false;
+	dontflip = false;
 	Animation* current_animation = &idle;  //&intro;
 if (App->scene_nakoruru->matchstart == true) current_animation = &idle;
 
 SDL_Rect r2 = shadow.GetCurrentFrame();
-	App->render->Blit(graphicsobj, position.x, 201, &r2, SDL_FLIP_NONE);
 
 	player_states current_state = ST_UNKNOWN;
 	player_states state = process_fsm(App->input->inputs);
-	if (wall == true){
+	/*if (wall == true){
 	if (flip == SDL_FLIP_HORIZONTAL)
 		position.x -= speed;
 	if (flip == SDL_FLIP_NONE)
 		position.x += speed;
 	wall = false;
 	}
-
+	*/
 
 if (state != current_state)
 {
@@ -284,17 +287,20 @@ if (state != current_state)
 	{
 	case ST_IDLE:
 		if (colliderAttack != nullptr) colliderAttack->to_delete = true; collider = true;
-		jumpSpeed = 6;
 		height = 0;
 		height2 = 0;
+		if (position.y < initialPos) { jumpSpeed = -6; }
+		else if (position.y > initialPos) { jumpSpeed = 6; }
+		else { jumpSpeed = 0; }
+		speed = 0;
 		break;
 
 	case ST_WALK_FORWARD:
 		height2 = 0;
 		if (flip == SDL_FLIP_HORIZONTAL)defense = true;
-		if (wall && position.x > 100 ) {}
-		else if (position.x+60 > (-App->render->camera.x + 912)) {}
-		else {
+		//if (wall && position.x > 100 ) {}
+		//else if (position.x+60 > (-App->render->camera.x + 912)) {}
+		//else {
 			if (flip == SDL_FLIP_HORIZONTAL) {
 				current_animation = &backward;
 				
@@ -302,17 +308,17 @@ if (state != current_state)
 			if (flip == SDL_FLIP_NONE) {
 				current_animation = &forward;
 			}
-				position.x += speed;
+			speed = 2;
 			
-		}
+		//}
 		
 		break;
 	case ST_WALK_BACKWARD:
 		height2 = 0;
 		if (flip == SDL_FLIP_NONE)defense = true;
-		if (wall && position.x < 100) {}
-		else if (position.x < -(App->render->camera.x)) {}
-		else {
+		//if (wall && position.x < 100) {}
+		//else if (position.x < -(App->render->camera.x)) {}
+		//else {
 			
 			if (flip == SDL_FLIP_HORIZONTAL) {
 				current_animation = &forward;
@@ -321,9 +327,9 @@ if (state != current_state)
 				current_animation = &backward;
 				
 			}
-				position.x -= speed;
+			speed = -2;
 			
-		}
+		//}
 	
 		break;
 	case ST_JUMP_NEUTRAL:
@@ -404,8 +410,8 @@ if (state != current_state)
 				}
 				break;
 			}
-
-			position.y -= jumpSpeed;
+			LOG("%d", jumpSpeed);
+	
 			if (position.y < 120) {
 				jumpSpeed -= 0.5;
 				if (jumpSpeed < 0) jumpSpeed = -6;
@@ -501,18 +507,19 @@ if (state != current_state)
 				}
 				break;
 			}
-			position.y -= jumpSpeed;
-			if (wall && position.x > 100) {}
-			else if (position.x + 60 > (-App->render->camera.x + 912)) {}
-			else {
-				position.x += 3;
-			}
+			
+			//if (wall && position.x > 100) {}
+			//else if (position.x + 60 > (-App->render->camera.x + 912)) {}
+			//else {
+				speed = 3;
+			//}
 			if (position.y < 120) {
 				jumpSpeed -= 0.5;
 				if (jumpSpeed < 0) jumpSpeed = -6;
 			}
 			if (position.y >= initialPos && jumpSpeed < 0) {
 				animstart = 1;
+				jumpSpeed = 0;
 				position.y = initialPos;
 				jumpPunch.Reset();
 				jumpPunchHeavy.Reset();
@@ -600,18 +607,19 @@ if (state != current_state)
 				}
 				break;
 			}
-			position.y -= jumpSpeed;
-			if (wall && position.x > 100) {}
-			else if (position.x + 60 > (-App->render->camera.x + 912)) {}
-			else {
-				position.x -= 3;
-			}
+			
+			//if (wall && position.x > 100) {}
+			//else if (position.x + 60 > (-App->render->camera.x + 912)) {}
+			//else {
+				speed = -3;
+			//}
 			if (position.y < 120) {
 				jumpSpeed -= 0.5;
 				if (jumpSpeed < 0) jumpSpeed = -6;
 			}
 			if (position.y >= initialPos && jumpSpeed < 0) {
 				animstart = 1;
+				jumpSpeed = 0;
 				position.y = initialPos;
 				jumpPunch.Reset();
 				jumpPunchHeavy.Reset();
@@ -710,19 +718,23 @@ if (state != current_state)
 			{
 				current_animation = &hit;
 				if (flip == SDL_FLIP_NONE) {
-					if (!wall)position.x -= 4;
+				//	if (!wall){
+						speed = -4;
+				//}
 				}
 				if (flip == SDL_FLIP_HORIZONTAL) {
-					if (!wall)position.x += 4;
+					//if (!wall) { 
+						position.x += 4; 
+					//}
 				}
 				if (position.y != initialPos) {
 					current_animation = &hit; 
 					jumpSpeed = 3;
-					position.y += jumpSpeed;
+					
 					
 				}
 				else {
-				
+					jumpSpeed = 0;
 					if (current_animation->AnimationEnd() == true) { animstart = 1; App->input->inputs.Push(IN_DAMAGE_FINISH); playsound = true; }
 				}
 			}
@@ -1084,12 +1096,10 @@ if (state != current_state)
 		current_animation = &Annu;
 		dontflip = true;
 		if (flip == 0) {
-			position.x += mutsubespeed;
-			mutsubespeed -= 0.01;
+			speed = 4;
 		}
 		if (flip == 1) {
-			position.x -= mutsubespeed;
-			mutsubespeed -= 0.01;
+			speed = -4;
 		}
 		position.y -= 0.1;
 		break;
@@ -1100,7 +1110,7 @@ if (state != current_state)
 		if (jumptoHawk == true) {	
 			if (flip == SDL_FLIP_NONE){
 			if (App->pet->position.x < position.x) {
-				position.x -= 3;
+				speed = -3;
 			}
 			else if (App->pet->position.y < position.y) {
 				position.y -= 6;
@@ -1111,7 +1121,7 @@ if (state != current_state)
 			}
 			if (flip == SDL_FLIP_HORIZONTAL) {
 				if (App->pet->position.x > position.x) {
-					position.x += 3;
+					speed = 3;
 				}
 				else if (App->pet->position.y < position.y) {
 					position.y -= 6;
@@ -1140,12 +1150,10 @@ if (state != current_state)
 		current_animation = &Annu;
 		dontflip = true;
 		if(flip == 0){
-			position.x += mutsubespeed;
-			mutsubespeed -= 0.03;
+			speed = 4;
 		}
 		if (flip == 1) {
-			position.x -= mutsubespeed;
-			mutsubespeed -= 0.03;
+			speed = -4;
 		}
 			break;
 	case ST_YATORO_POKU:
@@ -1159,8 +1167,8 @@ if (state != current_state)
 		LOG("KAMUI MUTSUBE");
 		if (position.y<initialPos) { 
 			position.y += 10;
-			if (flip == SDL_FLIP_NONE)position.x+=5;
-			if (flip == SDL_FLIP_HORIZONTAL)position.x -= 5;
+			if (flip == SDL_FLIP_NONE)speed = 4;
+			if (flip == SDL_FLIP_HORIZONTAL)speed -= 4;
 		}
 		else {
 			position.y = initialPos;
@@ -1204,9 +1212,16 @@ if (App->player2->position.x < position.x && dontflip == false) {
 	else {
 		if(dontflip == false)flip = SDL_FLIP_NONE;
 	}
-	speed = 2; 
 	
+	LOG("Position.x = %d", position.x);
+	
+	position.x += speed;
+	
+	position.y -= jumpSpeed;
+
 	SDL_Rect r = current_animation->GetCurrentFrame();
+
+	App->render->Blit(graphicsobj, position.x, 201, &r2, SDL_FLIP_NONE);
 
 	if (flip == SDL_FLIP_NONE){
 
@@ -1248,7 +1263,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			{
 			case IN_RIGHT_DOWN: state = ST_WALK_FORWARD; break;
 			case IN_LEFT_DOWN: state = ST_WALK_BACKWARD; break;
-			case IN_JUMP: state = ST_JUMP_NEUTRAL;  App->input->jump_timer = SDL_GetTicks(); jumptimer = SDL_GetTicks(); break;
+			case IN_JUMP: state = ST_JUMP_NEUTRAL; jumpSpeed = 6;  App->input->jump_timer = SDL_GetTicks(); jumptimer = SDL_GetTicks(); break;
 			case IN_CROUCH_DOWN: state = ST_CROUCH; break;
 			case IN_1:
 				if (SDL_GetTicks() - combotime < 120) {
@@ -1327,7 +1342,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_BLOCK: state = ST_BLOCK; break;
 			case IN_RIGHT_UP: state = ST_IDLE; break;
 			case IN_LEFT_AND_RIGHT: state = ST_IDLE; break;
-			case IN_JUMP: state = ST_JUMP_FORWARD; jumptimer = SDL_GetTicks();  App->input->jump_timer = SDL_GetTicks();  break;
+			case IN_JUMP: state = ST_JUMP_FORWARD; jumpSpeed = 6; jumptimer = SDL_GetTicks();  App->input->jump_timer = SDL_GetTicks();  break;
 			case IN_CROUCH_DOWN: state = ST_CROUCH; break;
 			case IN_1:
 				if (SDL_GetTicks() - combotime < 120) {
@@ -1415,7 +1430,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_BLOCK: state = ST_BLOCK; break;
 			case IN_LEFT_UP: state = ST_IDLE; break;
 			case IN_LEFT_AND_RIGHT: state = ST_IDLE; break;
-			case IN_JUMP: state = ST_JUMP_BACKWARD; jumptimer = SDL_GetTicks(); App->input->jump_timer = SDL_GetTicks();  break;
+			case IN_JUMP: state = ST_JUMP_BACKWARD; jumpSpeed = 6; jumptimer = SDL_GetTicks(); App->input->jump_timer = SDL_GetTicks();  break;
 			case IN_CROUCH_DOWN: state = ST_CROUCH; break;
 			case IN_1:
 				if (SDL_GetTicks() - combotime < 120) {
@@ -1474,7 +1489,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			{
 			case IN_JUMP_FINISH: state = ST_IDLE; animstart = 0; jumpanim = 0; collider = false; jumpup.Reset(); break;
 			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0; jumpanim = 0; break;
-			case IN_LEFT_DOWN: if (initialPos - position.y < 50) state = ST_JUMP_BACKWARD;  jumptimer = SDL_GetTicks(); App->input->jump_timer = SDL_GetTicks();   break;
+			case IN_LEFT_DOWN: if (initialPos - position.y < 50) state = ST_JUMP_BACKWARD; jumptimer = SDL_GetTicks(); App->input->jump_timer = SDL_GetTicks();   break;
 			case IN_RIGHT_DOWN: if (initialPos - position.y < 50) state = ST_JUMP_FORWARD; jumptimer = SDL_GetTicks();  App->input->jump_timer = SDL_GetTicks();  break;
 				//	case IN_1: state = ST_PUNCH_NEUTRAL_JUMP;  App->input->punch_timer = SDL_GetTicks(); break;
 			case IN_WIN: state = ST_WIN; jumpanim = 0;  break;
@@ -1608,7 +1623,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		case ST_HAWKCARRY:
 			switch (last_input)
 			{
-			case IN_HAWK_CARRY_FINISH: state = ST_JUMP_NEUTRAL; App->input->jump_timer = SDL_GetTicks(); animstart = 0; break;
+			case IN_HAWK_CARRY_FINISH: state = ST_JUMP_NEUTRAL; jumpSpeed = 6; App->input->jump_timer = SDL_GetTicks(); animstart = 0; break;
 			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
 			case IN_WIN: state = ST_WIN; break;
 			case IN_DEFEAT: state = ST_DEFEAT; break;
@@ -1779,11 +1794,33 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 
-	if (colliderPlayer == c1 && c2->type== COLLIDER_WALL)
+	if (colliderPlayer == c1 && c2->type == COLLIDER_ENEMY_SHOT && defense == false)
 	{
-		wall = true;
+		if (App->player2->colliderAttack != nullptr) {
+			App->player2->colliderAttack->to_delete = true;
+		}
+		App->ui->HealthBar_p1 -= App->player2->Damage;
+		App->slowdown->StartSlowdown(600, 40);
+		App->render->StartCameraShake(300, 3);
+		App->input->inputs.Push(IN_DAMAGE);
+
+
 	}
 
+	if (colliderPlayer == c1 && c2->type == COLLIDER_ENEMY_SHOT && defense == true) App->input->inputs.Push(IN_BLOCK); if (App->player2->colliderAttack != nullptr) App->player2->colliderAttack->to_delete = true;
+	
+	if (colliderPlayer == c1 && c2->type == COLLIDER_WALL)
+	{
+		//wall = true;
+		if (position.x < 100) {
+			position.x -= speed;
+			//wall = false;
+		}
+		if (position.x > 100) {
+			position.x -= speed;
+			//wall = false;
+		}
+	}
 	if (App->input->right == true && colliderPlayer == c1 && c2->type == COLLIDER_ENEMY) {
 		if (flip == SDL_FLIP_NONE && position.x < 490) {
 
@@ -1797,16 +1834,5 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	}
 	
 	
-	if (colliderPlayer == c1 && c2->type == COLLIDER_ENEMY_SHOT && defense == false)
-	{
-		if (App->player2->colliderAttack != nullptr){
-			App->player2->colliderAttack->to_delete = true;}
-		App->ui->HealthBar_p1 -= App->player2->Damage;
-		App->slowdown->StartSlowdown(600, 40);
-		App->render->StartCameraShake(300, 3);
-		App->input->inputs.Push(IN_DAMAGE);
-	
-		
-	}
-if (colliderPlayer == c1 && c2->type == COLLIDER_ENEMY_SHOT && defense == true) App->input->inputs.Push(IN_BLOCK); if (App->player2->colliderAttack != nullptr) App->player2->colliderAttack->to_delete = true;
+
 }

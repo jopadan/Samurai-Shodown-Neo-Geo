@@ -21,7 +21,7 @@ private:
 	bool cycloneAnim = false;
 	bool tornadoAnim;
 	int initialPos;
-	float jumpSpeed = 6;
+	float jumpSpeed = 0;
 	int animstart=0;
 	bool shoot = true;
 	bool collider = true;

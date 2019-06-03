@@ -922,6 +922,18 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 
 
 void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
+	
+if (colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER_SHOT && defense == false)
+	{
+		if (App->player->colliderAttack != nullptr)
+			App->player->colliderAttack->to_delete = true;
+		App->ui->Health_Bar_p2 -= App->player->Damage;
+		App->slowdown->StartSlowdown(1200, 100);
+		App->render->StartCameraShake(300, 10);
+		App->input->inputs2.Push(IN_DAMAGE_P2);
+	}
+	if (colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER_SHOT && defense == true) App->input->inputs2.Push(IN_BLOCK_P2); if (App->player->colliderAttack != nullptr)App->player->colliderAttack->to_delete = true;
+
 
 	if (colliderPlayer2 == c1 && c2->type == COLLIDER_WALL)
 	{
@@ -930,7 +942,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 
 	if (App->input->right2 == true && colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER) {
 		if (flip == SDL_FLIP_NONE && position.x < 490) {
-
+			
 			App->player->position.x += speed;
 		}
 	}
@@ -940,17 +952,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 		}
 
 	}
-		if (colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER_SHOT && defense == false)
-		{
-			if (App->player->colliderAttack != nullptr)
-				App->player->colliderAttack->to_delete = true;
-			App->ui->Health_Bar_p2 -= App->player->Damage;
-			App->slowdown->StartSlowdown(1200, 100);
-			App->render->StartCameraShake(300, 10);
-			App->input->inputs2.Push(IN_DAMAGE_P2);
-		}
-		if (colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER_SHOT && defense == true) App->input->inputs2.Push(IN_BLOCK_P2); if (App->player->colliderAttack != nullptr)App->player->colliderAttack->to_delete = true;
-
+		
 
 	}
 
