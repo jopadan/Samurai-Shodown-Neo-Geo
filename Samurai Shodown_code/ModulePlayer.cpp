@@ -110,25 +110,14 @@ ModulePlayer::ModulePlayer()
 	kick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
 	
 
-	
-    mediumkick.PushBack({ 83, 1709, 51, 77 }, 0.1, 0, -10, 6, -10);
-	mediumkick.PushBack({ 140, 1711, 54, 73 }, 0.2, 0, -10, 6, -10);
-	mediumkick.PushBack({ 195, 1710, 50, 77 }, 0.2, 0, -10, 6, -10);
-	mediumkick.PushBack({ 244, 1708, 52, 72 }, 0.2, 0, -10, 6, -10);
-	mediumkick.PushBack({ 296, 1704, 99, 86 }, 0.2, 0, -10, -20, -10);
-	mediumkick.PushBack({ 394, 1703, 60, 83 }, 0.2, 0, -10, 6, -10);
-	mediumkick.PushBack({ 451, 1706, 49, 82 }, 0.2, 0, -10, 6, -10);
+	//TO DO
+	mediumkick.PushBack({ 14, 1061, 56, 98 }, 0.01, 0, 0, 4, 0);
 	
 
 
+	//TO DO
+	heavykick.PushBack({ 121, 1061, 95, 98 }, 0.01, 0, 0, -14, 0);
 	
-	heavykick.PushBack({ 901, 31, 50, 110 }, 0.2, 0, 3, 7, 3);
-	heavykick.PushBack({ 951, 33, 64, 107 }, 0.2, 0, 3, 0, 3);
-	heavykick.PushBack({ 1012, 34, 58, 106 }, 0.2, 0, 3, 0, 3);
-	heavykick.PushBack({ 1069, 40, 95, 98 }, 0.2, 0, 0, -18, 0);
-	
-
-
 	
 	jumpPunch.PushBack({ 1383, 1292, 79, 67 }, 0.4, 0, 2, -13, 2);
 	jumpPunch.PushBack({ 1294, 1293, 94, 77 }, 0.4, 8, 4, -15, 2);
@@ -150,10 +139,10 @@ ModulePlayer::ModulePlayer()
 	jumpPunchHeavy.PushBack({ 1391, 646, 93, 136 }, 0.2, 10, 0, -20, 0);
 	jumpPunchHeavy.PushBack({ 1484, 643, 64, 133 }, 0.2, 12, 0, -20, 0);
 
-	
-	jumpKick.PushBack({ 462, 1811, 59, 81 }, 0.2, 0, 0, 0, 0);
-	jumpKick.PushBack({ 520, 1814, 102, 79 }, 0.1, 0, 0, -17, 0);
-	jumpKick.PushBack({ 462, 1811, 59, 81 }, 0.2, 0, 0, 0, 0);
+	//TO DO
+	jumpKick.PushBack({ 462, 1811, 59, 81 }, 0.2, 0, 0, 4, 0);
+	jumpKick.PushBack({ 520, 1814, 102, 79 }, 0.1, 0, 0, 8, 0);
+	jumpKick.PushBack({ 462, 1811, 59, 81 }, 0.2, 0, 0, 4, 0);
 	
 
 
