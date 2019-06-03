@@ -73,7 +73,9 @@ public:
 	Animation heavypunch;
 	Animation crouch;
 	Animation crouchPunch;
+	Animation crouchHeavyPunch;
 	Animation crouchKick;
+	Animation crouchHeavyKick;
 	Animation intro;
 	Animation kick;
 	Animation mediumkick;
