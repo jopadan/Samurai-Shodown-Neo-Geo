@@ -110,6 +110,8 @@ public:
 	int height2 = 0;
 	bool dontflip = false;
 	int jumpanim = 0;
+	int Heavytimer = 0;
+	int heavytimerstart = 0;
 	Collider *colliderPlayer;
 	Collider *colliderPlayer_2;
 	Collider *colliderAttack;

@@ -124,15 +124,15 @@ bool ModuleInput::external_input()
 				break;
 			case SDLK_7:
 				if (playerinput == true)
-					App->input->inputs2.Push(IN_1_P2);
+					App->input->inputs2.Push(IN_7);
 				break;
 			case SDLK_8:
 				if (playerinput == true)
-					App->input->inputs2.Push(IN_2_P2);
+					App->input->inputs2.Push(IN_8);
 				break;
 			case SDLK_9:
 				if (playerinput == true)
-					App->input->inputs2.Push(IN_3_P2);
+					App->input->inputs2.Push(IN_8);
 				break;
 			case SDLK_0:
 				if (playerinput == true)
@@ -323,19 +323,19 @@ bool ModuleInput::external_input()
 		}
 		if (SDL_GameControllerGetButton(gGameController2, SDL_CONTROLLER_BUTTON_X) == 1) {
 			if (playerinput == true)
-				App->input->inputs.Push(IN_1_P2);
+				App->input->inputs2.Push(IN_7);
 		}
 		if (SDL_GameControllerGetButton(gGameController2, SDL_CONTROLLER_BUTTON_Y) == 1) {
 			if (playerinput == true)
-				App->input->inputs.Push(IN_2_P2);
+				App->input->inputs2.Push(IN_8);
 		}
 		if (SDL_GameControllerGetButton(gGameController2, SDL_CONTROLLER_BUTTON_A) == 1) {
 			if (playerinput == true)
-				App->input->inputs.Push(IN_3_P2);
+				App->input->inputs2.Push(IN_9);
 		}
 		if (SDL_GameControllerGetButton(gGameController2, SDL_CONTROLLER_BUTTON_B) == 1) {
 			if (playerinput == true)
-				App->input->inputs.Push(IN_0);
+				App->input->inputs2.Push(IN_0);
 		}
 
 
@@ -634,12 +634,12 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs, p2Qeue<player_in
 			Kamui_timer2 = 0;
 		}
 	}
-	if (Amube_Yatoro_timer > 0)
+	if (AmubeYatoro_timer2 > 0)
 	{
-		if (SDL_GetTicks() - Amube_Yatoro_timer > AMUBEYATORO_TIME)
+		if (SDL_GetTicks() - AmubeYatoro_timer2 > AMUBEYATORO_TIME)
 		{
-			inputs.Push(IN_AMUBE_YATORO_FINISH);
-			Amube_Yatoro_timer = 0;
+			inputs2.Push(IN_AMUBE_YATORO_FINISH);
+			AmubeYatoro_timer2 = 0;
 		}
 	}
 	

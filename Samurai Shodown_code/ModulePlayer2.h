@@ -97,11 +97,14 @@ public:
 	bool hawkdown = false;
 	bool hawkup = false;
 	float mutsubespeed = 10;
+	bool amubeyatoro = true;
 	float acc = 0.01;
 	int height = 0;
 	int height2 = 0;
 	bool dontflip = false;
 	int jumpanim = 0;
+	int Heavytimer = 0;
+	int heavytimerstart = 0;
 	Collider *colliderPlayer2; 
 	Collider *colliderPlayer2_2;
 	Collider *colliderAttack;
