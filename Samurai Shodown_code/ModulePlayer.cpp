@@ -410,7 +410,7 @@ if (state != current_state)
 				}
 				break;
 			}
-			LOG("%d", jumpSpeed);
+			
 	
 			if (position.y < 120) {
 				jumpSpeed -= 0.5;
@@ -675,6 +675,7 @@ if (state != current_state)
 			if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
 		}
 		break;
+
 	case ST_HEAVY_PUNCH_CROUCH:
 		Damage = 25;
 		if (flip == SDL_FLIP_NONE) {
@@ -1095,6 +1096,7 @@ if (state != current_state)
 	case ST_LEYLA_MUTSUBE:
 		current_animation = &Annu;
 		dontflip = true;
+		
 		if (flip == 0) {
 			speed = 4;
 		}
@@ -1213,7 +1215,7 @@ if (App->player2->position.x < position.x && dontflip == false) {
 		if(dontflip == false)flip = SDL_FLIP_NONE;
 	}
 	
-	LOG("Position.x = %d", position.x);
+	
 	
 	position.x += speed;
 	
@@ -1244,6 +1246,7 @@ if (App->player2->position.x < position.x && dontflip == false) {
 	else {
 		if (colliderPlayer_2 != nullptr)colliderPlayer_2->SetPos(position.x + 15, position.y - 50 - height2);
 	}
+	LOG("combo 1 = %d", combo1);
 	return UPDATE_CONTINUE;
 }
 

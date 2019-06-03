@@ -7,6 +7,7 @@
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
 #include "ModulePlayer.h"
+#include "ModulePetP2.h"
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
 #include "ModuleSceneHaohmaru.h"
