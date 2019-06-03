@@ -1655,7 +1655,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 		case ST_AMUBE_YATORO:
 			switch (last_input)
 			{
-			case IN_AMUBE_YATORO_FINISH: state = ST_IDLE; break;
+			case IN_AMUBE_YATORO_FINISH: state = ST_IDLE; amubeyatoro = false; break;
 			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
 			}
 			break;
