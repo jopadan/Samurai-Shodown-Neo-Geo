@@ -246,9 +246,6 @@ bool ModulePlayer::CleanUp() {
 update_status ModulePlayer::Update()
 {
 	
-
-
-	//LOG("%d", combo2);
 	OnHawk = false;
 	dontflip = false;
 	Animation* current_animation = &idle;  //&intro;
@@ -258,14 +255,7 @@ SDL_Rect r2 = shadow.GetCurrentFrame();
 
 	player_states current_state = ST_UNKNOWN;
 	player_states state = process_fsm(App->input->inputs);
-	/*if (wall == true){
-	if (flip == SDL_FLIP_HORIZONTAL)
-		position.x -= speed;
-	if (flip == SDL_FLIP_NONE)
-		position.x += speed;
-	wall = false;
-	}
-	*/
+
 
 if (state != current_state)
 {
@@ -399,7 +389,6 @@ if (state != current_state)
 				}
 				break;
 			}
-			LOG("%d", jumpSpeed);
 	
 			if (position.y < 120) {
 				jumpSpeed -= 0.5;
@@ -1200,7 +1189,6 @@ if (App->player2->position.x < position.x && dontflip == false) {
 		if(dontflip == false)flip = SDL_FLIP_NONE;
 	}
 	
-	LOG("Position.x = %d", position.x);
 	
 	position.x += speed;
 	
