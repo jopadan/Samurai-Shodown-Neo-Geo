@@ -23,6 +23,7 @@ public:
 	Animation* current_animation = nullptr;
 	Animation idle;
 	Animation move;
+	Animation amube;
 	SDL_RendererFlip flip = SDL_FLIP_NONE;
 	iPoint position;
 };

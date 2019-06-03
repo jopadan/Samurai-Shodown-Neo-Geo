@@ -104,6 +104,18 @@ update_status ModulePetp1::Update() {
 		speedy = -4;
 	}
 }
+	/*if (App->player->amubeyatoro == true) {
+		//current_animation = &amube;
+		flip = App->player->flip;
+		if (flip == false) {
+			speedx = 20;
+			speedy = 5;
+		}
+		if (flip == true) {
+			speedx = -20;
+			speedy = -5;
+		}
+	}*/
 	if (App->player->OnHawk == true) {
 		flip = App->player->flip;
 		speedx = 0; speedy = 0;

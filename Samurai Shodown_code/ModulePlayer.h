@@ -89,6 +89,7 @@ public:
 	Animation defeat;
 	Animation hawk_carry;
 	Animation Annu;
+	Animation amube;
 	iPoint position;
 	Uint32 Damage = 20;
 	bool deletecol = true;
@@ -103,6 +104,7 @@ public:
 	bool hawkdown = false;
 	bool hawkup = false;
 	float mutsubespeed = 10;
+	bool amubeyatoro = true;
 	float acc = 0.01;
 	int height = 0;
 	int height2 = 0;

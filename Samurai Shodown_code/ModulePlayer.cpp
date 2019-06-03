@@ -1150,6 +1150,10 @@ if (state != current_state)
 			position.y = initialPos;
 		}
 		break;
+	case ST_AMUBE_YATORO:
+		LOG("AMUBE YATORO");
+		current_animation = &amube;
+		break;
 	case ST_WIN:
 		current_animation = &win;
 		break;
@@ -1328,7 +1332,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 				}
 				if (combo1 == 3) { state = ST_LEYLA_MUTSUBE; mutsubespeed = 5; App->input->AnnuM_timer = SDL_GetTicks(); combo1 = 0; break; }
 				else if (combo3 == 4) {
-					LOG("Amube Yatoro");
+					state = ST_AMUBE_YATORO; amubeyatoro = true; App->input->Amube_Yatoro_timer = SDL_GetTicks(); combo3 = 0; break;
 				}
 
 				else {
@@ -1416,7 +1420,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 				}
 				if (combo1 == 3) { state = ST_LEYLA_MUTSUBE; mutsubespeed = 5; App->input->AnnuM_timer = SDL_GetTicks(); combo1 = 0; break; }
 				else if (combo3 == 4) {
-					LOG("Amube Yatoro");
+					state = ST_AMUBE_YATORO; amubeyatoro = true; App->input->Amube_Yatoro_timer = SDL_GetTicks(); combo3 = 0; break;
 				}
 
 				else {
@@ -1628,6 +1632,13 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			switch (last_input)
 			{
 			case IN_KAMUI_MUTSUBE_FINISH: state = ST_IDLE; dontflip = false; break;
+			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
+			}
+			break;
+		case ST_AMUBE_YATORO:
+			switch (last_input)
+			{
+			case IN_AMUBE_YATORO_FINISH: state = ST_IDLE; amubeyatoro = false; break;
 			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
 			}
 			break;
