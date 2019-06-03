@@ -174,8 +174,12 @@ ModulePlayer::ModulePlayer()
 
 
 	
-	crouchKick.PushBack({ 118, 1375, 46, 63 }, 0.02, 0, 0, 0, 0);
-	crouchKick.PushBack({ 164, 1378, 80, 60 }, 0.02, 0, 0, 0, 0);
+	crouchKick.PushBack({ 118, 1375, 46, 63 }, 0.2, 0, 0, 0, 0);
+	crouchKick.PushBack({ 164, 1378, 80, 60 }, 0.2, 0, 0, 0, 0);
+
+
+	block.PushBack({ 21, 805, 72, 89 }, 0.2, 0, 0, 0, 0);
+	block.PushBack({ 93, 804, 75, 89 }, 0.3, 0, 0, 0, 0);
 
 	hit.PushBack({ 1805, 51, 69, 98 }, 0.2, 0, 5, 0, 5);
 	hit.PushBack({ 1876, 53, 73, 95 }, 0.08, 0, 5, 0, 5);
