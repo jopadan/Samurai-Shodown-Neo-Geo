@@ -180,6 +180,7 @@ ModulePlayer::ModulePlayer()
 
 	block.PushBack({ 21, 805, 72, 89 }, 0.2, 0, 0, 0, 0);
 	block.PushBack({ 93, 804, 75, 89 }, 0.3, 0, 0, 0, 0);
+	block.loop = false;
 
 	hit.PushBack({ 1805, 51, 69, 98 }, 0.2, 0, 5, 0, 5);
 	hit.PushBack({ 1876, 53, 73, 95 }, 0.08, 0, 5, 0, 5);
