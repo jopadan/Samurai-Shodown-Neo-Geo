@@ -1,0 +1,12 @@
+Hitbox, Player 2, Atacs especials restants - Pol G i Albert
+Escenes(Victoria, Derrota, NeoGeo, *Seleccio d personatges*) - Pol Julian
+UI - Pol G
+Sistema de moviment - Albert
+Particules d'impacte - Pol G - & diferenciar atacs que tiren i que no - Albert ft. Pol Juan
+Sons - Pol Juion
+Fonts - Pol G ft. Albert(?)
+Pagina Weeb
+*Vibracio dels mandos*
+*Pow efectes*
+*Sprints & Dashes*
+Animacions salts laterals - Pol Juan
