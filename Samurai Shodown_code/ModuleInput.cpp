@@ -438,7 +438,14 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs, p2Qeue<player_in
 			punch_c_timer = 0;
 		}
 	}
-
+	if (kick_c_timer > 0)
+	{
+		if (SDL_GetTicks() - punch_c_timer > CROUCH_KICK_TIME)
+		{
+			inputs.Push(IN_KICK_CROUCH_FINISH);
+			kick_c_timer = 0;
+		}
+	}
 	if (kick_timer > 0)
 	{
 		if (SDL_GetTicks() - kick_timer > KICK_TIME)
@@ -569,6 +576,14 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs, p2Qeue<player_in
 		{
 			inputs2.Push(IN_PUNCH_CROUCH_FINISH_P2);
 			punch_c_timer2 = 0;
+		}
+	}
+	if (kick_c_timer2 > 0)
+	{
+		if (SDL_GetTicks() - punch_c_timer > CROUCH_KICK_TIME)
+		{
+			inputs.Push(IN_KICK_CROUCH_FINISH_P2);
+			kick_c_timer2 = 0;
 		}
 	}
 	if (hawk_carry_timer2 > 0)

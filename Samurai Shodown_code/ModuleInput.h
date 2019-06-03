@@ -13,6 +13,7 @@
 #define MED_PUNCH_TIME 700
 #define HEAVY_PUNCH_TIME 700
 #define CROUCH_PUNCH_TIME 500
+#define CROUCH_KICK_TIME 500
 #define HAWK_CARRY_TIME 7000
 #define ANNUM_TIME 1500
 #define AMUBEYATORO_TIME 700
@@ -108,6 +109,8 @@ enum player_inputs
 	IN_DAMAGE_FINISH_P2,
 	IN_PUNCH_CROUCH_FINISH,
 	IN_PUNCH_CROUCH_FINISH_P2,
+	IN_KICK_CROUCH_FINISH,
+	IN_KICK_CROUCH_FINISH_P2,
 	IN_BLOCK,
 	IN_BLOCK_FINISH,
 	IN_BLOCK_P2,
@@ -173,6 +176,7 @@ public:
 	Uint32 med_punch_timer = 0;
 	Uint32 heavy_punch_timer = 0;
 	Uint32 punch_c_timer = 0;
+	Uint32 kick_c_timer = 0;
 	Uint32 kick_timer = 0;
 	Uint32 med_kick_timer = 0;
 	Uint32 heavy_kick_timer = 0;
@@ -188,6 +192,7 @@ public:
 	Uint32 med_punch_timer2 = 0;
 	Uint32 heavy_punch_timer2 = 0;
 	Uint32 punch_c_timer2 = 0;
+	Uint32 kick_c_timer2 = 0;
 	Uint32 kick_timer2 = 0;
 	Uint32 med_kick_timer2 = 0;
 	Uint32 heavy_kick_timer2 = 0;
