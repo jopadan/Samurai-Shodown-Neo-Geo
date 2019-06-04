@@ -1447,7 +1447,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 				if (SDL_GetTicks() - combotime < 120) {
 					if (HawkCarryCombo == 2)HawkCarryCombo = 3;
 				}
-				if (HawkCarryCombo == 3) { LOG("Quieres ejecutar el halcon"); state = ST_HAWKCARRY; App->input->hawk_carry_timer = SDL_GetTicks(); HawkCarryCombo = 0; break; }
+				if (HawkCarryCombo == 3) { state = ST_HAWKCARRY; App->input->hawk_carry_timer = SDL_GetTicks(); HawkCarryCombo = 0; break; }
 				else {
 					state = ST_KICK_STANDING; Heavytimer = SDL_GetTicks();  App->input->kick_timer = SDL_GetTicks();  break;
 				}

@@ -24,6 +24,11 @@ ModulePlayer2::ModulePlayer2()
 	position.y = 207;
 	initialPos = position.y;
 
+	intro.PushBack({ 1344, 39, 42, 97 }, 0.09, 0, 0, 0, 0);
+	intro.PushBack({ 1386, 38, 40, 98 }, 0.09, 1, 0, 0, 0);
+	intro.PushBack({ 1428, 41, 39, 95 }, 0.07, 2, 0, 0, 0);
+	intro.PushBack({ 1386, 38, 40, 98 }, 0.09, 1, 0, 0, 0);
+	intro.PushBack({ 1344, 39, 42, 97 }, 0.09, 0, 0, 0, 0);
 
 
 	idle.PushBack({ 13, 1614, 65, 87 }, 0.15, 0, 0, 0, 0);
@@ -110,24 +115,36 @@ ModulePlayer2::ModulePlayer2()
 	kick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
 
 
-	//TO DO
-	mediumkick.PushBack({ 14, 1061, 56, 98 }, 0.01, 0, 0, 4, 0);
+
+	mediumkick.PushBack({ 83, 1709, 51, 77 }, 0.1, 0, -10, 6, -10);
+	mediumkick.PushBack({ 140, 1711, 54, 73 }, 0.2, 0, -10, 6, -10);
+	mediumkick.PushBack({ 195, 1710, 50, 77 }, 0.2, 0, -10, 6, -10);
+	mediumkick.PushBack({ 244, 1708, 52, 72 }, 0.2, 0, -10, 6, -10);
+	mediumkick.PushBack({ 296, 1704, 99, 86 }, 0.2, 0, -10, -20, -10);
+	mediumkick.PushBack({ 394, 1703, 60, 83 }, 0.2, 0, -10, 6, -10);
+	mediumkick.PushBack({ 451, 1706, 49, 82 }, 0.2, 0, -10, 6, -10);
 
 
 
-	//TO DO
-	heavykick.PushBack({ 121, 1061, 95, 98 }, 0.01, 0, 0, -14, 0);
+
+	heavykick.PushBack({ 901, 31, 50, 110 }, 0.2, 0, 3, 7, 3);
+	heavykick.PushBack({ 951, 33, 64, 107 }, 0.2, 0, 3, 0, 3);
+	heavykick.PushBack({ 1012, 34, 58, 106 }, 0.2, 0, 3, 0, 3);
+	heavykick.PushBack({ 1069, 40, 95, 98 }, 0.2, 0, 0, -18, 0);
 
 
-	jumpPunch.PushBack({ 1383, 1292, 79, 67 }, 0.4, 0, 2, -13, 2);
-	jumpPunch.PushBack({ 1294, 1293, 94, 77 }, 0.4, 8, 4, -15, 2);
-	jumpPunch.PushBack({ 1197, 1290, 96, 68 }, 0.4, 8, 4, -15, 2);
-	jumpPunch.PushBack({ 1127, 1288, 71, 71 }, 0.4, 8, 2, -10, 2);
+
+	jumpPunch.PushBack({ 1383, 1292, 79, 67 }, 0.3, 0, 2, -13, 2);
+	jumpPunch.PushBack({ 1294, 1293, 94, 77 }, 0.2, 8, 4, -15, 2);
+	jumpPunch.PushBack({ 1197, 1290, 96, 68 }, 0.2, 8, 4, -15, 2);
+	jumpPunch.PushBack({ 1127, 1288, 71, 71 }, 0.3, 8, 2, -10, 2);
+	jumpPunch.PushBack({ 660, 1623, 47, 71 }, 0.002, 0, 0, 0, 0);
+	jumpPunch.loop = false;
 
 
 
 	//To DO
-
+	// Falta meterlo en la spritesheet
 	jumpPunchHeavy.PushBack({ 807, 694, 57, 92 }, 0.4, 13, 0, -20, 0);
 	jumpPunchHeavy.PushBack({ 864, 691, 54, 95 }, 0.4, 13, 0, -20, 0);
 	jumpPunchHeavy.PushBack({ 917, 693, 62, 93 }, 0.4, 13, 0, -20, 0);
@@ -140,20 +157,34 @@ ModulePlayer2::ModulePlayer2()
 	jumpPunchHeavy.PushBack({ 1484, 643, 64, 133 }, 0.2, 12, 0, -20, 0);
 
 	//TO DO
-	jumpKick.PushBack({ 462, 1811, 59, 81 }, 0.2, 0, 0, 4, 0);
-	jumpKick.PushBack({ 520, 1814, 102, 79 }, 0.1, 0, 0, 8, 0);
-	jumpKick.PushBack({ 462, 1811, 59, 81 }, 0.2, 0, 0, 4, 0);
+	jumpFrontPunchHeavy.PushBack({ 807, 694, 57, 92 }, 0.4, 13, 0, -20, 0);
+	jumpFrontPunchHeavy.PushBack({ 864, 691, 54, 95 }, 0.4, 13, 0, -20, 0);
+	jumpFrontPunchHeavy.PushBack({ 917, 693, 62, 93 }, 0.4, 13, 0, -20, 0);
+	jumpFrontPunchHeavy.PushBack({ 978, 693, 76, 94 }, 0.4, -3, 4, -20, 0);
+	jumpFrontPunchHeavy.PushBack({ 1054, 672, 79, 110 }, 0.4, 6, 2, -20, 0);
+	jumpFrontPunchHeavy.loop = false;
 
 
+
+	jumpKick.PushBack({ 462, 1811, 59, 81 }, 0.2, 0, 0, 0, 0);
+	jumpKick.PushBack({ 520, 1814, 102, 79 }, 0.01, 0, 0, -17, 0);
+	jumpKick.PushBack({ 462, 1811, 59, 81 }, 0.2, 0, 0, 0, 0);
+	jumpKick.PushBack({ 660, 1623, 47, 71 }, 0.002, 0, 0, 0, 0);
+	jumpKick.loop = false;
 
 	//TO DO
-	jumpKickHeavy.PushBack({ 14, 1061, 56, 98 }, 0.01, 0, 0, 4, 0);
-	jumpKickHeavy.PushBack({ 14, 1061, 56, 98 }, 0.01, 0, 0, 4, 0);
-	jumpKickHeavy.PushBack({ 14, 1061, 56, 98 }, 0.01, 0, 0, 4, 0);
-	jumpKickHeavy.PushBack({ 14, 1061, 56, 98 }, 0.01, 0, 0, 4, 0);
-	jumpKickHeavy.PushBack({ 14, 1061, 56, 98 }, 0.01, 0, 0, 4, 0);
-	jumpKickHeavy.PushBack({ 14, 1061, 56, 98 }, 0.01, 0, 0, 4, 0);
+	jumpKickHeavy.PushBack({ 462, 1811, 59, 81 }, 0.2, 0, 0, 0, 0);
+	jumpKickHeavy.PushBack({ 656, 1053, 83, 63 }, 0.07, 0, 0, -17, 0);
+	jumpKickHeavy.PushBack({ 462, 1811, 59, 81 }, 0.2, 0, 0, 0, 0);
+	jumpKickHeavy.PushBack({ 660, 1623, 47, 71 }, 0.002, 0, 0, 0, 0);
+	jumpKickHeavy.loop = false;
 
+	//To DO
+	jumpFrontKickHeavy.PushBack({ 462, 1811, 59, 81 }, 0.2, 0, 0, 0, 0);
+	jumpFrontKickHeavy.PushBack({ 740, 1811, 108, 83 }, 0.07, 0, 0, -17, 0);
+	jumpFrontKickHeavy.PushBack({ 462, 1811, 59, 81 }, 0.2, 0, 0, 0, 0);
+	jumpFrontKickHeavy.PushBack({ 660, 1623, 47, 71 }, 0.002, 0, 0, 0, 0);
+	jumpFrontKickHeavy.loop = false;
 
 	crouchPunch.PushBack({ 10, 1460, 53, 61 }, 0.2, 0, 4, 3, 4);
 	crouchPunch.PushBack({ 62, 1462, 85, 65 }, 0.2, 0, 6, -8, 10);
@@ -163,9 +194,17 @@ ModulePlayer2::ModulePlayer2()
 
 
 
-	crouchKick.PushBack({ 118, 1375, 46, 63 }, 0.2, 0, 0, 0, 0);
-	crouchKick.PushBack({ 164, 1378, 80, 60 }, 0.2, 0, 0, 0, 0);
+	crouchKick.PushBack({ 118, 1375, 46, 63 }, 0.02, 0, 0, 0, 0);
+	crouchKick.PushBack({ 164, 1378, 80, 60 }, 0.02, 0, 0, -12, 0);
 
+
+	crouchHeavyKick.PushBack({ 271, 813, 51, 60 }, 0.2, 0, 0, 0, 0);
+	crouchHeavyKick.PushBack({ 322, 813, 42, 57 }, 0.2, 0, 0, 0, 0);
+	crouchHeavyKick.PushBack({ 367, 811, 65, 60 }, 0.18, 0, 0, 0, 0);
+	crouchHeavyKick.PushBack({ 432, 807, 99, 64 }, 0.17, -2, 0, -12, 0);
+	crouchHeavyKick.PushBack({ 367, 811, 65, 60 }, 0.18, 0, 0, 0, 0);
+	crouchHeavyKick.PushBack({ 322, 813, 42, 57 }, 0.2, 0, 0, 0, 0);
+	crouchHeavyKick.PushBack({ 271, 813, 51, 60 }, 0.2, 0, 0, 0, 0);
 
 	block.PushBack({ 21, 805, 72, 89 }, 0.2, 0, 0, 0, 0);
 	block.PushBack({ 93, 804, 75, 89 }, 0.3, 0, 0, 0, 0);
@@ -273,6 +312,7 @@ update_status ModulePlayer2::Update()
 			else if (position.y > initialPos) { jumpSpeed = 6; }
 			else { jumpSpeed = 0; }
 			speed = 0;
+
 			jumptohawktimer = 0;
 			jumptoHawk = true;
 
@@ -306,13 +346,14 @@ update_status ModulePlayer2::Update()
 			hawk_carry.Reset();
 			Annu.Reset();
 			amube.Reset();
-
 			break;
 
 		case ST_WALK_FORWARD:
 			height2 = 0;
 			if (flip == SDL_FLIP_HORIZONTAL)defense = true;
-			
+			//if (wall && position.x > 100 ) {}
+			//else if (position.x+60 > (-App->render->camera.x + 912)) {}
+			//else {
 			if (flip == SDL_FLIP_HORIZONTAL) {
 				current_animation = &backward;
 
@@ -322,11 +363,15 @@ update_status ModulePlayer2::Update()
 			}
 			speed = 2;
 
-			break;
+			//}
 
+			break;
 		case ST_WALK_BACKWARD:
 			height2 = 0;
 			if (flip == SDL_FLIP_NONE)defense = true;
+			//if (wall && position.x < 100) {}
+			//else if (position.x < -(App->render->camera.x)) {}
+			//else {
 
 			if (flip == SDL_FLIP_HORIZONTAL) {
 				current_animation = &forward;
@@ -337,44 +382,52 @@ update_status ModulePlayer2::Update()
 			}
 			speed = -2;
 
+			//}
+
 			break;
 		case ST_JUMP_NEUTRAL:
 			height2 = 15;
+
+
 			if (animstart == 0 || 2)
 			{
 				switch (jumpanim) {
 				case 0:
+
 					current_animation = &jumpup;
 					break;
 				case 1:
+
 					if (animstart == 0) {
 						current_animation = &jumpPunch;
 						if (collider == true) {
-							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_ENEMY_SHOT, this);
+							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 50, 30 }, COLLIDER_ENEMY_SHOT, this);
 							App->music->PlayChunk(sword);
 							collider = false;
 							time = SDL_GetTicks();
 						}
 						if (SDL_GetTicks() - time > 150) {
 							if (colliderAttack != nullptr)
-								colliderAttack->SetPos(position.x + 30, position.y - 70);
+								if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 30, position.y - 70);
+							if (flip == 1)colliderAttack->SetPos(position.x - 25, position.y - 70);
 						}
 						if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
 
 					}
 					break;
 				case 2:
+
 					if (animstart == 0) {
 						current_animation = &jumpPunchHeavy;
 						if (collider == true) {
-							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_ENEMY_SHOT, this);
+							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 60, 30 }, COLLIDER_ENEMY_SHOT, this);
 							App->music->PlayChunk(sword);
 							collider = false;
 							time = SDL_GetTicks();
 						}
 						if (SDL_GetTicks() - time > 150) {
-							if (colliderAttack != nullptr)
-								colliderAttack->SetPos(position.x + 30, position.y - 70);
+							if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 30, position.y - 70);
+							if (flip == 1)colliderAttack->SetPos(position.x - 35, position.y - 70);
 						}
 						if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
 
@@ -384,14 +437,14 @@ update_status ModulePlayer2::Update()
 					if (animstart == 0) {
 						current_animation = &jumpKick;
 						if (collider == true) {
-							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_ENEMY_SHOT, this);
+							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 30, 30 }, COLLIDER_ENEMY_SHOT, this);
 							App->music->PlayChunk(sword);
 							collider = false;
 							time = SDL_GetTicks();
 						}
 						if (SDL_GetTicks() - time > 150) {
-							if (colliderAttack != nullptr)
-								colliderAttack->SetPos(position.x + 30, position.y - 70);
+							if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 60, position.y - 40);
+							if (flip == 1)colliderAttack->SetPos(position.x - 35, position.y - 40);
 						}
 						if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
 
@@ -401,21 +454,20 @@ update_status ModulePlayer2::Update()
 					if (animstart == 0) {
 						current_animation = &jumpKickHeavy;
 						if (collider == true) {
-							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_ENEMY_SHOT, this);
+							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 70, 30 }, COLLIDER_ENEMY_SHOT, this);
 							App->music->PlayChunk(sword);
 							collider = false;
 							time = SDL_GetTicks();
 						}
 						if (SDL_GetTicks() - time > 150) {
-							if (colliderAttack != nullptr)
-								colliderAttack->SetPos(position.x + 30, position.y - 70);
+							if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 10, position.y - 40);
+							if (flip == 1)colliderAttack->SetPos(position.x - 35, position.y - 40);
 						}
 						if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
 
 					}
 					break;
 				}
-				
 
 				if (position.y < 120) {
 					jumpSpeed -= 0.5;
@@ -432,6 +484,7 @@ update_status ModulePlayer2::Update()
 				}
 			}
 
+
 			break;
 		case ST_JUMP_FORWARD:
 			height2 = 15;
@@ -446,31 +499,33 @@ update_status ModulePlayer2::Update()
 					if (animstart == 0) {
 						current_animation = &jumpPunch;
 						if (collider == true) {
-							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_ENEMY_SHOT, this);
+							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 50, 30 }, COLLIDER_ENEMY_SHOT, this);
 							App->music->PlayChunk(sword);
 							collider = false;
 							time = SDL_GetTicks();
 						}
 						if (SDL_GetTicks() - time > 150) {
 							if (colliderAttack != nullptr)
-								colliderAttack->SetPos(position.x + 30, position.y - 70);
+								if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 30, position.y - 70);
+							if (flip == 1)colliderAttack->SetPos(position.x - 25, position.y - 70);
 						}
 						if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
 
 					}
 					break;
 				case 2:
+
 					if (animstart == 0) {
-						current_animation = &jumpPunchHeavy;
+						current_animation = &jumpFrontPunchHeavy;
 						if (collider == true) {
-							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_ENEMY_SHOT, this);
+							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 50, 50 }, COLLIDER_ENEMY_SHOT, this);
 							App->music->PlayChunk(sword);
 							collider = false;
 							time = SDL_GetTicks();
 						}
 						if (SDL_GetTicks() - time > 150) {
-							if (colliderAttack != nullptr)
-								colliderAttack->SetPos(position.x + 30, position.y - 70);
+							if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 40, position.y - 80);
+							if (flip == 1)colliderAttack->SetPos(position.x - 35, position.y - 80);
 						}
 						if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
 
@@ -480,14 +535,14 @@ update_status ModulePlayer2::Update()
 					if (animstart == 0) {
 						current_animation = &jumpKick;
 						if (collider == true) {
-							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_ENEMY_SHOT, this);
+							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 30, 30 }, COLLIDER_ENEMY_SHOT, this);
 							App->music->PlayChunk(sword);
 							collider = false;
 							time = SDL_GetTicks();
 						}
 						if (SDL_GetTicks() - time > 150) {
-							if (colliderAttack != nullptr)
-								colliderAttack->SetPos(position.x + 30, position.y - 70);
+							if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 60, position.y - 40);
+							if (flip == 1)colliderAttack->SetPos(position.x - 35, position.y - 40);
 						}
 						if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
 
@@ -495,16 +550,16 @@ update_status ModulePlayer2::Update()
 					break;
 				case 4:
 					if (animstart == 0) {
-						current_animation = &jumpKickHeavy;
+						current_animation = &jumpFrontKickHeavy;
 						if (collider == true) {
-							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_ENEMY_SHOT, this);
+							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 70, 30 }, COLLIDER_ENEMY_SHOT, this);
 							App->music->PlayChunk(sword);
 							collider = false;
 							time = SDL_GetTicks();
 						}
 						if (SDL_GetTicks() - time > 150) {
-							if (colliderAttack != nullptr)
-								colliderAttack->SetPos(position.x + 30, position.y - 70);
+							if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 25, position.y - 40);
+							if (flip == 1)colliderAttack->SetPos(position.x - 35, position.y - 40);
 						}
 						if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
 
@@ -534,6 +589,7 @@ update_status ModulePlayer2::Update()
 			}
 			break;
 		case ST_JUMP_BACKWARD:
+
 			height2 = 15;
 			dontflip = true;
 			if (animstart == 0 || 2)
@@ -546,31 +602,33 @@ update_status ModulePlayer2::Update()
 					if (animstart == 0) {
 						current_animation = &jumpPunch;
 						if (collider == true) {
-							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_ENEMY_SHOT, this);
+							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 50, 30 }, COLLIDER_ENEMY_SHOT, this);
 							App->music->PlayChunk(sword);
 							collider = false;
 							time = SDL_GetTicks();
 						}
 						if (SDL_GetTicks() - time > 150) {
 							if (colliderAttack != nullptr)
-								colliderAttack->SetPos(position.x + 30, position.y - 70);
+								if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 30, position.y - 70);
+							if (flip == 1)colliderAttack->SetPos(position.x - 25, position.y - 70);
 						}
 						if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
 
 					}
 					break;
 				case 2:
+
 					if (animstart == 0) {
 						current_animation = &jumpPunchHeavy;
 						if (collider == true) {
-							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_ENEMY_SHOT, this);
+							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 50, 50 }, COLLIDER_ENEMY_SHOT, this);
 							App->music->PlayChunk(sword);
 							collider = false;
 							time = SDL_GetTicks();
 						}
 						if (SDL_GetTicks() - time > 150) {
-							if (colliderAttack != nullptr)
-								colliderAttack->SetPos(position.x + 30, position.y - 70);
+							if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 30, position.y - 80);
+							if (flip == 1)colliderAttack->SetPos(position.x - 35, position.y - 80);
 						}
 						if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
 
@@ -580,14 +638,14 @@ update_status ModulePlayer2::Update()
 					if (animstart == 0) {
 						current_animation = &jumpKick;
 						if (collider == true) {
-							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_ENEMY_SHOT, this);
+							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 30, 30 }, COLLIDER_ENEMY_SHOT, this);
 							App->music->PlayChunk(sword);
 							collider = false;
 							time = SDL_GetTicks();
 						}
 						if (SDL_GetTicks() - time > 150) {
-							if (colliderAttack != nullptr)
-								colliderAttack->SetPos(position.x + 30, position.y - 70);
+							if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 60, position.y - 40);
+							if (flip == 1)colliderAttack->SetPos(position.x - 35, position.y - 40);
 						}
 						if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
 
@@ -595,16 +653,16 @@ update_status ModulePlayer2::Update()
 					break;
 				case 4:
 					if (animstart == 0) {
-						current_animation = &jumpKickHeavy;
+						current_animation = &jumpFrontKickHeavy;
 						if (collider == true) {
-							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_ENEMY_SHOT, this);
+							colliderAttack = App->collision->AddCollider({ 3000, 3000 , 70, 30 }, COLLIDER_ENEMY_SHOT, this);
 							App->music->PlayChunk(sword);
 							collider = false;
 							time = SDL_GetTicks();
 						}
 						if (SDL_GetTicks() - time > 150) {
-							if (colliderAttack != nullptr)
-								colliderAttack->SetPos(position.x + 30, position.y - 70);
+							if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 10, position.y - 40);
+							if (flip == 1)colliderAttack->SetPos(position.x - 35, position.y - 40);
 						}
 						if (current_animation->AnimationEnd() == true) { colliderAttack->to_delete = true; animstart = 2; collider = true; }
 
@@ -633,27 +691,28 @@ update_status ModulePlayer2::Update()
 				}
 			}
 			break;
+
 		case ST_CROUCH:
 			height = +20;
 			if (animstart == 0)
 			{
 				current_animation = &crouch;
-
 			}
-		
+
+
 			break;
 		case ST_PUNCH_CROUCH:
 			Damage = 25;
 			if (flip == SDL_FLIP_NONE) {
 
 				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ position.x, position.y - 70 , 60, 30 }, COLLIDER_ENEMY_SHOT, this);
+					colliderAttack = App->collision->AddCollider({ position.x - 5, position.y - 40 , 60, 30 }, COLLIDER_ENEMY_SHOT, this);
 					App->music->PlayChunk(sword);
 					collider = false;
 				}
 
 				if (colliderAttack != nullptr)
-					colliderAttack->SetPos(position.x + 60, position.y - 40);
+					colliderAttack->SetPos(position.x + 50, position.y - 40);
 				if (animstart == 0)
 				{
 					current_animation = &crouchPunch;
@@ -664,13 +723,13 @@ update_status ModulePlayer2::Update()
 			else if (flip == SDL_FLIP_HORIZONTAL) {
 
 				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ position.x, position.y - 70, 50, 70 }, COLLIDER_ENEMY_SHOT, this);
+					colliderAttack = App->collision->AddCollider({ position.x, position.y - 50, 60, 30 }, COLLIDER_ENEMY_SHOT, this);
 					App->music->PlayChunk(sword);
 					collider = false;
 				}
 
 				if (colliderAttack != nullptr)
-					colliderAttack->SetPos(position.x - 50, position.y - 70);
+					colliderAttack->SetPos(position.x - 45, position.y - 40);
 				if (animstart == 0)
 				{
 					current_animation = &crouchPunch;
@@ -678,7 +737,6 @@ update_status ModulePlayer2::Update()
 				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
 			}
 			break;
-
 		case ST_HEAVY_PUNCH_CROUCH:
 			Damage = 25;
 			if (flip == SDL_FLIP_NONE) {
@@ -715,9 +773,7 @@ update_status ModulePlayer2::Update()
 				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
 			}
 			break;
-
 		case ST_DAMAGE:
-			
 			if (playsound)App->music->PlayChunk(hitted);
 			playsound = false;
 			if (animstart == 0)
@@ -741,7 +797,7 @@ update_status ModulePlayer2::Update()
 				}
 				else {
 					jumpSpeed = 0;
-					if (current_animation->AnimationEnd() == true) { animstart = 1; App->input->inputs2.Push(IN_DAMAGE_FINISH_P2); playsound = true; }
+					if (current_animation->AnimationEnd() == true) { animstart = 1; App->input->inputs.Push(IN_DAMAGE_FINISH); playsound = true; }
 				}
 			}
 
@@ -756,140 +812,83 @@ update_status ModulePlayer2::Update()
 			break;
 		case ST_BLOCK:
 			current_animation = &block;
-			if (current_animation->AnimationEnd() == true) { animstart = 1; App->input->inputs2.Push(IN_BLOCK_FINISH_P2); }
+			if (current_animation->AnimationEnd() == true) { animstart = 1; App->input->inputs.Push(IN_BLOCK_FINISH); }
 			break;
+
 		case ST_PUNCH_STANDING:
 			Damage = 25;
-			if (flip == SDL_FLIP_NONE) {
-				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ 6000, 6000 , 100, 30 }, COLLIDER_ENEMY_SHOT, this);
-					App->music->PlayChunk(sword);
-					collider = false; 
-					time = SDL_GetTicks();
-				}
-				if (SDL_GetTicks() - time > 150) {
 
-					if (colliderAttack != nullptr)
-						colliderAttack->SetPos(position.x + 30, position.y - 70);
-				}
-				if (animstart == 0)
-				{
-					current_animation = &punch;
-					if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
-				}
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ 3000, 3000 , 70, 30 }, COLLIDER_ENEMY_SHOT, this);
+				App->music->PlayChunk(sword);
+				collider = false;
+				time = SDL_GetTicks();
 			}
-			else if (flip == SDL_FLIP_HORIZONTAL) {
-				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ 6000, 6000, 100, 30 }, COLLIDER_ENEMY_SHOT, this);
-					App->music->PlayChunk(sword);
-					collider = false; 
-					time = SDL_GetTicks();
-				}
-				if (SDL_GetTicks() - time > 150) {
-					if (colliderAttack != nullptr)
-						colliderAttack->SetPos(position.x - 75, position.y - 70);
-				}
-				if (animstart == 0)
-				{
-					current_animation = &punch;
-					if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
-				}
+			if (SDL_GetTicks() - time > 150) {
+				if (colliderAttack != nullptr)
+					if (flip == 0)	colliderAttack->SetPos(position.x + 30, position.y - 70);
+				if (flip == 1)	colliderAttack->SetPos(position.x - 50, position.y - 70);
 			}
+			if (animstart == 0)
+			{
+				current_animation = &punch;
+
+				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
+			}
+
 			break;
 		case ST_MEDIUM_PUNCH_STANDING:
 			Damage = 25;
-			if (flip == SDL_FLIP_NONE) {
 
-				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_ENEMY_SHOT, this);
-					App->music->PlayChunk(sword);
-					collider = false;
-					time = SDL_GetTicks();
-				}
-				if (SDL_GetTicks() - time > 150) {
-					if (colliderAttack != nullptr)
-						colliderAttack->SetPos(position.x + 30, position.y - 70);
-				}
-				if (animstart == 0)
-				{
-					current_animation = &mediumpunch;
-
-					if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
-				}
-
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ 3000, 3000 , 60, 80 }, COLLIDER_ENEMY_SHOT, this);
+				App->music->PlayChunk(sword);
+				collider = false;
+				time = SDL_GetTicks();
 			}
-			else if (flip == SDL_FLIP_HORIZONTAL) {
-
-				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ 6000,6000, 100, 30 }, COLLIDER_ENEMY_SHOT, this);
-					App->music->PlayChunk(sword);
-					collider = false;
-					time = SDL_GetTicks();
-				}
-				if (SDL_GetTicks() - time > 150) {
-					if (colliderAttack != nullptr)
-						colliderAttack->SetPos(position.x - 75, position.y - 70);
-				}
-				if (animstart == 0)
-				{
-					current_animation = &mediumpunch;
-
-					if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
-				}
-
+			if (SDL_GetTicks() - time > 150) {
+				if (colliderAttack != nullptr)
+					if (flip == 0)	colliderAttack->SetPos(position.x + 45, position.y - 80);
+				if (flip == 1)  colliderAttack->SetPos(position.x - 50, position.y - 80);
 			}
+			if (animstart == 0)
+			{
+				current_animation = &mediumpunch;
+
+				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
+			}
+
+
+
 			break;
 
 		case ST_HEAVY_PUNCH_STANDING:
 			Damage = 25;
-			if (flip == SDL_FLIP_NONE) {
 
-				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ 3000, 3000 , 100, 30 }, COLLIDER_ENEMY_SHOT, this);
-					App->music->PlayChunk(sword);
-					collider = false;
-					time = SDL_GetTicks();
-				}
-				if (SDL_GetTicks() - time > 150) {
-					if (colliderAttack != nullptr)
-						colliderAttack->SetPos(position.x + 30, position.y - 70);
-				}
-				if (animstart == 0)
-				{
-					current_animation = &heavypunch;
 
-					if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
-				}
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ 3000, 3000 , 45, 80 }, COLLIDER_ENEMY_SHOT, this);
+				App->music->PlayChunk(sword);
+				collider = false;
+				time = SDL_GetTicks();
+			}
+			if (SDL_GetTicks() - time > 150) {
+				if (colliderAttack != nullptr)
+					if (flip == 0)	colliderAttack->SetPos(position.x + 45, position.y - 110);
+				if (flip == 1)	colliderAttack->SetPos(position.x - 35, position.y - 110);
 
 			}
-			else if (flip == SDL_FLIP_HORIZONTAL) {
+			if (animstart == 0)
+			{
+				current_animation = &heavypunch;
 
-				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ 6000,6000, 100, 30 }, COLLIDER_ENEMY_SHOT, this);
-					App->music->PlayChunk(sword);
-					collider = false;
-					time = SDL_GetTicks();
-				}
-				if (SDL_GetTicks() - time > 150) {
-					if (colliderAttack != nullptr)
-						colliderAttack->SetPos(position.x - 75, position.y - 70);
-				}
-				if (animstart == 0)
-				{
-					current_animation = &heavypunch;
-					if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
-				}
-
+				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
 			}
+
+
+
 			break;
-		case ST_PUNCH_NEUTRAL_JUMP:
-			LOG("PUNCH NEUTRAL JUMP ++++\n");
-		case ST_PUNCH_FORWARD_JUMP:
-			LOG("PUNCH JUMP FORWARD ^>>+\n");
-			break;
-		case ST_PUNCH_BACKWARD_JUMP:
-			LOG("PUNCH JUMP BACKWARD ^<<+\n");
-			break;
+
 		case ST_KICK_CROUCH:
 			Damage = 15;
 			if (flip == SDL_FLIP_NONE) {
@@ -964,132 +963,75 @@ update_status ModulePlayer2::Update()
 			break;
 		case ST_KICK_STANDING:
 			Damage = 15;
-			if (flip == SDL_FLIP_NONE) {
-				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ 6000, 6000, 40, 30 }, COLLIDER_ENEMY_SHOT, this);
-					App->music->PlayChunk(kicks);
-					collider = false; 
-					time = SDL_GetTicks();
-				}
-				if (SDL_GetTicks() - time > 100) {
-					if (colliderAttack != nullptr)
-						colliderAttack->SetPos(position.x + 60, position.y-80);
-				}
-				if (animstart == 0)
-				{
-					current_animation = &kick;
-					if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
-				}
-			}
-			else if (flip == SDL_FLIP_HORIZONTAL) {
 
-				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ 6000, 6000, 40, 30 }, COLLIDER_ENEMY_SHOT, this);
-					App->music->PlayChunk(kicks);
-					collider = false; time = SDL_GetTicks();
-				}
-				if (SDL_GetTicks() - time > 100) {
-					if (colliderAttack != nullptr)
-						colliderAttack->SetPos(position.x - 40, position.y - 80);
-				}
-				if (animstart == 0)
-				{
-					current_animation = &kick;
-					if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
-				}
-
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ 3000, 3000, 40, 30 }, COLLIDER_ENEMY_SHOT, this);
+				App->music->PlayChunk(kicks);
+				collider = false;
+				time = SDL_GetTicks();
 			}
+			if (SDL_GetTicks() - time > 100) {
+				if (colliderAttack != nullptr)
+					if (flip == 0)	colliderAttack->SetPos(position.x + 55, position.y - 80);
+				if (flip == 1)	colliderAttack->SetPos(position.x - 40, position.y - 80);
+			}
+			if (animstart == 0)
+			{
+				current_animation = &kick;
+
+				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
+			}
+
+
 			break;
 
 		case ST_MEDIUM_KICK_STANDING:
 			Damage = 15;
-			if (flip == SDL_FLIP_NONE) {
-				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ 3000, 3000, 40, 30 }, COLLIDER_ENEMY_SHOT, this);
-					App->music->PlayChunk(kicks);
-					collider = false;
-					time = SDL_GetTicks();
-				}
-				if (SDL_GetTicks() - time > 100) {
-					if (colliderAttack != nullptr)
-						colliderAttack->SetPos(position.x + 60, position.y - 80);
-				}
-				if (animstart == 0)
-				{
-					current_animation = &mediumkick;
 
-					if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
-				}
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ 3000, 3000, 40, 30 }, COLLIDER_ENEMY_SHOT, this);
+				App->music->PlayChunk(kicks);
+				collider = false;
+				time = SDL_GetTicks();
 			}
-			else if (flip == SDL_FLIP_HORIZONTAL) {
-
-				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ 3000, 3000, 40, 30 }, COLLIDER_ENEMY_SHOT, this);
-					App->music->PlayChunk(kicks);
-					collider = false;
-
-				}
-
+			if (SDL_GetTicks() - time > 100) {
 				if (colliderAttack != nullptr)
-					colliderAttack->SetPos(position.x - 40, position.y - 80);
-				if (animstart == 0)
-				{
-					current_animation = &mediumkick;
-
-					if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
-				}
-
+					if (flip == 0)	colliderAttack->SetPos(position.x + 63, position.y - 80);
+				if (flip == 1)	colliderAttack->SetPos(position.x - 48, position.y - 80);
 			}
+			if (animstart == 0)
+			{
+				current_animation = &mediumkick;
+
+				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
+			}
+
+
 			break;
 		case ST_HEAVY_KICK_STANDING:
 			Damage = 15;
-			if (flip == SDL_FLIP_NONE) {
-				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ 3000, 3000, 40, 30 }, COLLIDER_ENEMY_SHOT, this);
-					App->music->PlayChunk(kicks);
-					collider = false;
-					time = SDL_GetTicks();
-				}
-				if (SDL_GetTicks() - time > 100) {
-					if (colliderAttack != nullptr)
-						colliderAttack->SetPos(position.x + 60, position.y - 80);
-				}
-				if (animstart == 0)
-				{
-					current_animation = &heavykick;
-
-					if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
-				}
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ 3000, 3000, 45, 30 }, COLLIDER_ENEMY_SHOT, this);
+				App->music->PlayChunk(kicks);
+				collider = false;
+				time = SDL_GetTicks();
 			}
-			else if (flip == SDL_FLIP_HORIZONTAL) {
-
-				if (collider == true) {
-					colliderAttack = App->collision->AddCollider({ 3000, 3000, 40, 30 }, COLLIDER_ENEMY_SHOT, this);
-					App->music->PlayChunk(kicks);
-					collider = false;
-
-				}
-
+			if (SDL_GetTicks() - time > 100) {
 				if (colliderAttack != nullptr)
-					colliderAttack->SetPos(position.x - 40, position.y - 80);
-				if (animstart == 0)
-				{
-					current_animation = &heavykick;
-
-					if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
-				}
+					if (flip == 0)	colliderAttack->SetPos(position.x + 60, position.y - 80);
+				if (flip == 1)	colliderAttack->SetPos(position.x - 48, position.y - 80);
 
 			}
+			if (animstart == 0)
+			{
+				current_animation = &heavykick;
+
+				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
+			}
+
+
 			break;
-		case ST_KICK_NEUTRAL_JUMP:
-			LOG("KICK JUMP NEUTRAL ^^--\n");
-			break;
-		case ST_KICK_FORWARD_JUMP:
-			LOG("KICK JUMP FORWARD ^>>-\n");
-			break;
-		case ST_KICK_BACKWARD_JUMP:
-			LOG("KICK JUMP BACKWARD ^<<-\n");
-			break;
+
 		case ST_LEYLA_MUTSUBE:
 			current_animation = &Annu;
 			dontflip = true;
@@ -1099,20 +1041,35 @@ update_status ModulePlayer2::Update()
 			if (flip == 1) {
 				speed = -4;
 			}
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ 3000, 3000, 50, 20 }, COLLIDER_ENEMY_SHOT, this);
+				App->music->PlayChunk(kicks);
+				collider = false;
+				time = SDL_GetTicks();
+			}
+			if (SDL_GetTicks() - time > 100) {
+				if (colliderAttack != nullptr)
+					if (flip == 0)	colliderAttack->SetPos(position.x + 60, position.y - 30);
+				if (flip == 1)	colliderAttack->SetPos(position.x - 48, position.y - 30);
+
+			}
 			position.y -= 0.1;
 			break;
+
 		case ST_HAWKCARRY:
-		/*	OnHawk = true;
+			/*OnHawk = true;
+			LOG("HawkCarry");
 			if (jumptoHawk == true) {
 				if (flip == SDL_FLIP_NONE) {
 					if (App->pet->position.x < position.x) {
 						speed = -3;
 					}
 					else if (App->pet->position.y < position.y) {
-						position.y -= 6;
+						jumpSpeed = 6;
 					}
 					else {
 						jumptoHawk = false;
+						jumptohawktimer = 1;
 					}
 				}
 				if (flip == SDL_FLIP_HORIZONTAL) {
@@ -1120,7 +1077,7 @@ update_status ModulePlayer2::Update()
 						speed = 3;
 					}
 					else if (App->pet->position.y < position.y) {
-						position.y -= 6;
+						jumpSpeed = 6;
 					}
 					else {
 						jumptoHawk = false;
@@ -1139,7 +1096,7 @@ update_status ModulePlayer2::Update()
 
 				}
 			}
-*/
+			*/
 			break;
 		case ST_ANNU_MUTSUBE:
 			current_animation = &Annu;
@@ -1150,17 +1107,41 @@ update_status ModulePlayer2::Update()
 			if (flip == 1) {
 				speed = -4;
 			}
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ 3000, 3000, 50, 20 }, COLLIDER_ENEMY_SHOT, this);
+				App->music->PlayChunk(kicks);
+				collider = false;
+				time = SDL_GetTicks();
+			}
+			if (SDL_GetTicks() - time > 100) {
+				if (colliderAttack != nullptr)
+					if (flip == 0)	colliderAttack->SetPos(position.x + 60, position.y - 30);
+				if (flip == 1)	colliderAttack->SetPos(position.x - 48, position.y - 30);
+
+			}
 			break;
 		case ST_YATORO_POKU:
 
-			if (position.y<initialPos) { position.y += 10; }
+			if (position.y < initialPos) { position.y += 10; }
 			else {
 				position.y = initialPos;
+			}
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ 3000, 3000, 45, 30 }, COLLIDER_ENEMY_SHOT, this);
+				App->music->PlayChunk(kicks);
+				collider = false;
+				time = SDL_GetTicks();
+			}
+			if (SDL_GetTicks() - time > 100) {
+				if (colliderAttack != nullptr)
+					if (flip == 0)	colliderAttack->SetPos(position.x + 60, position.y - 80);
+				if (flip == 1)	colliderAttack->SetPos(position.x - 48, position.y - 80);
+
 			}
 			break;
 		case ST_KAMUI_MUTSUBE:
 
-			if (position.y<initialPos) {
+			if (position.y < initialPos) {
 				position.y += 10;
 				if (flip == SDL_FLIP_NONE)speed = 4;
 				if (flip == SDL_FLIP_HORIZONTAL)speed -= 4;
@@ -1168,6 +1149,22 @@ update_status ModulePlayer2::Update()
 			else {
 				position.y = initialPos;
 			}
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ 3000, 3000, 45, 30 }, COLLIDER_ENEMY_SHOT, this);
+				App->music->PlayChunk(kicks);
+				collider = false;
+				time = SDL_GetTicks();
+			}
+			if (SDL_GetTicks() - time > 100) {
+				if (colliderAttack != nullptr)
+					if (flip == 0)	colliderAttack->SetPos(position.x + 60, position.y - 80);
+				if (flip == 1)	colliderAttack->SetPos(position.x - 48, position.y - 80);
+
+			}
+			break;
+		case ST_AMUBE_YATORO:
+			LOG("AMUBE YATORO");
+			current_animation = &amube;
 			break;
 		case ST_WIN:
 			current_animation = &win;
