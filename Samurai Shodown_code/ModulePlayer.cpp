@@ -641,7 +641,7 @@ if (state != current_state)
 		height = +20;
 		if (animstart == 0)
 		{
-			current_animation = &crouchHeavyKick;
+			current_animation = &crouch;
 		}
 
 		
