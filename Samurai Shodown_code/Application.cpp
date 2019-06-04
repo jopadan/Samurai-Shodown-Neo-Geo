@@ -19,6 +19,7 @@
 #include "ModuleFonts.h"
 #include "ModuleUI.h";
 #include "ModuleSlowdown.h"
+#include "ModuleReferee.h"
 
 Application::Application()
 {
@@ -30,6 +31,7 @@ Application::Application()
 	modules[i++] = fonts = new ModuleFonts();
 	modules[i++] = scene_haohmaru = new ModuleSceneHaohmaru();
 	modules[i++] = scene_nakoruru = new ModuleSceneNakoruru();
+	modules[i++] = referee = new ModuleReferee();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = player2 = new ModulePlayer2();
 	modules[i++] = pet = new ModulePetp1();

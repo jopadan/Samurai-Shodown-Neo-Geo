@@ -1,6 +1,6 @@
 #ifndef __ModulePetP1_H__
 #define __ModulePetP1_H__
-#endif
+
 
 #include "Module.h"
 #include "Animation.h"
@@ -27,3 +27,5 @@ public:
 	SDL_RendererFlip flip = SDL_FLIP_NONE;
 	iPoint position;
 };
+
+#endif

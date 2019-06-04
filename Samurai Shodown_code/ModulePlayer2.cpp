@@ -13,7 +13,8 @@
 #include "ModuleSceneNakoruru.h"
 #include "ModuleSlowdown.h"
 #include "ModuleUI.h"
-
+#include "ModulePetp2.h"
+#include "ModuleReferee.h"
 
 ModulePlayer2::ModulePlayer2()
 {
@@ -693,6 +694,7 @@ update_status ModulePlayer2::Update()
 			break;
 
 		case ST_CROUCH:
+			
 			height = +20;
 			if (animstart == 0)
 			{
@@ -774,6 +776,7 @@ update_status ModulePlayer2::Update()
 			}
 			break;
 		case ST_DAMAGE:
+			App->referee->damage2 = true;
 			if (playsound)App->music->PlayChunk(hitted);
 			playsound = false;
 			if (animstart == 0)
@@ -786,7 +789,7 @@ update_status ModulePlayer2::Update()
 				}
 				if (flip == SDL_FLIP_HORIZONTAL) {
 					//if (!wall) { 
-					position.x += 4;
+					speed = 4;
 					//}
 				}
 				if (position.y != initialPos) {
@@ -797,7 +800,7 @@ update_status ModulePlayer2::Update()
 				}
 				else {
 					jumpSpeed = 0;
-					if (current_animation->AnimationEnd() == true) { animstart = 1; App->input->inputs.Push(IN_DAMAGE_FINISH); playsound = true; }
+					if (current_animation->AnimationEnd() == true) { animstart = 1; App->input->inputs2.Push(IN_DAMAGE_FINISH_P2); playsound = true; }
 				}
 			}
 
@@ -1057,14 +1060,14 @@ update_status ModulePlayer2::Update()
 			break;
 
 		case ST_HAWKCARRY:
-			/*OnHawk = true;
-			LOG("HawkCarry");
+			OnHawk = true;
 			if (jumptoHawk == true) {
 				if (flip == SDL_FLIP_NONE) {
-					if (App->pet->position.x < position.x) {
+					if (App->pet2->position.x < position.x) {
 						speed = -3;
+						
 					}
-					else if (App->pet->position.y < position.y) {
+					else if (App->pet2->position.y < position.y) {
 						jumpSpeed = 6;
 					}
 					else {
@@ -1073,20 +1076,21 @@ update_status ModulePlayer2::Update()
 					}
 				}
 				if (flip == SDL_FLIP_HORIZONTAL) {
-					if (App->pet->position.x > position.x) {
+					if (App->pet2->position.x > position.x) {
 						speed = 3;
 					}
-					else if (App->pet->position.y < position.y) {
+					else if (App->pet2->position.y < position.y) {
 						jumpSpeed = 6;
 					}
 					else {
 						jumptoHawk = false;
+						jumptohawktimer = 1;
 					}
 				}
 			}
 			else {
-				position.x = App->pet->position.x;
-				position.y = App->pet->position.y + 50;
+				position.x = App->pet2->position.x;
+				position.y = App->pet2->position.y + 50;
 			}
 			if (animstart == 0)
 			{
@@ -1096,7 +1100,7 @@ update_status ModulePlayer2::Update()
 
 				}
 			}
-			*/
+			
 			break;
 		case ST_ANNU_MUTSUBE:
 			current_animation = &Annu;
@@ -1165,6 +1169,18 @@ update_status ModulePlayer2::Update()
 		case ST_AMUBE_YATORO:
 			LOG("AMUBE YATORO");
 			current_animation = &amube;
+			if (collider == true) {
+				colliderAttack = App->collision->AddCollider({ 3000, 3000, 45, 30 }, COLLIDER_ENEMY_SHOT, this);
+				App->music->PlayChunk(kicks);
+				collider = false;
+				time = SDL_GetTicks();
+			}
+			if (SDL_GetTicks() - time > 100) {
+				if (colliderAttack != nullptr)
+					if (flip == 0)	colliderAttack->SetPos(position.x + 60, position.y - 80);
+				if (flip == 1)	colliderAttack->SetPos(position.x - 48, position.y - 80);
+
+			}
 			break;
 		case ST_WIN:
 			current_animation = &win;
@@ -1209,6 +1225,12 @@ update_status ModulePlayer2::Update()
 	else {
 		if (dontflip == false)flip = SDL_FLIP_NONE;
 	}
+
+	if (position.y > initialPos) {
+		position.y = initialPos;
+		jumpSpeed = 0;
+	}
+
 	position.x += speed;
 
 	position.y -= jumpSpeed;
@@ -1294,6 +1316,7 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_DAMAGE_P2: state = ST_DAMAGE;  break;
 			case IN_WIN_P2: state = ST_WIN; break;
 			case IN_DEFEAT_P2: state = ST_DEFEAT; break;
+			case IN_CROUCH_DOWN_P2: state = ST_CROUCH; break;
 			}
 		}
 		break;
@@ -1611,8 +1634,8 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_9:
 			case IN_0:
 				if (jumptohawktimer == 1) {
-					if (hawkdown == true) { state = ST_KAMUI_MUTSUBE; App->input->Kamui_timer = SDL_GetTicks(); break; }
-					if ((hawkleft == true || hawkright == true)) { state = ST_YATORO_POKU; App->input->Yatoro_timer = SDL_GetTicks(); break; }
+					if (hawkdown == true) { state = ST_KAMUI_MUTSUBE; App->input->Kamui_timer2 = SDL_GetTicks(); break; }
+					if ((hawkleft == true || hawkright == true)) { state = ST_YATORO_POKU; App->input->Yatoro_timer2 = SDL_GetTicks(); break; }
 				}
 
 			}
@@ -1627,14 +1650,14 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 		case ST_YATORO_POKU:
 			switch (last_input)
 			{
-			case IN_YATORO_POKU_FINISH: state = ST_IDLE; colliderAttack->to_delete = true; dontflip = false; break;
+			case IN_YATORO_POKU_FINISH:LOG("acabé"); state = ST_IDLE; colliderAttack->to_delete = true; dontflip = false; break;
 			case IN_DAMAGE_P2: state = ST_DAMAGE; animstart = 0;  break;
 			}
 			break;
 		case ST_KAMUI_MUTSUBE:
 			switch (last_input)
 			{
-			case IN_KAMUI_MUTSUBE_FINISH: state = ST_IDLE; colliderAttack->to_delete = true; dontflip = false; break;
+			case IN_KAMUI_MUTSUBE_FINISH: LOG("acabé"); state = ST_IDLE; colliderAttack->to_delete = true; dontflip = false; break;
 			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
 			}
 			break;
@@ -1648,11 +1671,11 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 
 		case ST_CROUCH:
 		{
+			
 			combo1 = 1;
 			HawkCarryCombo = 1;
 			combotime = SDL_GetTicks();
-
-
+		
 			if (SDL_GetTicks() - combotimeAnnu < 120) {
 				if (combo2 == 1)combo2 = 2;
 				combotimeAnnu = SDL_GetTicks();
@@ -1695,7 +1718,7 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_DEFEAT_P2: state = ST_DEFEAT; break;
 			case IN_RIGHT_DOWN_P2: state = ST_WALK_FORWARD; break;
 			case IN_LEFT_DOWN_P2: state = ST_WALK_BACKWARD; break;
-				break;
+				
 			}
 		}
 		break;
@@ -1742,15 +1765,15 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 			}
 			break;
 		case ST_DAMAGE:
-		{
-			switch (last_input)
+		
+		switch (last_input)
 			{
 			case IN_DAMAGE_FINISH_P2: state = ST_IDLE; animstart = 0; break;
 			case IN_WIN_P2: state = ST_WIN; break;
 			case IN_DEFEAT_P2: state = ST_DEFEAT; break;
 			}
 			break;
-		}
+		
 		case ST_BLOCK:
 
 			switch (last_input) {

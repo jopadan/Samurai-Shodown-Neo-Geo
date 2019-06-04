@@ -14,6 +14,7 @@
 #include "SDL/include/SDL_timer.h"
 #include "ModuleSlowdown.h"
 #include "ModuleUI.h"
+#include "ModuleReferee.h"
 
 ModulePlayer::ModulePlayer()
 {
@@ -297,7 +298,7 @@ SDL_Rect r2 = shadow.GetCurrentFrame();
 
 	player_states current_state = ST_UNKNOWN;
 	player_states state = process_fsm(App->input->inputs);
-
+	
 
 if (state != current_state)
 {
@@ -477,7 +478,6 @@ if (state != current_state)
 			}
 			if (position.y >= initialPos) {
 				if(animstart != 0)animstart = 1;
-				position.y = initialPos;
 				jumpPunch.Reset();
 				jumpPunchHeavy.Reset();
 				jumpKick.Reset();
@@ -580,7 +580,6 @@ if (state != current_state)
 			}
 			if (position.y >= initialPos && jumpSpeed < 0) {
 				animstart = 1;
-				jumpSpeed = 0;
 				position.y = initialPos;
 				jumpPunch.Reset();
 				jumpPunchHeavy.Reset();
@@ -683,8 +682,7 @@ if (state != current_state)
 			}
 			if (position.y >= initialPos && jumpSpeed < 0) {
 				animstart = 1;
-				jumpSpeed = 0;
-				position.y = initialPos;
+
 				jumpPunch.Reset();
 				jumpPunchHeavy.Reset();
 				jumpKick.Reset();
@@ -776,6 +774,7 @@ if (state != current_state)
 		}
 		break;
 	case ST_DAMAGE:
+		App->referee->damage1 = true;
 		if (playsound)App->music->PlayChunk(hitted);
 		playsound = false;
 			if (animstart == 0)
@@ -788,7 +787,7 @@ if (state != current_state)
 				}
 				if (flip == SDL_FLIP_HORIZONTAL) {
 					//if (!wall) { 
-						position.x += 4; 
+						speed= 4; 
 					//}
 				}
 				if (position.y != initialPos) {
@@ -1060,7 +1059,6 @@ if (state != current_state)
 
 	case ST_HAWKCARRY:
 		OnHawk = true;
-		LOG("HawkCarry");
 		if (jumptoHawk == true) {
 			if (flip == SDL_FLIP_NONE){
 			if (App->pet->position.x < position.x) {
@@ -1083,6 +1081,8 @@ if (state != current_state)
 				}
 				else {
 					jumptoHawk = false;
+					jumptohawktimer = 1;
+
 				}
 			}
 		}
@@ -1165,8 +1165,19 @@ if (state != current_state)
 		}
 		break;
 	case ST_AMUBE_YATORO:
-		LOG("AMUBE YATORO");
 		current_animation = &amube;
+		if (collider == true) {
+			colliderAttack = App->collision->AddCollider({ 3000, 3000, 45, 30 }, COLLIDER_PLAYER_SHOT, this);
+			App->music->PlayChunk(kicks);
+			collider = false;
+			time = SDL_GetTicks();
+		}
+		if (SDL_GetTicks() - time > 100) {
+			if (colliderAttack != nullptr)
+				if (flip == 0)	colliderAttack->SetPos(position.x + 60, position.y - 80);
+			if (flip == 1)	colliderAttack->SetPos(position.x - 48, position.y - 80);
+
+		}
 		break;
 	case ST_WIN:
 		current_animation = &win;
@@ -1207,7 +1218,11 @@ if (App->player2->position.x < position.x && dontflip == false) {
 		if(dontflip == false)flip = SDL_FLIP_NONE;
 	}
 
-	
+if (position.y > initialPos) {
+	position.y = initialPos;
+	jumpSpeed = 0;
+}
+
 	position.x += speed;
 	
 	position.y -= jumpSpeed;
