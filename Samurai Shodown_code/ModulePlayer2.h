@@ -44,6 +44,7 @@ public:
 	Uint32 combo3 = 0;
 	Uint32 jumptimer = 0;
 	Uint32 HawkCarryCombo = 0;
+	Uint32 jumptohawktimer = 0;
 	Uint32 combotime;
 	Uint32 combotimeAnnu;
 	Uint32 combotimeAmube;
@@ -60,8 +61,10 @@ public:
 	Animation jumpup;
 	Animation jumpPunch;
 	Animation jumpPunchHeavy;
+	Animation jumpFrontPunchHeavy;
 	Animation jumpKick;
 	Animation jumpKickHeavy;
+	Animation jumpFrontKickHeavy;
 	Animation punch;
 	Animation mediumpunch;
 	Animation heavypunch;
@@ -83,6 +86,7 @@ public:
 	Animation defeat;
 	Animation hawk_carry;
 	Animation Annu;
+	Animation amube;
 	iPoint position;
 	Uint32 Damage = 20;
 	bool deletecol = true;

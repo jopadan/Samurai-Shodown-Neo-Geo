@@ -66,8 +66,10 @@ public:
 	Animation jumpup;
 	Animation jumpPunch;
 	Animation jumpPunchHeavy;
+	Animation jumpFrontPunchHeavy;
 	Animation jumpKick;
 	Animation jumpKickHeavy;
+	Animation jumpFrontKickHeavy;
 	Animation punch;
 	Animation mediumpunch;
 	Animation heavypunch;
@@ -96,6 +98,7 @@ public:
 	bool defense = false;
 	bool playsound = true;
 	bool OnHawk = false;
+	Uint32 jumptohawktimer = 0;
 	bool jumptoHawk = true;
 	bool jumpattack = false;
 	bool jumpattackheavy = false;

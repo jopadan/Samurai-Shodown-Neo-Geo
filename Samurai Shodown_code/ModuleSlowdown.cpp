@@ -41,6 +41,6 @@ void ModuleSlowdown::UpdateSlowdown()
 {
 	
 	if (SDL_GetTicks() - slowdown_timer < slowdown_duration) {
-		SDL_Delay(slowdown_magnitude);LOG("Slowpoke");
+		SDL_Delay(slowdown_magnitude);
 	}
 }

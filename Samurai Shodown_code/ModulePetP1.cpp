@@ -98,10 +98,10 @@ update_status ModulePetp1::Update() {
 	}
 
 	if (position.y < App->player->position.y - 140) {
-		speedy = 4;
+		speedy = 1;
 	}
 	if (position.y > App->player->position.y - 90) {
-		speedy = -4;
+		speedy = -1;
 	}
 }
 	/*if (App->player->amubeyatoro == true) {
@@ -116,6 +116,11 @@ update_status ModulePetp1::Update() {
 			speedy = -5;
 		}
 	}*/
+	App->player->hawkleft = false;
+	App->player->hawkright = false;
+	App->player->hawkup = false;
+	App->player->hawkdown = false;
+
 	if (App->player->OnHawk == true) {
 		flip = App->player->flip;
 		speedx = 0; speedy = 0;
@@ -129,7 +134,8 @@ update_status ModulePetp1::Update() {
 		App->player->hawkleft = true;
 		App->player->hawkright = false;
 		}
-		else if (App->input->up == true) { speedy = -3;
+		
+		if (App->input->up == true) { speedy = -3;
 		
 		App->player->hawkup = true;
 		App->player->hawkdown = false;
@@ -141,12 +147,7 @@ update_status ModulePetp1::Update() {
 		App->player->hawkdown = true;
 
 		}
-		else {
-			App->player->hawkleft = false;
-			App->player->hawkright = false;
-			App->player->hawkup = false;
-			App->player->hawkdown = false;
-		}
+		
 	
 	}
 	position.x += speedx;

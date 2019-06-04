@@ -273,6 +273,40 @@ update_status ModulePlayer2::Update()
 			else if (position.y > initialPos) { jumpSpeed = 6; }
 			else { jumpSpeed = 0; }
 			speed = 0;
+			jumptohawktimer = 0;
+			jumptoHawk = true;
+
+			forward.Reset();
+			backward.Reset();
+			jumpup.Reset();
+			jumpPunch.Reset();
+			jumpPunchHeavy.Reset();
+			jumpFrontPunchHeavy.Reset();
+			jumpKick.Reset();
+			jumpKickHeavy.Reset();
+			jumpFrontKickHeavy.Reset();
+			punch.Reset();
+			mediumpunch.Reset();
+			heavypunch.Reset();
+			crouch.Reset();
+			crouchPunch.Reset();
+			crouchHeavyPunch.Reset();
+			crouchKick.Reset();
+			crouchHeavyKick.Reset();
+			intro.Reset();
+			kick.Reset();
+			mediumkick.Reset();
+			heavykick.Reset();
+			hit.Reset();
+			cyclone.Reset();
+			tornado.Reset();
+			block.Reset();
+			win.Reset();
+			defeat.Reset();
+			hawk_carry.Reset();
+			Annu.Reset();
+			amube.Reset();
+
 			break;
 
 		case ST_WALK_FORWARD:
@@ -707,7 +741,7 @@ update_status ModulePlayer2::Update()
 				}
 				else {
 					jumpSpeed = 0;
-					if (current_animation->AnimationEnd() == true) { animstart = 1; App->input->inputs.Push(IN_DAMAGE_FINISH); playsound = true; }
+					if (current_animation->AnimationEnd() == true) { animstart = 1; App->input->inputs2.Push(IN_DAMAGE_FINISH_P2); playsound = true; }
 				}
 			}
 
@@ -1564,7 +1598,7 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 		case ST_LEYLA_MUTSUBE:
 			switch (last_input)
 			{
-			case IN_ANNU_MUTSUBE_FINISH_P2: state = ST_IDLE; dontflip = false; break;
+			case IN_ANNU_MUTSUBE_FINISH_P2: state = ST_IDLE; colliderAttack->to_delete = true; dontflip = false; break;
 			case IN_DAMAGE_P2: state = ST_DAMAGE; animstart = 0;  break;
 			}
 			break;
@@ -1579,29 +1613,31 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_8:
 			case IN_9:
 			case IN_0:
-				if (hawkleft || hawkright) state = ST_YATORO_POKU; App->input->Yatoro_timer2 = SDL_GetTicks(); break;
-				if (hawkdown) state = ST_KAMUI_MUTSUBE; App->input->Kamui_timer2 = SDL_GetTicks(); break;
+				if (jumptohawktimer == 1) {
+					if (hawkdown == true) { state = ST_KAMUI_MUTSUBE; App->input->Kamui_timer = SDL_GetTicks(); break; }
+					if ((hawkleft == true || hawkright == true)) { state = ST_YATORO_POKU; App->input->Yatoro_timer = SDL_GetTicks(); break; }
+				}
 
 			}
 			break;
 		case ST_ANNU_MUTSUBE:
 			switch (last_input)
 			{
-			case IN_ANNU_MUTSUBE_FINISH_P2: state = ST_IDLE; dontflip = false; break;
+			case IN_ANNU_MUTSUBE_FINISH_P2: state = ST_IDLE; colliderAttack->to_delete = true; dontflip = false; break;
 			case IN_DAMAGE_P2: state = ST_DAMAGE; animstart = 0;  break;
 			}
 			break;
 		case ST_YATORO_POKU:
 			switch (last_input)
 			{
-			case IN_YATORO_POKU_FINISH: state = ST_IDLE; dontflip = false; break;
+			case IN_YATORO_POKU_FINISH: state = ST_IDLE; colliderAttack->to_delete = true; dontflip = false; break;
 			case IN_DAMAGE_P2: state = ST_DAMAGE; animstart = 0;  break;
 			}
 			break;
 		case ST_KAMUI_MUTSUBE:
 			switch (last_input)
 			{
-			case IN_KAMUI_MUTSUBE_FINISH: state = ST_IDLE; dontflip = false; break;
+			case IN_KAMUI_MUTSUBE_FINISH: state = ST_IDLE; colliderAttack->to_delete = true; dontflip = false; break;
 			case IN_DAMAGE: state = ST_DAMAGE; animstart = 0;  break;
 			}
 			break;
