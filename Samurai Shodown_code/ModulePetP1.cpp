@@ -102,7 +102,7 @@ update_status ModulePetp1::Update() {
 	if (position.y < App->player->position.y - 140) {
 		speedy = 1;
 	}
-	if (position.y > App->player->position.y - 90) {
+	if (position.y > App->player->position.y - 140) {
 		speedy = -1;
 	}
 }
