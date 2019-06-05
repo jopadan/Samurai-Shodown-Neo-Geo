@@ -21,7 +21,8 @@ ModulePlayer2::ModulePlayer2()
 	graphics = NULL;
 	current_animation = NULL;
 
-	position.x = 372;
+	position.x = 208;
+
 	position.y = 207;
 	initialPos = position.y;
 
@@ -67,6 +68,14 @@ ModulePlayer2::ModulePlayer2()
 	jumpup.PushBack({ 496, 1604, 60, 105 }, 0.11, 0, 0, 0, 0);
 	jumpup.loop = false;
 
+
+
+
+
+
+
+
+
 	hawk_carry.PushBack({ 64, 1547, 46, 56 }, 0.11, 0, -3, 9, -3);
 	hawk_carry.PushBack({ 112, 1541, 43, 67 }, 0.11, 0, -3, 9, -3);
 	hawk_carry.PushBack({ 159, 1547, 42, 60 }, 0.11, 0, -3, 9, -3);
@@ -106,8 +115,16 @@ ModulePlayer2::ModulePlayer2()
 	//TO DO
 	Annu.PushBack({ 15, 638, 78, 62 }, 0.2, 0, 0, -20, 0);
 	Annu.PushBack({ 987, 162, 142, 51 }, 0.2, 0, 0, -20, 0);
-
 	Annu.PushBack({ 240, 650, 142, 51 }, 0.2, 0, 0, -20, 0);
+
+
+
+	kamui.PushBack({ 29, 1900, 93, 94 }, 0.4, 0, 4, -10, 4);
+	kamui.PushBack({ 119, 1904, 89, 93 }, 0.4, 0, 0, -10, 0);
+	kamui.PushBack({ 215, 1893, 87, 86 }, 0.4, -3, -15, -8, -8);
+	kamui.PushBack({ 119, 1904, 89, 93 }, 0.4, 0, 0, -10, 0);
+	kamui.PushBack({ 397, 1909, 97, 89 }, 0.4, -7, 0, -10, 0);
+
 
 	kick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
 	kick.PushBack({ 70, 1060, 53, 100 }, 0.1, 0, 0, 8, 0);
@@ -195,8 +212,8 @@ ModulePlayer2::ModulePlayer2()
 
 
 
-	crouchKick.PushBack({ 118, 1375, 46, 63 }, 0.02, 0, 0, 0, 0);
-	crouchKick.PushBack({ 164, 1378, 80, 60 }, 0.02, 0, 0, -12, 0);
+	crouchKick.PushBack({ 118, 1375, 46, 63 }, 0.2, 0, 0, 0, 0);
+	crouchKick.PushBack({ 164, 1378, 80, 60 }, 0.2, 0, 0, -12, 0);
 
 
 	crouchHeavyKick.PushBack({ 271, 813, 51, 60 }, 0.2, 0, 0, 0, 0);
@@ -214,7 +231,22 @@ ModulePlayer2::ModulePlayer2()
 	hit.PushBack({ 1805, 51, 69, 98 }, 0.2, 0, 5, 0, 5);
 	hit.PushBack({ 1876, 53, 73, 95 }, 0.08, 0, 5, 0, 5);
 
+	win.PushBack({ 117, 713, 89, 92 }, 0.2, 19, 0, -22, 0);
+	win.PushBack({ 204, 711, 97, 94 }, 0.2, 13, 0, -20, 0);
+	win.PushBack({ 303, 708, 93, 95 }, 0.2, 8, 0, -17, 0);
+	win.PushBack({ 1065, 896,100, 93 }, 0.2, 8, 0, -17, 0);
+	win.PushBack({ 1164, 900,100, 93 }, 0.2, 11, 3, -18, 3);
+	win.PushBack({ 1262, 896,100, 93 }, 0.2, 13, 4, -19, 4);
+	win.PushBack({ 1459, 899,100, 93 }, 0.1, 14, 4, -19, 4);
+	win.PushBack({ 1555, 899,100, 93 }, 0.1, 20, 7, -22, 7);
+	win.PushBack({ 1738, 899,100, 93 }, 0.1, 19, 3, -21, 3);
+	win.PushBack({ 1833, 899,100, 93 }, 0.1, 19, 4, -22, 4);
+	win.loop = false;
 
+	defeat.PushBack({ 325, 1052, 62, 61 }, 0.06, 0, 5, 0, 5);
+	defeat.PushBack({ 391, 1054, 60, 60 }, 0.06, 1, 6, 0, 6);
+	defeat.PushBack({ 451, 1052, 62, 62 }, 0.06, 0, 6, 0, 6);
+	defeat.PushBack({ 513, 1050, 63, 64 }, 0.06, 0, 6, 0, 6);
 
 	shadow.PushBack({ 659, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
 	shadow.PushBack({ 733, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
