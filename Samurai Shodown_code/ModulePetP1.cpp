@@ -5,6 +5,7 @@
 #include "ModulePetP1.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
+#include "ModuleCollision.h"
 
 
 ModulePetp1::ModulePetp1() {
@@ -18,10 +19,6 @@ ModulePetp1::ModulePetp1() {
 	idle.PushBack({ 1239, 1817, 54, 48 }, 0.15, 0, 0, 0, 0);
 	idle.PushBack({ 1292, 1812, 48, 52 }, 0.15, 0, 0, 0, 0);
 	idle.PushBack({ 1342, 1803, 43, 62 }, 0.15, 0, 0, 0, 0);
-
-
-
-
 
 	move.PushBack({ 418, 1539, 52, 58 }, 0.1, 0, 0, 0, 0);
 	move.PushBack({ 474, 1548, 70, 52 }, 0.2, 0, 0, 0, 0);
@@ -48,6 +45,11 @@ bool ModulePetp1::Start() {
 update_status ModulePetp1::Update() {
 	speedx = 0;
 	speedy = 0;
+	if (!yatoro){
+		if (colliderAttack != nullptr) {
+			colliderAttack->to_delete = true;
+		}
+		collider = true;
 	if (App->player->OnHawk == false){
 	if (App->player->flip == SDL_FLIP_NONE){
 		if (position.x < App->player->position.x - 10){
@@ -100,22 +102,30 @@ update_status ModulePetp1::Update() {
 	if (position.y < App->player->position.y - 140) {
 		speedy = 1;
 	}
-	if (position.y > App->player->position.y - 90) {
+	if (position.y > App->player->position.y - 140) {
 		speedy = -1;
 	}
 }
-	/*if (App->player->amubeyatoro == true) {
-		//current_animation = &amube;
-		flip = App->player->flip;
+	}
+	else {
+		
+		if(collider == true)	colliderAttack = App->collision->AddCollider({ 3000, 3000, 50, 50 }, COLLIDER_PLAYER_SHOT, this);
+		collider = false;
 		if (flip == false) {
-			speedx = 20;
-			speedy = 5;
+			
+			speedx = 5;
+			speedy = 4;
+			colliderAttack->SetPos(position.x, position.y-40);
 		}
 		if (flip == true) {
-			speedx = -20;
-			speedy = -5;
+			speedx = -5;
+			speedy = 4;			
+			colliderAttack->SetPos(position.x, position.y-40);
+
 		}
-	}*/
+		current_animation = &move;
+	}
+
 	App->player->hawkleft = false;
 	App->player->hawkright = false;
 	App->player->hawkup = false;

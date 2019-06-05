@@ -1,4 +1,4 @@
-[] Hitbox, [x] Player 2, Atacs especials restants - Pol G i Albert
+[X] Hitbox, [x] Player 2, [X]Atacs especials restants - Pol G i Albert
 [] Escenes(Victoria, Derrota, NeoGeo, *Seleccio d personatges*) - Pol Julian
 [] UI - Pol G
 [X] Sistema de moviment - Albert

@@ -289,6 +289,8 @@ update_status ModulePlayer2::Update()
 
 	OnHawk = false;
 	dontflip = false;
+	App->pet2->yatoro = false;
+
 	Animation* current_animation = &idle;  //&intro;
 	if (App->scene_nakoruru->matchstart == true) current_animation = &idle;
 	
@@ -1131,15 +1133,15 @@ update_status ModulePlayer2::Update()
 				position.y = initialPos;
 			}
 			if (collider == true) {
-				colliderAttack = App->collision->AddCollider({ 3000, 3000, 45, 30 }, COLLIDER_ENEMY_SHOT, this);
+				colliderAttack = App->collision->AddCollider({ 3000, 3000, 40, 45 }, COLLIDER_ENEMY_SHOT, this);
 				App->music->PlayChunk(kicks);
 				collider = false;
 				time = SDL_GetTicks();
 			}
 			if (SDL_GetTicks() - time > 100) {
 				if (colliderAttack != nullptr)
-					if (flip == 0)	colliderAttack->SetPos(position.x + 60, position.y - 80);
-				if (flip == 1)	colliderAttack->SetPos(position.x - 48, position.y - 80);
+					if (flip == 0)	colliderAttack->SetPos(position.x + 20, position.y - 40);
+				if (flip == 1)	colliderAttack->SetPos(position.x, position.y - 40);
 
 			}
 			break;
@@ -1154,33 +1156,22 @@ update_status ModulePlayer2::Update()
 				position.y = initialPos;
 			}
 			if (collider == true) {
-				colliderAttack = App->collision->AddCollider({ 3000, 3000, 45, 30 }, COLLIDER_ENEMY_SHOT, this);
+				colliderAttack = App->collision->AddCollider({ 3000, 3000, 50, 50 }, COLLIDER_ENEMY_SHOT, this);
 				App->music->PlayChunk(kicks);
 				collider = false;
 				time = SDL_GetTicks();
 			}
 			if (SDL_GetTicks() - time > 100) {
 				if (colliderAttack != nullptr)
-					if (flip == 0)	colliderAttack->SetPos(position.x + 60, position.y - 80);
-				if (flip == 1)	colliderAttack->SetPos(position.x - 48, position.y - 80);
+					if (flip == 0)	colliderAttack->SetPos(position.x + 10, position.y - 50);
+				if (flip == 1)	colliderAttack->SetPos(position.x, position.y - 50);
 
 			}
 			break;
 		case ST_AMUBE_YATORO:
 			LOG("AMUBE YATORO");
 			current_animation = &amube;
-			if (collider == true) {
-				colliderAttack = App->collision->AddCollider({ 3000, 3000, 45, 30 }, COLLIDER_ENEMY_SHOT, this);
-				App->music->PlayChunk(kicks);
-				collider = false;
-				time = SDL_GetTicks();
-			}
-			if (SDL_GetTicks() - time > 100) {
-				if (colliderAttack != nullptr)
-					if (flip == 0)	colliderAttack->SetPos(position.x + 60, position.y - 80);
-				if (flip == 1)	colliderAttack->SetPos(position.x - 48, position.y - 80);
-
-			}
+			App->pet2->yatoro = true;
 			break;
 		case ST_WIN:
 			current_animation = &win;
@@ -1634,8 +1625,8 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_9:
 			case IN_0:
 				if (jumptohawktimer == 1) {
-					if (hawkdown == true) { state = ST_KAMUI_MUTSUBE; App->input->Kamui_timer2 = SDL_GetTicks(); break; }
-					if ((hawkleft == true || hawkright == true)) { state = ST_YATORO_POKU; App->input->Yatoro_timer2 = SDL_GetTicks(); break; }
+					if (hawkdown == true) { state = ST_YATORO_POKU ; App->input->Yatoro_timer2 = SDL_GetTicks(); break; }
+					if ((hawkleft == true || hawkright == true)) { state = ST_KAMUI_MUTSUBE; App->input->Kamui_timer2 = SDL_GetTicks(); break; }
 				}
 
 			}
@@ -1802,11 +1793,12 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 
 
 void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
-	
-if (colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER_SHOT && defense == false)
+
+	if (colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER_SHOT && defense == false)
 	{
-		if (App->player->colliderAttack != nullptr)
-			App->player->colliderAttack->to_delete = true;
+		if (c2 != nullptr){
+			c2->to_delete = true;
+	}
 		App->ui->Health_Bar_p2 -= App->player->Damage;
 		App->slowdown->StartSlowdown(600, 40);
 		App->render->StartCameraShake(300, 3);
@@ -1829,19 +1821,15 @@ if (colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER_SHOT && defense == fals
 		}
 	}
 
-	if (App->input->right2 == true && colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER) {
-		if (flip == SDL_FLIP_NONE && position.x < 490) {
-			
+
+	if (colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER) {
+		if (position.x < 480 && position.x > 100) {
+
 			App->player->position.x += speed;
 		}
-	}
-		if (App->input->left2 == true && colliderPlayer2 == c1 && c2->type == COLLIDER_PLAYER) {
-		if (flip == SDL_FLIP_HORIZONTAL && position.x > 88){
-			App->player->position.x += speed;
+		else {
+			speed = 0;
 		}
 
 	}
-		
-
-	}
-
+}

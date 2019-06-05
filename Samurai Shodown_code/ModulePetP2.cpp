@@ -4,6 +4,7 @@
 #include "ModuleRender.h"
 #include "ModulePetp2.h"
 #include "ModulePlayer.h"
+#include "ModuleCollision.h"
 #include "ModulePlayer2.h"
 
 
@@ -48,74 +49,86 @@ bool ModulePetp2::Start() {
 update_status ModulePetp2::Update() {
 	speedx = 0;
 	speedy = 0;
-	if (App->player2->OnHawk == false){
-	if (App->player2->flip == SDL_FLIP_NONE){
-		if (position.x < App->player2->position.x - 10){
-			speedx = 1;
-			flip = App->player2->flip;
-			current_animation = &idle;
-			if (App->player2->position.x - 10 - position.x > 20) { 
-				speedx = 2; 
-				flip = SDL_FLIP_NONE;
-				current_animation = &move;
-			}
+	if (!yatoro) {
+		if (colliderAttack != nullptr) {
+			colliderAttack->to_delete = true;
 		}
-		if (position.x > App->player2->position.x - 10) {
-			speedx = -1;
-			flip = App->player2->flip;
-			current_animation = &idle;
-			if (position.x - App->player2->position.x - 10 > 20) { 
-				speedx = -2; 
-				flip = SDL_FLIP_HORIZONTAL; 
-				current_animation = &move;
+		collider = true;
+		if (App->player2->OnHawk == false) {
+			if (App->player2->flip == SDL_FLIP_NONE) {
+				if (position.x < App->player2->position.x - 10) {
+					speedx = 1;
+					flip = App->player2->flip;
+					current_animation = &idle;
+					if (App->player2->position.x - 10 - position.x > 20) {
+						speedx = 2;
+						flip = SDL_FLIP_NONE;
+						current_animation = &move;
+					}
+				}
+				if (position.x > App->player2->position.x - 10) {
+					speedx = -1;
+					flip = App->player2->flip;
+					current_animation = &idle;
+					if (position.x - App->player2->position.x - 10 > 20) {
+						speedx = -2;
+						flip = SDL_FLIP_HORIZONTAL;
+						current_animation = &move;
+					}
+				}
 			}
-		}
-	}
-	
 
-	if (App->player2->flip == SDL_FLIP_HORIZONTAL) {
-		if (position.x < App->player2->position.x + 15) {
-			speedx = 1;
-			flip = App->player2->flip;
-			current_animation = &idle;
-			if (App->player2->position.x - 10 - position.x > 20) { 
-				speedx = 2; 
-				flip = SDL_FLIP_NONE; 
-				current_animation = &move;
+
+			if (App->player2->flip == SDL_FLIP_HORIZONTAL) {
+				if (position.x < App->player2->position.x + 15) {
+					speedx = 1;
+					flip = App->player2->flip;
+					current_animation = &idle;
+					if (App->player2->position.x - 10 - position.x > 20) {
+						speedx = 2;
+						flip = SDL_FLIP_NONE;
+						current_animation = &move;
+					}
+				}
+				if (position.x > App->player2->position.x + 15) {
+					speedx = -1;
+					flip = App->player2->flip;
+					current_animation = &idle;
+					if (position.x - App->player2->position.x - 10 > 20) {
+						speedx = -2;
+						flip = SDL_FLIP_HORIZONTAL;
+						current_animation = &move;
+					}
+				}
+
+			}
+
+			if (position.y < App->player2->position.y - 140) {
+				speedy = 1;
+			}
+			if (position.y > App->player2->position.y - 140) {
+				speedy = -1;
 			}
 		}
-		if (position.x > App->player2->position.x + 15) {
-			speedx = -1;
-			flip = App->player2->flip;
-			current_animation = &idle;
-			if (position.x - App->player2->position.x - 10 > 20) { 
-				speedx = -2; 
-				flip = SDL_FLIP_HORIZONTAL; 
-				current_animation = &move;
-			}
-		}
-
 	}
-
-	if (position.y < App->player2->position.y - 140) {
-		speedy = 1;
-	}
-	if (position.y > App->player2->position.y - 90) {
-		speedy = -1;
-	}
-}
-	/*if (App->player->amubeyatoro == true) {
-		//current_animation = &amube;
-		flip = App->player->flip;
+	else {
+		if (collider == true)	colliderAttack = App->collision->AddCollider({ 3000, 3000, 50, 50 }, COLLIDER_ENEMY_SHOT, this);
+		collider = false;
+		
 		if (flip == false) {
-			speedx = 20;
-			speedy = 5;
+			speedx = 5;
+			speedy = 4;
+			colliderAttack->SetPos(position.x, position.y - 40);
 		}
 		if (flip == true) {
-			speedx = -20;
-			speedy = -5;
+			speedx = -5;
+			speedy = 4;
+			colliderAttack->SetPos(position.x, position.y - 40);
 		}
-	}*/
+		current_animation = &move;
+	}
+
+
 	App->player2->hawkleft = false;
 	App->player2->hawkright = false;
 	App->player2->hawkup = false;
