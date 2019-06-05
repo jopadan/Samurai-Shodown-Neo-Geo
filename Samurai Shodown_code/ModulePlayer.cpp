@@ -196,8 +196,8 @@ ModulePlayer::ModulePlayer()
 
 
 	
-	crouchKick.PushBack({ 118, 1375, 46, 63 }, 0.02, 0, 0, 0, 0);
-	crouchKick.PushBack({ 164, 1378, 80, 60 }, 0.02, 0, 0, -12, 0);
+	crouchKick.PushBack({ 118, 1375, 46, 63 }, 0.2, 0, 0, 0, 0);
+	crouchKick.PushBack({ 164, 1378, 80, 60 }, 0.2, 0, 0, -12, 0);
 
 
 	crouchHeavyKick.PushBack({ 271, 813, 51, 60 }, 0.2, 0, 0, 0, 0);
@@ -215,7 +215,10 @@ ModulePlayer::ModulePlayer()
 	hit.PushBack({ 1805, 51, 69, 98 }, 0.2, 0, 5, 0, 5);
 	hit.PushBack({ 1876, 53, 73, 95 }, 0.08, 0, 5, 0, 5);
 
-
+	defeat.PushBack({ 325, 1052, 62, 61 }, 0.06, 0, 5, 0, 5);
+	defeat.PushBack({ 391, 1054, 60, 60 }, 0.06, 1, 6, 0, 6);
+	defeat.PushBack({ 451, 1052, 62, 62 }, 0.06, 0, 6, 0, 6);
+	defeat.PushBack({ 513, 1050, 63, 64 }, 0.06, 0, 6, 0, 6);
 
 shadow.PushBack({ 659, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
 shadow.PushBack({ 733, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
@@ -696,7 +699,7 @@ if (state != current_state)
 		height = +20;
 		if (animstart == 0)
 		{
-			current_animation = &crouch;
+			current_animation = &defeat;
 		}
 
 		
