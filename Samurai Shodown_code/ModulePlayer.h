@@ -64,6 +64,7 @@ public:
 	Animation forward;
 	Animation backward;
 	Animation jumpup;
+	Animation jumpforward;
 	Animation jumpPunch;
 	Animation jumpPunchHeavy;
 	Animation jumpFrontPunchHeavy;
@@ -91,6 +92,7 @@ public:
 	Animation defeat;
 	Animation hawk_carry;
 	Animation Annu;
+	Animation kamui;
 	Animation amube;
 	iPoint position;
 	Uint32 Damage = 20;

@@ -68,6 +68,14 @@ ModulePlayer::ModulePlayer()
 	jumpup.PushBack({ 496, 1604, 60, 105 }, 0.11, 0, 0, 0, 0);
 	jumpup.loop = false;
 
+
+	
+
+
+
+
+
+
 	hawk_carry.PushBack({ 64, 1547, 46, 56 }, 0.11, 0, -3, 9, -3);
 	hawk_carry.PushBack({ 112, 1541, 43, 67 }, 0.11, 0, -3,9, -3);
 	hawk_carry.PushBack({ 159, 1547, 42, 60 }, 0.11, 0, -3, 9, -3);
@@ -107,8 +115,16 @@ ModulePlayer::ModulePlayer()
 	//TO DO
 	Annu.PushBack({ 15, 638, 78, 62 }, 0.2, 0, 0, -20, 0);
 	Annu.PushBack({ 987, 162, 142, 51 }, 0.2, 0, 0, -20, 0);
-	
 	Annu.PushBack({ 240, 650, 142, 51 }, 0.2, 0, 0, -20, 0);
+	
+	
+	
+	kamui.PushBack({ 29, 1900, 93, 94 }, 0.4, 0, 4, -10, 4);
+	kamui.PushBack({ 119, 1904, 89, 93 }, 0.4, 0, 0, -10, 0);
+	kamui.PushBack({ 215, 1893, 87, 86 }, 0.4, -3, -15, -8, -8);
+	kamui.PushBack({ 119, 1904, 89, 93 }, 0.4, 0, 0, -10, 0);
+	kamui.PushBack({ 397, 1909, 97, 89 }, 0.4, -7, 0, -10, 0);
+	
 	
 	kick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
 	kick.PushBack({ 70, 1060, 53, 100 }, 0.1, 0, 0, 8, 0);
@@ -289,7 +305,7 @@ bool ModulePlayer::CleanUp() {
 
 update_status ModulePlayer::Update()
 {
-
+	//App->slowdown->StartSlowdown(2000, 40);
 	speed = 0;
 	
 	OnHawk = false;
@@ -699,7 +715,7 @@ if (state != current_state)
 		height = +20;
 		if (animstart == 0)
 		{
-			current_animation = &defeat;
+			current_animation = &kamui;
 		}
 
 		
