@@ -19,11 +19,14 @@ public:
 public:
 	int speedx = 0;
 	int speedy = 0;
+	bool yatoro = false;
+	bool collider = true;
 	SDL_Texture* graphics = nullptr;
 	Animation* current_animation = nullptr;
 	Animation idle;
 	Animation move;
 	Animation amube;
+	Collider *colliderAttack;
 	SDL_RendererFlip flip = SDL_FLIP_NONE;
 	iPoint position;
 };

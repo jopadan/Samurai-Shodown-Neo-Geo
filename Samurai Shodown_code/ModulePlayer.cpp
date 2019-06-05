@@ -290,6 +290,7 @@ update_status ModulePlayer::Update()
 	speed = 0;
 	
 	OnHawk = false;
+	App->pet->yatoro = false;
 	dontflip = false;
 	Animation* current_animation = &idle;  //&intro;
 //if (App->scene_nakoruru->matchstart == true) current_animation = &idle;
@@ -1122,27 +1123,28 @@ if (state != current_state)
 
 		}
 			break;
+
 	case ST_YATORO_POKU:
-		
+		LOG("yatoro Poku");
 		if(position.y<initialPos){ position.y+=10; }
 		else {
 			position.y = initialPos;
 		}
 		if (collider == true) {
-			colliderAttack = App->collision->AddCollider({ 3000, 3000, 45, 30 }, COLLIDER_PLAYER_SHOT, this);
+			colliderAttack = App->collision->AddCollider({ 3000, 3000, 40, 45 }, COLLIDER_PLAYER_SHOT, this);
 			App->music->PlayChunk(kicks);
 			collider = false;
 			time = SDL_GetTicks();
 		}
 		if (SDL_GetTicks() - time > 100) {
 			if (colliderAttack != nullptr)
-				if (flip == 0)	colliderAttack->SetPos(position.x + 60, position.y - 80);
-			if (flip == 1)	colliderAttack->SetPos(position.x - 48, position.y - 80);
+				if (flip == 0)	colliderAttack->SetPos(position.x + 20, position.y - 40);
+			if (flip == 1)	colliderAttack->SetPos(position.x, position.y - 40);
 
 		}
 		break;
 	case ST_KAMUI_MUTSUBE:
-		
+		LOG("Kamui mutsube");
 		if (position.y<initialPos) { 
 			position.y += 10;
 			if (flip == SDL_FLIP_NONE)speed = 4;
@@ -1152,32 +1154,23 @@ if (state != current_state)
 			position.y = initialPos;
 		}
 		if (collider == true) {
-			colliderAttack = App->collision->AddCollider({ 3000, 3000, 45, 30 }, COLLIDER_PLAYER_SHOT, this);
+			colliderAttack = App->collision->AddCollider({ 3000, 3000, 50, 50 }, COLLIDER_PLAYER_SHOT, this);
 			App->music->PlayChunk(kicks);
 			collider = false;
 			time = SDL_GetTicks();
 		}
 		if (SDL_GetTicks() - time > 100) {
 			if (colliderAttack != nullptr)
-				if (flip == 0)	colliderAttack->SetPos(position.x + 60, position.y - 80);
-			if (flip == 1)	colliderAttack->SetPos(position.x - 48, position.y - 80);
+				if (flip == 0)	colliderAttack->SetPos(position.x + 10, position.y - 50);
+			if (flip == 1)	colliderAttack->SetPos(position.x, position.y - 40);
 
 		}
 		break;
 	case ST_AMUBE_YATORO:
+		LOG("Amube Yatoro");
 		current_animation = &amube;
-		if (collider == true) {
-			colliderAttack = App->collision->AddCollider({ 3000, 3000, 45, 30 }, COLLIDER_PLAYER_SHOT, this);
-			App->music->PlayChunk(kicks);
-			collider = false;
-			time = SDL_GetTicks();
-		}
-		if (SDL_GetTicks() - time > 100) {
-			if (colliderAttack != nullptr)
-				if (flip == 0)	colliderAttack->SetPos(position.x + 60, position.y - 80);
-			if (flip == 1)	colliderAttack->SetPos(position.x - 48, position.y - 80);
+		App->pet->yatoro = true;
 
-		}
 		break;
 	case ST_WIN:
 		current_animation = &win;
@@ -1639,8 +1632,8 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 			case IN_3:
 			case IN_4:
 				if (jumptohawktimer == 1) {
-					if (hawkdown == true) { state = ST_KAMUI_MUTSUBE; App->input->Kamui_timer = SDL_GetTicks(); break; }
-					if ((hawkleft == true || hawkright == true)) {state = ST_YATORO_POKU; App->input->Yatoro_timer = SDL_GetTicks(); break; }
+					if (hawkdown == true) { state = ST_YATORO_POKU; App->input->Yatoro_timer = SDL_GetTicks(); break; }
+					if ((hawkleft == true || hawkright == true)) {state = ST_KAMUI_MUTSUBE; App->input->Kamui_timer = SDL_GetTicks(); break; }
 				}
 		}
 		break;
@@ -1815,17 +1808,16 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 
 	if (colliderPlayer == c1 && c2->type == COLLIDER_ENEMY_SHOT && defense == false)
 	{
-		if (App->player2->colliderAttack != nullptr) {
-			App->player2->colliderAttack->to_delete = true;
-		}
 		App->ui->HealthBar_p1 -= App->player2->Damage;
 		App->slowdown->StartSlowdown(600, 40);
 		App->render->StartCameraShake(300, 3);
 		App->input->inputs.Push(IN_DAMAGE);
-
-
+		if (c2 != nullptr){
+			c2->to_delete = true;
+		}
 	}
 
+	else{
 	if (colliderPlayer == c1 && c2->type == COLLIDER_ENEMY_SHOT && defense == true) App->input->inputs.Push(IN_BLOCK); if (App->player2->colliderAttack != nullptr) App->player2->colliderAttack->to_delete = true;
 	
 	if (colliderPlayer == c1 && c2->type == COLLIDER_WALL)
@@ -1840,18 +1832,17 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			//wall = false;
 		}
 	}
-	if (App->input->right == true && colliderPlayer == c1 && c2->type == COLLIDER_ENEMY) {
-		if (flip == SDL_FLIP_NONE && position.x < 490) {
+	if (colliderPlayer == c1 && c2->type == COLLIDER_ENEMY) {
+		if (position.x < 480 && position.x > 100) {
 
 			App->player2->position.x += speed;
 		}
-	}
-	if (App->input->left == true && colliderPlayer == c1 && c2->type == COLLIDER_ENEMY) {
-		if (flip == SDL_FLIP_HORIZONTAL && position.x > 88) {
-			App->player2->position.x += speed;
+		else {
+			speed = 0;
 		}
 	}
 	
 	
+	}
 
 }
