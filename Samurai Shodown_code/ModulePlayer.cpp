@@ -231,18 +231,6 @@ ModulePlayer::ModulePlayer()
 	hit.PushBack({ 1805, 51, 69, 98 }, 0.2, 0, 5, 0, 5);
 	hit.PushBack({ 1876, 53, 73, 95 }, 0.08, 0, 5, 0, 5);
 
-	win.PushBack({ 117, 713, 89, 92 }, 0.2, 19, 0, -22, 0);
-	win.PushBack({ 204, 711, 97, 94 }, 0.2, 13, 0, -20, 0);
-	win.PushBack({ 303, 708, 93, 95 }, 0.2, 8, 0, -17, 0);
-	win.PushBack({ 1065, 896,100, 93 }, 0.2, 8, 0, -17, 0);
-	win.PushBack({ 1164, 900,100, 93 }, 0.2, 11, 3, -18, 3);
-	win.PushBack({ 1262, 896,100, 93 }, 0.2, 13, 4, -19, 4);
-	win.PushBack({ 1459, 899,100, 93 }, 0.1, 14, 4, -19, 4);
-	win.PushBack({ 1555, 899,100, 93 }, 0.1, 20, 7, -22, 7);
-	win.PushBack({ 1738, 899,100, 93 }, 0.1, 19, 3, -21, 3);
-	win.PushBack({ 1833, 899,100, 93 }, 0.1, 19, 4, -22, 4);
-	win.loop = false;
-
 	defeat.PushBack({ 325, 1052, 62, 61 }, 0.06, 0, 5, 0, 5);
 	defeat.PushBack({ 391, 1054, 60, 60 }, 0.06, 1, 6, 0, 6);
 	defeat.PushBack({ 451, 1052, 62, 62 }, 0.06, 0, 6, 0, 6);
@@ -728,7 +716,7 @@ if (state != current_state)
 		height = +20;
 		if (animstart == 0)
 		{
-			current_animation = &win;
+			current_animation = &kamui;
 		}
 
 		
