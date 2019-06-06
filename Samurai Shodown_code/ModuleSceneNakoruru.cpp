@@ -105,7 +105,7 @@ bool ModuleSceneNakoruru::CleanUp()
 update_status ModuleSceneNakoruru::Update()
 {
 	if (matchstart == false) {
-		if (SDL_GetTicks() - starttime >= 500) {
+		if (SDL_GetTicks() - starttime >= 4500) {
 			matchstart = true;
 			App->ui->roundstart = false;
 			App->input->playerinput = true;

@@ -133,6 +133,7 @@ ModulePlayer::ModulePlayer()
 	kick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
 	
 
+<<<<<<< HEAD
 	
 	mediumkick.PushBack({ 83, 1709, 51, 77 }, 0.1, 0, -10, 6, -10);
 	mediumkick.PushBack({ 140, 1711, 54, 73 }, 0.2, 0, -10, 6, -10);
@@ -150,6 +151,16 @@ ModulePlayer::ModulePlayer()
 	heavykick.PushBack({ 1012, 34, 58, 106 }, 0.2, 0, 3, 0, 3);
 	heavykick.PushBack({ 1069, 40, 95, 98 }, 0.2, 0, 0, -18, 0);
 
+=======
+	//TO DO
+	mediumkick.PushBack({ 14, 1061, 56, 98 }, 0.01, 0, 0, 4, 0);
+	
+
+
+	//TO DO
+	heavykick.PushBack({ 121, 1061, 95, 98 }, 0.01, 0, 0, -14, 0);
+	
+>>>>>>> parent of 633caa5... medium,heavy and jump kick animation
 	
 	
 	jumpPunch.PushBack({ 1383, 1292, 79, 67 }, 0.3, 0, 2, -13, 2);
@@ -175,6 +186,7 @@ ModulePlayer::ModulePlayer()
 	jumpPunchHeavy.PushBack({ 1484, 643, 64, 133 }, 0.2, 12, 0, -20, 0);
 
 	//TO DO
+<<<<<<< HEAD
 	jumpFrontPunchHeavy.PushBack({ 807, 694, 57, 92 }, 0.4, 13, 0, -20, 0);
 	jumpFrontPunchHeavy.PushBack({ 864, 691, 54, 95 }, 0.4, 13, 0, -20, 0);
 	jumpFrontPunchHeavy.PushBack({ 917, 693, 62, 93 }, 0.4, 13, 0, -20, 0);
@@ -189,6 +201,13 @@ ModulePlayer::ModulePlayer()
 	jumpKick.PushBack({ 462, 1811, 59, 81 }, 0.2, 0, 0, 0, 0);
 	jumpKick.PushBack({ 660, 1623, 47, 71 }, 0.002, 0, 0, 0, 0);
 	jumpKick.loop = false;
+=======
+	jumpKick.PushBack({ 462, 1811, 59, 81 }, 0.2, 0, 0, 4, 0);
+	jumpKick.PushBack({ 520, 1814, 102, 79 }, 0.1, 0, 0, 8, 0);
+	jumpKick.PushBack({ 462, 1811, 59, 81 }, 0.2, 0, 0, 4, 0);
+	
+
+>>>>>>> parent of 633caa5... medium,heavy and jump kick animation
 
 	//TO DO
 	jumpKickHeavy.PushBack({ 462, 1811, 59, 81 }, 0.2, 0, 0, 0, 0);
