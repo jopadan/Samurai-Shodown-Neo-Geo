@@ -82,7 +82,6 @@ public:
 	Animation cyclone;
 	Animation tornado;
 	Animation block;
-	Animation kamui;
 	Animation win;
 	Animation defeat;
 	Animation hawk_carry;
