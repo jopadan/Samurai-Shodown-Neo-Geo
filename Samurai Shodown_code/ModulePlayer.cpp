@@ -229,13 +229,6 @@ ModulePlayer::ModulePlayer()
 	crouchPunch.PushBack({ 235, 1466, 82, 60 }, 0.2, 4, 4, -10, 6);
 	crouchPunch.PushBack({ 317, 1465, 66, 60 }, 0.2, 4, 4, -2, 7);
 
-	crouchHeavyPunch.PushBack({ 123, 984, 66, 73 }, 0.2, 0, 8, 3, 8);
-	crouchHeavyPunch.PushBack({ 191, 992, 64, 60 }, 0.2, 0, 8, 3, 8);
-	crouchHeavyPunch.PushBack({ 255, 983, 70, 72 }, 0.2, 0, 8, 3, 8);
-	crouchHeavyPunch.PushBack({ 326, 988, 60, 67 }, 0.2, 0, 8, 3, 8);
-	crouchHeavyPunch.PushBack({ 387, 976, 67, 70 }, 0.2, 0, 8, 3, 8);
-	crouchHeavyPunch.PushBack({ 460, 987, 63, 63 }, 0.2, 0, 8, 3, 8);
-	crouchHeavyPunch.PushBack({ 644, 991, 52, 57 }, 0.2, 0, 4, 3, 4);
 
 	
 	crouchKick.PushBack({ 118, 1375, 46, 63 }, 0.2, 0, 0, 0, 0);
@@ -754,7 +747,7 @@ if (state != current_state)
 		height = +20;
 		if (animstart == 0)
 		{
-			current_animation = &crouch;
+			current_animation = &kamui;
 		}
 
 		
