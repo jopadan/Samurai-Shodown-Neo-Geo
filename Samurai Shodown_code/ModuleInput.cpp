@@ -132,7 +132,7 @@ bool ModuleInput::external_input()
 				break;
 			case SDLK_9:
 				if (playerinput == true)
-					App->input->inputs2.Push(IN_8);
+					App->input->inputs2.Push(IN_9);
 				break;
 			case SDLK_0:
 				if (playerinput == true)
