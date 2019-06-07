@@ -161,7 +161,7 @@ update_status ModuleUI::Update() {
 
 	if (HealthBar_p1 <= 32) {
 		App->render->Blit(graphics, -App->render->camera.x + 8 + (128 - HealthBar_p1), -App->render->camera.y + 14, &lowHealth, SDL_FLIP_NONE, 1);
-		App->music->PlayChunk(dama);
+		//App->music->PlayChunk(dama);
 	}
 	else {
 		App->render->Blit(graphics, -App->render->camera.x + 8, -App->render->camera.y + 12, &healthCont, SDL_FLIP_NONE, 1);
@@ -171,7 +171,7 @@ update_status ModuleUI::Update() {
 
 	if (Health_Bar_p2 <= 32) {
 		App->render->Blit(graphics, -App->render->camera.x + 168, -App->render->camera.y+ 14, &lowHealth2, SDL_FLIP_NONE, 1);
-		App->music->PlayChunk(dama);
+		 //App->music->PlayChunk(dama);
 
 	}
 	else {

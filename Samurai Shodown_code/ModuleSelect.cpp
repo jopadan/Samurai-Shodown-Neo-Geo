@@ -75,6 +75,7 @@ bool ModuleSelect::Start()
 	ready2 = false;
 
 	musload = App->music->LoadMus("Assets/Sound/Twelve Swordsmen (Player Select).ogg");
+	select = App->music->LoadChunk("Assets/Sound/Samurai Shodown - SELECTING IN MENU.ogg");
 	graphics = App->textures->Load("Assets/Image/Select.png");
 	player1 = App->textures->Load("Assets/Image/Nakoruru spritesheet.png");
 	player2 = App->textures->Load("Assets/Image/Nakoruru spritesheet p2.png");
@@ -90,6 +91,7 @@ bool ModuleSelect::CleanUp()
 {
 	LOG("Unloading Menu scene");
 	App->music->UnloadMus(musload);
+	App->music->UnloadChunk(select);
 	App->textures->Unload(graphics);
 	App->textures->Unload(player1);
 	App->textures->Unload(player2);
@@ -188,6 +190,7 @@ update_status ModuleSelect::Update()
 		if (App->input->right == true) {
 			if (right == true) {
 				position1.x += 40;
+				App->music->PlayChunk(select);
 				right = false;
 			}
 		}
@@ -196,6 +199,7 @@ update_status ModuleSelect::Update()
 			if (left == true) {
 				position1.x -= 40;
 				left = false;
+				App->music->PlayChunk(select);
 			}
 		}
 
@@ -203,6 +207,7 @@ update_status ModuleSelect::Update()
 			if (up == true) {
 				position1.y -= 48;
 				up = false;
+				App->music->PlayChunk(select);
 			}
 		}
 
@@ -210,6 +215,7 @@ update_status ModuleSelect::Update()
 			if (down == true) {
 				position1.y += 48;
 				down = false;
+				App->music->PlayChunk(select);
 			}
 		}
 
@@ -217,6 +223,7 @@ update_status ModuleSelect::Update()
 			if (right2 == true) {
 				position2.x += 40;
 				right2 = false;
+				App->music->PlayChunk(select);
 			}
 		}
 
@@ -224,6 +231,7 @@ update_status ModuleSelect::Update()
 			if (left2 == true) {
 				position2.x -= 40;
 				left2 = false;
+				App->music->PlayChunk(select);
 			}
 		}
 
@@ -231,6 +239,7 @@ update_status ModuleSelect::Update()
 			if (up2 == true) {
 				position2.y -= 48;
 				up2 = false;
+				App->music->PlayChunk(select);
 			}
 		}
 
@@ -238,6 +247,7 @@ update_status ModuleSelect::Update()
 			if (down2 == true) {
 				position2.y += 48;
 				down2 = false;
+				App->music->PlayChunk(select);
 			}
 		}
 }

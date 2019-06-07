@@ -319,7 +319,7 @@ update_status ModulePlayer2::Update()
 	dontflip = false;
 	App->pet2->yatoro = false;
 
-	Animation* current_animation = &idle;  //&intro;
+	Animation* current_animation = &intro;  //&intro;
 	if (App->scene_nakoruru->matchstart == true) current_animation = &idle;
 
 	SDL_Rect r2 = shadow.GetCurrentFrame();
