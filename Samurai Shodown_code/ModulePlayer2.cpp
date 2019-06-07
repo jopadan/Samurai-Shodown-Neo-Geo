@@ -25,12 +25,12 @@ ModulePlayer2::ModulePlayer2()
 	position.y = 207;
 	initialPos = position.y;
 
+	intro.PushBack({ 1344, 39, 42, 97 }, 0.09, 0, 0, 0, 0);
+	intro.PushBack({ 1386, 38, 40, 98 }, 0.09, 1, 0, 0, 0);
+	intro.PushBack({ 1428, 41, 39, 95 }, 0.07, 2, 0, 0, 0);
+	intro.PushBack({ 1386, 38, 40, 98 }, 0.09, 1, 0, 0, 0);
+	intro.PushBack({ 1344, 39, 42, 97 }, 0.09, 0, 0, 0, 0);
 
-	intro.PushBack({ 1344, 39, 42, 97 }, 0.15, 0, 0, 0, 0);
-	intro.PushBack({ 1386, 38, 40, 98 }, 0.15, 1, 0, 0, 0);
-	intro.PushBack({ 1428, 41, 39, 95 }, 0.15, 2, 0, 0, 0);
-	intro.PushBack({ 1386, 38, 40, 98 }, 0.15, 1, 0, 0, 0);
-	intro.PushBack({ 1344, 39, 42, 97 }, 0.15, 0, 0, 0, 0);
 
 	idle.PushBack({ 13, 1614, 65, 87 }, 0.15, 0, 0, 0, 0);
 	idle.PushBack({ 82, 1614, 65, 87 }, 0.15, 1, 0, 0, 0);
@@ -82,6 +82,7 @@ ModulePlayer2::ModulePlayer2()
 	punch.PushBack({ 303, 708, 93, 95 }, 0.4, 8, 0, -17, 0);
 	punch.PushBack({ 395, 708, 101, 92 }, 0.3, -33, 0, 0, 0);
 
+
 	mediumpunch.PushBack({ 851, 1030, 90, 98 }, 0.4, -21, -1, 0, -1);
 	mediumpunch.PushBack({ 941, 1012, 74, 118 }, 0.4, -2, -1, 0, -1);
 	mediumpunch.PushBack({ 1020, 1011, 98, 120 }, 0.4, 11, 0, -19, 0);
@@ -89,6 +90,7 @@ ModulePlayer2::ModulePlayer2()
 	mediumpunch.PushBack({ 1221, 1022, 105, 107 }, 0.4, 6, 0, -20, 0);
 	mediumpunch.PushBack({ 1325, 1020, 103, 111 }, 0.4, 5, 6, -18, 6);
 	mediumpunch.PushBack({ 1424, 1017, 84, 106 }, 0.4, 1, -1, -8, -1);
+
 
 	heavypunch.PushBack({ 807, 694, 57, 92 }, 0.4, 13, 0, 8, 0);
 	heavypunch.PushBack({ 864, 691, 54, 95 }, 0.4, 13, 0, 8, 0);
@@ -102,28 +104,18 @@ ModulePlayer2::ModulePlayer2()
 	heavypunch.PushBack({ 1484, 643, 64, 133 }, 0.2, 12, 0, -4, 0);
 
 	//TO DO
-	Annu.PushBack({ 15, 638, 78, 62 }, 0.4, 0, 0, 4, 0);
-	Annu.PushBack({ 987, 162, 142, 51 }, 0.5, 0, 0, -20, 2);
-	Annu.PushBack({ 240, 650, 142, 51 }, 0.5, 0, 0, -20, 0);
+	Annu.PushBack({ 15, 638, 78, 62 }, 0.2, 0, 0, -20, 0);
+	Annu.PushBack({ 987, 162, 142, 51 }, 0.2, 0, 0, -20, 0);
 
-	kamui.PushBack({ 29, 1900, 93, 94 }, 0.4, 0, 4, -10, 4);
-	kamui.PushBack({ 119, 1904, 89, 93 }, 0.4, 0, 0, -10, 0);
-	kamui.PushBack({ 215, 1893, 87, 86 }, 0.4, -3, -15, -8, -8);
-	kamui.PushBack({ 119, 1904, 89, 93 }, 0.4, 0, 0, -10, 0);
-	kamui.PushBack({ 397, 1909, 97, 89 }, 0.4, -7, 0, -10, 0);
-
-	yatoro.PushBack({ 1469, 1550, 63, 70 }, 0.4, 0, 0, 0, 0);
-	yatoro.PushBack({ 1548, 1552, 66, 70 }, 0.4, 0, 0, 0, 0);
-	yatoro.PushBack({ 1621, 1555, 66, 70 }, 0.4, 0, 0, 0, 0);
-	yatoro.PushBack({ 1700, 1557, 66, 70 }, 0.4, 0, 0, 0, 0);
-	yatoro.PushBack({ 1799, 1557, 66, 70 }, 0.4, 0, 0, 0, 0);
-	yatoro.PushBack({ 1901, 1550, 66, 70 }, 0.4, 0, 0, 0, 0);
+	Annu.PushBack({ 240, 650, 142, 51 }, 0.2, 0, 0, -20, 0);
 
 	kick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
 	kick.PushBack({ 70, 1060, 53, 100 }, 0.1, 0, 0, 8, 0);
 	kick.PushBack({ 121, 1061, 95, 98 }, 0.1, 0, 0, -14, 0);
 	kick.PushBack({ 70, 1060, 53, 100 }, 0.1, 0, 0, 8, 0);
 	kick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
+
+
 
 	mediumkick.PushBack({ 83, 1709, 51, 77 }, 0.1, 0, -10, 6, -10);
 	mediumkick.PushBack({ 140, 1711, 54, 73 }, 0.2, 0, -10, 6, -10);
@@ -133,10 +125,15 @@ ModulePlayer2::ModulePlayer2()
 	mediumkick.PushBack({ 394, 1703, 60, 83 }, 0.2, 0, -10, 6, -10);
 	mediumkick.PushBack({ 451, 1706, 49, 82 }, 0.2, 0, -10, 6, -10);
 
+
+
+
 	heavykick.PushBack({ 901, 31, 50, 110 }, 0.2, 0, 3, 7, 3);
 	heavykick.PushBack({ 951, 33, 64, 107 }, 0.2, 0, 3, 0, 3);
 	heavykick.PushBack({ 1012, 34, 58, 106 }, 0.2, 0, 3, 0, 3);
 	heavykick.PushBack({ 1069, 40, 95, 98 }, 0.2, 0, 0, -18, 0);
+
+
 
 	jumpPunch.PushBack({ 1383, 1292, 79, 67 }, 0.3, 0, 2, -13, 2);
 	jumpPunch.PushBack({ 1294, 1293, 94, 77 }, 0.2, 8, 4, -15, 2);
@@ -144,6 +141,8 @@ ModulePlayer2::ModulePlayer2()
 	jumpPunch.PushBack({ 1127, 1288, 71, 71 }, 0.3, 8, 2, -10, 2);
 	jumpPunch.PushBack({ 660, 1623, 47, 71 }, 0.002, 0, 0, 0, 0);
 	jumpPunch.loop = false;
+
+
 
 	//To DO
 	// Falta meterlo en la spritesheet
@@ -159,10 +158,14 @@ ModulePlayer2::ModulePlayer2()
 	jumpPunchHeavy.PushBack({ 1484, 643, 64, 133 }, 0.2, 12, 0, -20, 0);
 
 	//TO DO
-	jumpFrontPunchHeavy.PushBack({ 501, 1715, 72, 95 }, 0.2, 13, 0, -13, 0);
-	jumpFrontPunchHeavy.PushBack({ 657, 1715, 91, 93 }, 0.2, 13, 0, -20, 0);
-	jumpFrontPunchHeavy.PushBack({ 747, 1718, 91, 93 }, 0.2, 13, 0, -20, 0);
+	jumpFrontPunchHeavy.PushBack({ 807, 694, 57, 92 }, 0.4, 13, 0, -20, 0);
+	jumpFrontPunchHeavy.PushBack({ 864, 691, 54, 95 }, 0.4, 13, 0, -20, 0);
+	jumpFrontPunchHeavy.PushBack({ 917, 693, 62, 93 }, 0.4, 13, 0, -20, 0);
+	jumpFrontPunchHeavy.PushBack({ 978, 693, 76, 94 }, 0.4, -3, 4, -20, 0);
+	jumpFrontPunchHeavy.PushBack({ 1054, 672, 79, 110 }, 0.4, 6, 2, -20, 0);
 	jumpFrontPunchHeavy.loop = false;
+
+
 
 	jumpKick.PushBack({ 462, 1811, 59, 81 }, 0.2, 0, 0, 0, 0);
 	jumpKick.PushBack({ 520, 1814, 102, 79 }, 0.01, 0, 0, -17, 0);
@@ -190,16 +193,11 @@ ModulePlayer2::ModulePlayer2()
 	crouchPunch.PushBack({ 235, 1466, 82, 60 }, 0.2, 4, 4, -10, 6);
 	crouchPunch.PushBack({ 317, 1465, 66, 60 }, 0.2, 4, 4, -2, 7);
 
-	crouchHeavyPunch.PushBack({ 123, 984, 66, 73 }, 0.2, 0, 8, 3, 8);
-	crouchHeavyPunch.PushBack({ 191, 992, 64, 60 }, 0.2, 0, 8, 3, 8);
-	crouchHeavyPunch.PushBack({ 255, 983, 70, 72 }, 0.2, 0, 8, 3, 8);
-	crouchHeavyPunch.PushBack({ 326, 988, 60, 67 }, 0.2, 0, 8, 3, 8);
-	crouchHeavyPunch.PushBack({ 387, 976, 67, 70 }, 0.2, 0, 8, 3, 8);
-	crouchHeavyPunch.PushBack({ 460, 987, 63, 63 }, 0.2, 0, 8, 3, 8);
-	crouchHeavyPunch.PushBack({ 644, 991, 52, 57 }, 0.2, 0, 4, 3, 4);
 
-	crouchKick.PushBack({ 118, 1375, 46, 63 }, 0.2, 0, 0, 0, 0);
-	crouchKick.PushBack({ 164, 1378, 80, 60 }, 0.2, 0, 0, -12, 0);
+
+	crouchKick.PushBack({ 118, 1375, 46, 63 }, 0.02, 0, 0, 0, 0);
+	crouchKick.PushBack({ 164, 1378, 80, 60 }, 0.02, 0, 0, -12, 0);
+
 
 	crouchHeavyKick.PushBack({ 271, 813, 51, 60 }, 0.2, 0, 0, 0, 0);
 	crouchHeavyKick.PushBack({ 322, 813, 42, 57 }, 0.2, 0, 0, 0, 0);
@@ -216,22 +214,7 @@ ModulePlayer2::ModulePlayer2()
 	hit.PushBack({ 1805, 51, 69, 98 }, 0.2, 0, 5, 0, 5);
 	hit.PushBack({ 1876, 53, 73, 95 }, 0.08, 0, 5, 0, 5);
 
-	win.PushBack({ 117, 713, 89, 92 }, 0.2, 19, 0, -22, 0);
-	win.PushBack({ 204, 711, 97, 94 }, 0.2, 13, 0, -20, 0);
-	win.PushBack({ 303, 708, 93, 95 }, 0.2, 8, 0, -17, 0);
-	win.PushBack({ 1065, 896,100, 93 }, 0.2, 8, 0, -17, 0);
-	win.PushBack({ 1164, 900,100, 93 }, 0.2, 11, 3, -18, 3);
-	win.PushBack({ 1262, 896,99, 93 }, 0.2, 13, 4, -19, 4);
-	win.PushBack({ 1459, 899,92, 93 }, 0.1, 14, 4, -19, 4);
-	win.PushBack({ 1555, 899,92, 93 }, 0.1, 20, 7, -22, 7);
-	win.PushBack({ 1738, 899,94, 93 }, 0.1, 19, 3, -21, 3);
-	win.PushBack({ 1833, 899,99, 93 }, 0.1, 19, 4, -22, 4);
-	win.loop = false;
 
-	defeat.PushBack({ 325, 1052, 62, 61 }, 0.06, 0, 5, 0, 5);
-	defeat.PushBack({ 391, 1054, 60, 60 }, 0.06, 1, 6, 0, 6);
-	defeat.PushBack({ 451, 1052, 62, 62 }, 0.06, 0, 6, 0, 6);
-	defeat.PushBack({ 513, 1050, 63, 64 }, 0.06, 0, 6, 0, 6);
 
 	shadow.PushBack({ 659, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
 	shadow.PushBack({ 733, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
@@ -368,8 +351,7 @@ update_status ModulePlayer2::Update()
 			tornado.Reset();
 			block.Reset();
 			win.Reset();
-			yatoro.Reset();
-			kamui.Reset();
+			//yatoro.Reset();
 			defeat.Reset();
 			hawk_carry.Reset();
 			Annu.Reset();
@@ -721,7 +703,7 @@ update_status ModulePlayer2::Update()
 			height = +20;
 			if (animstart == 0)
 			{
-				current_animation = &crouch;
+				current_animation = &jumpFrontPunchHeavy;
 				;
 			}
 
@@ -1165,11 +1147,7 @@ update_status ModulePlayer2::Update()
 			if (colliderAttack != nullptr)
 				if (flip == 0)	colliderAttack->SetPos(position.x + 20, position.y - 40);
 			if (flip == 1)	colliderAttack->SetPos(position.x, position.y - 40);
-			if (animstart == 0)
-			{
-				current_animation = &yatoro;
-			}
-			if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
+
 
 			break;
 		case ST_KAMUI_MUTSUBE:
@@ -1192,11 +1170,7 @@ update_status ModulePlayer2::Update()
 			if (colliderAttack != nullptr)
 				if (flip == 0)	colliderAttack->SetPos(position.x + 10, position.y - 50);
 			if (flip == 1)	colliderAttack->SetPos(position.x, position.y - 40);
-			if (animstart == 0)
-			{
-				current_animation = &kamui;
-			}
-			if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
+
 
 			break;
 		case ST_AMUBE_YATORO:

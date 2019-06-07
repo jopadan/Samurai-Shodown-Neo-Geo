@@ -83,8 +83,6 @@ public:
 	Animation tornado;
 	Animation block;
 	Animation win;
-	Animation kamui;
-	Animation yatoro;
 	Animation defeat;
 	Animation hawk_carry;
 	Animation Annu;

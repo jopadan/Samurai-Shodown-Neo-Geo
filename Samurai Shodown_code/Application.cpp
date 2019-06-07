@@ -70,7 +70,9 @@ bool Application::Init()
 	end->Disable();
 	particles->Disable();
 	select->Disable();
-	
+	pet->Disable();
+	pet2->Disable();
+	referee->Disable();
 	
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
