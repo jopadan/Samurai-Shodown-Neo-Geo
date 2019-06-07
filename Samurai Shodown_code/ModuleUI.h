@@ -5,6 +5,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "p2Point.h"
+#include "ModuleMusic.h"
 
 #include "SDL/include/SDL.h"
 
@@ -31,6 +32,7 @@ public:
 	bool matchend = false;
 	//Animation lowHealth;
 	bool lowAnim = false;
+	Mix_Chunk* dama;
 	SDL_Rect health;
 	SDL_Rect health2;
 	SDL_Rect Ippon;

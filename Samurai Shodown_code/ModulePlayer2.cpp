@@ -102,7 +102,7 @@ ModulePlayer2::ModulePlayer2()
 	heavypunch.PushBack({ 1484, 643, 64, 133 }, 0.2, 12, 0, -4, 0);
 
 	//TO DO
-	Annu.PushBack({ 15, 638, 78, 62 }, 0.4, 0, 0, 4, 0);
+	//Annu.PushBack({ 15, 638, 78, 62 }, 0.4, 0, 0, 4, 0);
 	Annu.PushBack({ 987, 162, 142, 51 }, 0.5, 0, 0, -20, 2);
 	Annu.PushBack({ 240, 650, 142, 51 }, 0.5, 0, 0, -20, 0);
 
@@ -258,11 +258,16 @@ bool ModulePlayer2::Start()
 
 	graphics = App->textures->Load("Assets/Image/Nakoruru spritesheet p2.png");
 	graphicsobj = App->textures->Load("Assets/Image/objectes.png");
-	senpuu = App->music->LoadChunk("Assets/Sound/Haohmaru/attacks/senpuu.ogg");
-	sword = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - A- 01.wav");
-	kicks = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - KICK (MISS) - 01.wav");
-	hitted = App->music->LoadChunk("Assets/Sound/Haohmaru/Samurai Shodown - Haohmaru - Hitted 8.wav");
-	App->ui->Health_Bar_p2 = 128;
+	Kamui = App->music->LoadChunk("Assets/Sound/Nakoruru/Samurai Shodown - Nakoruru - Kamui Mutsube.wav");
+	swordlight = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - A- 01.wav");
+	swordheavy = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - A (LONG)- 01.wav");
+	kickslight = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - KICK (MISS) - 01.wav");
+	kicksheavy = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - KICK (MISS) - 02.wav");
+	hitted = App->music->LoadChunk("Assets/Sound/Nakoruru/Samurai Shodown - Nakoruru - Hitted 2.wav");
+	heavydo = App->music->LoadChunk("Assets/Sound/Nakoruru/Samurai Shodown - Nakoruru - 02.wav");
+	heavyya = App->music->LoadChunk("Assets/Sound/Nakoruru/Samurai Shodown - Nakoruru - 01.wav");
+	annu = App->music->LoadChunk("Assets/Sound/Nakoruru/Samurai Shodown - Nakoruru - Annu Mutsube.wav");
+	protection = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - ATTACK PROTECTION 03.wav");
 
 
 	if (flip == SDL_FLIP_HORIZONTAL) {
@@ -292,10 +297,16 @@ bool ModulePlayer2::CleanUp() {
 	position.y = 207;
 	App->textures->Unload(graphics);
 	App->textures->Unload(graphicsobj);
-	App->music->UnloadChunk(senpuu);
-	App->music->UnloadChunk(sword);
-	App->music->UnloadChunk(kicks);
+	App->music->UnloadChunk(Kamui);
+	App->music->UnloadChunk(swordlight);
+	App->music->UnloadChunk(swordheavy);
+	App->music->UnloadChunk(kickslight);
+	App->music->UnloadChunk(kicksheavy);
 	App->music->UnloadChunk(hitted);
+	App->music->UnloadChunk(heavydo);
+	App->music->UnloadChunk(heavyya);
+	App->music->UnloadChunk(annu);
+	App->music->UnloadChunk(protection);
 
 	return true;
 }
@@ -308,7 +319,7 @@ update_status ModulePlayer2::Update()
 	dontflip = false;
 	App->pet2->yatoro = false;
 
-	Animation* current_animation = &idle;  //&intro;
+	Animation* current_animation = &intro;  //&intro;
 	if (App->scene_nakoruru->matchstart == true) current_animation = &idle;
 
 	SDL_Rect r2 = shadow.GetCurrentFrame();
@@ -430,7 +441,7 @@ update_status ModulePlayer2::Update()
 						current_animation = &jumpPunch;
 						if (collider == true) {
 							colliderAttack = App->collision->AddCollider({ position.x, position.y , 50, 30 }, COLLIDER_ENEMY_SHOT, this);
-							App->music->PlayChunk(sword);
+							App->music->PlayChunk(swordlight);
 							collider = false;
 							time = SDL_GetTicks();
 						}
@@ -449,7 +460,7 @@ update_status ModulePlayer2::Update()
 						current_animation = &jumpPunchHeavy;
 						if (collider == true) {
 							colliderAttack = App->collision->AddCollider({ position.x, position.y , 60, 30 }, COLLIDER_ENEMY_SHOT, this);
-							App->music->PlayChunk(sword);
+							App->music->PlayChunk(swordheavy);
 							collider = false;
 							time = SDL_GetTicks();
 						}
@@ -466,7 +477,7 @@ update_status ModulePlayer2::Update()
 						current_animation = &jumpKick;
 						if (collider == true) {
 							colliderAttack = App->collision->AddCollider({ position.x, position.y , 30, 30 }, COLLIDER_ENEMY_SHOT, this);
-							App->music->PlayChunk(sword);
+							App->music->PlayChunk(kickslight);
 							collider = false;
 							time = SDL_GetTicks();
 						}
@@ -483,7 +494,7 @@ update_status ModulePlayer2::Update()
 						current_animation = &jumpKickHeavy;
 						if (collider == true) {
 							colliderAttack = App->collision->AddCollider({ position.x, position.y, 70, 30 }, COLLIDER_ENEMY_SHOT, this);
-							App->music->PlayChunk(sword);
+							App->music->PlayChunk(kicksheavy);
 							collider = false;
 							time = SDL_GetTicks();
 						}
@@ -527,7 +538,7 @@ update_status ModulePlayer2::Update()
 						current_animation = &jumpPunch;
 						if (collider == true) {
 							colliderAttack = App->collision->AddCollider({ position.x, position.y , 50, 30 }, COLLIDER_ENEMY_SHOT, this);
-							App->music->PlayChunk(sword);
+							App->music->PlayChunk(swordlight);
 							collider = false;
 							time = SDL_GetTicks();
 						}
@@ -546,7 +557,7 @@ update_status ModulePlayer2::Update()
 						current_animation = &jumpFrontPunchHeavy;
 						if (collider == true) {
 							colliderAttack = App->collision->AddCollider({ position.x, position.y , 50, 50 }, COLLIDER_ENEMY_SHOT, this);
-							App->music->PlayChunk(sword);
+							App->music->PlayChunk(swordheavy);
 							collider = false;
 							time = SDL_GetTicks();
 						}
@@ -563,7 +574,7 @@ update_status ModulePlayer2::Update()
 						current_animation = &jumpKick;
 						if (collider == true) {
 							colliderAttack = App->collision->AddCollider({ position.x, position.y , 30, 30 }, COLLIDER_ENEMY_SHOT, this);
-							App->music->PlayChunk(sword);
+							App->music->PlayChunk(kickslight);
 							collider = false;
 							time = SDL_GetTicks();
 						}
@@ -580,7 +591,7 @@ update_status ModulePlayer2::Update()
 						current_animation = &jumpFrontKickHeavy;
 						if (collider == true) {
 							colliderAttack = App->collision->AddCollider({ position.x, position.y , 70, 30 }, COLLIDER_ENEMY_SHOT, this);
-							App->music->PlayChunk(sword);
+							App->music->PlayChunk(kicksheavy);
 							collider = false;
 							time = SDL_GetTicks();
 						}
@@ -629,7 +640,7 @@ update_status ModulePlayer2::Update()
 						current_animation = &jumpPunch;
 						if (collider == true) {
 							colliderAttack = App->collision->AddCollider({ position.x, position.y , 50, 30 }, COLLIDER_ENEMY_SHOT, this);
-							App->music->PlayChunk(sword);
+							App->music->PlayChunk(swordlight);;
 							collider = false;
 							time = SDL_GetTicks();
 						}
@@ -648,7 +659,7 @@ update_status ModulePlayer2::Update()
 						current_animation = &jumpPunchHeavy;
 						if (collider == true) {
 							colliderAttack = App->collision->AddCollider({ position.x, position.y , 50, 50 }, COLLIDER_ENEMY_SHOT, this);
-							App->music->PlayChunk(sword);
+							App->music->PlayChunk(swordheavy);
 							collider = false;
 							time = SDL_GetTicks();
 						}
@@ -665,7 +676,7 @@ update_status ModulePlayer2::Update()
 						current_animation = &jumpKick;
 						if (collider == true) {
 							colliderAttack = App->collision->AddCollider({ position.x, position.y , 30, 30 }, COLLIDER_ENEMY_SHOT, this);
-							App->music->PlayChunk(sword);
+							App->music->PlayChunk(kickslight);
 							collider = false;
 							time = SDL_GetTicks();
 						}
@@ -682,7 +693,7 @@ update_status ModulePlayer2::Update()
 						current_animation = &jumpFrontKickHeavy;
 						if (collider == true) {
 							colliderAttack = App->collision->AddCollider({ position.x, position.y , 70, 30 }, COLLIDER_ENEMY_SHOT, this);
-							App->music->PlayChunk(sword);
+							App->music->PlayChunk(kicksheavy);
 							collider = false;
 							time = SDL_GetTicks();
 						}
@@ -733,7 +744,7 @@ update_status ModulePlayer2::Update()
 
 				if (collider == true) {
 					colliderAttack = App->collision->AddCollider({ position.x - 5, position.y - 40 , 60, 30 }, COLLIDER_ENEMY_SHOT, this);
-					App->music->PlayChunk(sword);
+					App->music->PlayChunk(swordlight);
 					collider = false;
 				}
 
@@ -750,7 +761,7 @@ update_status ModulePlayer2::Update()
 
 				if (collider == true) {
 					colliderAttack = App->collision->AddCollider({ position.x, position.y - 50, 60, 30 }, COLLIDER_ENEMY_SHOT, this);
-					App->music->PlayChunk(sword);
+					App->music->PlayChunk(swordlight);
 					collider = false;
 				}
 
@@ -769,7 +780,8 @@ update_status ModulePlayer2::Update()
 
 				if (collider == true) {
 					colliderAttack = App->collision->AddCollider({ position.x - 5, position.y - 40 , 60, 30 }, COLLIDER_ENEMY_SHOT, this);
-					App->music->PlayChunk(sword);
+					App->music->PlayChunk(swordheavy);
+					App->music->PlayChunk(heavydo);
 					collider = false;
 				}
 
@@ -786,7 +798,8 @@ update_status ModulePlayer2::Update()
 
 				if (collider == true) {
 					colliderAttack = App->collision->AddCollider({ position.x, position.y - 50, 60, 30 }, COLLIDER_ENEMY_SHOT, this);
-					App->music->PlayChunk(sword);
+					App->music->PlayChunk(swordheavy);
+					App->music->PlayChunk(heavydo);
 					collider = false;
 				}
 
@@ -839,6 +852,7 @@ update_status ModulePlayer2::Update()
 			break;
 		case ST_BLOCK:
 			current_animation = &block;
+			App->music->PlayChunk(protection);
 			if (current_animation->AnimationEnd() == true) { animstart = 1; App->input->inputs2.Push(IN_BLOCK_FINISH_P2); }
 			break;
 
@@ -847,7 +861,7 @@ update_status ModulePlayer2::Update()
 
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y , 70, 30 }, COLLIDER_ENEMY_SHOT, this);
-				App->music->PlayChunk(sword);
+				App->music->PlayChunk(swordlight);
 				collider = false;
 				time = SDL_GetTicks();
 			}
@@ -869,7 +883,7 @@ update_status ModulePlayer2::Update()
 
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y , 60, 80 }, COLLIDER_ENEMY_SHOT, this);
-				App->music->PlayChunk(sword);
+				App->music->PlayChunk(swordlight);
 				collider = false;
 				time = SDL_GetTicks();
 			}
@@ -895,7 +909,8 @@ update_status ModulePlayer2::Update()
 
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y , 45, 80 }, COLLIDER_ENEMY_SHOT, this);
-				App->music->PlayChunk(sword);
+				App->music->PlayChunk(swordheavy);
+				App->music->PlayChunk(heavydo);
 				collider = false;
 				time = SDL_GetTicks();
 			}
@@ -922,7 +937,7 @@ update_status ModulePlayer2::Update()
 
 				if (collider == true) {
 					colliderAttack = App->collision->AddCollider({ position.x - 5, position.y - 40 , 60, 30 }, COLLIDER_ENEMY_SHOT, this);
-					App->music->PlayChunk(sword);
+					App->music->PlayChunk(kickslight);
 					collider = false;
 				}
 
@@ -939,7 +954,7 @@ update_status ModulePlayer2::Update()
 
 				if (collider == true) {
 					colliderAttack = App->collision->AddCollider({ position.x, position.y - 50, 60, 30 }, COLLIDER_ENEMY_SHOT, this);
-					App->music->PlayChunk(sword);
+					App->music->PlayChunk(kickslight);
 					collider = false;
 				}
 
@@ -958,7 +973,8 @@ update_status ModulePlayer2::Update()
 
 				if (collider == true) {
 					colliderAttack = App->collision->AddCollider({ position.x - 5, position.y - 40 , 60, 30 }, COLLIDER_ENEMY_SHOT, this);
-					App->music->PlayChunk(sword);
+					App->music->PlayChunk(kicksheavy);
+					App->music->PlayChunk(heavyya);
 					collider = false;
 				}
 
@@ -975,7 +991,8 @@ update_status ModulePlayer2::Update()
 
 				if (collider == true) {
 					colliderAttack = App->collision->AddCollider({ position.x, position.y - 50, 60, 30 }, COLLIDER_ENEMY_SHOT, this);
-					App->music->PlayChunk(sword);
+					App->music->PlayChunk(kicksheavy);
+					App->music->PlayChunk(heavyya);
 					collider = false;
 				}
 
@@ -993,7 +1010,7 @@ update_status ModulePlayer2::Update()
 
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y, 40, 30 }, COLLIDER_ENEMY_SHOT, this);
-				App->music->PlayChunk(kicks);
+				App->music->PlayChunk(kickslight);
 				collider = false;
 				time = SDL_GetTicks();
 			}
@@ -1017,7 +1034,7 @@ update_status ModulePlayer2::Update()
 
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y, 40, 30 }, COLLIDER_ENEMY_SHOT, this);
-				App->music->PlayChunk(kicks);
+				App->music->PlayChunk(kickslight);
 				collider = false;
 				time = SDL_GetTicks();
 			}
@@ -1039,7 +1056,8 @@ update_status ModulePlayer2::Update()
 			Damage = 15;
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y, 45, 30 }, COLLIDER_ENEMY_SHOT, this);
-				App->music->PlayChunk(kicks);
+				App->music->PlayChunk(kicksheavy);
+				App->music->PlayChunk(heavyya);
 				collider = false;
 				time = SDL_GetTicks();
 			}
@@ -1070,7 +1088,7 @@ update_status ModulePlayer2::Update()
 			}
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y, 50, 20 }, COLLIDER_ENEMY_SHOT, this);
-				App->music->PlayChunk(kicks);
+				App->music->PlayChunk(annu);
 				collider = false;
 				time = SDL_GetTicks();
 			}
@@ -1137,7 +1155,7 @@ update_status ModulePlayer2::Update()
 			}
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y, 50, 20 }, COLLIDER_ENEMY_SHOT, this);
-				App->music->PlayChunk(kicks);
+				App->music->PlayChunk(annu);
 				collider = false;
 				time = SDL_GetTicks();
 			}
@@ -1157,7 +1175,8 @@ update_status ModulePlayer2::Update()
 			}
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y, 40, 45 }, COLLIDER_ENEMY_SHOT, this);
-				App->music->PlayChunk(kicks);
+				App->music->PlayChunk(swordheavy);
+				App->music->PlayChunk(heavydo);
 				collider = false;
 				time = SDL_GetTicks();
 			}
@@ -1184,7 +1203,7 @@ update_status ModulePlayer2::Update()
 			}
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y, 50, 50 }, COLLIDER_ENEMY_SHOT, this);
-				App->music->PlayChunk(kicks);
+				App->music->PlayChunk(Kamui);
 				collider = false;
 				time = SDL_GetTicks();
 			}
