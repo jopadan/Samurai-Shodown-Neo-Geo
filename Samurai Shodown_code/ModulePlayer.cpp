@@ -26,11 +26,11 @@ ModulePlayer::ModulePlayer()
 	position.y = 207;
 	initialPos = position.y;
 
-	intro.PushBack({ 1344, 39, 42, 97 }, 0.09, 0, 0, 0, 0);
-	intro.PushBack({ 1386, 38, 40, 98 }, 0.09, 1, 0, 0, 0);
-	intro.PushBack({ 1428, 41, 39, 95 }, 0.07, 2, 0, 0, 0);
-	intro.PushBack({ 1386, 38, 40, 98 }, 0.09, 1, 0, 0, 0);
-	intro.PushBack({ 1344, 39, 42, 97 }, 0.09, 0, 0, 0, 0);
+	intro.PushBack({ 1344, 39, 42, 97 }, 0.15, 0, 0, 0, 0);
+	intro.PushBack({ 1386, 38, 40, 98 }, 0.15, 1, 0, 0, 0);
+	intro.PushBack({ 1428, 41, 39, 95 }, 0.15, 2, 0, 0, 0);
+	intro.PushBack({ 1386, 38, 40, 98 }, 0.15, 1, 0, 0, 0);
+	intro.PushBack({ 1344, 39, 42, 97 }, 0.15, 0, 0, 0, 0);
 
 
 	idle.PushBack({ 13, 1614, 65, 87 }, 0.15, 0, 0, 0, 0);
@@ -113,10 +113,10 @@ ModulePlayer::ModulePlayer()
 	heavypunch.PushBack({ 1484, 643, 64, 133 }, 0.2, 12, 0, -4, 0);
 
 	//TO DO
-	Annu.PushBack({ 15, 638, 78, 62 }, 0.2, 0, 0, -20, 0);
-	Annu.PushBack({ 987, 162, 142, 51 }, 0.2, 0, 0, -20, 0);
-	Annu.PushBack({ 240, 650, 142, 51 }, 0.2, 0, 0, -20, 0);
-
+	Annu.PushBack({ 15, 638, 78, 62 }, 0.4, 0, 0, 4, 0);
+	Annu.PushBack({ 987, 162, 142, 51 }, 0.5, 0, 0, -20, 2);
+	Annu.PushBack({ 240, 650, 142, 51 }, 0.5, 0, 0, -20, 0);
+	
 
 
 	kamui.PushBack({ 29, 1900, 93, 94 }, 0.4, 0, 4, -10, 4);
@@ -248,11 +248,11 @@ ModulePlayer::ModulePlayer()
 	win.PushBack({ 303, 708, 93, 95 }, 0.2, 8, 0, -17, 0);
 	win.PushBack({ 1065, 896,100, 93 }, 0.2, 8, 0, -17, 0);
 	win.PushBack({ 1164, 900,100, 93 }, 0.2, 11, 3, -18, 3);
-	win.PushBack({ 1262, 896,100, 93 }, 0.2, 13, 4, -19, 4);
-	win.PushBack({ 1459, 899,100, 93 }, 0.1, 14, 4, -19, 4);
-	win.PushBack({ 1555, 899,100, 93 }, 0.1, 20, 7, -22, 7);
-	win.PushBack({ 1738, 899,100, 93 }, 0.1, 19, 3, -21, 3);
-	win.PushBack({ 1833, 899,100, 93 }, 0.1, 19, 4, -22, 4);
+	win.PushBack({ 1262, 896,99, 93 }, 0.2, 13, 4, -19, 4);
+	win.PushBack({ 1459, 899,92, 93 }, 0.1, 14, 4, -19, 4);
+	win.PushBack({ 1555, 899,92, 93 }, 0.1, 20, 7, -22, 7);
+	win.PushBack({ 1738, 899,94, 93 }, 0.1, 19, 3, -21, 3);
+	win.PushBack({ 1833, 899,99, 93 }, 0.1, 19, 4, -22, 4);
 	win.loop = false;
 
 	defeat.PushBack({ 325, 1052, 62, 61 }, 0.06, 0, 5, 0, 5);
@@ -329,14 +329,16 @@ bool ModulePlayer::CleanUp() {
 
 update_status ModulePlayer::Update()
 {
+	
 	//App->slowdown->StartSlowdown(2000, 40);
+	
 	speed = 0;
 
 	OnHawk = false;
 	App->pet->yatoro = false;
 	dontflip = false;
 	Animation* current_animation = &intro;  //&intro;
-if (App->scene_nakoruru->matchstart == true) current_animation = &idle;
+	if (App->scene_nakoruru->matchstart == true) current_animation = &idle;
 
 	SDL_Rect r2 = shadow.GetCurrentFrame();
 
@@ -362,7 +364,7 @@ if (App->scene_nakoruru->matchstart == true) current_animation = &idle;
 
 			jumptohawktimer = 0;
 			jumptoHawk = true;
-
+			intro.Reset();
 			forward.Reset();
 			backward.Reset();
 			jumpup.Reset();
@@ -741,7 +743,7 @@ if (App->scene_nakoruru->matchstart == true) current_animation = &idle;
 			height = +20;
 			if (animstart == 0)
 			{
-				current_animation = &jumpFrontPunchHeavy;
+				current_animation = &crouch;
 ;
 			}
 
@@ -791,6 +793,7 @@ if (App->scene_nakoruru->matchstart == true) current_animation = &idle;
 					colliderAttack = App->collision->AddCollider({ position.x - 5, position.y - 40 , 60, 30 }, COLLIDER_PLAYER_SHOT, this);
 					App->music->PlayChunk(sword);
 					collider = false;
+					
 				}
 
 				if (colliderAttack != nullptr)
@@ -800,7 +803,8 @@ if (App->scene_nakoruru->matchstart == true) current_animation = &idle;
 					current_animation = &crouchHeavyPunch;
 				}
 				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
-
+				
+					
 			}
 			else if (flip == SDL_FLIP_HORIZONTAL) {
 
@@ -808,6 +812,7 @@ if (App->scene_nakoruru->matchstart == true) current_animation = &idle;
 					colliderAttack = App->collision->AddCollider({ position.x, position.y - 50, 60, 30 }, COLLIDER_PLAYER_SHOT, this);
 					App->music->PlayChunk(sword);
 					collider = false;
+					
 				}
 
 				if (colliderAttack != nullptr)
@@ -1100,6 +1105,7 @@ if (App->scene_nakoruru->matchstart == true) current_animation = &idle;
 				if (flip == 1)	colliderAttack->SetPos(position.x - 48, position.y - 30);
 
 			}
+
 			position.y -= 0.1;
 			break;
 
@@ -1187,6 +1193,11 @@ if (App->scene_nakoruru->matchstart == true) current_animation = &idle;
 				if (flip == 1)	colliderAttack->SetPos(position.x, position.y - 40);
 
 			}
+			if (animstart == 0)
+			{
+				current_animation = &yatoro;
+			}
+			if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
 			break;
 		case ST_KAMUI_MUTSUBE:
 			LOG("Kamui mutsube");
@@ -1210,6 +1221,12 @@ if (App->scene_nakoruru->matchstart == true) current_animation = &idle;
 				if (flip == 1)	colliderAttack->SetPos(position.x, position.y - 40);
 
 			}
+			if (animstart == 0)
+			{
+				current_animation = &kamui;
+			}
+			if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
+			
 			break;
 		case ST_AMUBE_YATORO:
 			LOG("Amube Yatoro");
