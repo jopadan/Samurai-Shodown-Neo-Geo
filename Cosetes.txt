@@ -4,8 +4,8 @@
 [X] Sistema de moviment - Albert
 [] Particules d'impacte - Pol G - & diferenciar atacs que tiren i que no - Albert ft. Pol Juan
 [] Sons - Pol Juion
-[] Fonts - Pol G ft. Albert(?)
-[] Arbritre - Albert
+[X] Fonts - Pol G ft. Albert(?)
+[X] Arbritre - Albert
 [] Pagina Weeb
 [] *Vibracio dels mandos*
 [] *Pow efectes*
