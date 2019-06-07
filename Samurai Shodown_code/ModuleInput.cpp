@@ -163,7 +163,7 @@ bool ModuleInput::external_input()
 			gGameController = SDL_GameControllerOpen(0);
 
 			gGameController2 = SDL_GameControllerOpen(1);
-
+			
 			/*for (int i = 0; i < SDL_NumJoysticks() && o < 2; ++i) {
 				if (SDL_IsGameController(i) && o < 0) {
 					o++;
@@ -193,212 +193,203 @@ bool ModuleInput::external_input()
 			LOG("Mando desconectado D:");
 			SDL_GameControllerClose(gGameController);
 		}
-
-		if (event.type == SDL_CONTROLLERAXISMOTION) {
-			if (event.jaxis.which == o) { //En el gamepad 0
-				if (event.jaxis.axis == 0)
-				{
-					//Left of dead zone
-					if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
+		
+			if (event.type == SDL_CONTROLLERAXISMOTION) {
+				if (event.jaxis.which == o) { //En el gamepad 0
+					if (event.jaxis.axis == 0)
 					{
-
-						left = true;
-						right = false;
-
+						//Left of dead zone
+						if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
+						{
+							
+								left = true;
+								right = false;
+							
+						}
+						//Right of dead zone
+						else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
+						{
+							
+								right = true;
+								left = false;
+							
+						}
+						else
+						{
+							
+								left = false;
+								right = false;
+							
+						}
 					}
-					//Right of dead zone
-					else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
+					else if (event.jaxis.axis == 1)
 					{
-
-						right = true;
-						left = false;
-
-					}
-					else
-					{
-
-						left = false;
-						right = false;
-
+						//Below of dead zone
+						if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
+						{
+							
+								down = false;
+								up = true;
+							
+						}
+						//Above of dead zone
+						else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
+						{
+							
+								up = false;
+								down = true;
+							
+						}
+						else
+						{
+							
+								down = false;
+								up = false;
+							
+						}
 					}
 				}
-				else if (event.jaxis.axis == 1)
-				{
-					//Below of dead zone
-					if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
+				if (event.jaxis.which == o-1) { //En el gamepad 0
+					if (event.jaxis.axis == 0)
 					{
-
-						down = false;
-						up = true;
-
+						//Left of dead zone
+						if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
+						{
+							
+								left2 = true;
+								right2 = false;
+							
+						}
+						//Right of dead zone
+						else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
+						{
+						
+								right2 = true;
+								left2 = false;
+							
+						}
+						else
+						{
+							
+								left2 = false;
+								right2 = false;
+							
+						}
 					}
-					//Above of dead zone
-					else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
+					else if (event.jaxis.axis == 1)
 					{
-
-						up = false;
-						down = true;
-
-					}
-					else
-					{
-
-						down = false;
-						up = false;
-
+						//Below of dead zone
+						if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
+						{
+							
+								down2 = false;
+								up2 = true;
+							
+						}
+						//Above of dead zone
+						else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
+						{
+							
+								up2 = false;
+								down2 = true;
+							
+						}
+						else
+						{
+							
+								down2 = false;
+								up2 = false;
+							
+						}
 					}
 				}
 			}
-			if (event.jaxis.which == o - 1) { //En el gamepad 0
-				if (event.jaxis.axis == 0)
-				{
-					//Left of dead zone
-					if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
-					{
-
-						left2 = true;
-						right2 = false;
-
-					}
-					//Right of dead zone
-					else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
-					{
-
-						right2 = true;
-						left2 = false;
-
-					}
-					else
-					{
-
-						left2 = false;
-						right2 = false;
-
-					}
-				}
-				else if (event.jaxis.axis == 1)
-				{
-					//Below of dead zone
-					if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
-					{
-
-						down2 = false;
-						up2 = true;
-
-					}
-					//Above of dead zone
-					else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
-					{
-
-						up2 = false;
-						down2 = true;
-
-					}
-					else
-					{
-
-						down2 = false;
-						up2 = false;
-
-					}
-				}
-			}
-		}
-
+		
 		if (SDL_GameControllerGetButton(gGameController, SDL_CONTROLLER_BUTTON_X) == 1) {
-			if (playerinput == true) {
+			if (playerinput == true)
 				App->input->inputs.Push(IN_1);
-			}
 		}
 		if (SDL_GameControllerGetButton(gGameController, SDL_CONTROLLER_BUTTON_Y) == 1) {
-			if (playerinput == true) {
+			if (playerinput == true)
 				App->input->inputs.Push(IN_2);
-			}
 		}
 		if (SDL_GameControllerGetButton(gGameController, SDL_CONTROLLER_BUTTON_A) == 1) {
-			if (playerinput == true) {
+			if (playerinput == true)
 				App->input->inputs.Push(IN_3);
-			}
 		}
 		if (SDL_GameControllerGetButton(gGameController, SDL_CONTROLLER_BUTTON_B) == 1) {
-			if (playerinput == true) {
+			if (playerinput == true)
 				App->input->inputs.Push(IN_4);
-			}
 		}
 		if (SDL_GameControllerGetButton(gGameController2, SDL_CONTROLLER_BUTTON_X) == 1) {
-			if (playerinput == true) {
+			if (playerinput == true)
 				App->input->inputs2.Push(IN_7);
-			}
 		}
 		if (SDL_GameControllerGetButton(gGameController2, SDL_CONTROLLER_BUTTON_Y) == 1) {
-			if (playerinput == true) {
+			if (playerinput == true)
 				App->input->inputs2.Push(IN_8);
-			}
 		}
 		if (SDL_GameControllerGetButton(gGameController2, SDL_CONTROLLER_BUTTON_A) == 1) {
-			if (playerinput == true) {
+			if (playerinput == true)
 				App->input->inputs2.Push(IN_9);
-			}
 		}
 		if (SDL_GameControllerGetButton(gGameController2, SDL_CONTROLLER_BUTTON_B) == 1) {
-			if (playerinput == true) {
+			if (playerinput == true)
 				App->input->inputs2.Push(IN_0);
-			}
 		}
 
-		if (playerinput == true) {
-			if (left && right)
-				App->input->inputs.Push(IN_LEFT_AND_RIGHT);
-			{
-				if (left)
-					App->input->inputs.Push(IN_LEFT_DOWN);
-				if (right)
-					App->input->inputs.Push(IN_RIGHT_DOWN);
-			}
 
-			if (!left)
-				App->input->inputs.Push(IN_LEFT_UP);
-			if (!right)
-				App->input->inputs.Push(IN_RIGHT_UP);
-			if (!down)
-				App->input->inputs.Push(IN_CROUCH_UP);
+		if (left && right)
+			App->input->inputs.Push(IN_LEFT_AND_RIGHT);
+		{
+			if (left)
+				App->input->inputs.Push(IN_LEFT_DOWN);
+			if (right)
+				App->input->inputs.Push(IN_RIGHT_DOWN);
+		}
 
-
-			if (up && down)
-				App->input->inputs.Push(IN_JUMP_AND_CROUCH);
-			else
-			{
-				if (down)
-					App->input->inputs.Push(IN_CROUCH_DOWN);
-				if (up)
-					App->input->inputs.Push(IN_JUMP);
-			}
-			if (left2 && right2)
-				App->input->inputs2.Push(IN_LEFT_AND_RIGHT_P2);
-			{
-				if (left2)
-					App->input->inputs2.Push(IN_LEFT_DOWN_P2);
-				if (right2)
-					App->input->inputs2.Push(IN_RIGHT_DOWN_P2);
-			}
-
-			if (!left2)
-				App->input->inputs2.Push(IN_LEFT_UP_P2);
-			if (!right2)
-				App->input->inputs2.Push(IN_RIGHT_UP_P2);
-			if (!down2)
-				App->input->inputs2.Push(IN_CROUCH_UP_P2);
+		if (!left)
+			App->input->inputs.Push(IN_LEFT_UP);
+		if (!right)
+			App->input->inputs.Push(IN_RIGHT_UP);
+		if (!down)
+			App->input->inputs.Push(IN_CROUCH_UP);
 
 
-			if (up2 && down2)
-				App->input->inputs2.Push(IN_JUMP_AND_CROUCH_P2);
-			else
-			{
-				if (down2)
-					App->input->inputs2.Push(IN_CROUCH_DOWN_P2);
-				if (up2)
-					App->input->inputs2.Push(IN_JUMP_P2);
-			}
+		if (up && down)
+			App->input->inputs.Push(IN_JUMP_AND_CROUCH);
+		else
+		{
+			if (down)
+				App->input->inputs.Push(IN_CROUCH_DOWN);
+			if (up)
+				App->input->inputs.Push(IN_JUMP);
+		}
+		if (left2 && right2)
+			App->input->inputs2.Push(IN_LEFT_AND_RIGHT_P2);
+		{
+			if (left2)
+				App->input->inputs2.Push(IN_LEFT_DOWN_P2);
+			if (right2)
+				App->input->inputs2.Push(IN_RIGHT_DOWN_P2);
+		}
+
+		if (!left2)
+			App->input->inputs2.Push(IN_LEFT_UP_P2);
+		if (!right2)
+			App->input->inputs2.Push(IN_RIGHT_UP_P2);
+		if (!down2)
+			App->input->inputs2.Push(IN_CROUCH_UP_P2);
+
+
+		if (up2 && down2)
+			App->input->inputs2.Push(IN_JUMP_AND_CROUCH_P2);
+		else
+		{
+			if (down2)
+				App->input->inputs2.Push(IN_CROUCH_DOWN_P2);
+			if (up2)
+				App->input->inputs2.Push(IN_JUMP_P2);
 		}
 	}
 	return true;

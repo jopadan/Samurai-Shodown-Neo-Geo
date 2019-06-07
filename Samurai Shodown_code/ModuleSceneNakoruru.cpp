@@ -123,34 +123,6 @@ update_status ModuleSceneNakoruru::Update()
 		else { timertime = SDL_GetTicks(); }
 	}
 
-	if (App->ui->roundend == true) {
-		if (SDL_GetTicks() - startroundtime >= 4500) {
-			App->ui->roundend = false;
-			App->input->playerinput = true;
-			timer = 99;
-			timertime = SDL_GetTicks();
-			App->player->position.x = 208;
-			App->player->position.y = 207;
-			App->player2->position.x = 372;
-			App->player2->position.y = 207;
-			App->ui->Health_Bar_p2 = 128;
-			App->ui->HealthBar_p1 = 128;
-			if (twowins == true) {
-				App->input->inputs2.Push(IN_WIN_FINISH_P2);
-				App->input->inputs.Push(IN_DEFEAT_FINISH);
-				twowins = false;
-			}
-			if (onewins == true) {
-				App->input->inputs.Push(IN_WIN_FINISH);
-				App->input->inputs2.Push(IN_DEFEAT_FINISH_P2);
-				onewins = false;
-			}
-		}
-		else { timertime = SDL_GetTicks(); }
-	}
-
-	if (endingtimer + SDL_GetTicks() >= (SDL_GetTicks() + 4000))App->fade->FadeToBlack(App->scene_nakoruru, App->end, 5);
-
 	// Draw everything --------------------------------------
 	
 	App->render->Blit(graphics, 0, -150, &ground, SDL_FLIP_NONE);
@@ -178,60 +150,29 @@ update_status ModuleSceneNakoruru::Update()
 
 	}
 	if (App->ui->Health_Bar_p2 <= 0) {
-	
-		if (App->ui->roundsp1 == 1 && App->ui->roundend != true) {
-			App->ui->roundsp1 = 2;
-			App->input->inputs2.Push(IN_DEFEAT_P2);
-			App->input->inputs.Push(IN_WIN);
+		App->input->inputs2.Push(IN_DEFEAT_P2);
+		App->input->inputs.Push(IN_WIN);
 
-			App->input->playerinput = false;
-			App->ui->matchend = true;
-			//if (playfx)App->music->PlayChunk(end); playfx = false;
+		App->input->playerinput = false;
+		App->ui->matchend = true;
+		//if (playfx)App->music->PlayChunk(end); playfx = false;
 
-			if (endingtimer == 0) { endingtimer = SDL_GetTicks(); LOG("HOLI") }
-			
-		}
-		
-		if (App->ui->roundsp1 == 0) {
-			App->input->inputs2.Push(IN_DEFEAT_P2);
-			App->input->inputs.Push(IN_WIN);
-			App->input->playerinput = false;
-			App->ui->roundend = true;
-			startroundtime = SDL_GetTicks();
-			onewins = true;
-			App->ui->roundsp1 = 1;
-		
-			
-		}
+		if (endingtimer == 0)endingtimer = SDL_GetTicks();
+		if (SDL_GetTicks() - endingtimer >= 3000)App->fade->FadeToBlack(App->scene_nakoruru, App->winhaoh, 5);
 
 
 	}
 	if (App->ui->HealthBar_p1 <= 0) {
+		App->input->inputs2.Push(IN_WIN_P2);
+		App->input->inputs.Push(IN_DEFEAT);
 
-		if (App->ui->roundsp2 == 1 && App->ui->roundend != true){
-			App->ui->roundsp2 = 2;
-			App->input->inputs2.Push(IN_WIN_P2);
-			App->input->inputs.Push(IN_DEFEAT);
+		App->input->playerinput = false;
+		App->ui->matchend = true;
+		//if (playfx)App->music->PlayChunk(end); playfx = false;
 
-			App->input->playerinput = false;
-			App->ui->matchend = true;
-			//if (playfx)App->music->PlayChunk(end); playfx = false;
+		if (endingtimer == 0)endingtimer = SDL_GetTicks();
+		if (SDL_GetTicks() - endingtimer >= 4000)App->fade->FadeToBlack(App->scene_nakoruru, App->end, 5);
 
-			if (endingtimer == 0)endingtimer = SDL_GetTicks();
-		}
-	
-
-		if (App->ui->roundsp2 == 0) {
-			App->ui->roundsp2 = 1;
-			twowins = true;
-			App->input->inputs2.Push(IN_WIN_P2);
-			App->input->inputs.Push(IN_DEFEAT);
-			App->input->playerinput = false;
-			App->ui->roundend = true;
-			
-		
-			startroundtime = SDL_GetTicks();
-		}
 	}
 	if (SDL_GetTicks() - timertime >= 1000) {
 		timertime = SDL_GetTicks();
