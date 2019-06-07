@@ -19,10 +19,10 @@ ModuleSelect::ModuleSelect()
 	r.w = 319;
 	r.h = 230;
 
-	r.x = 0;
-	r.y = 0;
-	r.w = 319;
-	r.h = 230;
+	name.x = 2;
+	name.y = 229;
+	name.w = 128;
+	name.h = 51;
 
 	idle.PushBack({ 13, 1614, 65, 87 }, 0.15, 0, 0, 0, 0);
 	idle.PushBack({ 82, 1614, 65, 87 }, 0.15, 1, 0, 0, 0);
@@ -266,10 +266,14 @@ update_status ModuleSelect::Update()
 	SDL_Rect square2 = current_animation3->GetCurrentFrame();
 
 	App->render->Blit(graphics, 168, 0, &r, SDL_FLIP_NONE);
+
 	App->render->Blit(graphics, position1.x, position1.y, &square1, SDL_FLIP_NONE);
 	App->render->Blit(graphics, position2.x, position2.y, &square2, SDL_FLIP_NONE);
-	App->render->Blit(player1, 200 + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()],200 - player.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &player, SDL_FLIP_NONE);
-	App->render->Blit(player2, 370 + /*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()], 200 - player.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &player, SDL_FLIP_HORIZONTAL);
+	App->render->Blit(player1, 215 + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()],200 - player.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &player, SDL_FLIP_NONE);
+	App->render->Blit(player2, 360 + /*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()], 200 - player.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &player, SDL_FLIP_HORIZONTAL);
+
+	App->render->Blit(graphics, 185, 165, &name, SDL_FLIP_NONE);
+	App->render->Blit(graphics, 332, 165, &name, SDL_FLIP_NONE);
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1 || SDL_GameControllerGetButton(App->input->gGameController, SDL_CONTROLLER_BUTTON_START) == 1 || SDL_GameControllerGetButton(App->input->gGameController2, SDL_CONTROLLER_BUTTON_START) == 1) {
 		App->fade->FadeToBlack(App->select, (Module*)App->scene_nakoruru, 2);
