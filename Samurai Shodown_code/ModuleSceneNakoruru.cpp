@@ -149,7 +149,7 @@ update_status ModuleSceneNakoruru::Update()
 		else { timertime = SDL_GetTicks(); }
 	}
 
-	if (endingtimer + SDL_GetTicks() >= (SDL_GetTicks() + 4000))App->fade->FadeToBlack(App->scene_nakoruru, App->end, 5);
+	if (endingtimer + SDL_GetTicks() >= (SDL_GetTicks() + 4000))App->fade->FadeToBlack(App->scene_nakoruru, App->winhaoh, 5);
 
 	// Draw everything --------------------------------------
 	
