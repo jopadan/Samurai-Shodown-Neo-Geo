@@ -103,12 +103,9 @@ ModulePlayer::ModulePlayer()
 	heavypunch.PushBack({ 1484, 643, 64, 133 }, 0.2, 12, 0, -4, 0);
 
 	//TO DO
-
 	Annu.PushBack({ 15, 638, 78, 62 }, 0.4, 0, 0, 4, 0);
 	Annu.PushBack({ 987, 162, 142, 51 }, 0.5, 0, 0, -20, 2);
 	Annu.PushBack({ 240, 650, 142, 51 }, 0.5, 0, 0, -20, 0);
-
-
 
 	kamui.PushBack({ 29, 1900, 93, 94 }, 0.4, 0, 4, -10, 4);
 	kamui.PushBack({ 119, 1904, 89, 93 }, 0.4, 0, 0, -10, 0);

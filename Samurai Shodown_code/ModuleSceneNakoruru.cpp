@@ -17,9 +17,6 @@
 #include "ModuleEnding.h"
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
-#include "ModuleReferee.h"
-#include "ModulePetP1.h"
-#include "ModulePetP2.h"
 
 #include<stdio.h>
 
@@ -74,9 +71,6 @@ bool ModuleSceneNakoruru::Start()
 	App->collision->Enable();
 	App->ui->Enable();
 	App->particles->Enable();
-	App->referee->Enable();
-	App->pet->Enable();
-	App->pet2->Enable();
 
 	colliderMap = App->collision->AddCollider({ 0, -150, 50, 500 }, COLLIDER_WALL);
 	colliderMap2 = App->collision->AddCollider({ 590, -150, 50, 500 }, COLLIDER_WALL);
@@ -104,9 +98,6 @@ bool ModuleSceneNakoruru::CleanUp()
 	App->textures->Unload(graphics);
 	App->music->UnloadMus(musload);
 	App->music->Disable();
-	App->referee->Disable();
-	App->pet->Disable();
-	App->pet2->Disable();
 
 	return true;
 }
