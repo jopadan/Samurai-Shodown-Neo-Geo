@@ -25,8 +25,16 @@ public:
 	Mix_Chunk* chunkload;
 	Mix_Music* musload;
 	SDL_Rect win;
+	SDL_Rect blackBands;
+	SDL_Rect speech;
+	SDL_Rect nakoruru;
+	SDL_Rect nakoruru2;
+	Animation loser;
+	SDL_Rect ground;
+	Animation animals;
+	int positionNakoruru;
+	int positionLoser;
 	
-
 
 };
 

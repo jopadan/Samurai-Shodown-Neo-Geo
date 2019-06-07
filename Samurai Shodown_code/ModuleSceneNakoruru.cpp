@@ -85,7 +85,8 @@ bool ModuleSceneNakoruru::Start()
 	App->music->PlayChunk(starto);
 	colliderMap = App->collision->AddCollider({ 0, -150, 50, 500 }, COLLIDER_WALL);
 	colliderMap2 = App->collision->AddCollider({ 590, -150, 50, 500 }, COLLIDER_WALL);
-
+	App->ui->Health_Bar_p2 = 128;
+	App->ui->HealthBar_p1 = 128;
 	return ret;
 	
 }
@@ -161,6 +162,7 @@ update_status ModuleSceneNakoruru::Update()
 	if (SDL_GetTicks() - startroundtime >= 6000) {
 		timer = 99;
 
+
 		App->input->playerinput = true;
 		App->ui->roundstart = false;
 		timertime = SDL_GetTicks();
@@ -168,7 +170,8 @@ update_status ModuleSceneNakoruru::Update()
 
 	}
 }
-	if (App->ui->matchend == true  && SDL_GetTicks() - endingtimer > 4000)App->fade->FadeToBlack(App->scene_nakoruru, App->end, 5);
+	if (App->ui->matchend == true  && SDL_GetTicks() - endingtimer > 4000)App->fade->FadeToBlack(App->scene_nakoruru, App->winhaoh, 5);
+
 
 	// Draw everything --------------------------------------
 	
