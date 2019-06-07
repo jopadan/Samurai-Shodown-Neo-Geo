@@ -201,25 +201,25 @@ bool ModuleInput::external_input()
 						//Left of dead zone
 						if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
 						{
-							if (playerinput == true) {
+							
 								left = true;
 								right = false;
-							}
+							
 						}
 						//Right of dead zone
 						else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
 						{
-							if (playerinput == true){
+							
 								right = true;
 								left = false;
-							}
+							
 						}
 						else
 						{
-							if (playerinput == true) {
+							
 								left = false;
 								right = false;
-							}
+							
 						}
 					}
 					else if (event.jaxis.axis == 1)
@@ -227,25 +227,25 @@ bool ModuleInput::external_input()
 						//Below of dead zone
 						if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
 						{
-							if (playerinput == true) {
+							
 								down = false;
 								up = true;
-							}
+							
 						}
 						//Above of dead zone
 						else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
 						{
-							if (playerinput == true) {
+							
 								up = false;
 								down = true;
-							}
+							
 						}
 						else
 						{
-							if (playerinput == true) {
+							
 								down = false;
 								up = false;
-							}
+							
 						}
 					}
 				}
@@ -255,25 +255,25 @@ bool ModuleInput::external_input()
 						//Left of dead zone
 						if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
 						{
-							if (playerinput == true) {
+							
 								left2 = true;
 								right2 = false;
-							}
+							
 						}
 						//Right of dead zone
 						else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
 						{
-							if (playerinput == true) {
+						
 								right2 = true;
 								left2 = false;
-							}
+							
 						}
 						else
 						{
-							if (playerinput == true) {
+							
 								left2 = false;
 								right2 = false;
-							}
+							
 						}
 					}
 					else if (event.jaxis.axis == 1)
@@ -281,25 +281,25 @@ bool ModuleInput::external_input()
 						//Below of dead zone
 						if (event.jaxis.value < -JOYSTICK_DEAD_ZONE)
 						{
-							if (playerinput == true) {
+							
 								down2 = false;
 								up2 = true;
-							}
+							
 						}
 						//Above of dead zone
 						else if (event.jaxis.value > JOYSTICK_DEAD_ZONE)
 						{
-							if (playerinput == true) {
+							
 								up2 = false;
 								down2 = true;
-							}
+							
 						}
 						else
 						{
-							if (playerinput == true) {
+							
 								down2 = false;
 								up2 = false;
-							}
+							
 						}
 					}
 				}
