@@ -56,6 +56,50 @@ ModuleUI::ModuleUI() {
 	end.PushBack({ 484, 465, 28, 21 }, 0.2, 0, 0, 0, 0);
 
 	
+	pow.PushBack({ 433, 370, 48, 39 }, 0.2, 0, 0, 0, 0);
+	pow.PushBack({ 435, 411, 48, 35 }, 0.2, 0, 0, 0, 0);
+	pow.PushBack({ 434, 447, 48, 39 }, 0.2, 0, 0, 0, 0);
+
+	pow1.x = 462;
+	pow1.y = 336;
+	pow1.w = 17;
+	pow1.h = 12;
+
+	pow2.x = 456;
+	pow2.y = 351;
+	pow2.w = 23;
+	pow2.h = 16;
+
+	pow3.x = 483;
+	pow3.y = 324;
+	pow3.w = 25;
+	pow3.h = 21;
+
+	pow4.x = 481;
+	pow4.y = 348;
+	pow4.w = 29;
+	pow4.h = 25;
+
+	nakoruru.x = 276;
+	nakoruru.y = 479;
+	nakoruru.w = 63;
+	nakoruru.h = 7;
+
+	victory.x = 488;
+	victory.y = 377;
+	victory.w = 23;
+	victory.h = 14;
+
+	powCont.x = 379;
+	powCont.y = 286;
+	powCont.w = 65;
+	powCont.h = 10;
+
+	powCont2.x = 379;
+	powCont2.y = 296;
+	powCont2.w = 65;
+	powCont2.h = 10;
+	
 	
 	health.x = 273;//25, 9,,207, 9
 	health.y = 310;
@@ -110,6 +154,8 @@ update_status ModuleUI::Update() {
 	App->render->Blit(graphics, -App->render->camera.x + 4, -App->render->camera.y + 12, &healthCont1, SDL_FLIP_NONE, 1);
 	App->render->Blit(graphics, -App->render->camera.x + 166, -App->render->camera.y + 12, &healthCont2, SDL_FLIP_NONE, 1);
 	App->render->Blit(graphics, -App->render->camera.x + 138, -App->render->camera.y + 5, &ko, SDL_FLIP_NONE, 1);
+	App->render->Blit(graphics, -App->render->camera.x + 15, -App->render->camera.y + 25, &nakoruru, SDL_FLIP_NONE, 1);
+	App->render->Blit(graphics, -App->render->camera.x + 226, -App->render->camera.y + 25, &nakoruru, SDL_FLIP_NONE, 1);
 
 	if (HealthBar_p1 <= 32) {
 		App->render->Blit(graphics, -App->render->camera.x + 8 + (128 - HealthBar_p1), -App->render->camera.y + 14, &lowHealth, SDL_FLIP_NONE, 1);
@@ -127,6 +173,13 @@ update_status ModuleUI::Update() {
 		App->render->Blit(graphics, -App->render->camera.x + 168, -App->render->camera.y + 12, &healthCont, SDL_FLIP_NONE, 1);
 		App->render->Blit(graphics, -App->render->camera.x + 168, -App->render->camera.y + 23, &healthCont, SDL_FLIP_NONE, 1);
 		App->render->Blit(graphics, -App->render->camera.x + 168, -App->render->camera.y + 14, &health2, SDL_FLIP_NONE, 1);
+	}
+
+	if (roundsp1 == 1) {
+		App->render->Blit(graphics, -App->render->camera.x + 8, -App->render->camera.y + 32, &victory, SDL_FLIP_NONE, 1);
+	}
+	if (roundsp2 == 1) {
+		App->render->Blit(graphics, -App->render->camera.x + 274, -App->render->camera.y + 32, &victory, SDL_FLIP_NONE, 1);
 	}
 
 	return UPDATE_CONTINUE;
