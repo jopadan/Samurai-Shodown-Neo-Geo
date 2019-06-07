@@ -110,6 +110,9 @@
     <ClInclude Include="ModuleReferee.h">
       <Filter>Modules\Players</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleSelect.h">
+      <Filter>Modules\Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -183,6 +186,9 @@
     </ClCompile>
     <ClCompile Include="ModuleReferee.cpp">
       <Filter>Modules\Players</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSelect.cpp">
+      <Filter>Modules\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

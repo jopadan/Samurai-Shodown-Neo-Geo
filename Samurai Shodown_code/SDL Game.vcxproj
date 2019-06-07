@@ -86,6 +86,7 @@
     <ClInclude Include="ModulePetP2.h" />
     <ClInclude Include="ModulePlayer2.h" />
     <ClInclude Include="ModuleSceneNakoruru.h" />
+    <ClInclude Include="ModuleSelect.h" />
     <ClInclude Include="ModuleSlowdown.h" />
     <ClInclude Include="ModuleUI.h" />
     <ClInclude Include="ModuleVictoryHaohmaru.h" />
@@ -114,6 +115,7 @@
     <ClCompile Include="ModulePetP2.cpp" />
     <ClCompile Include="ModulePlayer2.cpp" />
     <ClCompile Include="ModuleSceneNakoruru.cpp" />
+    <ClCompile Include="ModuleSelect.cpp" />
     <ClCompile Include="ModuleSlowdown.cpp" />
     <ClCompile Include="ModuleUI.cpp" />
     <ClCompile Include="ModuleVictoryHaohmaru.cpp" />

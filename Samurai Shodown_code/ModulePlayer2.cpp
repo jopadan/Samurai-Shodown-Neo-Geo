@@ -790,17 +790,17 @@ update_status ModulePlayer2::Update()
 				current_animation = &hit;
 				if (flip == SDL_FLIP_NONE) {
 					//	if (!wall){
-					speed = -4;
+					speed = -3;
 					//}
 				}
 				if (flip == SDL_FLIP_HORIZONTAL) {
 					//if (!wall) { 
-					speed = 4;
+					speed = 3;
 					//}
 				}
 				if (position.y != initialPos) {
 					current_animation = &hit;
-					jumpSpeed = 3;
+					jumpSpeed = -2;
 
 
 				}

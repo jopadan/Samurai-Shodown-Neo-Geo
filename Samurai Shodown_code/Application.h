@@ -3,7 +3,7 @@
 
 #include "Globals.h"
 
-#define NUM_MODULES 21
+#define NUM_MODULES 22
 
 class ModuleWindow;
 class ModuleInput;
@@ -26,6 +26,7 @@ class ModuleCollision;
 class Module;
 class ModuleFonts;
 class ModuleReferee;
+class ModuleSelect;
 class ModuleSlowdown;
 class ModuleUI;
 
@@ -51,6 +52,7 @@ public:
 	ModulePlayer* player;
 	ModulePlayer2* player2;
 	ModuleEnding* end;
+	ModuleSelect* select;
 	ModuleVictoryHaohmaru* winhaoh;
 	ModuleParticles* particles;
 	ModuleFonts* fonts;

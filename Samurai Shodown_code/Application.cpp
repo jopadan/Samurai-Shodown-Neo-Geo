@@ -20,6 +20,7 @@
 #include "ModuleUI.h";
 #include "ModuleSlowdown.h"
 #include "ModuleReferee.h"
+#include "ModuleSelect.h"
 
 Application::Application()
 {
@@ -37,6 +38,7 @@ Application::Application()
 	modules[i++] = pet = new ModulePetp1();
 	modules[i++] = pet2 = new ModulePetp2();
 	modules[i++] = menu = new ModuleMenu();
+	modules[i++] = select = new ModuleSelect();
 	modules[i++] = end = new ModuleEnding();
 	modules[i++] = winhaoh = new ModuleVictoryHaohmaru();
 	modules[i++] = particles = new ModuleParticles();
@@ -45,6 +47,7 @@ Application::Application()
 	modules[i++] = music = new ModuleMusic();
 	modules[i++] = fade = new ModuleFadeToBlack();
 	modules[i++] = slowdown = new ModuleSlowdown();
+
 	
 }	
 
@@ -66,6 +69,7 @@ bool Application::Init()
 	ui->Disable();
 	end->Disable();
 	particles->Disable();
+	select->Disable();
 	
 	
 
