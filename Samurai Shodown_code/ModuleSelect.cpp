@@ -44,15 +44,15 @@ ModuleSelect::ModuleSelect()
 	Attack.PushBack({ 1833, 899,100, 93 }, 0.1, 11, 4, -22, 4);
 	Attack.loop = false;
 
-	p1square.PushBack({ 336, 74, 40, 47 }, 0.15, 0, 0, 0, 0);
-	p1square.PushBack({ 376, 74, 40, 47 }, 0.15, 1, 0, 0, 0);
-	p1square.PushBack({ 416, 74, 40, 47 }, 0.15, 0, 4, 0, 4);
-	p1square.PushBack({ 376, 74, 40, 47 }, 0.15, 1, 0, 0, 0);
+	p1square.PushBack({ 336, 74, 40, 47 }, 0.075, 0, 0, 0, 0);
+	p1square.PushBack({ 376, 74, 40, 47 }, 0.35, 1, 0, 0, 0);
+	p1square.PushBack({ 416, 74, 40, 47 }, 0.35, 0, 4, 0, 4);
+	p1square.PushBack({ 376, 74, 40, 47 }, 0.35, 1, 0, 0, 0);
 
-	p2square.PushBack({ 416, 74, 40, 47 }, 0.15, 0, 4, 0, 4);
-	p2square.PushBack({ 336, 23, 40, 46 }, 0.15, 0, 4, 0, 4);
-	p2square.PushBack({ 376, 23, 40, 46 }, 0.15, 1, 0, 0, 0);
-	p2square.PushBack({ 336, 23, 40, 46 }, 0.15, 0, 4, 0, 4);
+	p2square.PushBack({ 376, 23, 40, 46 }, 0.075, 1, 0, 0, 0);
+	p2square.PushBack({ 336, 23, 40, 46 }, 0.35, 0, 4, 0, 4);
+	p2square.PushBack({ 416, 74, 40, 47 }, 0.35, 0, 4, 0, 4);
+	p2square.PushBack({ 336, 23, 40, 46 }, 0.35, 0, 4, 0, 4);
 }
 
 ModuleSelect::~ModuleSelect()
