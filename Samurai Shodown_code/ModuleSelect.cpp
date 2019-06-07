@@ -19,6 +19,10 @@ ModuleSelect::ModuleSelect()
 	r.w = 319;
 	r.h = 230;
 
+	r.x = 0;
+	r.y = 0;
+	r.w = 319;
+	r.h = 230;
 
 	idle.PushBack({ 13, 1614, 65, 87 }, 0.15, 0, 0, 0, 0);
 	idle.PushBack({ 82, 1614, 65, 87 }, 0.15, 1, 0, 0, 0);
@@ -27,6 +31,18 @@ ModuleSelect::ModuleSelect()
 	idle.PushBack({ 282, 1612, 67, 92 }, 0.15, 0, 1, -1, 1);
 	idle.PushBack({ 349, 1612, 66, 91 }, 0.15, 0, 2, 0, 2);
 	
+
+	Attack.PushBack({ 117, 713, 89, 92 }, 0.2, 11, 0, -22, 0);
+	Attack.PushBack({ 204, 711, 97, 94 }, 0.2, 5, 0, -20, 0);
+	Attack.PushBack({ 303, 708, 93, 95 }, 0.2, 0, 0, -17, 0);
+	Attack.PushBack({ 1065, 896,100, 93 }, 0.2, 0, 0, -17, 0);
+	Attack.PushBack({ 1164, 900,100, 93 }, 0.2, 3, 3, -18, 3);
+	Attack.PushBack({ 1262, 896,100, 93 }, 0.2, 5, 4, -19, 4);
+	Attack.PushBack({ 1459, 899,100, 93 }, 0.1, 7, 4, -19, 4);
+	Attack.PushBack({ 1555, 899,100, 93 }, 0.1, 12, 7, -22, 7);
+	Attack.PushBack({ 1738, 899,100, 93 }, 0.1, 11, 3, -21, 3);
+	Attack.PushBack({ 1833, 899,100, 93 }, 0.1, 11, 4, -22, 4);
+	Attack.loop = false;
 
 	p1square.PushBack({ 336, 74, 40, 47 }, 0.15, 0, 0, 0, 0);
 	p1square.PushBack({ 376, 74, 40, 47 }, 0.15, 1, 0, 0, 0);
@@ -53,9 +69,10 @@ bool ModuleSelect::Start()
 	position1.x = 200;
 	position1.y = 18;
 	position2.x = 400;
-	position2.y = 18;
+	position2.y = 19;
 
-
+	ready1 = false;
+	ready2 = false;
 
 	musload = App->music->LoadMus("Assets/Sound/Twelve Swordsmen (Player Select).ogg");
 	graphics = App->textures->Load("Assets/Image/Select.png");
@@ -147,10 +164,10 @@ update_status ModuleSelect::Update()
 	if (position1.y == 66) {
 		down = false;
 	}
-	if (position2.y == 18) {
+	if (position2.y == 19) {
 		up2 = false;
 	}
-	if (position2.y == 66) {
+	if (position2.y == 67) {
 		down2 = false;
 	}}
 
@@ -169,7 +186,6 @@ update_status ModuleSelect::Update()
 
 	{
 		if (App->input->right == true) {
-			LOG("lo detecto");
 			if (right == true) {
 				position1.x += 40;
 				right = false;
@@ -232,10 +248,19 @@ update_status ModuleSelect::Update()
 	if (SDL_GameControllerGetButton(App->input->gGameController2, SDL_CONTROLLER_BUTTON_X) == 1) {
 		ready2 = true;
 	}
+	if (ready1 && ready2) {
+		current_animation = &Attack;
+		if (current_animation->AnimationEnd() == true){ App->fade->FadeToBlack(App->select, (Module*)App->scene_nakoruru, 2); }
+	}
+	else {
+		current_animation = &idle;
+	}
 
-	Animation* current_animation = &idle;
 	Animation* current_animation2 = &p1square;
 	Animation* current_animation3 = &p2square;
+
+
+
 	SDL_Rect player = current_animation->GetCurrentFrame();
 	SDL_Rect square1 = current_animation2->GetCurrentFrame();
 	SDL_Rect square2 = current_animation3->GetCurrentFrame();
@@ -244,9 +269,9 @@ update_status ModuleSelect::Update()
 	App->render->Blit(graphics, position1.x, position1.y, &square1, SDL_FLIP_NONE);
 	App->render->Blit(graphics, position2.x, position2.y, &square2, SDL_FLIP_NONE);
 	App->render->Blit(player1, 200 + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()],200 - player.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &player, SDL_FLIP_NONE);
-	App->render->Blit(player2, 400 + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], 200 - player.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &player, SDL_FLIP_HORIZONTAL);
+	App->render->Blit(player2, 370 + /*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()], 200 - player.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &player, SDL_FLIP_HORIZONTAL);
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1 || SDL_GameControllerGetButton(App->input->gGameController, SDL_CONTROLLER_BUTTON_START) == 1) {
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1 || SDL_GameControllerGetButton(App->input->gGameController, SDL_CONTROLLER_BUTTON_START) == 1 || SDL_GameControllerGetButton(App->input->gGameController2, SDL_CONTROLLER_BUTTON_START) == 1) {
 		App->fade->FadeToBlack(App->select, (Module*)App->scene_nakoruru, 2);
 	}
 

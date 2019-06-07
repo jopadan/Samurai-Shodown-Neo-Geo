@@ -113,7 +113,7 @@ ModulePlayer::ModulePlayer()
 	heavypunch.PushBack({ 1484, 643, 64, 133 }, 0.2, 12, 0, -4, 0);
 
 	//TO DO
-	Annu.PushBack({ 15, 638, 78, 62 }, 0.2, 0, 0, -20, 0);
+	//Annu.PushBack({ 15, 638, 78, 62 }, 0.2, 0, 0, -20, 0);
 	Annu.PushBack({ 987, 162, 142, 51 }, 0.2, 0, 0, -20, 0);
 	Annu.PushBack({ 240, 650, 142, 51 }, 0.2, 0, 0, -20, 0);
 

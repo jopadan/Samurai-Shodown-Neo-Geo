@@ -27,11 +27,14 @@ public:
 	Mix_Music* musload;
 	Mix_Chunk* chunkload;
 	SDL_Rect r;
+	SDL_Rect name;
 	Animation p2square;
 	Animation p1square;
 	Animation idle;
 	iPoint position1;
 	iPoint position2;
+	Animation Attack;
+	Animation* current_animation;
 	bool up = true;
 	bool down = true;
 	bool right = true;
