@@ -56,6 +56,11 @@ bool ModuleSceneNakoruru::Start()
 	musload = App->music->LoadMus("Assets/Sound/Banquet of Nature (Nakoruru).ogg");
 	graphics = App->textures->Load("Assets/Image/Nakoruru Map Spritesheet.png");
 	font_timer = App->fonts->Load("Ui/UI_Numbers_1.png", "9876543210", 1);
+	end = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - end.wav");
+	ippon = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - ippon.wav");
+	starto = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - Start.wav");
+	Round = App->music->LoadChunk("Assets/Sound/Referee/Samurai Shodown - Referee - Round.wav");
+	
 	App->player->deletecol = true;
 	App->player2->deletecol = true;
 	App->ui->roundstart = true;
@@ -77,10 +82,11 @@ bool ModuleSceneNakoruru::Start()
 	App->referee->Enable();
 	App->pet->Enable();
 	App->pet2->Enable();
-
+	App->music->PlayChunk(starto);
 	colliderMap = App->collision->AddCollider({ 0, -150, 50, 500 }, COLLIDER_WALL);
 	colliderMap2 = App->collision->AddCollider({ 590, -150, 50, 500 }, COLLIDER_WALL);
-
+	App->ui->Health_Bar_p2 = 128;
+	App->ui->HealthBar_p1 = 128;
 	return ret;
 	
 }
@@ -114,6 +120,7 @@ bool ModuleSceneNakoruru::CleanUp()
 update_status ModuleSceneNakoruru::Update()
 {
 	if (matchstart == false) {
+		App->input->playerinput = false;
 		if (SDL_GetTicks() - starttime >= 4500) {
 			matchstart = true;
 			App->ui->roundstart = false;
@@ -125,16 +132,16 @@ update_status ModuleSceneNakoruru::Update()
 
 	if (App->ui->roundend == true) {
 		if (SDL_GetTicks() - startroundtime >= 4500) {
+			App->music->PlayChunk(Round);
 			App->ui->roundend = false;
-			App->input->playerinput = true;
-			timer = 99;
-			timertime = SDL_GetTicks();
 			App->player->position.x = 208;
 			App->player->position.y = 207;
 			App->player2->position.x = 372;
 			App->player2->position.y = 207;
 			App->ui->Health_Bar_p2 = 128;
 			App->ui->HealthBar_p1 = 128;
+			App->ui->roundstart = true;
+			
 			if (twowins == true) {
 				App->input->inputs2.Push(IN_WIN_FINISH_P2);
 				App->input->inputs.Push(IN_DEFEAT_FINISH);
@@ -145,11 +152,26 @@ update_status ModuleSceneNakoruru::Update()
 				App->input->inputs2.Push(IN_DEFEAT_FINISH_P2);
 				onewins = false;
 			}
+			
 		}
-		else { timertime = SDL_GetTicks(); }
+			else { timertime = SDL_GetTicks(); }
+		
 	}
+	if(App->ui->roundsp2 > 0 || App->ui->roundsp1 > 0){
 
-	if (endingtimer + SDL_GetTicks() >= (SDL_GetTicks() + 4000))App->fade->FadeToBlack(App->scene_nakoruru, App->winhaoh, 5);
+	if (SDL_GetTicks() - startroundtime >= 6000) {
+		timer = 99;
+
+
+		App->input->playerinput = true;
+		App->ui->roundstart = false;
+		timertime = SDL_GetTicks();
+		
+
+	}
+}
+	if (App->ui->matchend == true  && SDL_GetTicks() - endingtimer > 4000)App->fade->FadeToBlack(App->scene_nakoruru, App->winhaoh, 5);
+
 
 	// Draw everything --------------------------------------
 	
@@ -179,20 +201,21 @@ update_status ModuleSceneNakoruru::Update()
 	}
 	if (App->ui->Health_Bar_p2 <= 0) {
 	
-		if (App->ui->roundsp1 == 1 && App->ui->roundend != true) {
+		if (App->ui->roundsp1 == 1 && App->ui->roundend != true && App->ui->matchend == false) {
 			App->ui->roundsp1 = 2;
 			App->input->inputs2.Push(IN_DEFEAT_P2);
 			App->input->inputs.Push(IN_WIN);
 
 			App->input->playerinput = false;
 			App->ui->matchend = true;
-			//if (playfx)App->music->PlayChunk(end); playfx = false;
+			App->music->PlayChunk(end);
 
-			if (endingtimer == 0) { endingtimer = SDL_GetTicks(); LOG("HOLI") }
+		 endingtimer = SDL_GetTicks(); 
 			
 		}
 		
 		if (App->ui->roundsp1 == 0) {
+			App->music->PlayChunk(ippon);
 			App->input->inputs2.Push(IN_DEFEAT_P2);
 			App->input->inputs.Push(IN_WIN);
 			App->input->playerinput = false;
@@ -208,20 +231,21 @@ update_status ModuleSceneNakoruru::Update()
 	}
 	if (App->ui->HealthBar_p1 <= 0) {
 
-		if (App->ui->roundsp2 == 1 && App->ui->roundend != true){
+		if (App->ui->roundsp2 == 1 && App->ui->roundend != true && App->ui->matchend == false){
 			App->ui->roundsp2 = 2;
 			App->input->inputs2.Push(IN_WIN_P2);
 			App->input->inputs.Push(IN_DEFEAT);
 
 			App->input->playerinput = false;
 			App->ui->matchend = true;
-			//if (playfx)App->music->PlayChunk(end); playfx = false;
+			App->music->PlayChunk(end);
 
-			if (endingtimer == 0)endingtimer = SDL_GetTicks();
+		endingtimer = SDL_GetTicks();
 		}
 	
 
 		if (App->ui->roundsp2 == 0) {
+			App->music->PlayChunk(ippon);
 			App->ui->roundsp2 = 1;
 			twowins = true;
 			App->input->inputs2.Push(IN_WIN_P2);
