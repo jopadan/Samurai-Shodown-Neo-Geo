@@ -85,6 +85,8 @@ public:
 	Animation win;
 	Animation defeat;
 	Animation hawk_carry;
+	Animation kamui;
+	Animation yatoro;
 	Animation Annu;
 	Animation amube;
 	iPoint position;
