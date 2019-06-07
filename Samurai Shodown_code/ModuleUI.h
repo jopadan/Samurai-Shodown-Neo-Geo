@@ -18,7 +18,7 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
-
+	
 public:
 
 	SDL_Texture* graphics = nullptr;
@@ -50,6 +50,18 @@ public:
 	SDL_Rect begin;
 	SDL_Rect powCont;
 	SDL_Rect powCont2;
+	SDL_Rect powBar;
+	SDL_Rect powBar2;
+	SDL_Rect powBar3;
+	SDL_Rect powBar4;
+	SDL_Rect powBar5;
+	SDL_Rect powBar_p2;
+	SDL_Rect powBar2_p2;
+	SDL_Rect powBar3_p2;
+	SDL_Rect powBar4_p2;
+	SDL_Rect powBar5_p2;
+	float powDamage;
+	float powDamage2;
 	int HealthBar_p1 = 128;
 	int Health_Bar_p2 = 128;
 	int damage_p1 = 0;

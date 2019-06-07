@@ -1832,7 +1832,8 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 		if (c2 != nullptr){
 			c2->to_delete = true;
 	}
-		App->ui->Health_Bar_p2 -= App->player->Damage;
+		App->ui->Health_Bar_p2 -= App->player->Damage*App->ui->powDamage;
+		App->ui->damage_p2 += App->player->Damage;
 		App->slowdown->StartSlowdown(600, 40);
 		App->render->StartCameraShake(300, 3);
 		App->input->inputs2.Push(IN_DAMAGE_P2);

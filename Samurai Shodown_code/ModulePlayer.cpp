@@ -1846,7 +1846,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 
 	if (colliderPlayer == c1 && c2->type == COLLIDER_ENEMY_SHOT && defense == false)
 	{
-		App->ui->HealthBar_p1 -= App->player2->Damage;
+		App->ui->HealthBar_p1 -= App->player2->Damage*App->ui->powDamage2;
+		App->ui->damage_p1 += App->player2->Damage;
 		App->slowdown->StartSlowdown(600, 40);
 		App->render->StartCameraShake(300, 3);
 		App->input->inputs.Push(IN_DAMAGE);
