@@ -176,11 +176,22 @@ update_status ModuleUI::Update() {
 	}
 
 	if (roundsp1 == 1) {
+<<<<<<< HEAD
 		App->render->Blit(graphics, -App->render->camera.x + 8, -App->render->camera.y + 32, &victory, SDL_FLIP_NONE, 1);
+=======
+		App->render->Blit(graphics, -App->render->camera.x + 8, -App->render->camera.y + 33, &victory, SDL_FLIP_NONE, 1);
+>>>>>>> parent of b456dbe... Revert "Rounds"
 	}
 	if (roundsp2 == 1) {
 		App->render->Blit(graphics, -App->render->camera.x + 274, -App->render->camera.y + 32, &victory, SDL_FLIP_NONE, 1);
 	}
-
+	if (roundsp1 == 2) {
+		App->render->Blit(graphics, -App->render->camera.x + 8, -App->render->camera.y + 33, &victory, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x + 32, -App->render->camera.y + 33, &victory, SDL_FLIP_NONE, 1);
+	}
+	if (roundsp2 == 2) {
+		App->render->Blit(graphics, -App->render->camera.x + 274, -App->render->camera.y + 33, &victory, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x + 250, -App->render->camera.y + 33, &victory, SDL_FLIP_NONE, 1);
+	}
 	return UPDATE_CONTINUE;
 }
