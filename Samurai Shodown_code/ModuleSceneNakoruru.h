@@ -30,6 +30,11 @@ public:
 	Collider *colliderMap;
 	Collider *colliderMap2;
 
+	Mix_Chunk* end;
+	Mix_Chunk* starto;
+	Mix_Chunk* ippon;
+	Mix_Chunk* Round;
+
 	char timer_text[10];
 	int font_timer = -1;
 	uint timer;
@@ -37,6 +42,7 @@ public:
 	int starttime;
 	int timertime;
 	int startroundtime;
+	int startroundtime2;
 	uint rounds1;
 	uint rounds2;
 	bool matchstart = false;
