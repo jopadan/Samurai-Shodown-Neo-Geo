@@ -36,11 +36,14 @@ public:
 	uint endingtimer = 0;
 	int starttime;
 	int timertime;
+	int startroundtime;
 	uint rounds1;
 	uint rounds2;
 	bool matchstart = false;
 	bool playfx = true;
 	bool ret = true;
+	bool onewins = false;
+	bool twowins = false;
 
 };
 #endif
