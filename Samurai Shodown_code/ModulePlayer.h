@@ -94,6 +94,7 @@ public:
 	Animation Annu;
 	Animation kamui;
 	Animation amube;
+	Animation yatoro;
 	iPoint position;
 	Uint32 Damage = 20;
 	bool deletecol = true;

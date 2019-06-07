@@ -125,6 +125,13 @@ ModulePlayer::ModulePlayer()
 	kamui.PushBack({ 119, 1904, 89, 93 }, 0.4, 0, 0, -10, 0);
 	kamui.PushBack({ 397, 1909, 97, 89 }, 0.4, -7, 0, -10, 0);
 
+	yatoro.PushBack({ 1469, 1550, 63, 70 }, 0.4, 0, 0, 0, 0);
+	yatoro.PushBack({ 1548, 1552, 66, 70 }, 0.4, 0, 0, 0, 0);
+	yatoro.PushBack({ 1621, 1555, 66, 70 }, 0.4, 0, 0, 0, 0);
+	yatoro.PushBack({ 1700, 1557, 66, 70 }, 0.4, 0, 0, 0, 0);
+	yatoro.PushBack({ 1799, 1557, 66, 70 }, 0.4, 0, 0, 0, 0);
+	yatoro.PushBack({ 1901, 1550, 66, 70 }, 0.4, 0, 0, 0, 0);
+
 
 	kick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
 	kick.PushBack({ 70, 1060, 53, 100 }, 0.1, 0, 0, 8, 0);
@@ -175,11 +182,9 @@ ModulePlayer::ModulePlayer()
 	jumpPunchHeavy.PushBack({ 1484, 643, 64, 133 }, 0.2, 12, 0, -20, 0);
 
 	//TO DO
-	jumpFrontPunchHeavy.PushBack({ 807, 694, 57, 92 }, 0.4, 13, 0, -20, 0);
-	jumpFrontPunchHeavy.PushBack({ 864, 691, 54, 95 }, 0.4, 13, 0, -20, 0);
-	jumpFrontPunchHeavy.PushBack({ 917, 693, 62, 93 }, 0.4, 13, 0, -20, 0);
-	jumpFrontPunchHeavy.PushBack({ 978, 693, 76, 94 }, 0.4, -3, 4, -20, 0);
-	jumpFrontPunchHeavy.PushBack({ 1054, 672, 79, 110 }, 0.4, 6, 2, -20, 0);
+	jumpFrontPunchHeavy.PushBack({ 501, 1715, 72, 95 }, 0.2, 13, 0, -13, 0);
+	jumpFrontPunchHeavy.PushBack({ 657, 1715, 91, 93 }, 0.2, 13, 0, -20, 0);
+	jumpFrontPunchHeavy.PushBack({ 747, 1718, 91, 93 }, 0.2, 13, 0, -20, 0);
 	jumpFrontPunchHeavy.loop = false;
 
 
@@ -330,8 +335,8 @@ update_status ModulePlayer::Update()
 	OnHawk = false;
 	App->pet->yatoro = false;
 	dontflip = false;
-	Animation* current_animation = &idle;  //&intro;
-//if (App->scene_nakoruru->matchstart == true) current_animation = &idle;
+	Animation* current_animation = &intro;  //&intro;
+if (App->scene_nakoruru->matchstart == true) current_animation = &idle;
 
 	SDL_Rect r2 = shadow.GetCurrentFrame();
 
@@ -384,6 +389,7 @@ update_status ModulePlayer::Update()
 			tornado.Reset();
 			block.Reset();
 			win.Reset();
+			yatoro.Reset();
 			defeat.Reset();
 			hawk_carry.Reset();
 			Annu.Reset();
@@ -735,7 +741,8 @@ update_status ModulePlayer::Update()
 			height = +20;
 			if (animstart == 0)
 			{
-				current_animation = &crouch;
+				current_animation = &jumpFrontPunchHeavy;
+;
 			}
 
 
