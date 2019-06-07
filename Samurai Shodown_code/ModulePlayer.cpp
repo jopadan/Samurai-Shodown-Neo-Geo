@@ -1889,12 +1889,19 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			if (position.x < 480 && position.x > 100) {
 
 				App->player2->position.x += speed;
+				if (App->player2->speed == 0 &&speed == 0){
+					if (flip == SDL_FLIP_NONE) {
+						position.x -= 2;
+					}
+					if (flip == SDL_FLIP_HORIZONTAL) {
+						position.x += 2;
+					}
+				}
 			}
 			else {
 				speed = 0;
 			}
 		}
-
 
 	}
 
