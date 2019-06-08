@@ -27,6 +27,7 @@ public:
 	Mix_Music* musload;
 	Mix_Chunk* chunkload;
 	Mix_Chunk* select;
+	Mix_Chunk* enter;
 
 	SDL_Rect r;
 	SDL_Rect name;

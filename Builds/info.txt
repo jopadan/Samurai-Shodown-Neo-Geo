@@ -1,0 +1,3 @@
+0.95 version estable del viernes
+0.96 version sabado
+0.97 version sabado noche, limites en mascota y daño

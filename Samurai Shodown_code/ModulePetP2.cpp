@@ -140,24 +140,24 @@ update_status ModulePetp2::Update() {
 	if (App->player2->OnHawk == true) {
 		flip = App->player2->flip;
 		speedx = 0; speedy = 0;
-		if (App->input->right2 == true) { speedx = +3; 
+		if (App->input->right2 == true && position.x < 557) { speedx = +3;
 		
 		App->player2->hawkleft = false;
 		App->player2->hawkright = true;
 		}
-		else if (App->input->left2 == true) { speedx = -3; 
+		else if (App->input->left2 == true && position.x > 36) { speedx = -3;
 		
 		App->player2->hawkleft = true;
 		App->player2->hawkright = false;
 		}
 		
-		if (App->input->up2 == true) { speedy = -3;
+		if (App->input->up2 == true && position.y > 36) { speedy = -3;
 		
 		App->player2->hawkup = true;
 		App->player2->hawkdown = false;
 
 		}
-		else if (App->input->down2 == true) { speedy = +3;
+		else if (App->input->down2 == true && position.y < 84) { speedy = +3;
 		
 		App->player2->hawkup = false;
 		App->player2->hawkdown = true;

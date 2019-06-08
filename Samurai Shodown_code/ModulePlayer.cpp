@@ -821,6 +821,8 @@ update_status ModulePlayer::Update()
 				if (current_animation->AnimationEnd() == true) { animstart = 1; colliderAttack->to_delete = true; }
 			}
 			break;
+			
+
 		case ST_DAMAGE:
 			App->referee->damage1 = true;
 			if (playsound)App->music->PlayChunk(hitted);
@@ -833,7 +835,7 @@ update_status ModulePlayer::Update()
 					speed = -3;
 					//}
 				}
-				if (flip == SDL_FLIP_HORIZONTAL) {
+				if (flip == SDL_FLIP_HORIZONTAL ) {
 					//if (!wall) { 
 					speed = 3;
 					//}
@@ -1277,7 +1279,16 @@ update_status ModulePlayer::Update()
 		position.y = initialPos;
 		jumpSpeed = 0;
 	}
+	LOG("x == %d", position.x);
+			
+	
+	if (position.x < 42) {
+		speed = 2;
+	}
 
+	if (position.x > 543) {
+		speed = -2;
+	}
 	position.x += speed;
 
 	position.y -= jumpSpeed;
