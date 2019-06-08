@@ -66,6 +66,9 @@ ModulePlayer2::ModulePlayer2()
 	jumpup.PushBack({ 556, 1606, 53, 103 }, 0.2, 0, 0, 0, 0);
 	jumpup.PushBack({ 496, 1604, 60, 105 }, 0.11, 0, 0, 0, 0);
 	jumpup.loop = false;
+	
+	amube.PushBack({ 155, 455, 72, 92 }, 0.04, 0, 4, -6, 4);
+	amube.PushBack({ 229, 452, 89, 93 }, 0.04, 0, 4, -14, 4);
 
 	hawk_carry.PushBack({ 64, 1547, 46, 56 }, 0.11, 0, -3, 9, -3);
 	hawk_carry.PushBack({ 112, 1541, 43, 67 }, 0.11, 0, -3, 9, -3);

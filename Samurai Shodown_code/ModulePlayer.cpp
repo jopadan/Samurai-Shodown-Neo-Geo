@@ -109,7 +109,8 @@ ModulePlayer::ModulePlayer()
 	Annu.PushBack({ 987, 162, 142, 51 }, 0.5, 0, 0, -20, 2);
 	Annu.PushBack({ 240, 650, 142, 51 }, 0.5, 0, 0, -20, 0);
 
-
+	amube.PushBack({ 155, 455, 72, 92 }, 0.04, 0, 4, -6, 4);
+	amube.PushBack({ 229, 452, 89, 93 }, 0.04, 0, 4, -14, 4);
 
 	kamui.PushBack({ 29, 1900, 93, 94 }, 0.4, 0, 4, -10, 4);
 	kamui.PushBack({ 119, 1904, 89, 93 }, 0.4, 0, 0, -10, 0);
@@ -745,7 +746,7 @@ update_status ModulePlayer::Update()
 
 			break;
 		case ST_PUNCH_CROUCH:
-			Damage = 25;
+			Damage = 15;
 			if (flip == SDL_FLIP_NONE) {
 
 				if (collider == true) {
@@ -863,7 +864,7 @@ update_status ModulePlayer::Update()
 			break;
 
 		case ST_PUNCH_STANDING:
-			Damage = 25;
+			Damage = 15;
 
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y , 70, 30 }, COLLIDER_PLAYER_SHOT, this);
@@ -885,7 +886,7 @@ update_status ModulePlayer::Update()
 
 			break;
 		case ST_MEDIUM_PUNCH_STANDING:
-			Damage = 25;
+			Damage = 20;
 
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y , 60, 80 }, COLLIDER_PLAYER_SHOT, this);
@@ -974,7 +975,7 @@ update_status ModulePlayer::Update()
 			}
 			break;
 		case ST_HEAVY_KICK_CROUCH:
-			Damage = 15;
+			Damage = 25;
 			if (flip == SDL_FLIP_NONE) {
 
 				if (collider == true) {
@@ -1036,7 +1037,7 @@ update_status ModulePlayer::Update()
 			break;
 
 		case ST_MEDIUM_KICK_STANDING:
-			Damage = 15;
+			Damage = 20;
 
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y, 40, 30 }, COLLIDER_PLAYER_SHOT, this);
@@ -1059,7 +1060,7 @@ update_status ModulePlayer::Update()
 
 			break;
 		case ST_HEAVY_KICK_STANDING:
-			Damage = 15;
+			Damage = 25;
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y, 45, 30 }, COLLIDER_PLAYER_SHOT, this);
 				App->music->PlayChunk(kicksheavy);
