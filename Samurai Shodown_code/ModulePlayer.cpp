@@ -785,7 +785,7 @@ update_status ModulePlayer::Update()
 		case ST_HEAVY_PUNCH_CROUCH:
 			Damage = 20;
 			if (flip == SDL_FLIP_NONE) {
-				speed = +6;
+				speed = +4;
 				if (collider == true) {
 					colliderAttack = App->collision->AddCollider({ position.x - 5, position.y - 40 , 60, 30 }, COLLIDER_PLAYER_SHOT, this);
 					App->music->PlayChunk(swordheavy);
@@ -804,7 +804,7 @@ update_status ModulePlayer::Update()
 
 			}
 			else if (flip == SDL_FLIP_HORIZONTAL) {
-				speed = -6;
+				speed = -4;
 				if (collider == true) {
 					colliderAttack = App->collision->AddCollider({ position.x, position.y - 50, 60, 30 }, COLLIDER_PLAYER_SHOT, this);
 					App->music->PlayChunk(swordheavy);
