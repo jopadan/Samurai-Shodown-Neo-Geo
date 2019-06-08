@@ -275,7 +275,7 @@ update_status ModuleUI::Update() {
 	}
 	if (damage_p1 >= 65) {
 		powTime = SDL_GetTicks();
-		if (SDL_GetTicks() - powTime > 700) {
+		if (SDL_GetTicks() - powTime > 7000) {
 			damage_p1 = 0;
 		}
 	}
