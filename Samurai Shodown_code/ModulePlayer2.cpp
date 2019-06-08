@@ -66,6 +66,9 @@ ModulePlayer2::ModulePlayer2()
 	jumpup.PushBack({ 556, 1606, 53, 103 }, 0.2, 0, 0, 0, 0);
 	jumpup.PushBack({ 496, 1604, 60, 105 }, 0.11, 0, 0, 0, 0);
 	jumpup.loop = false;
+	
+	amube.PushBack({ 155, 455, 72, 92 }, 0.04, 0, 4, -6, 4);
+	amube.PushBack({ 229, 452, 89, 93 }, 0.04, 0, 4, -14, 4);
 
 	hawk_carry.PushBack({ 64, 1547, 46, 56 }, 0.11, 0, -3, 9, -3);
 	hawk_carry.PushBack({ 112, 1541, 43, 67 }, 0.11, 0, -3, 9, -3);
@@ -268,6 +271,7 @@ bool ModulePlayer2::Start()
 	heavyya = App->music->LoadChunk("Assets/Sound/Nakoruru/Samurai Shodown - Nakoruru - 01.wav");
 	annu = App->music->LoadChunk("Assets/Sound/Nakoruru/Samurai Shodown - Nakoruru - Annu Mutsube.wav");
 	protection = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - ATTACK PROTECTION 03.wav");
+	App->ui->damage_p2 = 0;
 
 
 	if (flip == SDL_FLIP_HORIZONTAL) {
@@ -319,7 +323,7 @@ update_status ModulePlayer2::Update()
 	dontflip = false;
 	App->pet2->yatoro = false;
 
-	Animation* current_animation = &idle;  //&intro;
+	Animation* current_animation = &intro;  //&intro;
 	if (App->scene_nakoruru->matchstart == true) current_animation = &idle;
 
 	SDL_Rect r2 = shadow.GetCurrentFrame();
@@ -739,7 +743,7 @@ update_status ModulePlayer2::Update()
 
 			break;
 		case ST_PUNCH_CROUCH:
-			Damage = 25;
+			Damage = 10;
 			if (flip == SDL_FLIP_NONE) {
 
 				if (collider == true) {
@@ -775,9 +779,9 @@ update_status ModulePlayer2::Update()
 			}
 			break;
 		case ST_HEAVY_PUNCH_CROUCH:
-			Damage = 25;
+			Damage = 20;
 			if (flip == SDL_FLIP_NONE) {
-
+				speed = +4;
 				if (collider == true) {
 					colliderAttack = App->collision->AddCollider({ position.x - 5, position.y - 40 , 60, 30 }, COLLIDER_ENEMY_SHOT, this);
 					App->music->PlayChunk(swordheavy);
@@ -795,7 +799,7 @@ update_status ModulePlayer2::Update()
 
 			}
 			else if (flip == SDL_FLIP_HORIZONTAL) {
-
+				speed = -4;
 				if (collider == true) {
 					colliderAttack = App->collision->AddCollider({ position.x, position.y - 50, 60, 30 }, COLLIDER_ENEMY_SHOT, this);
 					App->music->PlayChunk(swordheavy);
@@ -851,13 +855,14 @@ update_status ModulePlayer2::Update()
 			cyclone.Reset();
 			break;
 		case ST_BLOCK:
+			LOG("LLegue");
 			current_animation = &block;
 			App->music->PlayChunk(protection);
 			if (current_animation->AnimationEnd() == true) { animstart = 1; App->input->inputs2.Push(IN_BLOCK_FINISH_P2); }
 			break;
 
 		case ST_PUNCH_STANDING:
-			Damage = 25;
+			Damage = 10;
 
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y , 70, 30 }, COLLIDER_ENEMY_SHOT, this);
@@ -879,7 +884,7 @@ update_status ModulePlayer2::Update()
 
 			break;
 		case ST_MEDIUM_PUNCH_STANDING:
-			Damage = 25;
+			Damage = 15;
 
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y , 60, 80 }, COLLIDER_ENEMY_SHOT, this);
@@ -904,7 +909,7 @@ update_status ModulePlayer2::Update()
 			break;
 
 		case ST_HEAVY_PUNCH_STANDING:
-			Damage = 25;
+			Damage = 20;
 
 
 			if (collider == true) {
@@ -932,7 +937,7 @@ update_status ModulePlayer2::Update()
 			break;
 
 		case ST_KICK_CROUCH:
-			Damage = 15;
+			Damage = 10;
 			if (flip == SDL_FLIP_NONE) {
 
 				if (collider == true) {
@@ -968,7 +973,7 @@ update_status ModulePlayer2::Update()
 			}
 			break;
 		case ST_HEAVY_KICK_CROUCH:
-			Damage = 15;
+			Damage = 20;
 			if (flip == SDL_FLIP_NONE) {
 
 				if (collider == true) {
@@ -1006,7 +1011,7 @@ update_status ModulePlayer2::Update()
 			}
 			break;
 		case ST_KICK_STANDING:
-			Damage = 15;
+			Damage = 10;
 
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y, 40, 30 }, COLLIDER_ENEMY_SHOT, this);
@@ -1053,7 +1058,7 @@ update_status ModulePlayer2::Update()
 
 			break;
 		case ST_HEAVY_KICK_STANDING:
-			Damage = 15;
+			Damage = 20;
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y, 45, 30 }, COLLIDER_ENEMY_SHOT, this);
 				App->music->PlayChunk(kicksheavy);
@@ -1851,7 +1856,8 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 		if (c2 != nullptr){
 			c2->to_delete = true;
 	}
-		App->ui->Health_Bar_p2 -= App->player->Damage;
+		App->ui->Health_Bar_p2 -= App->player->Damage*App->ui->powDamage;
+		App->ui->damage_p2 += App->player->Damage;
 		App->slowdown->StartSlowdown(600, 40);
 		App->render->StartCameraShake(300, 3);
 		App->input->inputs2.Push(IN_DAMAGE_P2);
@@ -1861,6 +1867,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 		if (c2 != nullptr) {
 			c2->to_delete = true;
 		}
+		App->input->inputs2.Push(IN_BLOCK_P2);
 	}
 
 

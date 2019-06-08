@@ -5,6 +5,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "p2Point.h"
+#include "ModuleMusic.h"
 
 #include "SDL/include/SDL.h"
 
@@ -18,7 +19,7 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
-
+	
 public:
 
 	SDL_Texture* graphics = nullptr;
@@ -31,6 +32,7 @@ public:
 	bool matchend = false;
 	//Animation lowHealth;
 	bool lowAnim = false;
+	Mix_Chunk* dama;
 	SDL_Rect health;
 	SDL_Rect health2;
 	SDL_Rect Ippon;
@@ -50,6 +52,20 @@ public:
 	SDL_Rect begin;
 	SDL_Rect powCont;
 	SDL_Rect powCont2;
+	SDL_Rect powBar;
+	SDL_Rect powBar2;
+	SDL_Rect powBar3;
+	SDL_Rect powBar4;
+	SDL_Rect powBar5;
+	SDL_Rect powBar_p2;
+	SDL_Rect powBar2_p2;
+	SDL_Rect powBar3_p2;
+	SDL_Rect powBar4_p2;
+	SDL_Rect powBar5_p2;
+	Uint32 powTime;
+	Uint32 powTime2;
+	float powDamage;
+	float powDamage2;
 	int HealthBar_p1 = 128;
 	int Health_Bar_p2 = 128;
 	int damage_p1 = 0;

@@ -101,6 +101,7 @@ bool ModuleSceneNakoruru::CleanUp()
 	if (colliderMap2 != nullptr) {
 		colliderMap2->to_delete = true;
 	}
+	App->input->playerinput = false;
 	App->ui->Disable();
 	App->particles->Disable();
 	App->collision->Disable();
@@ -141,7 +142,7 @@ update_status ModuleSceneNakoruru::Update()
 			App->ui->Health_Bar_p2 = 128;
 			App->ui->HealthBar_p1 = 128;
 			App->ui->roundstart = true;
-			
+			timer = 99;
 			if (twowins == true) {
 				App->input->inputs2.Push(IN_WIN_FINISH_P2);
 				App->input->inputs.Push(IN_DEFEAT_FINISH);
@@ -160,12 +161,12 @@ update_status ModuleSceneNakoruru::Update()
 	if(App->ui->roundsp2 > 0 || App->ui->roundsp1 > 0){
 
 	if (SDL_GetTicks() - startroundtime >= 6000) {
-		timer = 99;
+		
 
 
 		App->input->playerinput = true;
 		App->ui->roundstart = false;
-		timertime = SDL_GetTicks();
+		
 		
 
 	}

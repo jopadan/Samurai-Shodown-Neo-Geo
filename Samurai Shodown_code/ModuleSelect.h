@@ -26,6 +26,8 @@ public:
 	SDL_Texture* player2 = nullptr;
 	Mix_Music* musload;
 	Mix_Chunk* chunkload;
+	Mix_Chunk* select;
+
 	SDL_Rect r;
 	SDL_Rect name;
 	Animation p2square;

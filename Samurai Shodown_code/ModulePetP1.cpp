@@ -26,6 +26,10 @@ ModulePetp1::ModulePetp1() {
 	move.PushBack({ 614, 1546, 54, 53 }, 0.2, 0, 0, 0, 0);
 	move.PushBack({ 666, 1539, 57, 43 }, 0.2, 0, 0, 0, 0);
 	move.PushBack({ 720, 1538, 45, 75 }, 0.1, 0, 0, 0, 0);
+
+
+	amube.PushBack({ 321, 471, 71, 64 }, 0.2, 0, 0, 0, 0);
+	amube.PushBack({ 399, 479, 75, 64 }, 0.2, 0, 0, 0, 0);
 }
 ModulePetp1::~ModulePetp1() {
 
@@ -123,7 +127,7 @@ update_status ModulePetp1::Update() {
 			colliderAttack->SetPos(position.x, position.y-40);
 
 		}
-		current_animation = &move;
+		current_animation = &amube;
 	}
 
 	App->player->hawkleft = false;

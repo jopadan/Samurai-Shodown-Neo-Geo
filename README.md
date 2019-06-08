@@ -1,4 +1,4 @@
-﻿# PMJ studios: Samurai Shodown
+# PMJ studios: Samurai Shodown
 
 We are a small group, in the first year of a Bachelor's Degree in Video Game Design and Development. As a project we had the objective to create a tribute to the great Samurai Shodown, a classical arcade figthing game.
 
