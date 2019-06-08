@@ -742,7 +742,7 @@ update_status ModulePlayer2::Update()
 
 			break;
 		case ST_PUNCH_CROUCH:
-			Damage = 25;
+			Damage = 15;
 			if (flip == SDL_FLIP_NONE) {
 
 				if (collider == true) {
@@ -778,9 +778,9 @@ update_status ModulePlayer2::Update()
 			}
 			break;
 		case ST_HEAVY_PUNCH_CROUCH:
-			Damage = 25;
+			Damage = 22;
 			if (flip == SDL_FLIP_NONE) {
-
+				speed = +6;
 				if (collider == true) {
 					colliderAttack = App->collision->AddCollider({ position.x - 5, position.y - 40 , 60, 30 }, COLLIDER_ENEMY_SHOT, this);
 					App->music->PlayChunk(swordheavy);
@@ -798,7 +798,7 @@ update_status ModulePlayer2::Update()
 
 			}
 			else if (flip == SDL_FLIP_HORIZONTAL) {
-
+				speed = -6;
 				if (collider == true) {
 					colliderAttack = App->collision->AddCollider({ position.x, position.y - 50, 60, 30 }, COLLIDER_ENEMY_SHOT, this);
 					App->music->PlayChunk(swordheavy);
@@ -861,7 +861,7 @@ update_status ModulePlayer2::Update()
 			break;
 
 		case ST_PUNCH_STANDING:
-			Damage = 25;
+			Damage = 15;
 
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y , 70, 30 }, COLLIDER_ENEMY_SHOT, this);
@@ -883,7 +883,7 @@ update_status ModulePlayer2::Update()
 
 			break;
 		case ST_MEDIUM_PUNCH_STANDING:
-			Damage = 25;
+			Damage = 20;
 
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y , 60, 80 }, COLLIDER_ENEMY_SHOT, this);
@@ -908,7 +908,7 @@ update_status ModulePlayer2::Update()
 			break;
 
 		case ST_HEAVY_PUNCH_STANDING:
-			Damage = 25;
+			Damage = 22;
 
 
 			if (collider == true) {
@@ -972,7 +972,7 @@ update_status ModulePlayer2::Update()
 			}
 			break;
 		case ST_HEAVY_KICK_CROUCH:
-			Damage = 15;
+			Damage = 22;
 			if (flip == SDL_FLIP_NONE) {
 
 				if (collider == true) {
@@ -1034,7 +1034,7 @@ update_status ModulePlayer2::Update()
 			break;
 
 		case ST_MEDIUM_KICK_STANDING:
-			Damage = 15;
+			Damage = 20;
 
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y, 40, 30 }, COLLIDER_ENEMY_SHOT, this);
@@ -1057,7 +1057,7 @@ update_status ModulePlayer2::Update()
 
 			break;
 		case ST_HEAVY_KICK_STANDING:
-			Damage = 15;
+			Damage = 22;
 			if (collider == true) {
 				colliderAttack = App->collision->AddCollider({ position.x, position.y, 45, 30 }, COLLIDER_ENEMY_SHOT, this);
 				App->music->PlayChunk(kicksheavy);
