@@ -275,6 +275,7 @@ bool ModulePlayer::Start()
 	annu = App->music->LoadChunk("Assets/Sound/Nakoruru/Samurai Shodown - Nakoruru - Annu Mutsube.wav");
 	protection= App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - ATTACK PROTECTION 03.wav");
 	App->ui->HealthBar_p1 = 128;
+	App->ui->damage_p1 = 0;
 
 
 	if (flip == SDL_FLIP_HORIZONTAL) {
