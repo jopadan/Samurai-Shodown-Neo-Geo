@@ -271,6 +271,7 @@ bool ModulePlayer2::Start()
 	heavyya = App->music->LoadChunk("Assets/Sound/Nakoruru/Samurai Shodown - Nakoruru - 01.wav");
 	annu = App->music->LoadChunk("Assets/Sound/Nakoruru/Samurai Shodown - Nakoruru - Annu Mutsube.wav");
 	protection = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - ATTACK PROTECTION 03.wav");
+	App->ui->damage_p2 = 0;
 
 
 	if (flip == SDL_FLIP_HORIZONTAL) {
