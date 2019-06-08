@@ -851,6 +851,7 @@ update_status ModulePlayer2::Update()
 			cyclone.Reset();
 			break;
 		case ST_BLOCK:
+			LOG("LLegue");
 			current_animation = &block;
 			App->music->PlayChunk(protection);
 			if (current_animation->AnimationEnd() == true) { animstart = 1; App->input->inputs2.Push(IN_BLOCK_FINISH_P2); }
@@ -1862,6 +1863,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 		if (c2 != nullptr) {
 			c2->to_delete = true;
 		}
+		App->input->inputs2.Push(IN_BLOCK_P2);
 	}
 
 
