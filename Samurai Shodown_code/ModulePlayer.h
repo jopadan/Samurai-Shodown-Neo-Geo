@@ -56,8 +56,8 @@ public:
 	Uint32 combotimeAnnu;
 	Uint32 combotimeAmube;
 	SDL_Texture* graphics = nullptr;
-	SDL_Texture* graphics2 = nullptr;
-	SDL_Texture* graphics3 = nullptr;
+//	SDL_Texture* graphics2 = nullptr;
+	//SDL_Texture* graphics3 = nullptr;
 	SDL_Texture* graphicsobj = nullptr;
 	Animation* current_animation = nullptr;
 	Mix_Chunk* Kamui;
