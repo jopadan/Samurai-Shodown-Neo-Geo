@@ -8,7 +8,7 @@ Samurai Shodown, known as Samurai Spirits is a fighting game developed and publi
 https://github.com/Ap011y0n/Samurai-Shodown-Neo-Geo
 
 ## Webpage
-https://github.com/Ap011y0n/Samurai-Shodown-Neo-Geo
+https://ap011y0n.github.io/Samurai-Shodown-Neo-Geo/
 
 ## Team members
 https://github.com/Ap011y0n/Samurai-Shodown-Neo-Geo
