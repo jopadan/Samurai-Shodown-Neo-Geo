@@ -114,6 +114,26 @@ The first player whose life gets to 0 or the one whose life is lower when the ti
 
 **0.45:** Changed the second character's appearance to be the second version of the first character and added all funcionalities that the first player had to the second one. Added a flip system for the characters to always face each other and a basic automatic camera system. Added a functional UI (just healthbars and timer) with its font system and win/lose conditions. Taken out of the games path the second screen and improved hitboxes and combat.
 
+**0.5: ** Prototype, haohmaru vs haohmaru, haohmaru stage
+
+**0.6: ** Added gamepad input
+
+**0.7: ** Added special attacks throug combination of input
+
+**0.8: ** Added camera shake and slowmotion to impacts
+
+**0.9: ** Added new specials and attacks
+
+**0.95 ** Added Rounds, select scene, pow bar, and collisions fixed
+
+**0.96 ** rounds and certain animations fixed
+
+**0.97 ** hawk camera limits, damage enhanced
+
+**0.98 ** added damage particles and a time countdown for the colliders to appear
+
+**0.99 ** jump attacks fixed
+
 ### Libraries used:
 SDL: https://www.libsdl.org/
 SDL_Mixer: https://www.libsdl.org/projects/SDL_mixer/
