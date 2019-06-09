@@ -567,7 +567,7 @@ void ModuleInput::internal_input(p2Qeue<player_inputs>& inputs, p2Qeue<player_in
 	{
 		if (SDL_GetTicks() - heavy_kick_timer2 > HEAVY_KICK_TIME)
 		{
-			inputs2.Push(IN_KICK_FINISH);
+			inputs2.Push(IN_KICK_FINISH_P2);
 			heavy_kick_timer2 = 0;
 		}
 	}

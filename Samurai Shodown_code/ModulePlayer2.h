@@ -25,6 +25,9 @@ private:
 	int animstart = 0;
 	bool shoot = true;
 	bool collider = true;
+	bool playdamage = false;
+	bool vuelta = 0;
+	Uint32 timer;
 
 public:
 	ModulePlayer2();
@@ -96,6 +99,7 @@ public:
 	Animation kamui;
 	Animation amube;
 	Animation yatoro;
+	Animation damage1;
 	iPoint position;
 	Uint32 Damage = 20;
 	bool deletecol = true;

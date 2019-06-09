@@ -25,9 +25,10 @@ private:
 	int animstart=0;
 	bool shoot = true;
 	bool collider = true;
+	bool vuelta = 0;
 	int pos;
 	bool playdamage = false;
-
+	Uint32 timer = 0;
 
 
 	
