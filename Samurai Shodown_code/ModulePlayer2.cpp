@@ -128,8 +128,8 @@ ModulePlayer2::ModulePlayer2()
 	kick.PushBack({ 70, 1060, 53, 100 }, 0.1, 0, 0, 8, 0);
 	kick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
 
-	mediumkick.PushBack({ 83, 1709, 51, 77 }, 0.1, 0, -10, 6, -10);
-	mediumkick.PushBack({ 140, 1711, 54, 73 }, 0.2, 0, -10, 6, -10);
+	mediumkick.PushBack({ 83, 1709, 51, 77 }, 0.2, 0, -10, 6, -10);
+	mediumkick.PushBack({ 140, 1711, 54, 73 }, 0.3, 0, -10, 6, -10);
 	mediumkick.PushBack({ 195, 1710, 50, 77 }, 0.2, 0, -10, 6, -10);
 	mediumkick.PushBack({ 244, 1708, 52, 72 }, 0.2, 0, -10, 6, -10);
 	mediumkick.PushBack({ 296, 1704, 99, 86 }, 0.2, 0, -10, -20, -10);

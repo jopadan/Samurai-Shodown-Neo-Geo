@@ -69,6 +69,18 @@ ModulePlayer::ModulePlayer()
 	jumpup.PushBack({ 496, 1604, 60, 105 }, 0.11, 0, 0, 0, 0);
 	jumpup.loop = false;
 
+	/*jumpforward.PushBack({ 496, 1604, 60, 105 }, 0.11, 0, 0, 0, 0);
+	jumpforward.PushBack({ 556, 1606, 53, 103 }, 0.4, 0, 0, 0, 0);
+	jumpforward.PushBack({ 610, 1618, 50, 79 }, 0.4, 0, 0, 0, 0);
+	jumpforward.PushBack({ 123, 984, 66, 73 }, 0.4, 0, 8, 3, 8);
+	jumpforward.PushBack({ 191, 992, 64, 60 }, 0.4, 0, 8, 3, 8);
+	jumpforward.PushBack({ 255, 983, 70, 72 }, 0.4, 0, 8, 3, 8);
+	jumpforward.PushBack({ 326, 988, 60, 67 }, 0.4, 0, 8, 3, 8);
+	jumpforward.PushBack({ 387, 976, 67, 70 }, 0.4, 0, 8, 3, 8);
+	//jumpforward.PushBack({ 460, 987, 63, 63 }, 0.2, 0, 8, 3, 8);
+	//jumpforward.PushBack({ 644, 991, 52, 57 }, 0.2, 0, 4, 3, 4);
+	jumpforward.PushBack({ 496, 1604, 60, 105 }, 0.11, 0, 0, 0, 0);*/
+
 	hawk_carry.PushBack({ 64, 1547, 46, 56 }, 0.11, 0, -3, 9, -3);
 	hawk_carry.PushBack({ 112, 1541, 43, 67 }, 0.11, 0, -3, 9, -3);
 	hawk_carry.PushBack({ 159, 1547, 42, 60 }, 0.11, 0, -3, 9, -3);
@@ -131,8 +143,8 @@ ModulePlayer::ModulePlayer()
 	kick.PushBack({ 70, 1060, 53, 100 }, 0.1, 0, 0, 8, 0);
 	kick.PushBack({ 14, 1061, 56, 98 }, 0.2, 0, 0, 4, 0);
 
-	mediumkick.PushBack({ 83, 1709, 51, 77 }, 0.1, 0, -10, 6, -10);
-	mediumkick.PushBack({ 140, 1711, 54, 73 }, 0.2, 0, -10, 6, -10);
+	mediumkick.PushBack({ 83, 1709, 51, 77 }, 0.2, 0, -10, 6, -10);
+	mediumkick.PushBack({ 140, 1711, 54, 73 }, 0.3, 0, -10, 6, -10);
 	mediumkick.PushBack({ 195, 1710, 50, 77 }, 0.2, 0, -10, 6, -10);
 	mediumkick.PushBack({ 244, 1708, 52, 72 }, 0.2, 0, -10, 6, -10);
 	mediumkick.PushBack({ 296, 1704, 99, 86 }, 0.2, 0, -10, -20, -10);
