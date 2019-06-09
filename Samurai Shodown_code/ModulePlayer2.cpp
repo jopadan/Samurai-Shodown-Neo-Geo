@@ -308,6 +308,8 @@ bool ModulePlayer2::CleanUp() {
 	position.x = 372;
 	position.y = 207;
 	App->textures->Unload(graphics);
+	App->textures->Unload(graphics2);
+	App->textures->Unload(graphics3);
 	App->textures->Unload(graphicsobj);
 	App->music->UnloadChunk(Kamui);
 	App->music->UnloadChunk(swordlight);
