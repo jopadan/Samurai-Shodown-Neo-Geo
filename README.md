@@ -71,6 +71,7 @@ Specials:
 (while hawk carry)
 
 ↘+Slash/Kick:    Kamui Mutsube:Sword-first dive at an angle, from the bird.
+
 ↓+Slash/Kick:    Yatoru Poko:Downwards spinning roll from the bird.
 
 
