@@ -62,8 +62,13 @@ public:
 	SDL_Rect powBar3_p2;
 	SDL_Rect powBar4_p2;
 	SDL_Rect powBar5_p2;
+	SDL_Rect level4;
 	Uint32 powTime;
+	bool powtimer = false;
+	bool powless = false;
 	Uint32 powTime2;
+	bool powtimer2 = false;
+	bool powless2 = false;
 	float powDamage;
 	float powDamage2;
 	int HealthBar_p1 = 128;

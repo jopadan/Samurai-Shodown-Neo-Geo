@@ -86,10 +86,10 @@ ModuleUI::ModuleUI() {
 	nakoruru.w = 64;
 	nakoruru.h = 8;
 
-	victory.x = 487;
-	victory.y = 376;
-	victory.w = 25;
-	victory.h = 16;
+	victory.x = 486;
+	victory.y = 375;
+	victory.w = 27;
+	victory.h = 18;
 
 	powCont.x = 379;
 	powCont.y = 286;
@@ -151,7 +151,11 @@ ModuleUI::ModuleUI() {
 	powBar5_p2.w = 65;
 	powBar5_p2.h = 10;
 	
-	
+	level4.x = 275;
+	level4.y = 459;
+	level4.w = 54;
+	level4.h = 9;
+
 	health.x = 273;//25, 9,,207, 9
 	health.y = 310;
 	health.w = HealthBar_p1;
@@ -244,39 +248,58 @@ update_status ModuleUI::Update() {
 
 	if (damage_p1 <= 13) {
 		App->render->Blit(graphics, -App->render->camera.x + 46, -App->render->camera.y + 202, &powCont, SDL_FLIP_NONE, 1);
-		App->render->Blit(graphics, -App->render->camera.x + 46 + (65 - damage_p1), -App->render->camera.y + 202, &powBar, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x + 46 + (67 - damage_p1), -App->render->camera.y + 202, &powBar, SDL_FLIP_NONE, 1);
 		App->render->Blit(graphics, -App->render->camera.x + 30, -App->render->camera.y + 200, &pow1, SDL_FLIP_NONE, 1);
 		powDamage = 1;
 	}
 	if (damage_p1 > 13 && damage_p1 <= 26) {
 		App->render->Blit(graphics, -App->render->camera.x + 46, -App->render->camera.y + 202, &powCont, SDL_FLIP_NONE, 1);
-		App->render->Blit(graphics, -App->render->camera.x + 46 + (65 - damage_p1), -App->render->camera.y + 202, &powBar2, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x + 46 + (67 - damage_p1), -App->render->camera.y + 202, &powBar2, SDL_FLIP_NONE, 1);
 		App->render->Blit(graphics, -App->render->camera.x + 25, -App->render->camera.y + 196, &pow2, SDL_FLIP_NONE, 1);
 		powDamage = 1.125;
 	}
 	if (damage_p1 > 26 && damage_p1 <= 39) {
 		App->render->Blit(graphics, -App->render->camera.x + 46, -App->render->camera.y + 202, &powCont, SDL_FLIP_NONE, 1);
-		App->render->Blit(graphics, -App->render->camera.x + 46 + (65 - damage_p1), -App->render->camera.y + 202, &powBar3, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x + 46 + (67 - damage_p1), -App->render->camera.y + 202, &powBar3, SDL_FLIP_NONE, 1);
 		App->render->Blit(graphics, -App->render->camera.x + 23, -App->render->camera.y + 191, &pow3, SDL_FLIP_NONE, 1);
 		powDamage = 1.25;
 	}
 	if (damage_p1 > 39 && damage_p1 <= 52) {
 		App->render->Blit(graphics, -App->render->camera.x + 46, -App->render->camera.y + 202, &powCont, SDL_FLIP_NONE, 1);
-		App->render->Blit(graphics, -App->render->camera.x + 46 + (65 - damage_p1), -App->render->camera.y + 202, &powBar4, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x + 46 + (67 - damage_p1), -App->render->camera.y + 202, &powBar4, SDL_FLIP_NONE, 1);
 		App->render->Blit(graphics, -App->render->camera.x + 19, -App->render->camera.y + 187, &pow4, SDL_FLIP_NONE, 1);
 		powDamage = 1.375;
 	}
 	if (damage_p1 > 52) {
 		App->render->Blit(graphics, -App->render->camera.x + 46, -App->render->camera.y + 202, &powCont, SDL_FLIP_NONE, 1);
-		App->render->Blit(graphics, -App->render->camera.x + 46, -App->render->camera.y + 202, &powBar5, SDL_FLIP_NONE, 1);
+		if (damage_p1 >= 65) {
+			App->render->Blit(graphics, -App->render->camera.x + 46, -App->render->camera.y + 202, &powBar5, SDL_FLIP_NONE, 1);
+		}
+		else {
+			App->render->Blit(graphics, -App->render->camera.x + 46 + (67 - damage_p1), -App->render->camera.y + 202, &powBar5, SDL_FLIP_NONE, 1);
+		}
 		current_animation = &pow;
 		App->render->Blit(graphics, -App->render->camera.x + 5, -App->render->camera.y + 177 + current_animation->pivoty[current_animation->returnCurrentFrame()], &(pow.GetCurrentFrame()), SDL_FLIP_NONE, 1);
 		powDamage = 1.5;
 	}
-	if (damage_p1 >= 65) {
+	
+	if (damage_p1 >= 65 && powtimer == false) {
 		powTime = SDL_GetTicks();
-		if (SDL_GetTicks() - powTime > 7000) {
+		powtimer = true;
+	}
+	if (damage_p1 >= 65 && powtimer == true) {
+		if (SDL_GetTicks() - powTime > 15000) {
+			powless = true;
+			powtimer = false;
+		}
+	}
+	if (powless == true) {
+		if (damage_p1 > 0) {
+			damage_p1 -= 1;
+		}
+		else {
 			damage_p1 = 0;
+			powless = false;
 		}
 	}
 	
@@ -313,20 +336,43 @@ update_status ModuleUI::Update() {
 		powDamage2 = 1.5;
 	}
 
+	if (damage_p2 >= 65 && powtimer2 == false) {
+		powTime2 = SDL_GetTicks();
+		powtimer2 = true;
+	}
+	if (damage_p2 >= 65 && powtimer2 == true) {
+		if (SDL_GetTicks() - powTime2 > 15000) {
+			powless2 = true;
+			powtimer2 = false;
+		}
+	}
+	if (powless2 == true) {
+		if (damage_p2 > 0) {
+			damage_p2 -= 1;
+		}
+		else {
+			damage_p2 = 0;
+			powless2 = false;
+		}
+	}
+
 
 	if (roundsp1 == 1) {
-		App->render->Blit(graphics, -App->render->camera.x + 8, -App->render->camera.y + 33, &victory, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x + 7, -App->render->camera.y + 33, &victory, SDL_FLIP_NONE, 1);
 	}
 	if (roundsp2 == 1) {
-		App->render->Blit(graphics, -App->render->camera.x + 274, -App->render->camera.y + 33, &victory, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x + 270, -App->render->camera.y + 33, &victory, SDL_FLIP_NONE, 1);
 	}
 	if (roundsp1 == 2) {
-		App->render->Blit(graphics, -App->render->camera.x + 8, -App->render->camera.y + 33, &victory, SDL_FLIP_NONE, 1);
-		App->render->Blit(graphics, -App->render->camera.x + 32, -App->render->camera.y + 33, &victory, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x + 7, -App->render->camera.y + 33, &victory, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x + 33, -App->render->camera.y + 33, &victory, SDL_FLIP_NONE, 1);
 	}
 	if (roundsp2 == 2) {
-		App->render->Blit(graphics, -App->render->camera.x + 274, -App->render->camera.y + 33, &victory, SDL_FLIP_NONE, 1);
-		App->render->Blit(graphics, -App->render->camera.x + 250, -App->render->camera.y + 33, &victory, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x + 270, -App->render->camera.y + 33, &victory, SDL_FLIP_NONE, 1);
+		App->render->Blit(graphics, -App->render->camera.x + 244, -App->render->camera.y + 33, &victory, SDL_FLIP_NONE, 1);
 	}
+
+	App->render->Blit(graphics, -App->render->camera.x + 130, -App->render->camera.y + 215, &level4, SDL_FLIP_NONE, 1);
+
 	return UPDATE_CONTINUE;
 }

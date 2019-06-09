@@ -263,6 +263,8 @@ bool ModulePlayer::Start()
 	position.x = 208;
 	position.y = 207;
 	graphics = App->textures->Load("Assets/Image/Nakoruru spritesheet.png");
+	graphics2 = App->textures->Load("Assets/Image/Nakoruru spritesheet 2.png");
+	graphics3 = App->textures->Load("Assets/Image/Nakoruru spritesheet 3.png");
 	graphicsobj = App->textures->Load("Assets/Image/objectes.png");
 	Kamui = App->music->LoadChunk("Assets/Sound/Nakoruru/Samurai Shodown - Nakoruru - Kamui Mutsube.wav");
 	swordlight = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - A- 01.wav");
@@ -1285,15 +1287,38 @@ update_status ModulePlayer::Update()
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
 	App->render->Blit(graphicsobj, position.x, 201, &r2, SDL_FLIP_NONE);
+	
+	if (App->ui->damage_p1 <= 26) {
+		if (flip == SDL_FLIP_NONE) {
 
-	if (flip == SDL_FLIP_NONE) {
+			App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y - r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r, flip);
 
-		App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y - r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r, flip);
-
+		}
+		if (flip == SDL_FLIP_HORIZONTAL) {
+			App->render->Blit(graphics, position.x - 10 +/*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()] * 2, position.y - r.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
+		}
 	}
-	if (flip == SDL_FLIP_HORIZONTAL) {
-		App->render->Blit(graphics, position.x - 10 +/*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()] * 2, position.y - r.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
+	if (App->ui->damage_p1 > 26 && App->ui->damage_p1 <= 52) {
+		if (flip == SDL_FLIP_NONE) {
+
+			App->render->Blit(graphics2, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y - r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r, flip);
+
+		}
+		if (flip == SDL_FLIP_HORIZONTAL) {
+			App->render->Blit(graphics2, position.x - 10 +/*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()] * 2, position.y - r.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
+		}
 	}
+	if (App->ui->damage_p1 > 52) {
+		if (flip == SDL_FLIP_NONE) {
+
+			App->render->Blit(graphics3, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y - r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r, flip);
+
+		}
+		if (flip == SDL_FLIP_HORIZONTAL) {
+			App->render->Blit(graphics3, position.x - 10 +/*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()] * 2, position.y - r.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
+		}
+	}
+	
 	if (flip == SDL_FLIP_HORIZONTAL) {
 		if (colliderPlayer != nullptr)colliderPlayer->SetPos(position.x, position.y - 80 + height);
 	}
