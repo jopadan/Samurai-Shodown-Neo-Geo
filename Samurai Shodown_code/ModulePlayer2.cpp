@@ -892,9 +892,7 @@ update_status ModulePlayer2::Update()
 			cyclone.Reset();
 			break;
 		case ST_BLOCK:
-			LOG("LLegue");
 			current_animation = &block;
-			App->music->PlayChunk(protection);
 			if (current_animation->AnimationEnd() == true) { animstart = 1; App->input->inputs2.Push(IN_BLOCK_FINISH_P2); }
 			break;
 
@@ -1504,7 +1502,7 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 
 			switch (last_input)
 			{
-			case IN_BLOCK_P2: state = ST_BLOCK; break;
+			case IN_BLOCK_P2: state = ST_BLOCK; App->music->PlayChunk(protection); break;
 			case IN_RIGHT_UP_P2: state = ST_IDLE; break;
 			case IN_LEFT_AND_RIGHT_P2: state = ST_IDLE; break;
 			case IN_JUMP_P2: state = ST_JUMP_FORWARD; jumpSpeed = 6; jumptimer = SDL_GetTicks();  App->input->jump_timer2 = SDL_GetTicks();  break;
@@ -1590,7 +1588,7 @@ player_states ModulePlayer2::process_fsm(p2Qeue<player_inputs>& inputs) {
 
 			switch (last_input)
 			{
-			case IN_BLOCK_P2: state = ST_BLOCK; break;
+			case IN_BLOCK_P2: state = ST_BLOCK;	App->music->PlayChunk(protection); break;
 			case IN_LEFT_UP_P2: state = ST_IDLE; break;
 			case IN_LEFT_AND_RIGHT_P2: state = ST_IDLE; break;
 			case IN_JUMP_P2: state = ST_JUMP_BACKWARD; jumpSpeed = 6; jumptimer = SDL_GetTicks();  App->input->jump_timer2 = SDL_GetTicks();  break;

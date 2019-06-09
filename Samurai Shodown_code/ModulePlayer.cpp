@@ -911,7 +911,6 @@ update_status ModulePlayer::Update()
 			break;
 		case ST_BLOCK:
 			current_animation = &block;
-			App->music->PlayChunk(protection);
 			if (current_animation->AnimationEnd() == true) { animstart = 1; App->input->inputs.Push(IN_BLOCK_FINISH); }
 			break;
 
@@ -1516,7 +1515,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 
 			switch (last_input)
 			{
-			case IN_BLOCK: state = ST_BLOCK; break;
+			case IN_BLOCK: state = ST_BLOCK;	App->music->PlayChunk(protection); break;
 			case IN_RIGHT_UP: state = ST_IDLE; break;
 			case IN_LEFT_AND_RIGHT: state = ST_IDLE; break;
 			case IN_JUMP: state = ST_JUMP_FORWARD; jumpSpeed = 6; jumptimer = SDL_GetTicks();  App->input->jump_timer = SDL_GetTicks();  break;
@@ -1604,7 +1603,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs) {
 
 			switch (last_input)
 			{
-			case IN_BLOCK: state = ST_BLOCK; break;
+			case IN_BLOCK: state = ST_BLOCK; 	App->music->PlayChunk(protection); break;
 			case IN_LEFT_UP: state = ST_IDLE; break;
 			case IN_LEFT_AND_RIGHT: state = ST_IDLE; break;
 			case IN_JUMP: state = ST_JUMP_BACKWARD; jumpSpeed = 6; jumptimer = SDL_GetTicks(); App->input->jump_timer = SDL_GetTicks();  break;
