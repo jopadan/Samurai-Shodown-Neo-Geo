@@ -55,6 +55,7 @@ public:
 	Animation * current_animation = nullptr;
 	Particle cyclone;
 	Particle tornado;
+	
 	//Particle flower;
 	int* direction[MAX_ACTIVE_PARTICLES];
 };

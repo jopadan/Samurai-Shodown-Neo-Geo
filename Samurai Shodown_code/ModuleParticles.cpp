@@ -53,9 +53,8 @@ ModuleParticles::ModuleParticles()
 	tornado.anim.PushBack({ 627, 172, 60, 217 }, 0.4, 0, 50, 0, 0);
 	tornado.anim.PushBack({ 760, 172, 60, 217 }, 0.4, 0, 50, 0, 0);
 	tornado.anim.PushBack({ 865, 172, 60, 217 }, 0.4, 0, 50, 0, 0);
-	tornado.anim.loop = true;
-	tornado.speed = { 0, 0 };
-	tornado.life = 1000;
+
+
 }
 
 ModuleParticles::~ModuleParticles()

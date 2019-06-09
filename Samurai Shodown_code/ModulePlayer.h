@@ -26,6 +26,7 @@ private:
 	bool shoot = true;
 	bool collider = true;
 	int pos;
+	bool playdamage = false;
 
 
 
@@ -100,6 +101,7 @@ public:
 	Animation Annu;
 	Animation kamui;
 	Animation amube;
+	Animation damage1;
 	Animation yatoro;
 	iPoint position;
 	Uint32 Damage = 20;

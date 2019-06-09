@@ -242,6 +242,13 @@ ModulePlayer::ModulePlayer()
 	shadow.PushBack({ 659, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
 	shadow.PushBack({ 733, 70, 70, 14 }, 1.8, 0, 0, 0, 0);
 
+	
+	damage1.PushBack({ 600, 1979, 18, 18 }, 0.01, 0, 0, 0, 0);
+	damage1.PushBack({ 623, 1979, 18, 18 }, 0.01, 0, 0, 0, 0);
+	damage1.PushBack({ 643, 1978, 20, 20 }, 0.01, 0, 0, 0, 0);
+	damage1.PushBack({ 665, 1979, 18, 18 }, 0.01, 0, 0, 0, 0);
+
+
 }
 
 ModulePlayer::~ModulePlayer()
@@ -323,7 +330,7 @@ update_status ModulePlayer::Update()
 {
 	//App->slowdown->StartSlowdown(2000, 40);
 	speed = 0;
-
+	playdamage = false;
 	OnHawk = false;
 	App->pet->yatoro = false;
 	dontflip = false;
@@ -824,6 +831,7 @@ update_status ModulePlayer::Update()
 			
 
 		case ST_DAMAGE:
+			playdamage = true;
 			App->referee->damage1 = true;
 			if (playsound)App->music->PlayChunk(hitted);
 			playsound = false;
@@ -1279,7 +1287,7 @@ update_status ModulePlayer::Update()
 		position.y = initialPos;
 		jumpSpeed = 0;
 	}
-	LOG("x == %d", position.x);
+	
 			
 	
 	if (position.x < 42) {
@@ -1305,6 +1313,8 @@ update_status ModulePlayer::Update()
 	if (flip == SDL_FLIP_HORIZONTAL) {
 		App->render->Blit(graphics, position.x - 10 +/*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()] * 2, position.y - r.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
 	}
+	if (playdamage == true) { LOG("deberia estar dibujando algo"); App->render->Blit(graphics, position.x, position.y, &(damage1.GetCurrentFrame()), SDL_FLIP_NONE); }
+
 	if (flip == SDL_FLIP_HORIZONTAL) {
 		if (colliderPlayer != nullptr)colliderPlayer->SetPos(position.x, position.y - 80 + height);
 	}
