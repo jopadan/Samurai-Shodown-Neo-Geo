@@ -59,25 +59,20 @@ Move backwards (opposite of facing direction)
 Specials:
 (If facing direction = right, otherwise invert -O and O-)
 
- O-   /  |     Slash 		Annu Mutsube (the low flying attack)
-    O    O
+ →↘↓↙←+Slash:      Amube Yatoro:Nakoruru orders Mamahaha to attack. 
 
-|  \   -O     Slash		Leyla Mutsube (the up-to-the-sky attack)
-O   O
+←↙↓+Slash:         Annu Mutsube:Nakoruru slides along the ground with blade outstreched.
 
- -O  \   |   /  O-  Slash 	Amube Yatoro (Summon the bird to attack)
-      O  O  O
+↓↘→+Slash:         Leyla Mutsube:Rising version of Annu Mutsube.
 
-|   /  O-  kick			Hawk Carry
-O  O	
+←↙↓+Kick:          Hawk Carry:Nakoruru rides Mamahaha, gaining flight.
 
 
 (while hawk carry)
 
-/ or | or \  Slash or Kick     Yatoro Poku   (Rolling Down Attack)
-O    O     O
+↘+Slash/Kick:    Kamui Mutsube:Sword-first dive at an angle, from the bird.
+↓+Slash/Kick:    Yatoru Poko:Downwards spinning roll from the bird.
 
-O- or -O Slash or Kick		Kamui Mutsube    (Diagonal Down Arrow Attack)	
 
 Keyboard Variations
 ### P1 controls:
