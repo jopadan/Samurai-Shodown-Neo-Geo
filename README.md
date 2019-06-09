@@ -1,12 +1,17 @@
-# PMJ studios: Samurai Shodown
+﻿# PMJ studios: Samurai Shodown
 
 We are a small group, in the first year of a Bachelor's Degree in Video Game Design and Development. As a project we had the objective to create a tribute to the great Samurai Shodown, a classical arcade figthing game.
 
 Samurai Shodown, known as Samurai Spirits is a fighting game developed and published by SNK for their NeoGeo arcade system. It was released in 1993, in a time of great hits such Street Fighter II: The World Warrior, Mortal Kombat, Art of Fighting, and many others. Samurai Shodown difered in it's fast paced combat, more focused on speed and timing than hard to chain combos, and in it's setting, which happens in the late 18th century. 
 
-## Project page and team members
+## Project page
 https://github.com/Ap011y0n/Samurai-Shodown-Neo-Geo
 
+## Webpage
+https://github.com/Ap011y0n/Samurai-Shodown-Neo-Geo
+
+## Team members
+https://github.com/Ap011y0n/Samurai-Shodown-Neo-Geo
 · Pol Galan: https://github.com/pgalmor
 
 · Albert Garcia: https://github.com/Ap011y0n
@@ -14,6 +19,13 @@ https://github.com/Ap011y0n/Samurai-Shodown-Neo-Geo
 · Pol Juan: https://github.com/Sauko22
 
 ## Controls
+Gamecontroller (xbox360 or equivalent) / keyboard
+(We recommend the use of a gamecontroller since the game was designed for that type of controls in mind)
+
+### Menu, select screen, ending
+Start button / Spacebar: Advance between stages(menu->select->fight, ending -> menu).
+Select screen: select a character with X, move with joystick.
+
 ### Debug
 F1: Display all colliders.
 
@@ -25,46 +37,70 @@ F4: P2 GOD mode.
 
 F5: P1 GOD mode.
 
-Spacebar: Advance between stages(menu, victory, defeat).
+
 
 ESC: Close game.
 
-## Implemented movements: 
+## Moveset: 
+
+Joystick / WASD: move, jump and crouch.
+
+Slash:     X  Weak Slash     Y  Medium Slash     XY Strong Slash
+Kick:      A  Weak Kick      B  Medium Kick      AB Strong Kick
+
+When jump, neutral, forward, backward && crouch: 
+
+	   X  Weak Slash     Y  Strong Slash		
+	   A  Weak Kick	     B  Strong Kick 
+
+Block:
+Move backwards (opposite of facing direction)
+
+Specials:
+(If facing direction = right, otherwise invert -O and O-)
+
+ O-   /  |     Slash 		Annu Mutsube (the low flying attack)
+    O    O
+
+|  \   -O     Slash		Leyla Mutsube (the up-to-the-sky attack)
+O   O
+
+ -O  \   |   /  O-  Slash 	Amube Yatoro (Summon the bird to attack)
+      O  O  O
+
+|   /  O-  kick			Hawk Carry
+O  O	
+
+
+(while hawk carry)
+
+/ or | or \  Slash or Kick     Yatoro Poku   (Rolling Down Attack)
+O    O     O
+
+O- or -O Slash or Kick		Kamui Mutsube    (Diagonal Down Arrow Attack)	
+
+Keyboard Variations
 ### P1 controls:
+     X = 1     Y = 2    
+     A = 3     B = 4
 
-WASD: move, jump and crouch.
-
-1: Sword attack.
-
-2: Kick.
-
-Down(S)-> Face direction(D or A) -> 1 : Special move.
-
-3: (Special move shortcut).
-
-Down(S) -> 1 : Crouch attack.
-
-Back when hitted (opposite direction of opponent): Block.
+O 		  |
+| = W	O- = A    O = S	  -O = D
 
 ### P2 controls:
 
-IJKL: move, jump and crouch.
+     X = 7     Y = 8    
+     A = 9     B = 0
 
-7: Sword attack.
+O 		 |
+| = I	O- = J   O = K	  -O = L
 
-8: Kick.
 
-Down(K)-> Face direction(J or L) -> 7 : Special move.
 
-9: (Special move shortcut).
-
-Down(K) -> 7 : Crouch attack.
-
-Back when hitted (opposite direction of opponent): Block.
 
 ## Objective
 
-The first player whose life gets to 0 or the one whose life is lower when the time ends loses the match.
+The first player whose life gets to 0 or the one whose life is lower when the time ends loses a round. The player who wins 2 rounds wins a match.
 
 ## Changelog
 

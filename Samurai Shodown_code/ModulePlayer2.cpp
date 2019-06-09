@@ -26,11 +26,11 @@ ModulePlayer2::ModulePlayer2()
 	initialPos = position.y;
 
 
-	intro.PushBack({ 1344, 39, 42, 97 }, 0.15, 0, 0, 0, 0);
-	intro.PushBack({ 1386, 38, 40, 98 }, 0.15, 1, 0, 0, 0);
-	intro.PushBack({ 1428, 41, 39, 95 }, 0.15, 2, 0, 0, 0);
-	intro.PushBack({ 1386, 38, 40, 98 }, 0.15, 1, 0, 0, 0);
-	intro.PushBack({ 1344, 39, 42, 97 }, 0.15, 0, 0, 0, 0);
+	intro.PushBack({ 1344, 39, 42, 97 }, 0.15, 0, 0, 15, 0);
+	intro.PushBack({ 1386, 38, 40, 98 }, 0.15, 1, 0, 15, 0);
+	intro.PushBack({ 1428, 41, 39, 95 }, 0.15, 2, 0, 15, 0);
+	intro.PushBack({ 1386, 38, 40, 98 }, 0.15, 1, 0, 15, 0);
+	intro.PushBack({ 1344, 39, 42, 97 }, 0.15, 0, 0, 15, 0);
 
 	idle.PushBack({ 13, 1614, 65, 87 }, 0.15, 0, 0, 0, 0);
 	idle.PushBack({ 82, 1614, 65, 87 }, 0.15, 1, 0, 0, 0);
