@@ -74,6 +74,9 @@ Specials:
 
 ↓+Slash/Kick:    Yatoru Poko:Downwards spinning roll from the bird.
 
+Pow Rage:
+As you received various blows, your Pow gauge, located in the lower half of the screen,will increase. When it begins to flash, your character will anger, reaching full power. At this time,your attacks and methods of mayhem will be at their deadliest.
+
 
 Keyboard Variations
 ### P1 controls:
