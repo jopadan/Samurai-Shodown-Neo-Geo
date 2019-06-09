@@ -1365,7 +1365,7 @@ update_status ModulePlayer::Update()
 
 	App->render->Blit(graphicsobj, position.x, 201, &r2, SDL_FLIP_NONE);
 	
-	if (App->ui->damage_p1 <= 26) {
+//	if (App->ui->damage_p1 <= 26) {
 		if (flip == SDL_FLIP_NONE) {
 
 			App->render->Blit(graphics, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y - r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r, flip);
@@ -1374,28 +1374,7 @@ update_status ModulePlayer::Update()
 		if (flip == SDL_FLIP_HORIZONTAL) {
 			App->render->Blit(graphics, position.x - 10 +/*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()] * 2, position.y - r.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
 		}
-	}
-	if (App->ui->damage_p1 > 26 && App->ui->damage_p1 <= 52) {
-		if (flip == SDL_FLIP_NONE) {
-
-			App->render->Blit(graphics2, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y - r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r, flip);
-
-		}
-		if (flip == SDL_FLIP_HORIZONTAL) {
-			App->render->Blit(graphics2, position.x - 10 +/*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()] * 2, position.y - r.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
-		}
-	}
-	if (App->ui->damage_p1 > 52) {
-		if (flip == SDL_FLIP_NONE) {
-
-			App->render->Blit(graphics3, position.x + /*Pivotex*/current_animation->pivotx[current_animation->returnCurrentFrame()], position.y - r.h + /*Pivotey*/ current_animation->pivoty[current_animation->returnCurrentFrame()], &r, flip);
-
-		}
-		if (flip == SDL_FLIP_HORIZONTAL) {
-			App->render->Blit(graphics3, position.x - 10 +/*Pivotex*/current_animation->pivotx2[current_animation->returnCurrentFrame()] * 2, position.y - r.h + /*Pivotey*/ current_animation->pivoty2[current_animation->returnCurrentFrame()], &r, flip);
-		}
-	}
-
+	//}
 	if (playdamage == true) {
 		if (flip == 0) {
 			App->render->Blit(graphics, position.x + 30, position.y - 50, &(damage1.GetCurrentFrame()), SDL_FLIP_NONE);

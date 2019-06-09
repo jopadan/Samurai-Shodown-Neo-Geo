@@ -20,7 +20,7 @@
 #define YATORO_TIME 800
 #define KAMUI_TIME 1000
 #define KICK_TIME  700
-#define MED_KICK_TIME  700
+#define MED_KICK_TIME  900
 #define HEAVY_KICK_TIME  900
 #define TORNADO_TIME  1100
 #define START_TIME  3000
