@@ -266,8 +266,8 @@ bool ModulePlayer2::Start()
 	position.y = 207;
 
 	graphics = App->textures->Load("Assets/Image/Nakoruru spritesheet p2.png");
-	graphics2 = App->textures->Load("Assets/Image/Nakoruru spritesheet p2 2.png");
-	graphics3 = App->textures->Load("Assets/Image/Nakoruru spritesheet p2 3.png");
+	//graphics2 = App->textures->Load("Assets/Image/Nakoruru spritesheet p2 2.png");
+//	graphics3 = App->textures->Load("Assets/Image/Nakoruru spritesheet p2 3.png");
 	graphicsobj = App->textures->Load("Assets/Image/objectes.png");
 	Kamui = App->music->LoadChunk("Assets/Sound/Nakoruru/Samurai Shodown - Nakoruru - Kamui Mutsube.wav");
 	swordlight = App->music->LoadChunk("Assets/Sound/Common/Samurai Shodown - A- 01.wav");
@@ -308,8 +308,8 @@ bool ModulePlayer2::CleanUp() {
 	position.x = 372;
 	position.y = 207;
 	App->textures->Unload(graphics);
-	App->textures->Unload(graphics2);
-	App->textures->Unload(graphics3);
+//	App->textures->Unload(graphics2);
+//	App->textures->Unload(graphics3);
 	App->textures->Unload(graphicsobj);
 	App->music->UnloadChunk(Kamui);
 	App->music->UnloadChunk(swordlight);
