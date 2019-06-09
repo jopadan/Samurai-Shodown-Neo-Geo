@@ -34,6 +34,7 @@ ModulePetp1::ModulePetp1() {
 ModulePetp1::~ModulePetp1() {
 
 }
+
 bool ModulePetp1::Start() {
 	LOG("Loading Hawk 1");
 	graphics = App->textures->Load("Assets/Image/Nakoruru spritesheet.png");
@@ -49,6 +50,7 @@ bool ModulePetp1::Start() {
 update_status ModulePetp1::Update() {
 	speedx = 0;
 	speedy = 0;
+
 	if (!yatoro){
 		if (colliderAttack != nullptr) {
 			colliderAttack->to_delete = true;
@@ -134,28 +136,29 @@ update_status ModulePetp1::Update() {
 	App->player->hawkright = false;
 	App->player->hawkup = false;
 	App->player->hawkdown = false;
-
+	//x = 36 && 557
+//y = 36 && 84
 	if (App->player->OnHawk == true) {
 		flip = App->player->flip;
 		speedx = 0; speedy = 0;
-		if (App->input->right == true) { speedx = +3; 
+		if (App->input->right == true && position.x < 557) { speedx = +3; 
 		
 		App->player->hawkleft = false;
 		App->player->hawkright = true;
 		}
-		else if (App->input->left == true) { speedx = -3; 
+		else if (App->input->left == true && position.x > 36) { speedx = -3;
 		
 		App->player->hawkleft = true;
 		App->player->hawkright = false;
 		}
 		
-		if (App->input->up == true) { speedy = -3;
+		if (App->input->up == true && position.y > 36) { speedy = -3;
 		
 		App->player->hawkup = true;
 		App->player->hawkdown = false;
 
 		}
-		else if (App->input->down == true) { speedy = +3;
+		else if (App->input->down == true && position.y < 84) { speedy = +3;
 		
 		App->player->hawkup = false;
 		App->player->hawkdown = true;

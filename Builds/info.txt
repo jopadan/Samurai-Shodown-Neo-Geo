@@ -1,0 +1,5 @@
+0.95 version estable del viernes
+0.96 version sabado
+0.97 version sabado noche, limites en mascota y daño
+0.98 realentizaciones en colliders
+0.99 fix ataques en salto

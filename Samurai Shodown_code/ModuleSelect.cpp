@@ -32,16 +32,16 @@ ModuleSelect::ModuleSelect()
 	idle.PushBack({ 349, 1612, 66, 91 }, 0.15, 0, 2, 0, 2);
 	
 
-	Attack.PushBack({ 117, 713, 89, 92 }, 0.2, 11, 0, -22, 0);
-	Attack.PushBack({ 204, 711, 97, 94 }, 0.2, 5, 0, -20, 0);
-	Attack.PushBack({ 303, 708, 93, 95 }, 0.2, 0, 0, -17, 0);
-	Attack.PushBack({ 1065, 896,100, 93 }, 0.2, 0, 0, -17, 0);
-	Attack.PushBack({ 1164, 900,100, 93 }, 0.2, 3, 3, -18, 3);
-	Attack.PushBack({ 1262, 896,100, 93 }, 0.2, 5, 4, -19, 4);
-	Attack.PushBack({ 1459, 899,100, 93 }, 0.1, 7, 4, -19, 4);
-	Attack.PushBack({ 1555, 899,100, 93 }, 0.1, 12, 7, -22, 7);
-	Attack.PushBack({ 1738, 899,100, 93 }, 0.1, 11, 3, -21, 3);
-	Attack.PushBack({ 1833, 899,100, 93 }, 0.1, 11, 4, -22, 4);
+	Attack.PushBack({ 117, 713, 89, 92 }, 0.2, 19, 0, -22, 0);
+	Attack.PushBack({ 204, 711, 97, 94 }, 0.2, 13, 0, -20, 0);
+	Attack.PushBack({ 303, 708, 93, 95 }, 0.2, 8, 0, -17, 0);
+	Attack.PushBack({ 1065, 896,100, 93 }, 0.2, 8, 0, -17, 0);
+	Attack.PushBack({ 1164, 900,100, 93 }, 0.2, 11, 3, -18, 3);
+	Attack.PushBack({ 1262, 896,99, 93 }, 0.2, 13, 4, -19, 4);
+	Attack.PushBack({ 1459, 899,92, 93 }, 0.1, 14, 4, -19, 4);
+	Attack.PushBack({ 1555, 899,92, 93 }, 0.1, 20, 7, -22, 7);
+	Attack.PushBack({ 1738, 899,94, 93 }, 0.1, 19, 3, -21, 3);
+	Attack.PushBack({ 1833, 899,99, 93 }, 0.1, 19, 4, -22, 4);
 	Attack.loop = false;
 
 	p1square.PushBack({ 336, 74, 40, 47 }, 0.075, 0, 0, 0, 0);
@@ -75,7 +75,8 @@ bool ModuleSelect::Start()
 	ready2 = false;
 
 	musload = App->music->LoadMus("Assets/Sound/Twelve Swordsmen (Player Select).ogg");
-	select = App->music->LoadChunk("Assets/Sound/Samurai Shodown - SELECTING IN MENU.ogg");
+	select = App->music->LoadChunk("Assets/Sound/Samurai Shodown - SELECTING IN MENU.wav");
+	enter = App->music->LoadChunk("Assets/Sound/Samurai Shodown - Enter in Menu.wav");
 	graphics = App->textures->Load("Assets/Image/Select.png");
 	player1 = App->textures->Load("Assets/Image/Nakoruru spritesheet.png");
 	player2 = App->textures->Load("Assets/Image/Nakoruru spritesheet p2.png");
@@ -253,9 +254,12 @@ update_status ModuleSelect::Update()
 }
 
 	if (SDL_GameControllerGetButton(App->input->gGameController, SDL_CONTROLLER_BUTTON_X) == 1) {
+		if (!ready1)App->music->PlayChunk(enter);
+
 		ready1 = true;
 	}
 	if (SDL_GameControllerGetButton(App->input->gGameController2, SDL_CONTROLLER_BUTTON_X) == 1) {
+		if (!ready2)App->music->PlayChunk(enter);
 		ready2 = true;
 	}
 	if (ready1 && ready2) {

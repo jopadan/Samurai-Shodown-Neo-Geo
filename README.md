@@ -1,12 +1,17 @@
-# PMJ studios: Samurai Shodown
+﻿# PMJ studios: Samurai Shodown
 
 We are a small group, in the first year of a Bachelor's Degree in Video Game Design and Development. As a project we had the objective to create a tribute to the great Samurai Shodown, a classical arcade figthing game.
 
 Samurai Shodown, known as Samurai Spirits is a fighting game developed and published by SNK for their NeoGeo arcade system. It was released in 1993, in a time of great hits such Street Fighter II: The World Warrior, Mortal Kombat, Art of Fighting, and many others. Samurai Shodown difered in it's fast paced combat, more focused on speed and timing than hard to chain combos, and in it's setting, which happens in the late 18th century. 
 
-## Project page and team members
+## Project page
 https://github.com/Ap011y0n/Samurai-Shodown-Neo-Geo
 
+## Webpage
+https://github.com/Ap011y0n/Samurai-Shodown-Neo-Geo
+
+## Team members
+https://github.com/Ap011y0n/Samurai-Shodown-Neo-Geo
 · Pol Galan: https://github.com/pgalmor
 
 · Albert Garcia: https://github.com/Ap011y0n
@@ -14,6 +19,13 @@ https://github.com/Ap011y0n/Samurai-Shodown-Neo-Geo
 · Pol Juan: https://github.com/Sauko22
 
 ## Controls
+Gamecontroller (xbox360 or equivalent) / keyboard
+(We recommend the use of a gamecontroller since the game was designed for that type of controls in mind)
+
+### Menu, select screen, ending
+Start button / Spacebar: Advance between stages(menu->select->fight, ending -> menu).
+Select screen: select a character with X, move with joystick.
+
 ### Debug
 F1: Display all colliders.
 
@@ -25,46 +37,70 @@ F4: P2 GOD mode.
 
 F5: P1 GOD mode.
 
-Spacebar: Advance between stages(menu, victory, defeat).
+
 
 ESC: Close game.
 
-## Implemented movements: 
+## Moveset: 
+
+Joystick / WASD: move, jump and crouch.
+
+Slash:     X  Weak Slash     Y  Medium Slash     XY Strong Slash
+Kick:      A  Weak Kick      B  Medium Kick      AB Strong Kick
+
+When jump, neutral, forward, backward && crouch: 
+
+	   X  Weak Slash     Y  Strong Slash		
+	   A  Weak Kick	     B  Strong Kick 
+
+Block:
+Move backwards (opposite of facing direction)
+
+Specials:
+(If facing direction = right, otherwise invert -O and O-)
+
+ →↘↓↙←+Slash:      Amube Yatoro:Nakoruru orders Mamahaha to attack. 
+
+←↙↓+Slash:         Annu Mutsube:Nakoruru slides along the ground with blade outstreched.
+
+↓↘→+Slash:         Leyla Mutsube:Rising version of Annu Mutsube.
+
+←↙↓+Kick:          Hawk Carry:Nakoruru rides Mamahaha, gaining flight.
+
+
+(while hawk carry)
+
+↘+Slash/Kick:    Kamui Mutsube:Sword-first dive at an angle, from the bird.
+
+↓+Slash/Kick:    Yatoru Poko:Downwards spinning roll from the bird.
+
+Pow Rage:
+
+As you received various blows, your Pow gauge, located in the lower half of the screen,will increase. When it begins to flash, your character will anger, reaching full power. At this time,your attacks and methods of mayhem will be at their deadliest.
+
+
+Keyboard Variations
 ### P1 controls:
+     X = 1     Y = 2    
+     A = 3     B = 4
 
-WASD: move, jump and crouch.
-
-1: Sword attack.
-
-2: Kick.
-
-Down(S)-> Face direction(D or A) -> 1 : Special move.
-
-3: (Special move shortcut).
-
-Down(S) -> 1 : Crouch attack.
-
-Back when hitted (opposite direction of opponent): Block.
+O 		  |
+| = W	O- = A    O = S	  -O = D
 
 ### P2 controls:
 
-IJKL: move, jump and crouch.
+     X = 7     Y = 8    
+     A = 9     B = 0
 
-7: Sword attack.
+O 		 |
+| = I	O- = J   O = K	  -O = L
 
-8: Kick.
 
-Down(K)-> Face direction(J or L) -> 7 : Special move.
 
-9: (Special move shortcut).
-
-Down(K) -> 7 : Crouch attack.
-
-Back when hitted (opposite direction of opponent): Block.
 
 ## Objective
 
-The first player whose life gets to 0 or the one whose life is lower when the time ends loses the match.
+The first player whose life gets to 0 or the one whose life is lower when the time ends loses a round. The player who wins 2 rounds wins a match.
 
 ## Changelog
 
@@ -77,6 +113,26 @@ The first player whose life gets to 0 or the one whose life is lower when the ti
 **0.4:** Added a collision system (implementing stage limits and basic hitboxes for the characters and the attacks) and more funcionalities to both characters.
 
 **0.45:** Changed the second character's appearance to be the second version of the first character and added all funcionalities that the first player had to the second one. Added a flip system for the characters to always face each other and a basic automatic camera system. Added a functional UI (just healthbars and timer) with its font system and win/lose conditions. Taken out of the games path the second screen and improved hitboxes and combat.
+
+**0.5:** Prototype, haohmaru vs haohmaru, haohmaru stage
+
+**0.6:** Added gamepad input
+
+**0.7:** Added special attacks throug combination of input
+
+**0.8:** Added camera shake and slowmotion to impacts
+
+**0.9:** Added new specials and attacks
+
+**0.95** Added Rounds, select scene, pow bar, and collisions fixed
+
+**0.96** rounds and certain animations fixed
+
+**0.97** hawk camera limits, damage enhanced
+
+**0.98** added damage particles and a time countdown for the colliders to appear
+
+**0.99** jump attacks fixed
 
 ### Libraries used:
 SDL: https://www.libsdl.org/
