@@ -11,7 +11,7 @@ https://github.com/Ap011y0n/Samurai-Shodown-Neo-Geo
 https://ap011y0n.github.io/Samurai-Shodown-Neo-Geo/
 
 ## Team members
-https://github.com/Ap011y0n/Samurai-Shodown-Neo-Geo
+
 · Pol Galan: https://github.com/pgalmor
 
 · Albert Garcia: https://github.com/Ap011y0n
@@ -135,6 +135,9 @@ The first player whose life gets to 0 or the one whose life is lower when the ti
 **0.99** jump attacks fixed
 
 ### Libraries used:
+
 SDL: https://www.libsdl.org/
+
 SDL_Mixer: https://www.libsdl.org/projects/SDL_mixer/
+
 SDL_Image: https://www.libsdl.org/projects/SDL_image/
