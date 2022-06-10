@@ -60,8 +60,8 @@ Application::~Application()
 bool Application::Init()
 {
 	bool ret = true;
-	LOG("player");
 	player->Disable();
+	LOG("player");
 	player2->Disable();
 	LOG("player2");
 	scene_haohmaru->Disable();

@@ -320,10 +320,8 @@ bool ModulePlayer::CleanUp() {
 	App->input->inputs.Push(IN_DEFEAT_FINISH);
 
 	LOG("Unloading Player")
-		if (colliderPlayer != nullptr) {
-	LOG("Unloading Player")
+		if (colliderPlayer != NULL) {
 		//	colliderPlayer->to_delete = true;
-	LOG("Unloading Player")
 		//	colliderPlayer_2->to_delete = true;
 		}
 	position.x = 208;
@@ -373,14 +371,14 @@ update_status ModulePlayer::Update()
 			animstart = 0;
 			timer = SDL_GetTicks();
 		if(vuelta == 0){
-			if (colliderAttack != nullptr) {
+			if (colliderAttack != NULL) {
 				if (colliderAttack->to_delete == true) {
 					colliderAttack->to_delete = false;
 				}
 			}
 		}
 		if (vuelta == 1) {
-			if (colliderAttack != nullptr) {
+			if (colliderAttack != NULL) {
 				colliderAttack->to_delete = true;
 			}
 		}
@@ -495,7 +493,7 @@ update_status ModulePlayer::Update()
 							time = SDL_GetTicks();
 						}
 
-						if (colliderAttack != nullptr){
+						if (colliderAttack != NULL){
 							if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 30, position.y - 70);
 						if (flip == 1)colliderAttack->SetPos(position.x - 25, position.y - 70);
 						}
@@ -513,7 +511,7 @@ update_status ModulePlayer::Update()
 							collider = false;
 							time = SDL_GetTicks();
 						}
-						if (colliderAttack != nullptr) {
+						if (colliderAttack != NULL) {
 						if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 30, position.y - 70);
 						if (flip == 1)colliderAttack->SetPos(position.x - 35, position.y - 70);
 					}
@@ -530,7 +528,7 @@ update_status ModulePlayer::Update()
 							collider = false;
 							time = SDL_GetTicks();
 						}
-						if (colliderAttack != nullptr) {
+						if (colliderAttack != NULL) {
 						if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 60, position.y - 40);
 						if (flip == 1)colliderAttack->SetPos(position.x - 35, position.y - 40);
 					}
@@ -547,7 +545,7 @@ update_status ModulePlayer::Update()
 							collider = false;
 							time = SDL_GetTicks();
 						}
-						if (colliderAttack != nullptr) {
+						if (colliderAttack != NULL) {
 							if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 10, position.y - 40);
 							if (flip == 1)colliderAttack->SetPos(position.x - 35, position.y - 40);
 						}
@@ -594,7 +592,7 @@ update_status ModulePlayer::Update()
 							time = SDL_GetTicks();
 						}
 
-						if (colliderAttack != nullptr){
+						if (colliderAttack != NULL){
 							if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 30, position.y - 70);
 						if (flip == 1)colliderAttack->SetPos(position.x - 25, position.y - 70);
 						}
@@ -612,7 +610,7 @@ update_status ModulePlayer::Update()
 							collider = false;
 							time = SDL_GetTicks();
 						}
-						if (colliderAttack != nullptr) {
+						if (colliderAttack != NULL) {
 							if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 40, position.y - 80);
 							if (flip == 1)colliderAttack->SetPos(position.x - 35, position.y - 80);
 						}
@@ -629,7 +627,7 @@ update_status ModulePlayer::Update()
 							collider = false;
 							time = SDL_GetTicks();
 						}
-						if (colliderAttack != nullptr) {
+						if (colliderAttack != NULL) {
 							if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 60, position.y - 40);
 							if (flip == 1)colliderAttack->SetPos(position.x - 35, position.y - 40);
 						}
@@ -646,7 +644,7 @@ update_status ModulePlayer::Update()
 							collider = false;
 							time = SDL_GetTicks();
 						}
-						if (colliderAttack != nullptr) {
+						if (colliderAttack != NULL) {
 							if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 25, position.y - 40);
 							if (flip == 1)colliderAttack->SetPos(position.x - 35, position.y - 40);
 						}
@@ -697,7 +695,7 @@ update_status ModulePlayer::Update()
 							time = SDL_GetTicks();
 						}
 
-						if (colliderAttack != nullptr) {
+						if (colliderAttack != NULL) {
 						if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 30, position.y - 70);
 						if (flip == 1)colliderAttack->SetPos(position.x - 25, position.y - 70);
 					}
@@ -715,7 +713,7 @@ update_status ModulePlayer::Update()
 							collider = false;
 							time = SDL_GetTicks();
 						}
-						if (colliderAttack != nullptr) {
+						if (colliderAttack != NULL) {
 							if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 30, position.y - 80);
 							if (flip == 1)colliderAttack->SetPos(position.x - 35, position.y - 80);
 						}
@@ -732,7 +730,7 @@ update_status ModulePlayer::Update()
 							collider = false;
 							time = SDL_GetTicks();
 						}
-						if (colliderAttack != nullptr) {
+						if (colliderAttack != NULL) {
 							if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 60, position.y - 40);
 							if (flip == 1)colliderAttack->SetPos(position.x - 35, position.y - 40);
 						}
@@ -749,7 +747,7 @@ update_status ModulePlayer::Update()
 							collider = false;
 							time = SDL_GetTicks();
 						}
-						if (colliderAttack != nullptr) {
+						if (colliderAttack != NULL) {
 							if (flip == SDL_FLIP_NONE)	colliderAttack->SetPos(position.x + 10, position.y - 40);
 							if (flip == 1)colliderAttack->SetPos(position.x - 35, position.y - 40);
 						}
@@ -802,7 +800,7 @@ update_status ModulePlayer::Update()
 					collider = false;
 				}
 
-				if (colliderAttack != nullptr){
+				if (colliderAttack != NULL){
 					colliderAttack->SetPos(position.x + 50, position.y - 40);}
 				if (animstart == 0)
 				{
@@ -819,7 +817,7 @@ update_status ModulePlayer::Update()
 					collider = false;
 				}
 
-				if (colliderAttack != nullptr) {
+				if (colliderAttack != NULL) {
 					colliderAttack->SetPos(position.x - 45, position.y - 40);
 				}
 				if (animstart == 0)
@@ -841,7 +839,7 @@ update_status ModulePlayer::Update()
 					
 				}
 
-				if (colliderAttack != nullptr) {
+				if (colliderAttack != NULL) {
 					colliderAttack->SetPos(position.x + 50, position.y - 40);
 				}
 				if (animstart == 0)
@@ -860,7 +858,7 @@ update_status ModulePlayer::Update()
 					collider = false;
 				}
 
-				if (colliderAttack != nullptr) {
+				if (colliderAttack != NULL) {
 					colliderAttack->SetPos(position.x - 45, position.y - 40);
 				}
 				if (animstart == 0)
@@ -927,7 +925,7 @@ update_status ModulePlayer::Update()
 				}
 			}
 
-			if (colliderAttack != nullptr) {
+			if (colliderAttack != NULL) {
 				if (flip == 0)	colliderAttack->SetPos(position.x + 30, position.y - 70);
 				if (flip == 1)	colliderAttack->SetPos(position.x - 50, position.y - 70);
 			}
@@ -949,7 +947,7 @@ update_status ModulePlayer::Update()
 					time = SDL_GetTicks();
 				}
 			}
-			if (colliderAttack != nullptr) {
+			if (colliderAttack != NULL) {
 				if (flip == 0)	colliderAttack->SetPos(position.x + 45, position.y - 80);
 				if (flip == 1)  colliderAttack->SetPos(position.x - 50, position.y - 80);
 			}
@@ -976,7 +974,7 @@ update_status ModulePlayer::Update()
 				time = SDL_GetTicks();
 			}
 }
-			if (colliderAttack != nullptr) {
+			if (colliderAttack != NULL) {
 				if (flip == 0)	colliderAttack->SetPos(position.x + 45, position.y - 110);
 				if (flip == 1)	colliderAttack->SetPos(position.x - 35, position.y - 110);
 			}
@@ -1005,7 +1003,7 @@ update_status ModulePlayer::Update()
 					}
 				}
 
-				if (colliderAttack != nullptr) {
+				if (colliderAttack != NULL) {
 					colliderAttack->SetPos(position.x + 50, position.y - 40);
 				}
 				if (animstart == 0)
@@ -1025,7 +1023,7 @@ update_status ModulePlayer::Update()
 					}
 				}
 
-				if (colliderAttack != nullptr) {
+				if (colliderAttack != NULL) {
 					colliderAttack->SetPos(position.x - 45, position.y - 40);
 				}
 				if (animstart == 0)
@@ -1048,7 +1046,7 @@ update_status ModulePlayer::Update()
 					}
 				}
 
-				if (colliderAttack != nullptr) {
+				if (colliderAttack != NULL) {
 					colliderAttack->SetPos(position.x + 50, position.y - 40);
 				}
 				if (animstart == 0)
@@ -1068,7 +1066,7 @@ update_status ModulePlayer::Update()
 						collider = false;
 					}
 				}
-				if (colliderAttack != nullptr) {
+				if (colliderAttack != NULL) {
 					colliderAttack->SetPos(position.x - 45, position.y - 40);
 				}
 				if (animstart == 0)
@@ -1090,7 +1088,7 @@ update_status ModulePlayer::Update()
 				}
 			}
 
-			if (colliderAttack != nullptr) {
+			if (colliderAttack != NULL) {
 				if (flip == 0)	colliderAttack->SetPos(position.x + 55, position.y - 80);
 				if (flip == 1)	colliderAttack->SetPos(position.x - 40, position.y - 80);
 			}
@@ -1116,7 +1114,7 @@ update_status ModulePlayer::Update()
 				}
 			}
 
-			if (colliderAttack != nullptr) {
+			if (colliderAttack != NULL) {
 				if (flip == 0)	colliderAttack->SetPos(position.x + 63, position.y - 80);
 				if (flip == 1)	colliderAttack->SetPos(position.x - 48, position.y - 80);
 			}
@@ -1141,7 +1139,7 @@ update_status ModulePlayer::Update()
 					time = SDL_GetTicks();
 				}
 			}
-			if (colliderAttack != nullptr) {
+			if (colliderAttack != NULL) {
 				if (flip == 0)	colliderAttack->SetPos(position.x + 60, position.y - 80);
 				if (flip == 1)	colliderAttack->SetPos(position.x - 48, position.y - 80);
 			}
@@ -1172,7 +1170,7 @@ update_status ModulePlayer::Update()
 				time = SDL_GetTicks();
 			}
 
-			if (colliderAttack != nullptr) {
+			if (colliderAttack != NULL) {
 				if (flip == 0)	colliderAttack->SetPos(position.x + 60, position.y - 30);
 				if (flip == 1)	colliderAttack->SetPos(position.x - 48, position.y - 30);
 			}
@@ -1239,7 +1237,7 @@ update_status ModulePlayer::Update()
 				time = SDL_GetTicks();
 			}
 
-			if (colliderAttack != nullptr) {
+			if (colliderAttack != NULL) {
 				if (flip == 0)	colliderAttack->SetPos(position.x + 60, position.y - 30);
 				if (flip == 1)	colliderAttack->SetPos(position.x - 48, position.y - 30);
 			}
@@ -1260,7 +1258,7 @@ update_status ModulePlayer::Update()
 				time = SDL_GetTicks();
 			}
 
-			if (colliderAttack != nullptr) {
+			if (colliderAttack != NULL) {
 				if (flip == 0)	colliderAttack->SetPos(position.x + 20, position.y - 40);
 				if (flip == 1)	colliderAttack->SetPos(position.x, position.y - 40);
 			}
@@ -1288,7 +1286,7 @@ update_status ModulePlayer::Update()
 				time = SDL_GetTicks();
 			}
 
-			if (colliderAttack != nullptr) {
+			if (colliderAttack != NULL) {
 				if (flip == 0)	colliderAttack->SetPos(position.x + 10, position.y - 50);
 				if (flip == 1)	colliderAttack->SetPos(position.x, position.y - 40);
 			}
@@ -1389,16 +1387,16 @@ update_status ModulePlayer::Update()
 	}
 
 	if (flip == SDL_FLIP_HORIZONTAL) {
-		if (colliderPlayer != nullptr)colliderPlayer->SetPos(position.x, position.y - 80 + height);
+		if (colliderPlayer != NULL)colliderPlayer->SetPos(position.x, position.y - 80 + height);
 	}
 	else {
-		if (colliderPlayer != nullptr)colliderPlayer->SetPos(position.x + 9, position.y - 80 + height);
+		if (colliderPlayer != NULL)colliderPlayer->SetPos(position.x + 9, position.y - 80 + height);
 	}
 	if (flip == SDL_FLIP_HORIZONTAL) {
-		if (colliderPlayer_2 != nullptr)colliderPlayer_2->SetPos(position.x + 7, position.y - 50 - height2);
+		if (colliderPlayer_2 != NULL)colliderPlayer_2->SetPos(position.x + 7, position.y - 50 - height2);
 	}
 	else {
-		if (colliderPlayer_2 != nullptr)colliderPlayer_2->SetPos(position.x + 15, position.y - 50 - height2);
+		if (colliderPlayer_2 != NULL)colliderPlayer_2->SetPos(position.x + 15, position.y - 50 - height2);
 	}
 	return UPDATE_CONTINUE;
 }
@@ -1968,13 +1966,13 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 		App->slowdown->StartSlowdown(600, 40);
 		App->render->StartCameraShake(300, 3);
 		App->input->inputs.Push(IN_DAMAGE);
-		if (c2 != nullptr) {
+		if (c2 != NULL) {
 			c2->to_delete = true;
 		}
 	}
 
 	else {
-		if (colliderPlayer == c1 && c2->type == COLLIDER_ENEMY_SHOT && defense == true) App->input->inputs.Push(IN_BLOCK); if (App->player2->colliderAttack != nullptr) App->player2->colliderAttack->to_delete = true;
+		if (colliderPlayer == c1 && c2->type == COLLIDER_ENEMY_SHOT && defense == true) App->input->inputs.Push(IN_BLOCK); if (App->player2->colliderAttack != NULL) App->player2->colliderAttack->to_delete = true;
 
 		if (colliderPlayer == c1 && c2->type == COLLIDER_WALL)
 		{
