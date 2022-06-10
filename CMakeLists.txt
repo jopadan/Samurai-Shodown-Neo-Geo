@@ -13,9 +13,11 @@ elseif(CMAKE_CXX_COMPILER_LOADED)
 else()
   message(FATAL_ERROR "FindMath only works if either C or CXX language is enabled")
 endif()
+
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 include(GNUInstallDirs)
 include(FindPkgConfig)
+include(FindMath)
 include(FindSDL2_mixer)
 include(FindSDL2_image)
 
@@ -91,17 +93,18 @@ set(INCLUDE_FILES
 
 add_executable( ${PROJECT_NAME} ${SOURCE_FILES} ${INCLUDE_FILES} )
 
+find_package(Math REQUIRED)
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 find_package(SDL2_mixer REQUIRED)
 find_package(OpenGL REQUIRED)
 
-if(SDL2_FOUND AND SDL2_mixer_FOUND AND SDL2_image_FOUND)
-	target_include_directories(${PROJECT_NAME} PUBLIC
+if(Math_FOUND AND SDL2_FOUND AND SDL2_mixer_FOUND AND SDL2_image_FOUND)
+	target_include_directories(${PROJECT_NAME} PUBLIC Math::Math
 		${SDL2_INCLUDE_DIRS} ${SDL2_MIXER_INCLUDES}
 		${SDL2_IMAGE_INCLUDES} ${OPENGL_INCLUDE_DIR}
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src> )
-	target_link_libraries(${PROJECT_NAME} SDL2 ${SDL2_LIBRARY}
+	target_link_libraries(${PROJECT_NAME} SDL2 Math::Math ${SDL2_LIBRARY}
 		${SDL2_MIXER_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${OPENGL_LIBRARIES} )
 endif()
 
