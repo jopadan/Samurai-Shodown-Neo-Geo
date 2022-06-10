@@ -335,6 +335,7 @@ ASALocalRun/
 
 Makefile
 cmake_install.cmake
+install_manifest.txt
 CMakeFiles/
 CMakeCache.txt
 samurai_shodown*

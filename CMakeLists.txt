@@ -108,5 +108,9 @@ if(Math_FOUND AND SDL2_FOUND AND SDL2_mixer_FOUND AND SDL2_image_FOUND)
 		${SDL2_MIXER_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${OPENGL_LIBRARIES} )
 endif()
 
+set(CMAKE_INSTALL_DATADIR ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME})
+
 install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}Config )
-install(DIRECTORY data/Sounds DESTINATION share/games/${PROJECT_NAME})
+install(DIRECTORY data/Assets data/Ui TYPE DATA COMPONENT assets)
+install(FILES doc/Samurai_Shodown_Manual.pdf doc/index.html TYPE DOC COMPONENT documentation)
+install(DIRECTORY doc/vscode doc/web doc/wiki TYPE DOC COMPONENT documentation)
